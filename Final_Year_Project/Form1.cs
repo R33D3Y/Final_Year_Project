@@ -23,6 +23,7 @@ namespace Final_Year_Project
     public class Calendar
     {
         DateTime start;
+        string[] days = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st", "32nd" };
         TableLayoutPanel calendar;
 
         public Calendar(DateTime s)
@@ -98,6 +99,30 @@ namespace Final_Year_Project
             calendar.Controls.Add(new Label() { Text = "" }, 4, 4);
             calendar.Controls.Add(new Label() { Text = "Laundry" }, 5, 4);
             calendar.Controls.Add(new Label() { Text = "" }, 6, 4);
+
+            calendar.Controls.Add(new Label() { Text = "16th" }, 0, 5);
+            calendar.Controls.Add(new Label() { Text = "17th" }, 1, 5);
+            calendar.Controls.Add(new Label() { Text = "18th" }, 2, 5);
+            calendar.Controls.Add(new Label() { Text = "19th" }, 3, 5);
+            calendar.Controls.Add(new Label() { Text = "20th" }, 4, 5);
+            calendar.Controls.Add(new Label() { Text = "21st" }, 5, 5);
+            calendar.Controls.Add(new Label() { Text = "22nd" }, 6, 5);
+
+            calendar.Controls.Add(new Label() { Text = "Dinner" }, 0, 6);
+            calendar.Controls.Add(new Label() { Text = "" }, 1, 6);
+            calendar.Controls.Add(new Label() { Text = "Football" }, 2, 6);
+            calendar.Controls.Add(new Label() { Text = "" }, 3, 6);
+            calendar.Controls.Add(new Label() { Text = "Match" }, 4, 6);
+            calendar.Controls.Add(new Label() { Text = "Cleaner" }, 5, 6);
+            calendar.Controls.Add(new Label() { Text = "" }, 6, 6);
+
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+
+                }
+            }
         }
 
         public void AddEvent()
