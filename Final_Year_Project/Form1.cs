@@ -115,8 +115,10 @@ namespace Final_Year_Project
             //calendar.Controls.Add(new Label() { Text = "" }, 6, 6);
 
             string[] day_names = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-            string[] days = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st" };
+            string[] days = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st", "", "", "", "" };
+            string[][] data = new string [][] { new string[] {"Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "Birthday", "Dinner" }, new string[] { "Date" }, new string[] { "Football", "Shopping", "Lab Write" }, new string[] { "" }, new string[] { "" }, new string[] { "" }, new string[] { "" } };
             int day_count = 0;
+            int data_count = 0;
 
             for (int i = 0; i < 7; i++)
             {
@@ -142,7 +144,27 @@ namespace Final_Year_Project
 
                 for (int j = 0; j < 7; j++)
                 {
-                    calendar.Controls.Add(new Label() { Text = "New Event" });
+                    if (data[data_count].Length > 1)
+                    {
+                        TableLayoutPanel p = new TableLayoutPanel();
+                        p.ColumnCount = 1;
+                        p.RowCount = data[data_count].Length;
+                        p.Dock = DockStyle.Fill;
+
+                        for (int h = 0; h < data[data_count].Length; h++)
+                        {
+                            p.Controls.Add(new Label() { Text = data[data_count][h] });
+                        }
+
+                        calendar.Controls.Add(p);
+                    }
+
+                    else
+                    {
+                        calendar.Controls.Add(new Label() { Text = data[data_count][0] });
+                    }
+
+                    data_count++;
                 }
             }
         }
