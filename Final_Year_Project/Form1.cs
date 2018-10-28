@@ -18,14 +18,16 @@ namespace Final_Year_Project
             Database database = new Database("", "");
             calendar = new Calendar(tableLayoutPanel);
             calendar.SetData(database.GetData());
-            calendar.Render();
+
+            calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now.AddDays(-1), "Computer"));
+            calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Dinner"));
         }
     }
 
     public class Database
     {
-        string connection;
-        string password;
+        private readonly string connection;
+        private readonly string password;
 
         public Database(string c, string p)
         {
@@ -117,6 +119,8 @@ namespace Final_Year_Project
             int day_count = 0;
             int data_count = 0;
 
+            calendar.Controls.Clear();
+
             for (int i = 0; i < 7; i++)
             {
                 calendar.Controls.Add(new Label() { Text = day_names[i] });
@@ -166,13 +170,30 @@ namespace Final_Year_Project
             }
         }
 
-        public void AddEvent(int date, CalendarEvent e)
+        public CalendarEvent GetEvent(DateTime d, string n)
         {
+            for (int i = 0; i < data[(d.Day - 1)].Count; i++)
+            {
+                if (data[(d.Day - 1)][i].getName().Equals(n))
+                {
+                    return data[(d.Day - 1)][i];
+                }
+            }
+
+            return data[(d.Day - 1)][0];
+        }
+
+        public void AddEvent(CalendarEvent e)
+        {
+            data[(e.getDateTime().Day - 1)].Add(e);
+
             Render();
         }
 
-        public void RemoveEvent()
+        public void RemoveEvent(CalendarEvent e)
         {
+            data[(e.getDateTime().Day - 1)].Remove(e);
+
             Render();
         }
 
@@ -190,10 +211,17 @@ namespace Final_Year_Project
             }
 
             data = d;
+
+            Render();
         }
 
         public List<List<CalendarEvent>> GetData()
         {
+            for (int i = 0; i < 4; i++)
+            {
+                data.RemoveAt((data.Count - 1));
+            }
+
             return data;
         }
     }
