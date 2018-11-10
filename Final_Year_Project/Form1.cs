@@ -19,8 +19,8 @@ namespace Final_Year_Project
             calendar = new Calendar(tableLayoutPanel);
             calendar.SetData(database.GetData());
 
-            calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now.AddDays(-1), "Computer"));
-            calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Dinner"));
+            //calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now.AddDays(-1), "Computer"));
+            //calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Dinner"));
         }
     }
 
@@ -145,25 +145,28 @@ namespace Final_Year_Project
 
                 for (int j = 0; j < 7; j++)
                 {
-                    if (data[data_count].Count > 1)
+                    TableLayoutPanel p = new TableLayoutPanel();
+                    p.ColumnCount = 1;
+                    p.RowCount = data[data_count].Count;
+                    p.Dock = DockStyle.Fill;
+                    p.Click += (s, e) =>
                     {
-                        TableLayoutPanel p = new TableLayoutPanel();
-                        p.ColumnCount = 1;
-                        p.RowCount = data[data_count].Count;
-                        p.Dock = DockStyle.Fill;
+                        PanelClickEvent(s, e);
+                    };
 
-                        for (int h = 0; h < data[data_count].Count; h++)
+                    for (int h = 0; h < data[data_count].Count; h++)
+                    {
+                        Label l = new Label() { Text = data[data_count][h].getName() };
+                        l.Click += (s, e) =>
                         {
-                            p.Controls.Add(new Label() { Text = data[data_count][h].getName() });
-                        }
+                            s = l.Parent;
+                            PanelClickEvent(s, e);
+                        };
 
-                        calendar.Controls.Add(p);
+                        p.Controls.Add(l);
                     }
 
-                    else
-                    {
-                        calendar.Controls.Add(new Label() { Text = data[data_count][0].getName() });
-                    }
+                    calendar.Controls.Add(p);
 
                     data_count++;
                 }
@@ -223,6 +226,42 @@ namespace Final_Year_Project
             }
 
             return data;
+        }
+
+        public void PanelClickEvent(object s, EventArgs e)
+        {
+            TableLayoutPanel temp = (TableLayoutPanel)s;
+            TableLayoutPanel parent = (TableLayoutPanel)temp.Parent;
+            bool found = false;
+
+            for (int g = 0; g < 7; g++)
+            {
+                for (int h = 0; h < 11; h++)
+                {
+                    if (parent.GetControlFromPosition(g, h) == temp)
+                    {
+                        int datePoint = h - 1;
+                        found = true;
+
+                        //Console.WriteLine("C: " + g + " R: " + h);
+
+                        if (parent.GetControlFromPosition(g, datePoint).Text.Equals(""))
+                        {
+                            Console.WriteLine("Empty Field");
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Date: " + parent.GetControlFromPosition(g, datePoint).Text);
+                        }
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("Nothing found");
+            }
         }
     }
 }
