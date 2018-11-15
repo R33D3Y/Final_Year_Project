@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Final_Year_Project
@@ -19,8 +20,8 @@ namespace Final_Year_Project
             calendar = new Calendar(tableLayoutPanel);
             calendar.SetData(database.GetData());
 
-            //calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now.AddDays(-1), "Computer"));
-            //calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Dinner"));
+            //calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now, "Computer"));
+            //calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Football"));
         }
     }
 
@@ -37,36 +38,49 @@ namespace Final_Year_Project
 
         public List<List<CalendarEvent>> GetData()
         {
+            // ============================= FAKE DATASET =============================
+
             List<List<CalendarEvent>> data = new List<List<CalendarEvent>>();
             List<CalendarEvent> tempList = new List<CalendarEvent>();
 
+            int daycount = 1;
+            DateTime dt = new DateTime(2018, 1, daycount);
+
             for (int i = 0; i < 10; i++)
             {
-                tempList.Add(new CalendarEvent("Football", DateTime.Now, "Footy Pitch"));
-                tempList.Add(new CalendarEvent("Shopping", DateTime.Now, "Tesco"));
-                tempList.Add(new CalendarEvent("Lab Write Up", DateTime.Now, "Home"));
+                tempList.Add(new CalendarEvent("Football", dt, "Footy Pitch"));
+                tempList.Add(new CalendarEvent("Shopping", dt, "Tesco"));
+                tempList.Add(new CalendarEvent("Lab Write Up", dt, "Home"));
 
                 data.Add(tempList);
 
                 tempList = new List<CalendarEvent>();
+                daycount++;
+                dt = new DateTime(2018, 1, daycount);
 
-                tempList.Add(new CalendarEvent("Birthday", DateTime.Now, "John's House"));
-                tempList.Add(new CalendarEvent("Dinner", DateTime.Now, "Home"));
-
-                data.Add(tempList);
-
-                tempList = new List<CalendarEvent>();
-
-                tempList.Add(new CalendarEvent("Date", DateTime.Now, "Nandos"));
+                tempList.Add(new CalendarEvent("Birthday", dt, "John's House"));
+                tempList.Add(new CalendarEvent("Dinner", dt, "Home"));
 
                 data.Add(tempList);
 
                 tempList = new List<CalendarEvent>();
+                daycount++;
+                dt = new DateTime(2018, 1, daycount);
+
+                tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
+
+                data.Add(tempList);
+
+                tempList = new List<CalendarEvent>();
+                daycount++;
+                dt = new DateTime(2018, 1, daycount);
             }
 
-            tempList.Add(new CalendarEvent("Date", DateTime.Now, "Nandos"));
+            tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
 
             data.Add(tempList);
+
+            // ============================= FAKE DATASET =============================
 
             return data;
         }
@@ -83,6 +97,8 @@ namespace Final_Year_Project
             name = n;
             dateTime = dt;
             location = l;
+
+            //Console.WriteLine(n + ", " + dt + ", " + l);
         }
 
         public string getName()
@@ -179,11 +195,15 @@ namespace Final_Year_Project
             {
                 if (data[(d.Day - 1)][i].getName().Equals(n))
                 {
+                    Console.WriteLine("Success: " + data[(d.Day - 1)][i].getDateTime());
+
                     return data[(d.Day - 1)][i];
                 }
             }
 
-            return data[(d.Day - 1)][0];
+            Console.WriteLine("Failed");
+
+            return null;
         }
 
         public void AddEvent(CalendarEvent e)
@@ -243,8 +263,6 @@ namespace Final_Year_Project
                         int datePoint = h - 1;
                         found = true;
 
-                        //Console.WriteLine("C: " + g + " R: " + h);
-
                         if (parent.GetControlFromPosition(g, datePoint).Text.Equals(""))
                         {
                             Console.WriteLine("Empty Field");
@@ -253,6 +271,12 @@ namespace Final_Year_Project
                         else
                         {
                             Console.WriteLine("Date: " + parent.GetControlFromPosition(g, datePoint).Text);
+
+                            string[] numbers = Regex.Split(parent.GetControlFromPosition(g, datePoint).Text, @"\D+");
+                            int index = int.Parse(numbers[0]);
+                            Render();
+                            //DateTime dt = new DateTime(2018, 1, index);
+                            //RemoveEvent(GetEvent(dt, "Football"));
                         }
                     }
                 }
