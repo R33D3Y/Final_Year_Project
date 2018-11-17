@@ -40,43 +40,54 @@ namespace Final_Year_Project
         {
             // ============================= FAKE DATASET =============================
 
+            int month = 8;
+
             List<List<CalendarEvent>> data = new List<List<CalendarEvent>>();
             List<CalendarEvent> tempList = new List<CalendarEvent>();
 
             int daycount = 1;
-            DateTime dt = new DateTime(2018, 3, daycount);
+            DateTime dt = new DateTime(2018, month, daycount);
 
-            for (int i = 0; i < 10; i++)
+            try
             {
-                tempList.Add(new CalendarEvent("Football", dt, "Footy Pitch"));
-                tempList.Add(new CalendarEvent("Shopping", dt, "Tesco"));
-                tempList.Add(new CalendarEvent("Lab Write Up", dt, "Home"));
+                for (int i = 0; i < 10; i++)
+                {
+                    tempList.Add(new CalendarEvent("Football", dt, "Footy Pitch"));
+                    tempList.Add(new CalendarEvent("Shopping", dt, "Tesco"));
+                    tempList.Add(new CalendarEvent("Lab Write Up", dt, "Home"));
 
-                data.Add(tempList);
+                    data.Add(tempList);
 
-                tempList = new List<CalendarEvent>();
-                daycount++;
-                dt = new DateTime(2018, 3, daycount);
+                    tempList = new List<CalendarEvent>();
+                    daycount++;
+                    dt = new DateTime(2018, month, daycount);
+                    Console.WriteLine(dt);
 
-                tempList.Add(new CalendarEvent("Birthday", dt, "John's House"));
-                tempList.Add(new CalendarEvent("Dinner", dt, "Home"));
+                    tempList.Add(new CalendarEvent("Birthday", dt, "John's House"));
+                    tempList.Add(new CalendarEvent("Dinner", dt, "Home"));
 
-                data.Add(tempList);
+                    data.Add(tempList);
 
-                tempList = new List<CalendarEvent>();
-                daycount++;
-                dt = new DateTime(2018, 3, daycount);
+                    tempList = new List<CalendarEvent>();
+                    daycount++;
+                    dt = new DateTime(2018, month, daycount);
+
+                    tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
+
+                    data.Add(tempList);
+
+                    tempList = new List<CalendarEvent>();
+                    daycount++;
+                    dt = new DateTime(2018, month, daycount);
+                }
 
                 tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
-
-                data.Add(tempList);
-
-                tempList = new List<CalendarEvent>();
-                daycount++;
-                dt = new DateTime(2018, 3, daycount);
             }
 
-            tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
+            catch(Exception e)
+            {
+
+            }
 
             data.Add(tempList);
 
@@ -130,7 +141,7 @@ namespace Final_Year_Project
         public void Render()
         {
             string[] day_names = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-            string[] days = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st", "", "", "", "" };
+            string[] days = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st"};
             
             int day_count = 0;
             int data_count = 0;
@@ -174,11 +185,22 @@ namespace Final_Year_Project
                     if (calendar.GetControlFromPosition(j, i) == null)
                     {
                         //Console.WriteLine(calendar.GetRowHeights()[i]);
+
                         if ((calendar.GetRowHeights()[i] - 1) == 20)
                         {
                             try
                             {
-                                calendar.Controls.Add(new Label() { Text = days[day_count] });
+                                DateTime dt = data[0][0].getDateTime();
+
+                                if (days.Length == day_count || day_count >= dt.AddMonths(1).AddDays(-1).Day)
+                                {
+                                    calendar.Controls.Add(new Label() { Text = "" });
+                                }
+
+                                else
+                                {
+                                    calendar.Controls.Add(new Label() { Text = days[day_count] });
+                                }
                             }
 
                             catch (Exception ex)
@@ -228,54 +250,6 @@ namespace Final_Year_Project
                     }
                 }
             }
-
-            /*
-            for (int i = 1; i < 6; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    try
-                    {
-                        calendar.Controls.Add(new Label() { Text = days[day_count] });
-                    }
-
-                    catch (Exception ex)
-                    {
-
-                    }
-
-                    day_count++;
-                }
-
-                for (int j = 0; j < 7; j++)
-                {
-                    TableLayoutPanel p = new TableLayoutPanel();
-                    p.ColumnCount = 1;
-                    p.RowCount = data[data_count].Count;
-                    p.Dock = DockStyle.Fill;
-
-                    p.Click += (s, e) =>
-                    {
-                        PanelClickEvent(s, e);
-                    };
-
-                    for (int h = 0; h < data[data_count].Count; h++)
-                    {
-                        Label l = new Label() { Text = data[data_count][h].getName() };
-                        l.Click += (s, e) =>
-                        {
-                            s = l.Parent;
-                            PanelClickEvent(s, e);
-                        };
-
-                        p.Controls.Add(l);
-                    }
-
-                    calendar.Controls.Add(p);
-
-                    data_count++;
-                }
-            }*/
 
             calendar.Visible = true;
         }
