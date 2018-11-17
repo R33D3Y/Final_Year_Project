@@ -44,7 +44,7 @@ namespace Final_Year_Project
             List<CalendarEvent> tempList = new List<CalendarEvent>();
 
             int daycount = 1;
-            DateTime dt = new DateTime(2018, 1, daycount);
+            DateTime dt = new DateTime(2018, 3, daycount);
 
             for (int i = 0; i < 10; i++)
             {
@@ -56,7 +56,7 @@ namespace Final_Year_Project
 
                 tempList = new List<CalendarEvent>();
                 daycount++;
-                dt = new DateTime(2018, 1, daycount);
+                dt = new DateTime(2018, 3, daycount);
 
                 tempList.Add(new CalendarEvent("Birthday", dt, "John's House"));
                 tempList.Add(new CalendarEvent("Dinner", dt, "Home"));
@@ -65,7 +65,7 @@ namespace Final_Year_Project
 
                 tempList = new List<CalendarEvent>();
                 daycount++;
-                dt = new DateTime(2018, 1, daycount);
+                dt = new DateTime(2018, 3, daycount);
 
                 tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
 
@@ -73,7 +73,7 @@ namespace Final_Year_Project
 
                 tempList = new List<CalendarEvent>();
                 daycount++;
-                dt = new DateTime(2018, 1, daycount);
+                dt = new DateTime(2018, 3, daycount);
             }
 
             tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
@@ -134,14 +134,102 @@ namespace Final_Year_Project
             
             int day_count = 0;
             int data_count = 0;
-
+            
+            calendar.Visible = false;
             calendar.Controls.Clear();
 
             for (int i = 0; i < 7; i++)
             {
                 calendar.Controls.Add(new Label() { Text = day_names[i] });
             }
+            
+            switch (data[0][0].getDateTime().DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    break;
+                case DayOfWeek.Tuesday:
+                    RenderEmptyCells(calendar, 1);
+                    break;
+                case DayOfWeek.Wednesday:
+                    RenderEmptyCells(calendar, 2);
+                    break;
+                case DayOfWeek.Thursday:
+                    RenderEmptyCells(calendar, 3);
+                    break;
+                case DayOfWeek.Friday:
+                    RenderEmptyCells(calendar, 4);
+                    break;
+                case DayOfWeek.Saturday:
+                    RenderEmptyCells(calendar, 5);
+                    break;
+                case DayOfWeek.Sunday:
+                    RenderEmptyCells(calendar, 6);
+                    break;
+            }
 
+            for (int i = 0; i < calendar.RowCount; i++)
+            {
+                for (int j = 0; j < calendar.ColumnCount; j++)
+                {
+                    if (calendar.GetControlFromPosition(j, i) == null)
+                    {
+                        //Console.WriteLine(calendar.GetRowHeights()[i]);
+                        if ((calendar.GetRowHeights()[i] - 1) == 20)
+                        {
+                            try
+                            {
+                                calendar.Controls.Add(new Label() { Text = days[day_count] });
+                            }
+
+                            catch (Exception ex)
+                            {
+
+                            }
+
+                            day_count++;
+                        }
+
+                        else
+                        {
+                            try
+                            {
+                                TableLayoutPanel p = new TableLayoutPanel();
+                                p.ColumnCount = 1;
+                                p.RowCount = data[data_count].Count;
+                                p.Dock = DockStyle.Fill;
+
+                                p.Click += (s, e) =>
+                                {
+                                    PanelClickEvent(s, e);
+                                };
+
+                                for (int h = 0; h < data[data_count].Count; h++)
+                                {
+                                    Label l = new Label() { Text = data[data_count][h].getName() };
+                                    l.Click += (s, e) =>
+                                    {
+                                        s = l.Parent;
+                                        PanelClickEvent(s, e);
+                                    };
+
+                                    p.Controls.Add(l);
+                                }
+
+                                calendar.Controls.Add(p);
+                            }
+
+                            catch(Exception e)
+                            {
+
+                            }
+
+                            data_count++;
+                        }
+                    }
+                }
+            }
+
+            /*
             for (int i = 1; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
@@ -165,6 +253,7 @@ namespace Final_Year_Project
                     p.ColumnCount = 1;
                     p.RowCount = data[data_count].Count;
                     p.Dock = DockStyle.Fill;
+
                     p.Click += (s, e) =>
                     {
                         PanelClickEvent(s, e);
@@ -186,6 +275,17 @@ namespace Final_Year_Project
 
                     data_count++;
                 }
+            }*/
+
+            calendar.Visible = true;
+        }
+
+        private void RenderEmptyCells(TableLayoutPanel t, int x)
+        {
+            for (int i = 0; i < x; i++)
+            {
+                t.Controls.Add(new Label() { Text = "" }, i, 1);
+                t.Controls.Add(new Label() { Text = "" }, i, 2);
             }
         }
 
@@ -222,17 +322,6 @@ namespace Final_Year_Project
 
         public void SetData(List<List<CalendarEvent>> d)
         {
-            List<CalendarEvent> tempList = new List<CalendarEvent>();
-
-            for (int i = 0; i < 4; i++)
-            {
-                tempList.Add(new CalendarEvent("", DateTime.Now, ""));
-
-                d.Add(tempList);
-
-                tempList = new List<CalendarEvent>();
-            }
-
             data = d;
 
             Render();
@@ -275,8 +364,8 @@ namespace Final_Year_Project
                             string[] numbers = Regex.Split(parent.GetControlFromPosition(g, datePoint).Text, @"\D+");
                             int index = int.Parse(numbers[0]);
                             Render();
-                            //DateTime dt = new DateTime(2018, 1, index);
-                            //RemoveEvent(GetEvent(dt, "Football"));
+                            DateTime dt = new DateTime(2018, 1, index);
+                            RemoveEvent(GetEvent(dt, "Football"));
                         }
                     }
                 }
