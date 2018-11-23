@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -40,7 +41,7 @@ namespace Final_Year_Project
         {
             // ============================= FAKE DATASET =============================
 
-            int month = 8;
+            int month = 3;
 
             List<List<CalendarEvent>> data = new List<List<CalendarEvent>>();
             List<CalendarEvent> tempList = new List<CalendarEvent>();
@@ -52,19 +53,9 @@ namespace Final_Year_Project
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    tempList.Add(new CalendarEvent("Football", dt, "Footy Pitch"));
-                    tempList.Add(new CalendarEvent("Shopping", dt, "Tesco"));
-                    tempList.Add(new CalendarEvent("Lab Write Up", dt, "Home"));
-
-                    data.Add(tempList);
-
-                    tempList = new List<CalendarEvent>();
-                    daycount++;
-                    dt = new DateTime(2018, month, daycount);
-                    Console.WriteLine(dt);
-
-                    tempList.Add(new CalendarEvent("Birthday", dt, "John's House"));
-                    tempList.Add(new CalendarEvent("Dinner", dt, "Home"));
+                    tempList.Add(new CalendarEvent("Football", dt, "Footy Pitch", new CalendarGroup("Sport", Color.OrangeRed)));
+                    tempList.Add(new CalendarEvent("Shopping", dt, "Tesco", new CalendarGroup("Shopping", Color.YellowGreen)));
+                    tempList.Add(new CalendarEvent("Lab Write Up", dt, "Home", new CalendarGroup("Work", Color.LightPink)));
 
                     data.Add(tempList);
 
@@ -72,7 +63,16 @@ namespace Final_Year_Project
                     daycount++;
                     dt = new DateTime(2018, month, daycount);
 
-                    tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
+                    tempList.Add(new CalendarEvent("Birthday", dt, "John's House", new CalendarGroup("Family", Color.Green)));
+                    tempList.Add(new CalendarEvent("Dinner", dt, "Emily's", new CalendarGroup("Family", Color.Aqua)));
+
+                    data.Add(tempList);
+
+                    tempList = new List<CalendarEvent>();
+                    daycount++;
+                    dt = new DateTime(2018, month, daycount);
+
+                    tempList.Add(null);
 
                     data.Add(tempList);
 
@@ -81,7 +81,7 @@ namespace Final_Year_Project
                     dt = new DateTime(2018, month, daycount);
                 }
 
-                tempList.Add(new CalendarEvent("Date", dt, "Nandos"));
+                tempList.Add(null);
             }
 
             catch(Exception e)
@@ -97,34 +97,63 @@ namespace Final_Year_Project
         }
     }
 
+    public class CalendarGroup
+    {
+        string name;
+        Color color;
+
+        public CalendarGroup(string n, Color c)
+        {
+            name = n;
+            color = c;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public Color GetColor()
+        {
+            return color;
+        }
+    }
+
     public class CalendarEvent
     {
         string name;
         DateTime dateTime;
         string location;
+        CalendarGroup group;
 
-        public CalendarEvent(string n, DateTime dt, string l)
+        public CalendarEvent(string n, DateTime dt, string l, CalendarGroup g)
         {
             name = n;
             dateTime = dt;
             location = l;
+            group = g;
 
             //Console.WriteLine(n + ", " + dt + ", " + l);
         }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
 
-        public DateTime getDateTime()
+        public DateTime GetDateTime()
         {
             return dateTime;
         }
 
-        public string getLocation()
+        public string GetLocation()
         {
             return location;
+        }
+
+        public CalendarGroup GetCalendarGroup()
+        {
+            return group;
         }
     }
 
@@ -145,16 +174,18 @@ namespace Final_Year_Project
             
             int day_count = 0;
             int data_count = 0;
-            
+
+            bool switch_colour = true;
+
             calendar.Visible = false;
             calendar.Controls.Clear();
 
             for (int i = 0; i < 7; i++)
             {
-                calendar.Controls.Add(new Label() { Text = day_names[i] });
+                calendar.Controls.Add(new Label() { Text = day_names[i], ForeColor = Color.White, AutoSize = true, Anchor = AnchorStyles.None });
             }
             
-            switch (data[0][0].getDateTime().DayOfWeek)
+            switch (data[0][0].GetDateTime().DayOfWeek)
             {
                 case DayOfWeek.Monday:
                     break;
@@ -186,20 +217,20 @@ namespace Final_Year_Project
                     {
                         //Console.WriteLine(calendar.GetRowHeights()[i]);
 
-                        if ((calendar.GetRowHeights()[i] - 1) == 20)
+                        if (calendar.GetRowHeights()[i] == 20)
                         {
                             try
                             {
-                                DateTime dt = data[0][0].getDateTime();
+                                DateTime dt = data[0][0].GetDateTime();
 
                                 if (days.Length == day_count || day_count >= dt.AddMonths(1).AddDays(-1).Day)
                                 {
-                                    calendar.Controls.Add(new Label() { Text = "" });
+                                    calendar.Controls.Add(new Label() { Text = ""});
                                 }
 
                                 else
                                 {
-                                    calendar.Controls.Add(new Label() { Text = days[day_count] });
+                                    calendar.Controls.Add(new Label() { Text = days[day_count], ForeColor = Color.White, BackColor = Color.DimGray, Anchor = AnchorStyles.Left, Margin = new Padding(0, 0, 0, 0) });
                                 }
                             }
 
@@ -215,27 +246,86 @@ namespace Final_Year_Project
                         {
                             try
                             {
+
+                                Console.WriteLine("=================================================");
                                 TableLayoutPanel p = new TableLayoutPanel();
+                                Console.WriteLine("0");
                                 p.ColumnCount = 1;
+                                Console.WriteLine("1");
                                 p.RowCount = data[data_count].Count;
+                                Console.WriteLine("2");
                                 p.Dock = DockStyle.Fill;
+                                Console.WriteLine("3");
+                                p.Margin = new Padding(0, 0, 0, 0);
+                                Console.WriteLine("4");
+
+                                if (switch_colour)
+                                {
+                                    p.BackColor = Color.DarkGray;
+                                    switch_colour = false;
+                                }
+
+                                else
+                                {
+                                    p.BackColor = Color.LightGray;
+                                    switch_colour = true;
+                                }
+                                Console.WriteLine("5");
 
                                 p.Click += (s, e) =>
                                 {
                                     PanelClickEvent(s, e);
                                 };
+                                Console.WriteLine("6");
 
                                 for (int h = 0; h < data[data_count].Count; h++)
                                 {
-                                    Label l = new Label() { Text = data[data_count][h].getName() };
+                                    Color txt = Color.Black;
+
+                                    if (data[data_count][h].GetCalendarGroup().GetColor().GetBrightness() < 0.3)
+                                    {
+                                        txt = Color.White;
+                                    }
+
+                                    Label l = new Label() { Text = data[data_count][h].GetName(), ForeColor = txt, BackColor = data[data_count][h].GetCalendarGroup().GetColor(), Height = 15, Margin = new Padding(0, 0, 0, 0) };
                                     l.Click += (s, e) =>
                                     {
                                         s = l.Parent;
                                         PanelClickEvent(s, e);
                                     };
 
+                                    ToolTip t = new ToolTip();
+                                    t.IsBalloon = true;
+                                    t.SetToolTip(l, data[data_count][h].GetLocation());
+
                                     p.Controls.Add(l);
                                 }
+
+                                calendar.Controls.Add(p);
+                            }
+
+                            catch(NullReferenceException e)
+                            {
+                                TableLayoutPanel p = new TableLayoutPanel();
+                                p.Dock = DockStyle.Fill;
+                                p.Margin = new Padding(0, 0, 0, 0);
+
+                                if (switch_colour)
+                                {
+                                    p.BackColor = Color.DarkGray;
+                                    switch_colour = false;
+                                }
+
+                                else
+                                {
+                                    p.BackColor = Color.LightGray;
+                                    switch_colour = true;
+                                }
+
+                                p.Click += (s, ev) =>
+                                {
+                                    PanelClickEvent(s, ev);
+                                };
 
                                 calendar.Controls.Add(p);
                             }
@@ -267,9 +357,9 @@ namespace Final_Year_Project
         {
             for (int i = 0; i < data[(d.Day - 1)].Count; i++)
             {
-                if (data[(d.Day - 1)][i].getName().Equals(n))
+                if (data[(d.Day - 1)][i].GetName().Equals(n))
                 {
-                    Console.WriteLine("Success: " + data[(d.Day - 1)][i].getDateTime());
+                    Console.WriteLine("Success: " + data[(d.Day - 1)][i].GetDateTime());
 
                     return data[(d.Day - 1)][i];
                 }
@@ -282,14 +372,14 @@ namespace Final_Year_Project
 
         public void AddEvent(CalendarEvent e)
         {
-            data[(e.getDateTime().Day - 1)].Add(e);
+            data[(e.GetDateTime().Day - 1)].Add(e);
 
             Render();
         }
 
         public void RemoveEvent(CalendarEvent e)
         {
-            data[(e.getDateTime().Day - 1)].Remove(e);
+            data[(e.GetDateTime().Day - 1)].Remove(e);
 
             Render();
         }
