@@ -29,8 +29,8 @@ namespace Final_Year_Project
 
     public class Database
     {
-        private readonly string connection;
-        private readonly string password;
+        private string connection;
+        private string password;
 
         public Database(string c, string p)
         {
@@ -87,9 +87,9 @@ namespace Final_Year_Project
                 //tempList.Add(null);
             }
 
-            catch(Exception e)
+            catch(Exception ex_var)
             {
-
+                Console.WriteLine(ex_var.Message);
             }
 
             data.Add(tempList);
@@ -102,8 +102,8 @@ namespace Final_Year_Project
 
     public class CalendarGroup
     {
-        string name;
-        Color color;
+        private string name;
+        private Color color;
 
         public CalendarGroup(string n, Color c)
         {
@@ -124,10 +124,10 @@ namespace Final_Year_Project
 
     public class CalendarEvent
     {
-        string name;
-        DateTime dateTime;
-        string location;
-        CalendarGroup group;
+        private string name;
+        private DateTime dateTime;
+        private string location;
+        private CalendarGroup group;
 
         public CalendarEvent(string n, DateTime dt, string l, CalendarGroup g)
         {
@@ -162,10 +162,10 @@ namespace Final_Year_Project
 
     public class Calendar
     {
-        TableLayoutPanel calendar;
-        TableLayoutPanel header;
-        List<List<CalendarEvent>> data;
-        DateTime startDate;
+        private TableLayoutPanel calendar;
+        private TableLayoutPanel header;
+        private List<List<CalendarEvent>> data;
+        private DateTime startDate;
 
         public Calendar(TableLayoutPanel t, TableLayoutPanel h)
         {
@@ -250,9 +250,9 @@ namespace Final_Year_Project
                                 }
                             }
 
-                            catch (Exception ex)
+                            catch (Exception ex_var)
                             {
-
+                                Console.WriteLine(ex_var.Message);
                             }
 
                             day_count++;
@@ -318,8 +318,10 @@ namespace Final_Year_Project
                                     calendar.Controls.Add(p);
                                 }
 
-                                catch (NullReferenceException e)
+                                catch (NullReferenceException ex_var)
                                 {
+                                    Console.WriteLine(ex_var.Message);
+
                                     TableLayoutPanel p = new TableLayoutPanel();
                                     p.Dock = DockStyle.Fill;
                                     p.Margin = new Padding(0, 0, 0, 0);
@@ -344,9 +346,9 @@ namespace Final_Year_Project
                                     calendar.Controls.Add(p);
                                 }
 
-                                catch (Exception e)
+                                catch (Exception ex_var)
                                 {
-
+                                    Console.WriteLine(ex_var.Message);
                                 }
                             }
 
@@ -370,13 +372,13 @@ namespace Final_Year_Project
 
         public CalendarEvent GetEvent(DateTime d, string n)
         {
-            for (int i = 0; i < data[(d.Day - 1)].Count; i++)
+            for (int i = 0; i < data[d.Day - 1].Count; i++)
             {
-                if (data[(d.Day - 1)][i].GetName().Equals(n))
+                if (data[d.Day - 1][i].GetName().Equals(n))
                 {
-                    Console.WriteLine("Success: " + data[(d.Day - 1)][i].GetDateTime());
+                    Console.WriteLine("Success: " + data[d.Day - 1][i].GetDateTime());
 
-                    return data[(d.Day - 1)][i];
+                    return data[d.Day - 1][i];
                 }
             }
 
@@ -387,14 +389,14 @@ namespace Final_Year_Project
 
         public void AddEvent(CalendarEvent e)
         {
-            data[(e.GetDateTime().Day - 1)].Add(e);
+            data[e.GetDateTime().Day - 1].Add(e);
 
             Render();
         }
 
         public void RemoveEvent(CalendarEvent e)
         {
-            data[(e.GetDateTime().Day - 1)].Remove(e);
+            data[e.GetDateTime().Day - 1].Remove(e);
 
             Render();
         }
@@ -411,7 +413,7 @@ namespace Final_Year_Project
         {
             for (int i = 0; i < 4; i++)
             {
-                data.RemoveAt((data.Count - 1));
+                data.RemoveAt(data.Count - 1);
             }
 
             return data;
