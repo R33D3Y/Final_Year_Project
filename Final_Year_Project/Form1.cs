@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -17,8 +19,14 @@ namespace Final_Year_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string username = "User_Test";
+            string password = "Password_Test";
+
             DateTime dt = new DateTime(2018, 12, 1);
-            Database database = new Database("", "");
+            Database database = new Database(username, password);
+
+            database.Populate(dt);
+
             calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
             calendar.SetData(database.GetData(dt), dt);
 
@@ -29,19 +37,158 @@ namespace Final_Year_Project
 
     public class Database
     {
-        private string connection;
-        private string password;
+        private SqlConnection connection;
+        private User user;
 
-        public Database(string c, string p)
+        public Database(string u, string p)
         {
-            connection = c;
-            password = p;
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder["Server"] = @"R33D3Y.ddns.net\SQLEXPRESS";
+            builder["User ID"] = "DB_Reader";
+            builder["Password"] = "Reed_DB_Reader";
+            builder["Database"] = "Final_Year_Project";
+
+            connection = new SqlConnection(builder.ToString());
+
+            user = LoginOrCreateUser(u, p);
+        }
+
+        private User LoginOrCreateUser(string username, string password)
+        {
+            SqlCommand cmd = new SqlCommand("Login_Create_User", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = username;
+            cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = password;
+
+            connection.Open();
+             
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            string u = "";
+            int i = 0;
+
+            while (rdr.Read())
+            {
+                i = (int)rdr[0];
+                u = (string)rdr[1];
+            }
+
+            connection.Close();
+
+            return new User(i, u);
+        }
+
+        public void Populate(DateTime dt)
+        {
+            int daycount = 1;
+            dt = new DateTime(dt.Year, dt.Month, daycount);
+
+            ClearDB();
+
+            for (int i = 0; i < 10; i++)
+            {
+                PopulateDB("Football", "Footy with the lads", dt, "Football", 1, 2, 1);
+                PopulateDB("Shopping", "Christmas shopping", dt, "Football", 1, 1, 1);
+                PopulateDB("Work", "Lab Write Up", dt, "Football", 1, 1, 1);
+                
+                daycount++;
+                dt = new DateTime(dt.Year, dt.Month, daycount);
+                
+                PopulateDB("Work", "Office", dt, "Football", 1, 1, 1);
+
+                daycount++;
+                dt = new DateTime(dt.Year, dt.Month, daycount);
+
+                PopulateDB("Birthday", "John's House", dt, "Football", 1, 3, 1);
+                PopulateDB("Dinner", "Emily's", dt, "Football", 1, 3, 1);
+
+                daycount++;
+                dt = new DateTime(dt.Year, dt.Month, daycount);
+            }
+        }
+
+        private void PopulateDB(string name, string description, DateTime datetime, string emoji, int location, int group, int owner)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Event", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
+            cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
+            cmd.Parameters.Add("@Emoji", SqlDbType.NVarChar).Value = emoji;
+            cmd.Parameters.Add("@Location", SqlDbType.Int).Value = location;
+            cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
+            cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = owner;
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        private void ClearDB()
+        {
+            SqlCommand cmd = new SqlCommand("Clear_Event_Table", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         public List<List<CalendarEvent>> GetData(DateTime dt)
         {
-            // ============================= FAKE DATASET =============================
+            SqlCommand cmd = new SqlCommand("View_Month", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Date", SqlDbType.DateTime).Value = dt;
+            cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
 
+            List<List<CalendarEvent>> data = new List<List<CalendarEvent>>();
+            List<CalendarEvent> tempList = new List<CalendarEvent>();
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int day = 1;
+
+            while (rdr.Read())
+            {
+                if (tempList.Count > 0 && tempList[0].GetDateTime().Date != ((DateTime)rdr[3]).Date)
+                {
+                    data.Add(tempList);
+                    tempList = new List<CalendarEvent>();
+                    day++;
+                }
+
+                else
+                {
+                    while (day != ((DateTime)rdr[3]).Day)
+                    {
+                        tempList = new List<CalendarEvent>();
+                        tempList.Add(null);
+                        data.Add(tempList);
+                        tempList = new List<CalendarEvent>();
+                        day++;
+                    }
+                }
+                
+                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1] + " " + Emoji((string)rdr[4]), (DateTime)rdr[3], (string)rdr[13], new CalendarGroup((int)rdr[8], (string)rdr[9], Color.FromName((string)rdr[11])))); // Description not added
+            }
+
+            data.Add(tempList);
+
+            while (day != 32)
+            {
+                tempList = new List<CalendarEvent>();
+                tempList.Add(null);
+                data.Add(tempList);
+                tempList = new List<CalendarEvent>();
+                day++;
+            }
+
+            connection.Close();
+
+            // ============================= FAKE DATASET =============================
+            /*
             List<List<CalendarEvent>> data = new List<List<CalendarEvent>>();
             List<CalendarEvent> tempList = new List<CalendarEvent>();
 
@@ -52,7 +199,7 @@ namespace Final_Year_Project
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    tempList.Add(new CalendarEvent("Football", dt, "Footy Pitch", new CalendarGroup("Sport", Color.OrangeRed)));
+                    tempList.Add(new CalendarEvent("Football ⚽️", dt, "Footy Pitch", new CalendarGroup("Sport", Color.OrangeRed)));
                     tempList.Add(new CalendarEvent("Shopping", dt, "Tesco", new CalendarGroup("Shopping", Color.YellowGreen)));
                     tempList.Add(new CalendarEvent("Lab Write Up", dt, "Home", new CalendarGroup("Work", Color.LightPink)));
                     //tempList.Add(null);
@@ -93,22 +240,64 @@ namespace Final_Year_Project
             }
 
             data.Add(tempList);
-
+            */
             // ============================= FAKE DATASET =============================
 
             return data;
+        }
+
+        private string Emoji(string e)
+        {
+            if (e == "Football")
+            {
+                return "⚽️";
+            }
+
+            else
+            {
+                return "";
+            }
+        }
+    }
+
+    public class User
+    {
+        private int id;
+        private string username;
+
+        public User(int i, string u)
+        {
+            id = i;
+            username = u;
+        }
+
+        public int GetID()
+        {
+            return id;
+        }
+
+        public string GetUsername()
+        {
+            return username;
         }
     }
 
     public class CalendarGroup
     {
+        private int id;
         private string name;
         private Color color;
 
-        public CalendarGroup(string n, Color c)
+        public CalendarGroup(int i, string n, Color c)
         {
+            id = i;
             name = n;
             color = c;
+        }
+
+        public int GetID()
+        {
+            return id;
         }
 
         public string GetName()
@@ -124,19 +313,26 @@ namespace Final_Year_Project
 
     public class CalendarEvent
     {
+        private int id;
         private string name;
         private DateTime dateTime;
         private string location;
         private CalendarGroup group;
 
-        public CalendarEvent(string n, DateTime dt, string l, CalendarGroup g)
+        public CalendarEvent(int i, string n, DateTime dt, string l, CalendarGroup g)
         {
+            id = i;
             name = n;
             dateTime = dt;
             location = l;
             group = g;
 
             //Console.WriteLine(n + ", " + dt + ", " + l);
+        }
+
+        public int GetID()
+        {
+            return id;
         }
 
         public string GetName()
@@ -186,19 +382,25 @@ namespace Final_Year_Project
             calendar.Visible = false;
             calendar.Controls.Clear();
 
-            TableLayoutPanel y = new TableLayoutPanel();
-            y.Dock = DockStyle.Fill;
-            y.Margin = new Padding(0, 0, 0, 0);
-            y.BackColor = Color.FromArgb(40, 40, 40);
+            TableLayoutPanel y = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                Margin = new Padding(0, 0, 0, 0),
+                BackColor = Color.FromArgb(40, 40, 40)
+            };
+
             y.Controls.Add(new Label() { Text = startDate.ToString("MMMM") + " " + startDate.Year, Font = new Font("Microsoft Sans Serif", 16, FontStyle.Bold), ForeColor = Color.White, AutoSize = true, Anchor = AnchorStyles.None });
             header.Controls.Add(y);
 
             for (int i = 0; i < 7; i++)
             {
-                TableLayoutPanel p = new TableLayoutPanel();
-                p.Dock = DockStyle.Fill;
-                p.Margin = new Padding(0, 0, 0, 0);
-                p.BackColor = Color.FromArgb(40, 40, 40);
+                TableLayoutPanel p = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    Margin = new Padding(0, 0, 0, 0),
+                    BackColor = Color.FromArgb(40, 40, 40)
+                };
+
                 p.Controls.Add(new Label() { Text = day_names[i], ForeColor = Color.White, Font = new Font("Microsoft Sans Serif", 9, FontStyle.Bold), AutoSize = true, Anchor = AnchorStyles.None });
                 calendar.Controls.Add(p);
             }
@@ -269,11 +471,13 @@ namespace Final_Year_Project
                             {
                                 try
                                 {
-                                    TableLayoutPanel p = new TableLayoutPanel();
-                                    p.ColumnCount = 1;
-                                    p.RowCount = data[data_count].Count;
-                                    p.Dock = DockStyle.Fill;
-                                    p.Margin = new Padding(0, 0, 0, 0);
+                                    TableLayoutPanel p = new TableLayoutPanel
+                                    {
+                                        ColumnCount = 1,
+                                        RowCount = data[data_count].Count,
+                                        Dock = DockStyle.Fill,
+                                        Margin = new Padding(0, 0, 0, 0)
+                                    };
 
                                     p.Click += (s, e) =>
                                     {
@@ -296,8 +500,11 @@ namespace Final_Year_Project
                                             PanelClickEvent(s, e);
                                         };
 
-                                        ToolTip t = new ToolTip();
-                                        t.IsBalloon = true;
+                                        ToolTip t = new ToolTip
+                                        {
+                                            IsBalloon = true
+                                        };
+
                                         t.SetToolTip(l, data[data_count][h].GetLocation());
 
                                         p.Controls.Add(l);
@@ -322,9 +529,11 @@ namespace Final_Year_Project
                                 {
                                     Console.WriteLine(ex_var.Message);
 
-                                    TableLayoutPanel p = new TableLayoutPanel();
-                                    p.Dock = DockStyle.Fill;
-                                    p.Margin = new Padding(0, 0, 0, 0);
+                                    TableLayoutPanel p = new TableLayoutPanel
+                                    {
+                                        Dock = DockStyle.Fill,
+                                        Margin = new Padding(0, 0, 0, 0)
+                                    };
 
                                     if (switch_colour)
                                     {
