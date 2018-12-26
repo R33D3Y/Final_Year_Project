@@ -11,6 +11,8 @@ namespace Final_Year_Project
     public partial class Form1 : Form
     {
         private Calendar calendar;
+        private Database database;
+        private DateTime dt;
 
         public Form1()
         {
@@ -19,19 +21,94 @@ namespace Final_Year_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string username = "User_Test";
-            string password = "Password_Test";
+            //calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now, "Computer"));
+            //calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Football"));
+        }
 
-            DateTime dt = new DateTime(2018, 12, 1);
-            Database database = new Database(username, password);
+        private void Calendar_Back_Click(object sender, EventArgs e)
+        {
+            dt = dt.AddMonths(-1);
+            calendar.SetData(database.GetData(dt), dt);
+        }
+
+        private void Calendar_Forward_Click(object sender, EventArgs e)
+        {
+            dt = dt.AddMonths(1);
+            calendar.SetData(database.GetData(dt), dt);
+        }
+
+        private void PictureBox_MouseHover(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.FromArgb(84, 84, 84);
+        }
+
+        private void PictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.FromArgb(64, 64, 64);
+        }
+
+        private void Login_Button_Click(object sender, EventArgs e)
+        {
+            Login();
+        }
+
+        private void SignUp_Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Login()
+        {
+            database = new Database(Textbox_Username.Text, Textbox_Password.Text);
+
+            dt = new DateTime(2018, 12, 1);
 
             database.Populate(dt);
 
             calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
             calendar.SetData(database.GetData(dt), dt);
 
-            //calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now, "Computer"));
-            //calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Football"));
+            Dashboard_Panel.Visible = true;
+            Login_Panel.Visible = false;
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                Login();
+            }
+        }
+
+        private void Login_MouseHover(object sender, EventArgs e)
+        {
+            Label l = (Label)sender;
+            l.BackColor = Color.Silver;
+        }
+
+        private void Login_MouseLeave(object sender, EventArgs e)
+        {
+            Label l = (Label)sender;
+            l.BackColor = Color.White;
+        }
+
+        private Boolean UsePasswordMask = true;
+
+        private void Lock_Click(object sender, EventArgs e)
+        {
+            if (UsePasswordMask)
+            {
+                Textbox_Password.UseSystemPasswordChar = false;
+                UsePasswordMask = false;
+            }
+
+            else
+            {
+                Textbox_Password.UseSystemPasswordChar = true;
+                UsePasswordMask = true;
+            }
         }
     }
 
@@ -105,6 +182,9 @@ namespace Final_Year_Project
                 daycount++;
                 dt = new DateTime(dt.Year, dt.Month, daycount);
             }
+
+            dt = new DateTime(dt.Year, 11, 15);
+            PopulateDB("Test", "Testing", dt, "Test", 1, 1, 1);
         }
 
         private void PopulateDB(string name, string description, DateTime datetime, string emoji, int location, int group, int owner)
@@ -186,62 +266,6 @@ namespace Final_Year_Project
             }
 
             connection.Close();
-
-            // ============================= FAKE DATASET =============================
-            /*
-            List<List<CalendarEvent>> data = new List<List<CalendarEvent>>();
-            List<CalendarEvent> tempList = new List<CalendarEvent>();
-
-            int daycount = 1;
-            dt = new DateTime(dt.Year, dt.Month, daycount);
-
-            try
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    tempList.Add(new CalendarEvent("Football ⚽️", dt, "Footy Pitch", new CalendarGroup("Sport", Color.OrangeRed)));
-                    tempList.Add(new CalendarEvent("Shopping", dt, "Tesco", new CalendarGroup("Shopping", Color.YellowGreen)));
-                    tempList.Add(new CalendarEvent("Lab Write Up", dt, "Home", new CalendarGroup("Work", Color.LightPink)));
-                    //tempList.Add(null);
-
-                    data.Add(tempList);
-
-                    tempList = new List<CalendarEvent>();
-                    daycount++;
-                    dt = new DateTime(dt.Year, dt.Month, daycount);
-
-                    tempList.Add(new CalendarEvent("Birthday", dt, "John's House", new CalendarGroup("Family", Color.Green)));
-                    tempList.Add(new CalendarEvent("Dinner", dt, "Emily's", new CalendarGroup("Family", Color.Aqua)));
-                    //tempList.Add(null);
-
-                    data.Add(tempList);
-
-                    tempList = new List<CalendarEvent>();
-                    daycount++;
-                    dt = new DateTime(dt.Year, dt.Month, daycount);
-
-                    tempList.Add(new CalendarEvent("Work", dt, "Office", new CalendarGroup("Work", Color.LightPink)));
-                    //tempList.Add(null);
-
-                    data.Add(tempList);
-
-                    tempList = new List<CalendarEvent>();
-                    daycount++;
-                    dt = new DateTime(dt.Year, dt.Month, daycount);
-                }
-
-                tempList.Add(new CalendarEvent("Work", dt, "Office", new CalendarGroup("Work", Color.LightPink)));
-                //tempList.Add(null);
-            }
-
-            catch(Exception ex_var)
-            {
-                Console.WriteLine(ex_var.Message);
-            }
-
-            data.Add(tempList);
-            */
-            // ============================= FAKE DATASET =============================
 
             return data;
         }
@@ -326,8 +350,6 @@ namespace Final_Year_Project
             dateTime = dt;
             location = l;
             group = g;
-
-            //Console.WriteLine(n + ", " + dt + ", " + l);
         }
 
         public int GetID()
@@ -382,15 +404,15 @@ namespace Final_Year_Project
             calendar.Visible = false;
             calendar.Controls.Clear();
 
-            TableLayoutPanel y = new TableLayoutPanel
+            if (header.GetControlFromPosition(1, 0) == null)
             {
-                Dock = DockStyle.Fill,
-                Margin = new Padding(0, 0, 0, 0),
-                BackColor = Color.FromArgb(40, 40, 40)
-            };
+                header.Controls.Add(new Label() { Text = startDate.ToString("MMMM") + " " + startDate.Year, Font = new Font("Candara", 16, FontStyle.Bold), ForeColor = Color.White, AutoSize = false, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, BackColor = Color.FromArgb(40, 40, 40), TextAlign = ContentAlignment.MiddleCenter });
+            }
 
-            y.Controls.Add(new Label() { Text = startDate.ToString("MMMM") + " " + startDate.Year, Font = new Font("Microsoft Sans Serif", 16, FontStyle.Bold), ForeColor = Color.White, AutoSize = true, Anchor = AnchorStyles.None });
-            header.Controls.Add(y);
+            else
+            {
+                header.GetControlFromPosition(1, 0).Text = startDate.ToString("MMMM") + " " + startDate.Year;
+            }
 
             for (int i = 0; i < 7; i++)
             {
@@ -401,7 +423,7 @@ namespace Final_Year_Project
                     BackColor = Color.FromArgb(40, 40, 40)
                 };
 
-                p.Controls.Add(new Label() { Text = day_names[i], ForeColor = Color.White, Font = new Font("Microsoft Sans Serif", 9, FontStyle.Bold), AutoSize = true, Anchor = AnchorStyles.None });
+                p.Controls.Add(new Label() { Text = day_names[i], ForeColor = Color.White, Font = new Font("Candara", 9, FontStyle.Bold), AutoSize = true, Anchor = AnchorStyles.None });
                 calendar.Controls.Add(p);
             }
             
@@ -448,7 +470,7 @@ namespace Final_Year_Project
 
                                 else
                                 {
-                                    calendar.Controls.Add(new Label() { Text = days[day_count], Font = new Font("Microsoft Sans Serif", 8), ForeColor = Color.White, BackColor = Color.DimGray, Anchor = AnchorStyles.Left, Margin = new Padding(0, 0, 0, 0) });
+                                    calendar.Controls.Add(new Label() { Text = days[day_count], Font = new Font("Candara", 9), ForeColor = Color.White, BackColor = Color.DimGray, Anchor = AnchorStyles.Left, Margin = new Padding(0, 0, 0, 0) });
                                 }
                             }
 
@@ -669,3 +691,12 @@ namespace Final_Year_Project
         }
     }
 }
+
+
+/*
+ * References:
+ * Logo: https://www.logolynx.com/topic/calendar
+ * Icons: https://icons8.com/
+ * Arrow Images: https://emojipedia.org/softbank/
+ * MS MySQL: https://www.microsoft.com/en-us/download/details.aspx?id=54257
+*/
