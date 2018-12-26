@@ -56,7 +56,7 @@ namespace Final_Year_Project
 
         private void SignUp_Button_Click(object sender, EventArgs e)
         {
-
+            SignUp();
         }
 
         private void Login()
@@ -72,6 +72,11 @@ namespace Final_Year_Project
 
             Dashboard_Panel.Visible = true;
             Login_Panel.Visible = false;
+        }
+
+        private void SignUp()
+        {
+
         }
 
         private void Login_KeyPress(object sender, KeyPressEventArgs e)
@@ -109,6 +114,28 @@ namespace Final_Year_Project
                 Textbox_Password.UseSystemPasswordChar = true;
                 UsePasswordMask = true;
             }
+        }
+
+        private void PictureBox_Close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void PictureBox_Minimise_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void PictureBox_Form_MouseHover(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.FromArgb(175, 70, 70);
+        }
+
+        private void PictureBox_Form_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.IndianRed;
         }
     }
 

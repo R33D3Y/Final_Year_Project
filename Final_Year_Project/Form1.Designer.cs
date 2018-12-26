@@ -37,7 +37,7 @@
             this.Login_Panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.PictureBox_Lock = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.SignUp_Button = new System.Windows.Forms.Label();
             this.Login_Button = new System.Windows.Forms.Label();
@@ -48,15 +48,21 @@
             this.Event_Panel = new System.Windows.Forms.Panel();
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.Search_Panel = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
+            this.PictureBox_Close = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanelCalendarHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Dashboard_Panel.SuspendLayout();
             this.Login_Panel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Lock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -154,11 +160,11 @@
             // 
             // Login_Panel
             // 
-            this.Login_Panel.BackColor = System.Drawing.Color.Red;
+            this.Login_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Login_Panel.Controls.Add(this.panel1);
             this.Login_Panel.Location = new System.Drawing.Point(920, 12);
             this.Login_Panel.Name = "Login_Panel";
-            this.Login_Panel.Size = new System.Drawing.Size(594, 378);
+            this.Login_Panel.Size = new System.Drawing.Size(384, 378);
             this.Login_Panel.TabIndex = 3;
             // 
             // panel1
@@ -166,7 +172,7 @@
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.pictureBox5);
+            this.panel1.Controls.Add(this.PictureBox_Lock);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.SignUp_Button);
             this.panel1.Controls.Add(this.Login_Button);
@@ -174,7 +180,7 @@
             this.panel1.Controls.Add(this.Textbox_Password);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.Textbox_Username);
-            this.panel1.Location = new System.Drawing.Point(190, 6);
+            this.panel1.Location = new System.Drawing.Point(86, 16);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(213, 346);
             this.panel1.TabIndex = 0;
@@ -188,17 +194,17 @@
             this.panel3.Size = new System.Drawing.Size(130, 1);
             this.panel3.TabIndex = 3;
             // 
-            // pictureBox5
+            // PictureBox_Lock
             // 
-            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox5.Location = new System.Drawing.Point(25, 227);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox5.TabIndex = 9;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.Lock_Click);
+            this.PictureBox_Lock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Lock.BackgroundImage")));
+            this.PictureBox_Lock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Lock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Lock.Location = new System.Drawing.Point(25, 227);
+            this.PictureBox_Lock.Name = "PictureBox_Lock";
+            this.PictureBox_Lock.Size = new System.Drawing.Size(25, 25);
+            this.PictureBox_Lock.TabIndex = 9;
+            this.PictureBox_Lock.TabStop = false;
+            this.PictureBox_Lock.Click += new System.EventHandler(this.Lock_Click);
             // 
             // pictureBox4
             // 
@@ -318,17 +324,57 @@
             this.Search_Panel.TabIndex = 6;
             this.Search_Panel.Visible = false;
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.IndianRed;
+            this.panel4.Controls.Add(this.PictureBox_Minimise);
+            this.panel4.Controls.Add(this.PictureBox_Close);
+            this.panel4.Location = new System.Drawing.Point(1310, 12);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(204, 378);
+            this.panel4.TabIndex = 5;
+            // 
+            // PictureBox_Minimise
+            // 
+            this.PictureBox_Minimise.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Minimise.BackgroundImage")));
+            this.PictureBox_Minimise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Minimise.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Minimise.Location = new System.Drawing.Point(132, 6);
+            this.PictureBox_Minimise.Name = "PictureBox_Minimise";
+            this.PictureBox_Minimise.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Minimise.TabIndex = 1;
+            this.PictureBox_Minimise.TabStop = false;
+            this.PictureBox_Minimise.Click += new System.EventHandler(this.PictureBox_Minimise_Click);
+            this.PictureBox_Minimise.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Minimise.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
+            // 
+            // PictureBox_Close
+            // 
+            this.PictureBox_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Close.BackgroundImage")));
+            this.PictureBox_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Close.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Close.Location = new System.Drawing.Point(168, 6);
+            this.PictureBox_Close.Name = "PictureBox_Close";
+            this.PictureBox_Close.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Close.TabIndex = 0;
+            this.PictureBox_Close.TabStop = false;
+            this.PictureBox_Close.Click += new System.EventHandler(this.PictureBox_Close_Click);
+            this.PictureBox_Close.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Close.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1520, 730);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Dashboard_Panel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -341,9 +387,12 @@
             this.Login_Panel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Lock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -366,9 +415,12 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label Login_Button;
         private System.Windows.Forms.Label SignUp_Button;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox PictureBox_Lock;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox PictureBox_Close;
+        private System.Windows.Forms.PictureBox PictureBox_Minimise;
     }
 }
 
