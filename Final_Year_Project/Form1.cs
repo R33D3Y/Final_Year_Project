@@ -63,15 +63,32 @@ namespace Final_Year_Project
         {
             database = new Database(Textbox_Username.Text, Textbox_Password.Text);
 
-            dt = new DateTime(2018, 12, 1);
+            if (database.GetUser() != null)
+            {
+                PictureBox_Username_Cross.Visible = false;
+                PictureBox_Password_Cross.Visible = false;
+                PictureBox_Username_Tick.Visible = true;
+                PictureBox_Password_Tick.Visible = true;
+                
+                DateTime tempDt = DateTime.Now;
+                dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
-            database.Populate(dt);
+                database.Populate(dt);
 
-            calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
-            calendar.SetData(database.GetData(dt), dt);
+                calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
+                calendar.SetData(database.GetData(dt), dt);
 
-            Dashboard_Panel.Visible = true;
-            Login_Panel.Visible = false;
+                Dashboard_Panel.Visible = true;
+                Login_Panel.Visible = false;
+            }
+
+            else
+            {
+                PictureBox_Username_Cross.Visible = true;
+                PictureBox_Password_Cross.Visible = true;
+                PictureBox_Username_Tick.Visible = false;
+                PictureBox_Password_Tick.Visible = false;
+            }
         }
 
         private void SignUp()
@@ -99,7 +116,7 @@ namespace Final_Year_Project
             l.BackColor = Color.White;
         }
 
-        private Boolean UsePasswordMask = true;
+        private bool UsePasswordMask = true;
 
         private void Lock_Click(object sender, EventArgs e)
         {
@@ -154,12 +171,12 @@ namespace Final_Year_Project
 
             connection = new SqlConnection(builder.ToString());
 
-            user = LoginOrCreateUser(u, p);
+            user = LoginUser(u, p);
         }
 
-        private User LoginOrCreateUser(string username, string password)
+        private User LoginUser(string username, string password)
         {
-            SqlCommand cmd = new SqlCommand("Login_Create_User", connection);
+            SqlCommand cmd = new SqlCommand("Login_User", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = username;
             cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = password;
@@ -171,10 +188,17 @@ namespace Final_Year_Project
             string u = "";
             int i = 0;
 
-            while (rdr.Read())
+            if (rdr.Read())
             {
                 i = (int)rdr[0];
                 u = (string)rdr[1];
+            }
+            
+            else
+            {
+                connection.Close();
+                
+                return null;
             }
 
             connection.Close();
@@ -295,6 +319,11 @@ namespace Final_Year_Project
             connection.Close();
 
             return data;
+        }
+
+        public User GetUser()
+        {
+            return user;
         }
 
         private string Emoji(string e)
