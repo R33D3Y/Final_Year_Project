@@ -70,6 +70,7 @@
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.Search_Panel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.PictureBox_Back = new System.Windows.Forms.PictureBox();
             this.PictureBox_Logout = new System.Windows.Forms.PictureBox();
             this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
             this.PictureBox_Close = new System.Windows.Forms.PictureBox();
@@ -87,6 +88,7 @@
             this.Event_Panel.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).BeginInit();
@@ -183,7 +185,7 @@
             this.Dashboard_Panel.Controls.Add(this.tableLayoutPanel);
             this.Dashboard_Panel.Location = new System.Drawing.Point(12, 12);
             this.Dashboard_Panel.Name = "Dashboard_Panel";
-            this.Dashboard_Panel.Size = new System.Drawing.Size(902, 696);
+            this.Dashboard_Panel.Size = new System.Drawing.Size(845, 696);
             this.Dashboard_Panel.TabIndex = 2;
             this.Dashboard_Panel.Visible = false;
             // 
@@ -193,9 +195,9 @@
             this.Dashboard_Add_Event.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Dashboard_Add_Event.Font = new System.Drawing.Font("Candara", 12F);
             this.Dashboard_Add_Event.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Dashboard_Add_Event.Location = new System.Drawing.Point(665, 415);
+            this.Dashboard_Add_Event.Location = new System.Drawing.Point(608, 50);
             this.Dashboard_Add_Event.Name = "Dashboard_Add_Event";
-            this.Dashboard_Add_Event.Size = new System.Drawing.Size(170, 30);
+            this.Dashboard_Add_Event.Size = new System.Drawing.Size(227, 30);
             this.Dashboard_Add_Event.TabIndex = 18;
             this.Dashboard_Add_Event.Text = "Add Event";
             this.Dashboard_Add_Event.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -203,7 +205,7 @@
             // 
             // DatePicker
             // 
-            this.DatePicker.Location = new System.Drawing.Point(641, 244);
+            this.DatePicker.Location = new System.Drawing.Point(608, 89);
             this.DatePicker.MaxSelectionCount = 1;
             this.DatePicker.Name = "DatePicker";
             this.DatePicker.TabIndex = 2;
@@ -213,9 +215,9 @@
             // 
             this.Login_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Login_Panel.Controls.Add(this.panel1);
-            this.Login_Panel.Location = new System.Drawing.Point(920, 12);
+            this.Login_Panel.Location = new System.Drawing.Point(1463, 65);
             this.Login_Panel.Name = "Login_Panel";
-            this.Login_Panel.Size = new System.Drawing.Size(384, 217);
+            this.Login_Panel.Size = new System.Drawing.Size(395, 400);
             this.Login_Panel.TabIndex = 3;
             // 
             // panel1
@@ -233,7 +235,7 @@
             this.panel1.Controls.Add(this.Textbox_Password);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.Textbox_Username);
-            this.panel1.Location = new System.Drawing.Point(86, -65);
+            this.panel1.Location = new System.Drawing.Point(91, 27);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(213, 346);
             this.panel1.TabIndex = 0;
@@ -376,7 +378,7 @@
             // 
             this.Event_Panel.BackColor = System.Drawing.Color.Gold;
             this.Event_Panel.Controls.Add(this.panel5);
-            this.Event_Panel.Location = new System.Drawing.Point(920, 235);
+            this.Event_Panel.Location = new System.Drawing.Point(863, 12);
             this.Event_Panel.Name = "Event_Panel";
             this.Event_Panel.Size = new System.Drawing.Size(594, 380);
             this.Event_Panel.TabIndex = 4;
@@ -597,38 +599,54 @@
             // Group_Panel
             // 
             this.Group_Panel.BackColor = System.Drawing.Color.MediumOrchid;
-            this.Group_Panel.Location = new System.Drawing.Point(920, 628);
+            this.Group_Panel.Location = new System.Drawing.Point(1463, 471);
             this.Group_Panel.Name = "Group_Panel";
-            this.Group_Panel.Size = new System.Drawing.Size(594, 37);
+            this.Group_Panel.Size = new System.Drawing.Size(395, 236);
             this.Group_Panel.TabIndex = 5;
             this.Group_Panel.Visible = false;
             // 
             // Search_Panel
             // 
             this.Search_Panel.BackColor = System.Drawing.Color.Fuchsia;
-            this.Search_Panel.Location = new System.Drawing.Point(920, 671);
+            this.Search_Panel.Location = new System.Drawing.Point(863, 398);
             this.Search_Panel.Name = "Search_Panel";
-            this.Search_Panel.Size = new System.Drawing.Size(594, 37);
+            this.Search_Panel.Size = new System.Drawing.Size(594, 309);
             this.Search_Panel.TabIndex = 6;
             this.Search_Panel.Visible = false;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.IndianRed;
+            this.panel4.Controls.Add(this.PictureBox_Back);
             this.panel4.Controls.Add(this.PictureBox_Logout);
             this.panel4.Controls.Add(this.PictureBox_Minimise);
             this.panel4.Controls.Add(this.PictureBox_Close);
-            this.panel4.Location = new System.Drawing.Point(1310, 12);
+            this.panel4.Location = new System.Drawing.Point(1463, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(204, 96);
+            this.panel4.Size = new System.Drawing.Size(395, 47);
             this.panel4.TabIndex = 5;
+            // 
+            // PictureBox_Back
+            // 
+            this.PictureBox_Back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Back.BackgroundImage")));
+            this.PictureBox_Back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Back.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Back.Location = new System.Drawing.Point(254, 6);
+            this.PictureBox_Back.Name = "PictureBox_Back";
+            this.PictureBox_Back.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Back.TabIndex = 3;
+            this.PictureBox_Back.TabStop = false;
+            this.PictureBox_Back.Visible = false;
+            this.PictureBox_Back.Click += new System.EventHandler(this.PictureBox_Back_Click);
+            this.PictureBox_Back.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Back.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
             // PictureBox_Logout
             // 
             this.PictureBox_Logout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Logout.BackgroundImage")));
             this.PictureBox_Logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Logout.Location = new System.Drawing.Point(96, 6);
+            this.PictureBox_Logout.Location = new System.Drawing.Point(290, 6);
             this.PictureBox_Logout.Name = "PictureBox_Logout";
             this.PictureBox_Logout.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Logout.TabIndex = 2;
@@ -643,7 +661,7 @@
             this.PictureBox_Minimise.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Minimise.BackgroundImage")));
             this.PictureBox_Minimise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Minimise.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Minimise.Location = new System.Drawing.Point(132, 6);
+            this.PictureBox_Minimise.Location = new System.Drawing.Point(326, 6);
             this.PictureBox_Minimise.Name = "PictureBox_Minimise";
             this.PictureBox_Minimise.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Minimise.TabIndex = 1;
@@ -657,7 +675,7 @@
             this.PictureBox_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Close.BackgroundImage")));
             this.PictureBox_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Close.Location = new System.Drawing.Point(168, 6);
+            this.PictureBox_Close.Location = new System.Drawing.Point(362, 6);
             this.PictureBox_Close.Name = "PictureBox_Close";
             this.PictureBox_Close.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Close.TabIndex = 0;
@@ -670,7 +688,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1520, 730);
+            this.ClientSize = new System.Drawing.Size(1872, 719);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Group_Panel);
@@ -700,6 +718,7 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).EndInit();
@@ -753,6 +772,7 @@
         private System.Windows.Forms.TextBox TextBox_Location;
         private System.Windows.Forms.MonthCalendar DatePicker;
         private System.Windows.Forms.Label Dashboard_Add_Event;
+        private System.Windows.Forms.PictureBox PictureBox_Back;
     }
 }
 

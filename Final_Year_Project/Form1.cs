@@ -22,9 +22,6 @@ namespace Final_Year_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now, "Computer"));
-            //calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Football"));
-
             // Add Emojis to Event ComboBox
             Setup_Emojis();
         }
@@ -83,6 +80,8 @@ namespace Final_Year_Project
                 calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
                 calendar.SetData(database.GetData(dt), dt);
                 
+                Setup_Groups();
+
                 Dashboard_Panel.Visible = true;
                 Login_Panel.Visible = false;
                 PictureBox_Logout.Visible = true;
@@ -187,11 +186,32 @@ namespace Final_Year_Project
             ComboBox_Emoji.Items.Add("⚽️");
         }
 
+        private void Setup_Groups()
+        {
+            List<CalendarGroup> cg = database.GetGroups();
+
+            for (int i = 0; i < cg.Count; i++)
+            {
+                ComboBox_Group.Items.Add(cg[i].GetName());
+            }
+        }
+
         private void Add_Event_Button_Click(object sender, EventArgs e)
         {
             DateTime datetime = new DateTime(DateTimePicker_Date.Value.Year, DateTimePicker_Date.Value.Month, DateTimePicker_Date.Value.Day, DateTimePicker_Time.Value.Hour, DateTimePicker_Time.Value.Minute, DateTimePicker_Time.Value.Second);
 
-            database.Add_Event(TextBox_Name.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, ComboBox_Emoji.Text, 1); // TODO: Find group
+            List<CalendarGroup> cg = database.GetGroups();
+            int group = 0;
+
+            for (int i = 0; i < cg.Count; i++)
+            {
+                if (ComboBox_Group.Text == cg[i].GetName())
+                {
+                    group = cg[i].GetID();
+                }
+            }
+
+            database.Add_Event(TextBox_Name.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, ComboBox_Emoji.Text, group);
 
             DateTime tempDt = DateTime.Now;
             dt = new DateTime(tempDt.Year, tempDt.Month, 1);
@@ -201,6 +221,7 @@ namespace Final_Year_Project
 
             Dashboard_Panel.Visible = true;
             Event_Panel.Visible = false;
+            PictureBox_Back.Visible = false;
         }
 
         private void DatePicker_DateSelected(object sender, DateRangeEventArgs e)
@@ -216,6 +237,17 @@ namespace Final_Year_Project
         {
             Dashboard_Panel.Visible = false;
             Event_Panel.Visible = true;
+            PictureBox_Back.Visible = true;
+        }
+
+        private void PictureBox_Back_Click(object sender, EventArgs e)
+        {
+            Dashboard_Panel.Visible = true;
+            Event_Panel.Visible = false;
+            Group_Panel.Visible = false;
+            Search_Panel.Visible = false;
+
+            PictureBox_Back.Visible = false;
         }
     }
 
@@ -223,6 +255,7 @@ namespace Final_Year_Project
     {
         private SqlConnection connection;
         private User user;
+        private List<CalendarGroup> groups = new List<CalendarGroup>();
 
         public Database(string u, string p)
         {
@@ -400,6 +433,8 @@ namespace Final_Year_Project
 
             connection.Close();
 
+            RetrieveGroups();
+
             return data;
         }
 
@@ -440,6 +475,29 @@ namespace Final_Year_Project
             connection.Close();
         }
 
+        private void RetrieveGroups()
+        {
+            SqlCommand cmd = new SqlCommand("Get_Groups", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User", SqlDbType.Int).Value = user.GetID();
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                groups.Add(new CalendarGroup((int)rdr[0], (string)rdr[1], Color.FromName((string)rdr[2])));
+            }
+
+            connection.Close();
+        }
+
+        public List<CalendarGroup> GetGroups()
+        {
+            return groups;
+        }
+
         private string Emoji(string e)
         {
             if (e == "Football")
@@ -456,6 +514,11 @@ namespace Final_Year_Project
             {
                 return "";
             }
+        }
+
+        public void Remove_Event(int id)
+        {
+            
         }
     }
 
@@ -807,20 +870,6 @@ namespace Final_Year_Project
             return null;
         }
 
-        public void AddEvent(CalendarEvent e)
-        {
-            data[e.GetDateTime().Day - 1].Add(e);
-
-            Render();
-        }
-
-        public void RemoveEvent(CalendarEvent e)
-        {
-            data[e.GetDateTime().Day - 1].Remove(e);
-
-            Render();
-        }
-
         public void SetData(List<List<CalendarEvent>> d, DateTime dt)
         {
             data = d;
@@ -867,7 +916,9 @@ namespace Final_Year_Project
                             int index = int.Parse(numbers[0]);
                             Render();
                             DateTime dt = new DateTime(2018, 1, index);
-                            RemoveEvent(GetEvent(dt, "Football"));
+                            //RemoveEvent(GetEvent(dt, "Football"));
+
+                            throw new NotImplementedException();
                         }
                     }
                 }
