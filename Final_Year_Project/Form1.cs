@@ -67,27 +67,24 @@ namespace Final_Year_Project
             {
                 PictureBox_Username_Cross.Visible = false;
                 PictureBox_Password_Cross.Visible = false;
-                PictureBox_Username_Tick.Visible = true;
-                PictureBox_Password_Tick.Visible = true;
                 
                 DateTime tempDt = DateTime.Now;
                 dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
-                database.Populate(dt);
-
+                database.Populate(dt); // TODO: REMOVE ME
+                
                 calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
                 calendar.SetData(database.GetData(dt), dt);
-
+                
                 Dashboard_Panel.Visible = true;
                 Login_Panel.Visible = false;
+                PictureBox_Logout.Visible = true;
             }
 
             else
             {
                 PictureBox_Username_Cross.Visible = true;
                 PictureBox_Password_Cross.Visible = true;
-                PictureBox_Username_Tick.Visible = false;
-                PictureBox_Password_Tick.Visible = false;
             }
         }
 
@@ -135,6 +132,11 @@ namespace Final_Year_Project
 
         private void PictureBox_Close_Click(object sender, EventArgs e)
         {
+            if (database != null)
+            {
+                database.SetData(calendar.GetData());
+            }
+
             Application.Exit();
         }
 
@@ -153,6 +155,22 @@ namespace Final_Year_Project
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackColor = Color.IndianRed;
+        }
+
+        private void PictureBox_Logout_Click(object sender, EventArgs e)
+        {
+            if (database != null)
+            {
+                database.SetData(calendar.GetData());
+                database = null;
+            }
+
+            Dashboard_Panel.Visible = false;
+            Event_Panel.Visible = false;
+            Group_Panel.Visible = false;
+            Search_Panel.Visible = false;
+
+            Login_Panel.Visible = true;
         }
     }
 
@@ -215,40 +233,42 @@ namespace Final_Year_Project
 
             for (int i = 0; i < 10; i++)
             {
-                PopulateDB("Football", "Footy with the lads", dt, "Football", 1, 2, 1);
-                PopulateDB("Shopping", "Christmas shopping", dt, "Football", 1, 1, 1);
-                PopulateDB("Work", "Lab Write Up", dt, "Football", 1, 1, 1);
+                PopulateDB("Football", "Footy with the lads", dt, "Football", "339 Main Road Broomfield", 2, 1);
+                PopulateDB("Shopping", "Christmas shopping", dt, "Football", "339 Main Road Broomfield", 1, 1);
+                PopulateDB("Work", "Lab Write Up", dt, "Football", "339 Main Road Broomfield", 1, 1);
                 
                 daycount++;
                 dt = new DateTime(dt.Year, dt.Month, daycount);
                 
-                PopulateDB("Work", "Office", dt, "Football", 1, 1, 1);
+                PopulateDB("Work", "Office", dt, "Football", "339 Main Road Broomfield", 1, 1);
 
                 daycount++;
                 dt = new DateTime(dt.Year, dt.Month, daycount);
 
-                PopulateDB("Birthday", "John's House", dt, "Football", 1, 3, 1);
-                PopulateDB("Dinner", "Emily's", dt, "Football", 1, 3, 1);
+                PopulateDB("Birthday", "John's House", dt, "Football", "339 Main Road Broomfield", 3, 1);
+                PopulateDB("Dinner", "Emily's", dt, "Football", "339 Main Road Broomfield", 3, 1);
 
                 daycount++;
                 dt = new DateTime(dt.Year, dt.Month, daycount);
             }
 
             dt = new DateTime(dt.Year, 11, 15);
-            PopulateDB("Test", "Testing", dt, "Test", 1, 1, 1);
+            PopulateDB("Test", "Testing", dt, "Test", "339 Main Road Broomfield", 1, 1);
         }
 
-        private void PopulateDB(string name, string description, DateTime datetime, string emoji, int location, int group, int owner)
+        private void PopulateDB(string name, string description, DateTime datetime, string emoji, string location, int group, int owner)
         {
             SqlCommand cmd = new SqlCommand("Add_Event", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
             cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
             cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
-            cmd.Parameters.Add("@Emoji", SqlDbType.NVarChar).Value = emoji;
-            cmd.Parameters.Add("@Location", SqlDbType.Int).Value = location;
+            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = emoji;
+            cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
             cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
             cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = owner;
+
+            //Console.WriteLine(name + " " + description + " " + datetime + " " + emoji + " " + location + " " + emoji + " " + group + " " + owner);
 
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -302,7 +322,7 @@ namespace Final_Year_Project
                     }
                 }
                 
-                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1] + " " + Emoji((string)rdr[4]), (DateTime)rdr[3], (string)rdr[13], new CalendarGroup((int)rdr[8], (string)rdr[9], Color.FromName((string)rdr[11])))); // Description not added
+                tempList.Add(new CalendarEvent((int)rdr[0], "Test", (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4]), new CalendarGroup((int)rdr[6], (string)rdr[9], Color.FromName((string)rdr[11])))); // Description not added
             }
 
             data.Add(tempList);
@@ -326,11 +346,40 @@ namespace Final_Year_Project
             return user;
         }
 
+        public void SetData(List<List<CalendarEvent>> data)
+        {
+            connection.Open();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                for (int j = 0; j < data[i].Count; j++)
+                {
+                    SqlCommand cmd = new SqlCommand("Update_Event", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = data[i][j].GetID();
+                    cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = data[i][j].GetName();
+                    cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = data[i][j].GetDescription();
+                    cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = data[i][j].GetDateTime();
+                    cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(data[i][j].GetEmoji());
+                    cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = data[i][j].GetLocation();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            connection.Close();
+        }
+
         private string Emoji(string e)
         {
             if (e == "Football")
             {
                 return "⚽️";
+            }
+
+            else if (e == "⚽️")
+            {
+                return "Football";
             }
 
             else
@@ -395,16 +444,20 @@ namespace Final_Year_Project
     {
         private int id;
         private string name;
+        private string description;
         private DateTime dateTime;
         private string location;
+        private string emoji;
         private CalendarGroup group;
 
-        public CalendarEvent(int i, string n, DateTime dt, string l, CalendarGroup g)
+        public CalendarEvent(int i, string n, string d, DateTime dt, string l, string e, CalendarGroup g)
         {
             id = i;
             name = n;
+            description = d;
             dateTime = dt;
             location = l;
+            emoji = e;
             group = g;
         }
 
@@ -431,6 +484,16 @@ namespace Final_Year_Project
         public CalendarGroup GetCalendarGroup()
         {
             return group;
+        }
+
+        public string GetDescription()
+        {
+            return description;
+        }
+
+        public string GetEmoji()
+        {
+            return emoji;
         }
     }
 

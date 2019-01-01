@@ -51,10 +51,9 @@
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.Search_Panel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.PictureBox_Logout = new System.Windows.Forms.PictureBox();
             this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
             this.PictureBox_Close = new System.Windows.Forms.PictureBox();
-            this.PictureBox_Username_Tick = new System.Windows.Forms.PictureBox();
-            this.PictureBox_Password_Tick = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanelCalendarHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -67,10 +66,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Username_Tick)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Password_Tick)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -172,15 +170,13 @@
             this.Login_Panel.Controls.Add(this.panel1);
             this.Login_Panel.Location = new System.Drawing.Point(920, 12);
             this.Login_Panel.Name = "Login_Panel";
-            this.Login_Panel.Size = new System.Drawing.Size(384, 378);
+            this.Login_Panel.Size = new System.Drawing.Size(384, 366);
             this.Login_Panel.TabIndex = 3;
             // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.PictureBox_Password_Tick);
-            this.panel1.Controls.Add(this.PictureBox_Username_Tick);
             this.panel1.Controls.Add(this.PictureBox_Password_Cross);
             this.panel1.Controls.Add(this.PictureBox_Username_Cross);
             this.panel1.Controls.Add(this.panel3);
@@ -192,7 +188,7 @@
             this.panel1.Controls.Add(this.Textbox_Password);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.Textbox_Username);
-            this.panel1.Location = new System.Drawing.Point(86, 16);
+            this.panel1.Location = new System.Drawing.Point(86, 10);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(213, 346);
             this.panel1.TabIndex = 0;
@@ -334,9 +330,9 @@
             // Event_Panel
             // 
             this.Event_Panel.BackColor = System.Drawing.Color.Gold;
-            this.Event_Panel.Location = new System.Drawing.Point(920, 396);
+            this.Event_Panel.Location = new System.Drawing.Point(920, 384);
             this.Event_Panel.Name = "Event_Panel";
-            this.Event_Panel.Size = new System.Drawing.Size(594, 100);
+            this.Event_Panel.Size = new System.Drawing.Size(594, 112);
             this.Event_Panel.TabIndex = 4;
             this.Event_Panel.Visible = false;
             // 
@@ -361,12 +357,28 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.IndianRed;
+            this.panel4.Controls.Add(this.PictureBox_Logout);
             this.panel4.Controls.Add(this.PictureBox_Minimise);
             this.panel4.Controls.Add(this.PictureBox_Close);
             this.panel4.Location = new System.Drawing.Point(1310, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(204, 378);
+            this.panel4.Size = new System.Drawing.Size(204, 96);
             this.panel4.TabIndex = 5;
+            // 
+            // PictureBox_Logout
+            // 
+            this.PictureBox_Logout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Logout.BackgroundImage")));
+            this.PictureBox_Logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Logout.Location = new System.Drawing.Point(96, 6);
+            this.PictureBox_Logout.Name = "PictureBox_Logout";
+            this.PictureBox_Logout.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Logout.TabIndex = 2;
+            this.PictureBox_Logout.TabStop = false;
+            this.PictureBox_Logout.Visible = false;
+            this.PictureBox_Logout.Click += new System.EventHandler(this.PictureBox_Logout_Click);
+            this.PictureBox_Logout.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Logout.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
             // PictureBox_Minimise
             // 
@@ -395,28 +407,6 @@
             this.PictureBox_Close.Click += new System.EventHandler(this.PictureBox_Close_Click);
             this.PictureBox_Close.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
             this.PictureBox_Close.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
-            // 
-            // PictureBox_Username_Tick
-            // 
-            this.PictureBox_Username_Tick.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Username_Tick.BackgroundImage")));
-            this.PictureBox_Username_Tick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox_Username_Tick.Location = new System.Drawing.Point(190, 191);
-            this.PictureBox_Username_Tick.Name = "PictureBox_Username_Tick";
-            this.PictureBox_Username_Tick.Size = new System.Drawing.Size(20, 20);
-            this.PictureBox_Username_Tick.TabIndex = 12;
-            this.PictureBox_Username_Tick.TabStop = false;
-            this.PictureBox_Username_Tick.Visible = false;
-            // 
-            // PictureBox_Password_Tick
-            // 
-            this.PictureBox_Password_Tick.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Password_Tick.BackgroundImage")));
-            this.PictureBox_Password_Tick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox_Password_Tick.Location = new System.Drawing.Point(190, 229);
-            this.PictureBox_Password_Tick.Name = "PictureBox_Password_Tick";
-            this.PictureBox_Password_Tick.Size = new System.Drawing.Size(20, 20);
-            this.PictureBox_Password_Tick.TabIndex = 13;
-            this.PictureBox_Password_Tick.TabStop = false;
-            this.PictureBox_Password_Tick.Visible = false;
             // 
             // Form1
             // 
@@ -449,10 +439,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Username_Tick)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Password_Tick)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -483,8 +472,7 @@
         private System.Windows.Forms.PictureBox PictureBox_Minimise;
         private System.Windows.Forms.PictureBox PictureBox_Password_Cross;
         private System.Windows.Forms.PictureBox PictureBox_Username_Cross;
-        private System.Windows.Forms.PictureBox PictureBox_Password_Tick;
-        private System.Windows.Forms.PictureBox PictureBox_Username_Tick;
+        private System.Windows.Forms.PictureBox PictureBox_Logout;
     }
 }
 
