@@ -13,6 +13,7 @@ namespace Final_Year_Project
         private Calendar calendar;
         private Database database;
         private DateTime dt;
+        private Boolean populate = false;
 
         public Form1()
         {
@@ -23,6 +24,9 @@ namespace Final_Year_Project
         {
             //calendar.AddEvent(new CalendarEvent("Work Due", DateTime.Now, "Computer"));
             //calendar.RemoveEvent(calendar.GetEvent(DateTime.Now.AddDays(-2), "Football"));
+
+            // Add Emojis to Event ComboBox
+            Setup_Emojis();
         }
 
         private void Calendar_Back_Click(object sender, EventArgs e)
@@ -71,7 +75,10 @@ namespace Final_Year_Project
                 DateTime tempDt = DateTime.Now;
                 dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
-                database.Populate(dt); // TODO: REMOVE ME
+                if (populate)
+                {
+                    database.Populate(dt); // TODO: REMOVE ME
+                }
                 
                 calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
                 calendar.SetData(database.GetData(dt), dt);
@@ -162,6 +169,8 @@ namespace Final_Year_Project
             if (database != null)
             {
                 database.SetData(calendar.GetData());
+                Textbox_Username.Text = "Username";
+                Textbox_Password.Text = "Password";
                 database = null;
             }
 
@@ -171,6 +180,42 @@ namespace Final_Year_Project
             Search_Panel.Visible = false;
 
             Login_Panel.Visible = true;
+        }
+
+        private void Setup_Emojis()
+        {
+            ComboBox_Emoji.Items.Add("⚽️");
+        }
+
+        private void Add_Event_Button_Click(object sender, EventArgs e)
+        {
+            DateTime datetime = new DateTime(DateTimePicker_Date.Value.Year, DateTimePicker_Date.Value.Month, DateTimePicker_Date.Value.Day, DateTimePicker_Time.Value.Hour, DateTimePicker_Time.Value.Minute, DateTimePicker_Time.Value.Second);
+
+            database.Add_Event(TextBox_Name.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, ComboBox_Emoji.Text, 1); // TODO: Find group
+
+            DateTime tempDt = DateTime.Now;
+            dt = new DateTime(tempDt.Year, tempDt.Month, 1);
+
+            calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
+            calendar.SetData(database.GetData(dt), dt);
+
+            Dashboard_Panel.Visible = true;
+            Event_Panel.Visible = false;
+        }
+
+        private void DatePicker_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime tempDt = e.Start;
+            dt = new DateTime(tempDt.Year, tempDt.Month, 1);
+
+            calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
+            calendar.SetData(database.GetData(dt), dt);
+        }
+
+        private void Dashboard_Add_Event_Click(object sender, EventArgs e)
+        {
+            Dashboard_Panel.Visible = false;
+            Event_Panel.Visible = true;
         }
     }
 
@@ -222,6 +267,23 @@ namespace Final_Year_Project
             connection.Close();
 
             return new User(i, u);
+        }
+
+        public void Add_Event(string name, string description, DateTime datetime, string location, string emoji, int group)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Event", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
+            cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
+            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji);
+            cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
+            cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
+            cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         public void Populate(DateTime dt)
@@ -322,7 +384,7 @@ namespace Final_Year_Project
                     }
                 }
                 
-                tempList.Add(new CalendarEvent((int)rdr[0], "Test", (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4]), new CalendarGroup((int)rdr[6], (string)rdr[9], Color.FromName((string)rdr[11])))); // Description not added
+                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4]), new CalendarGroup((int)rdr[6], (string)rdr[9], Color.FromName((string)rdr[11]))));
             }
 
             data.Add(tempList);
@@ -354,16 +416,24 @@ namespace Final_Year_Project
             {
                 for (int j = 0; j < data[i].Count; j++)
                 {
-                    SqlCommand cmd = new SqlCommand("Update_Event", connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = data[i][j].GetID();
-                    cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = data[i][j].GetName();
-                    cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = data[i][j].GetDescription();
-                    cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = data[i][j].GetDateTime();
-                    cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(data[i][j].GetEmoji());
-                    cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = data[i][j].GetLocation();
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("Update_Event", connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@ID", SqlDbType.Int).Value = data[i][j].GetID();
+                        cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = data[i][j].GetName();
+                        cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = data[i][j].GetDescription();
+                        cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = data[i][j].GetDateTime();
+                        cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(data[i][j].GetEmoji());
+                        cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = data[i][j].GetLocation();
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    catch (Exception)
+                    {
+
+                    }
                 }
             }
 

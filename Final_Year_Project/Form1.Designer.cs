@@ -34,6 +34,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Dashboard_Panel = new System.Windows.Forms.Panel();
+            this.Dashboard_Add_Event = new System.Windows.Forms.Label();
+            this.DatePicker = new System.Windows.Forms.MonthCalendar();
             this.Login_Panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PictureBox_Password_Cross = new System.Windows.Forms.PictureBox();
@@ -48,6 +50,23 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.Textbox_Username = new System.Windows.Forms.TextBox();
             this.Event_Panel = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.TextBox_Location = new System.Windows.Forms.TextBox();
+            this.Add_Event_Button = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.ComboBox_Emoji = new System.Windows.Forms.ComboBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.ComboBox_Group = new System.Windows.Forms.ComboBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.TextBox_Description = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DateTimePicker_Time = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.DateTimePicker_Date = new System.Windows.Forms.DateTimePicker();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.TextBox_Name = new System.Windows.Forms.TextBox();
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.Search_Panel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -65,6 +84,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Lock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.Event_Panel.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
@@ -156,6 +177,8 @@
             // Dashboard_Panel
             // 
             this.Dashboard_Panel.BackColor = System.Drawing.Color.Green;
+            this.Dashboard_Panel.Controls.Add(this.Dashboard_Add_Event);
+            this.Dashboard_Panel.Controls.Add(this.DatePicker);
             this.Dashboard_Panel.Controls.Add(this.tableLayoutPanelCalendarHeader);
             this.Dashboard_Panel.Controls.Add(this.tableLayoutPanel);
             this.Dashboard_Panel.Location = new System.Drawing.Point(12, 12);
@@ -164,13 +187,35 @@
             this.Dashboard_Panel.TabIndex = 2;
             this.Dashboard_Panel.Visible = false;
             // 
+            // Dashboard_Add_Event
+            // 
+            this.Dashboard_Add_Event.BackColor = System.Drawing.Color.White;
+            this.Dashboard_Add_Event.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Dashboard_Add_Event.Font = new System.Drawing.Font("Candara", 12F);
+            this.Dashboard_Add_Event.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Add_Event.Location = new System.Drawing.Point(665, 415);
+            this.Dashboard_Add_Event.Name = "Dashboard_Add_Event";
+            this.Dashboard_Add_Event.Size = new System.Drawing.Size(170, 30);
+            this.Dashboard_Add_Event.TabIndex = 18;
+            this.Dashboard_Add_Event.Text = "Add Event";
+            this.Dashboard_Add_Event.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Dashboard_Add_Event.Click += new System.EventHandler(this.Dashboard_Add_Event_Click);
+            // 
+            // DatePicker
+            // 
+            this.DatePicker.Location = new System.Drawing.Point(641, 244);
+            this.DatePicker.MaxSelectionCount = 1;
+            this.DatePicker.Name = "DatePicker";
+            this.DatePicker.TabIndex = 2;
+            this.DatePicker.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.DatePicker_DateSelected);
+            // 
             // Login_Panel
             // 
             this.Login_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Login_Panel.Controls.Add(this.panel1);
             this.Login_Panel.Location = new System.Drawing.Point(920, 12);
             this.Login_Panel.Name = "Login_Panel";
-            this.Login_Panel.Size = new System.Drawing.Size(384, 366);
+            this.Login_Panel.Size = new System.Drawing.Size(384, 217);
             this.Login_Panel.TabIndex = 3;
             // 
             // panel1
@@ -188,7 +233,7 @@
             this.panel1.Controls.Add(this.Textbox_Password);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.Textbox_Username);
-            this.panel1.Location = new System.Drawing.Point(86, 10);
+            this.panel1.Location = new System.Drawing.Point(86, -65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(213, 346);
             this.panel1.TabIndex = 0;
@@ -330,27 +375,240 @@
             // Event_Panel
             // 
             this.Event_Panel.BackColor = System.Drawing.Color.Gold;
-            this.Event_Panel.Location = new System.Drawing.Point(920, 384);
+            this.Event_Panel.Controls.Add(this.panel5);
+            this.Event_Panel.Location = new System.Drawing.Point(920, 235);
             this.Event_Panel.Name = "Event_Panel";
-            this.Event_Panel.Size = new System.Drawing.Size(594, 112);
+            this.Event_Panel.Size = new System.Drawing.Size(594, 380);
             this.Event_Panel.TabIndex = 4;
             this.Event_Panel.Visible = false;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel5.Controls.Add(this.TextBox_Location);
+            this.panel5.Controls.Add(this.Add_Event_Button);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.label3);
+            this.panel5.Controls.Add(this.panel9);
+            this.panel5.Controls.Add(this.ComboBox_Emoji);
+            this.panel5.Controls.Add(this.panel8);
+            this.panel5.Controls.Add(this.ComboBox_Group);
+            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Controls.Add(this.TextBox_Description);
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.DateTimePicker_Time);
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.DateTimePicker_Date);
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.TextBox_Name);
+            this.panel5.Location = new System.Drawing.Point(17, 14);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(561, 352);
+            this.panel5.TabIndex = 0;
+            // 
+            // TextBox_Location
+            // 
+            this.TextBox_Location.Location = new System.Drawing.Point(335, 211);
+            this.TextBox_Location.Name = "TextBox_Location";
+            this.TextBox_Location.Size = new System.Drawing.Size(176, 20);
+            this.TextBox_Location.TabIndex = 18;
+            this.TextBox_Location.Text = "Random Address/Location";
+            // 
+            // Add_Event_Button
+            // 
+            this.Add_Event_Button.BackColor = System.Drawing.Color.White;
+            this.Add_Event_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Add_Event_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Add_Event_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Add_Event_Button.Location = new System.Drawing.Point(369, 313);
+            this.Add_Event_Button.Name = "Add_Event_Button";
+            this.Add_Event_Button.Size = new System.Drawing.Size(170, 30);
+            this.Add_Event_Button.TabIndex = 17;
+            this.Add_Event_Button.Text = "Add Event";
+            this.Add_Event_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Add_Event_Button.Click += new System.EventHandler(this.Add_Event_Button_Click);
+            this.Add_Event_Button.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
+            this.Add_Event_Button.MouseHover += new System.EventHandler(this.Login_MouseHover);
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label4.Font = new System.Drawing.Font("Candara", 12F);
+            this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label4.Location = new System.Drawing.Point(14, 313);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(170, 30);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Search...";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
+            this.label4.MouseHover += new System.EventHandler(this.Login_MouseHover);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Candara", 12F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(431, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 19);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Emoji:";
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Location = new System.Drawing.Point(425, 137);
+            this.panel9.Margin = new System.Windows.Forms.Padding(0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(110, 1);
+            this.panel9.TabIndex = 13;
+            // 
+            // ComboBox_Emoji
+            // 
+            this.ComboBox_Emoji.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ComboBox_Emoji.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBox_Emoji.Font = new System.Drawing.Font("Candara", 12F);
+            this.ComboBox_Emoji.ForeColor = System.Drawing.Color.White;
+            this.ComboBox_Emoji.FormattingEnabled = true;
+            this.ComboBox_Emoji.Location = new System.Drawing.Point(486, 105);
+            this.ComboBox_Emoji.Name = "ComboBox_Emoji";
+            this.ComboBox_Emoji.Size = new System.Drawing.Size(49, 27);
+            this.ComboBox_Emoji.TabIndex = 14;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Location = new System.Drawing.Point(18, 220);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(201, 1);
+            this.panel8.TabIndex = 5;
+            // 
+            // ComboBox_Group
+            // 
+            this.ComboBox_Group.FormattingEnabled = true;
+            this.ComboBox_Group.Location = new System.Drawing.Point(17, 196);
+            this.ComboBox_Group.Name = "ComboBox_Group";
+            this.ComboBox_Group.Size = new System.Drawing.Size(200, 21);
+            this.ComboBox_Group.TabIndex = 12;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Location = new System.Drawing.Point(17, 186);
+            this.panel7.Margin = new System.Windows.Forms.Padding(0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(201, 1);
+            this.panel7.TabIndex = 5;
+            // 
+            // TextBox_Description
+            // 
+            this.TextBox_Description.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Description.Font = new System.Drawing.Font("Candara", 12F);
+            this.TextBox_Description.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Description.Location = new System.Drawing.Point(18, 54);
+            this.TextBox_Description.Name = "TextBox_Description";
+            this.TextBox_Description.Size = new System.Drawing.Size(199, 129);
+            this.TextBox_Description.TabIndex = 11;
+            this.TextBox_Description.Text = "Description";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Candara", 12F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(284, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 19);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Time:";
+            // 
+            // DateTimePicker_Time
+            // 
+            this.DateTimePicker_Time.CalendarFont = new System.Drawing.Font("Candara", 12F);
+            this.DateTimePicker_Time.CalendarForeColor = System.Drawing.Color.White;
+            this.DateTimePicker_Time.CalendarMonthBackground = System.Drawing.Color.White;
+            this.DateTimePicker_Time.CalendarTitleBackColor = System.Drawing.Color.White;
+            this.DateTimePicker_Time.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.DateTimePicker_Time.CalendarTrailingForeColor = System.Drawing.Color.White;
+            this.DateTimePicker_Time.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DateTimePicker_Time.CustomFormat = "";
+            this.DateTimePicker_Time.Font = new System.Drawing.Font("Candara", 12F);
+            this.DateTimePicker_Time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.DateTimePicker_Time.Location = new System.Drawing.Point(335, 61);
+            this.DateTimePicker_Time.Name = "DateTimePicker_Time";
+            this.DateTimePicker_Time.ShowUpDown = true;
+            this.DateTimePicker_Time.Size = new System.Drawing.Size(200, 27);
+            this.DateTimePicker_Time.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Candara", 12F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(284, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 19);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Date:";
+            // 
+            // DateTimePicker_Date
+            // 
+            this.DateTimePicker_Date.CalendarFont = new System.Drawing.Font("Candara", 12F);
+            this.DateTimePicker_Date.CalendarForeColor = System.Drawing.Color.White;
+            this.DateTimePicker_Date.CalendarMonthBackground = System.Drawing.Color.White;
+            this.DateTimePicker_Date.CalendarTitleBackColor = System.Drawing.Color.White;
+            this.DateTimePicker_Date.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.DateTimePicker_Date.CalendarTrailingForeColor = System.Drawing.Color.White;
+            this.DateTimePicker_Date.Checked = false;
+            this.DateTimePicker_Date.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DateTimePicker_Date.CustomFormat = "";
+            this.DateTimePicker_Date.Font = new System.Drawing.Font("Candara", 12F);
+            this.DateTimePicker_Date.Location = new System.Drawing.Point(335, 21);
+            this.DateTimePicker_Date.Name = "DateTimePicker_Date";
+            this.DateTimePicker_Date.Size = new System.Drawing.Size(200, 27);
+            this.DateTimePicker_Date.TabIndex = 7;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Location = new System.Drawing.Point(17, 44);
+            this.panel6.Margin = new System.Windows.Forms.Padding(0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(201, 1);
+            this.panel6.TabIndex = 4;
+            // 
+            // TextBox_Name
+            // 
+            this.TextBox_Name.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Name.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Name.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Name.Location = new System.Drawing.Point(17, 21);
+            this.TextBox_Name.Name = "TextBox_Name";
+            this.TextBox_Name.Size = new System.Drawing.Size(200, 20);
+            this.TextBox_Name.TabIndex = 3;
+            this.TextBox_Name.Text = "Event Name";
+            this.TextBox_Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Group_Panel
             // 
             this.Group_Panel.BackColor = System.Drawing.Color.MediumOrchid;
-            this.Group_Panel.Location = new System.Drawing.Point(920, 502);
+            this.Group_Panel.Location = new System.Drawing.Point(920, 628);
             this.Group_Panel.Name = "Group_Panel";
-            this.Group_Panel.Size = new System.Drawing.Size(594, 100);
+            this.Group_Panel.Size = new System.Drawing.Size(594, 37);
             this.Group_Panel.TabIndex = 5;
             this.Group_Panel.Visible = false;
             // 
             // Search_Panel
             // 
             this.Search_Panel.BackColor = System.Drawing.Color.Fuchsia;
-            this.Search_Panel.Location = new System.Drawing.Point(920, 608);
+            this.Search_Panel.Location = new System.Drawing.Point(920, 671);
             this.Search_Panel.Name = "Search_Panel";
-            this.Search_Panel.Size = new System.Drawing.Size(594, 100);
+            this.Search_Panel.Size = new System.Drawing.Size(594, 37);
             this.Search_Panel.TabIndex = 6;
             this.Search_Panel.Visible = false;
             // 
@@ -438,6 +696,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Lock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.Event_Panel.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
@@ -473,6 +734,25 @@
         private System.Windows.Forms.PictureBox PictureBox_Password_Cross;
         private System.Windows.Forms.PictureBox PictureBox_Username_Cross;
         private System.Windows.Forms.PictureBox PictureBox_Logout;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.TextBox TextBox_Name;
+        private System.Windows.Forms.DateTimePicker DateTimePicker_Date;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker DateTimePicker_Time;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.RichTextBox TextBox_Description;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.ComboBox ComboBox_Emoji;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.ComboBox ComboBox_Group;
+        private System.Windows.Forms.Label Add_Event_Button;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox TextBox_Location;
+        private System.Windows.Forms.MonthCalendar DatePicker;
+        private System.Windows.Forms.Label Dashboard_Add_Event;
     }
 }
 
