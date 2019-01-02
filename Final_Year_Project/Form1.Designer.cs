@@ -34,6 +34,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Dashboard_Panel = new System.Windows.Forms.Panel();
+            this.Dashboard_Add_Group = new System.Windows.Forms.Label();
             this.Dashboard_Add_Event = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.MonthCalendar();
             this.Login_Panel = new System.Windows.Forms.Panel();
@@ -51,13 +52,12 @@
             this.Textbox_Username = new System.Windows.Forms.TextBox();
             this.Event_Panel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.TextBox_Location = new System.Windows.Forms.TextBox();
             this.Add_Event_Button = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.ComboBox_Emoji = new System.Windows.Forms.ComboBox();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.ComboBox_Group = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.TextBox_Description = new System.Windows.Forms.RichTextBox();
@@ -66,8 +66,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DateTimePicker_Date = new System.Windows.Forms.DateTimePicker();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.TextBox_Name = new System.Windows.Forms.TextBox();
+            this.TextBox_Name_Event = new System.Windows.Forms.TextBox();
             this.Group_Panel = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.Add_Group_Button = new System.Windows.Forms.Label();
+            this.Colour_Panel = new System.Windows.Forms.Panel();
+            this.ColourPicker_Button = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.TextBox_Name_Group = new System.Windows.Forms.TextBox();
             this.Search_Panel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.PictureBox_Back = new System.Windows.Forms.PictureBox();
@@ -87,6 +93,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.Event_Panel.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.Group_Panel.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
@@ -179,6 +187,7 @@
             // Dashboard_Panel
             // 
             this.Dashboard_Panel.BackColor = System.Drawing.Color.Green;
+            this.Dashboard_Panel.Controls.Add(this.Dashboard_Add_Group);
             this.Dashboard_Panel.Controls.Add(this.Dashboard_Add_Event);
             this.Dashboard_Panel.Controls.Add(this.DatePicker);
             this.Dashboard_Panel.Controls.Add(this.tableLayoutPanelCalendarHeader);
@@ -188,6 +197,20 @@
             this.Dashboard_Panel.Size = new System.Drawing.Size(845, 696);
             this.Dashboard_Panel.TabIndex = 2;
             this.Dashboard_Panel.Visible = false;
+            // 
+            // Dashboard_Add_Group
+            // 
+            this.Dashboard_Add_Group.BackColor = System.Drawing.Color.White;
+            this.Dashboard_Add_Group.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Dashboard_Add_Group.Font = new System.Drawing.Font("Candara", 12F);
+            this.Dashboard_Add_Group.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Add_Group.Location = new System.Drawing.Point(608, 90);
+            this.Dashboard_Add_Group.Name = "Dashboard_Add_Group";
+            this.Dashboard_Add_Group.Size = new System.Drawing.Size(227, 30);
+            this.Dashboard_Add_Group.TabIndex = 19;
+            this.Dashboard_Add_Group.Text = "Add Group";
+            this.Dashboard_Add_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Dashboard_Add_Group.Click += new System.EventHandler(this.Dashboard_Add_Group_Click);
             // 
             // Dashboard_Add_Event
             // 
@@ -205,7 +228,7 @@
             // 
             // DatePicker
             // 
-            this.DatePicker.Location = new System.Drawing.Point(608, 89);
+            this.DatePicker.Location = new System.Drawing.Point(607, 129);
             this.DatePicker.MaxSelectionCount = 1;
             this.DatePicker.Name = "DatePicker";
             this.DatePicker.TabIndex = 2;
@@ -387,13 +410,12 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.TextBox_Location);
             this.panel5.Controls.Add(this.Add_Event_Button);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.panel9);
             this.panel5.Controls.Add(this.ComboBox_Emoji);
-            this.panel5.Controls.Add(this.panel8);
             this.panel5.Controls.Add(this.ComboBox_Group);
             this.panel5.Controls.Add(this.panel7);
             this.panel5.Controls.Add(this.TextBox_Description);
@@ -402,11 +424,22 @@
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.DateTimePicker_Date);
             this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.TextBox_Name);
+            this.panel5.Controls.Add(this.TextBox_Name_Event);
             this.panel5.Location = new System.Drawing.Point(17, 14);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(561, 352);
             this.panel5.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Candara", 12F);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(26, 217);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 19);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Group:";
             // 
             // TextBox_Location
             // 
@@ -458,15 +491,6 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Emoji:";
             // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Location = new System.Drawing.Point(425, 137);
-            this.panel9.Margin = new System.Windows.Forms.Padding(0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(110, 1);
-            this.panel9.TabIndex = 13;
-            // 
             // ComboBox_Emoji
             // 
             this.ComboBox_Emoji.BackColor = System.Drawing.Color.RoyalBlue;
@@ -479,19 +503,13 @@
             this.ComboBox_Emoji.Size = new System.Drawing.Size(49, 27);
             this.ComboBox_Emoji.TabIndex = 14;
             // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Location = new System.Drawing.Point(18, 220);
-            this.panel8.Margin = new System.Windows.Forms.Padding(0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(201, 1);
-            this.panel8.TabIndex = 5;
-            // 
             // ComboBox_Group
             // 
+            this.ComboBox_Group.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ComboBox_Group.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBox_Group.ForeColor = System.Drawing.Color.White;
             this.ComboBox_Group.FormattingEnabled = true;
-            this.ComboBox_Group.Location = new System.Drawing.Point(17, 196);
+            this.ComboBox_Group.Location = new System.Drawing.Point(88, 216);
             this.ComboBox_Group.Name = "ComboBox_Group";
             this.ComboBox_Group.Size = new System.Drawing.Size(200, 21);
             this.ComboBox_Group.TabIndex = 12;
@@ -583,27 +601,99 @@
             this.panel6.Size = new System.Drawing.Size(201, 1);
             this.panel6.TabIndex = 4;
             // 
-            // TextBox_Name
+            // TextBox_Name_Event
             // 
-            this.TextBox_Name.BackColor = System.Drawing.Color.RoyalBlue;
-            this.TextBox_Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBox_Name.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Name.ForeColor = System.Drawing.Color.White;
-            this.TextBox_Name.Location = new System.Drawing.Point(17, 21);
-            this.TextBox_Name.Name = "TextBox_Name";
-            this.TextBox_Name.Size = new System.Drawing.Size(200, 20);
-            this.TextBox_Name.TabIndex = 3;
-            this.TextBox_Name.Text = "Event Name";
-            this.TextBox_Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox_Name_Event.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Name_Event.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Name_Event.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Name_Event.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Name_Event.Location = new System.Drawing.Point(17, 21);
+            this.TextBox_Name_Event.Name = "TextBox_Name_Event";
+            this.TextBox_Name_Event.Size = new System.Drawing.Size(200, 20);
+            this.TextBox_Name_Event.TabIndex = 3;
+            this.TextBox_Name_Event.Text = "Event Name";
+            this.TextBox_Name_Event.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Group_Panel
             // 
             this.Group_Panel.BackColor = System.Drawing.Color.MediumOrchid;
+            this.Group_Panel.Controls.Add(this.panel9);
             this.Group_Panel.Location = new System.Drawing.Point(1463, 471);
             this.Group_Panel.Name = "Group_Panel";
             this.Group_Panel.Size = new System.Drawing.Size(395, 236);
             this.Group_Panel.TabIndex = 5;
             this.Group_Panel.Visible = false;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel9.Controls.Add(this.Add_Group_Button);
+            this.panel9.Controls.Add(this.Colour_Panel);
+            this.panel9.Controls.Add(this.ColourPicker_Button);
+            this.panel9.Controls.Add(this.panel8);
+            this.panel9.Controls.Add(this.TextBox_Name_Group);
+            this.panel9.Location = new System.Drawing.Point(29, 23);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(345, 195);
+            this.panel9.TabIndex = 20;
+            // 
+            // Add_Group_Button
+            // 
+            this.Add_Group_Button.BackColor = System.Drawing.Color.White;
+            this.Add_Group_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Add_Group_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Add_Group_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Add_Group_Button.Location = new System.Drawing.Point(77, 154);
+            this.Add_Group_Button.Name = "Add_Group_Button";
+            this.Add_Group_Button.Size = new System.Drawing.Size(170, 30);
+            this.Add_Group_Button.TabIndex = 22;
+            this.Add_Group_Button.Text = "Add Group";
+            this.Add_Group_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Add_Group_Button.Click += new System.EventHandler(this.Add_Group_Button_Click);
+            // 
+            // Colour_Panel
+            // 
+            this.Colour_Panel.BackColor = System.Drawing.Color.Black;
+            this.Colour_Panel.Location = new System.Drawing.Point(249, 106);
+            this.Colour_Panel.Name = "Colour_Panel";
+            this.Colour_Panel.Size = new System.Drawing.Size(30, 30);
+            this.Colour_Panel.TabIndex = 19;
+            // 
+            // ColourPicker_Button
+            // 
+            this.ColourPicker_Button.BackColor = System.Drawing.Color.White;
+            this.ColourPicker_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ColourPicker_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.ColourPicker_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.ColourPicker_Button.Location = new System.Drawing.Point(73, 106);
+            this.ColourPicker_Button.Name = "ColourPicker_Button";
+            this.ColourPicker_Button.Size = new System.Drawing.Size(170, 30);
+            this.ColourPicker_Button.TabIndex = 18;
+            this.ColourPicker_Button.Text = "Choose Colour";
+            this.ColourPicker_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ColourPicker_Button.Click += new System.EventHandler(this.ColourPicker_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Location = new System.Drawing.Point(77, 66);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(201, 1);
+            this.panel8.TabIndex = 21;
+            // 
+            // TextBox_Name_Group
+            // 
+            this.TextBox_Name_Group.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Name_Group.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Name_Group.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Name_Group.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Name_Group.Location = new System.Drawing.Point(77, 43);
+            this.TextBox_Name_Group.Name = "TextBox_Name_Group";
+            this.TextBox_Name_Group.Size = new System.Drawing.Size(200, 20);
+            this.TextBox_Name_Group.TabIndex = 20;
+            this.TextBox_Name_Group.Text = "Group Name";
+            this.TextBox_Name_Group.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Search_Panel
             // 
@@ -717,6 +807,9 @@
             this.Event_Panel.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.Group_Panel.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
@@ -755,7 +848,7 @@
         private System.Windows.Forms.PictureBox PictureBox_Logout;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.TextBox TextBox_Name;
+        private System.Windows.Forms.TextBox TextBox_Name_Event;
         private System.Windows.Forms.DateTimePicker DateTimePicker_Date;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -763,9 +856,7 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.RichTextBox TextBox_Description;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ComboBox ComboBox_Emoji;
-        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.ComboBox ComboBox_Group;
         private System.Windows.Forms.Label Add_Event_Button;
         private System.Windows.Forms.Label label4;
@@ -773,6 +864,14 @@
         private System.Windows.Forms.MonthCalendar DatePicker;
         private System.Windows.Forms.Label Dashboard_Add_Event;
         private System.Windows.Forms.PictureBox PictureBox_Back;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label ColourPicker_Button;
+        private System.Windows.Forms.Label Dashboard_Add_Group;
+        private System.Windows.Forms.Panel Colour_Panel;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.TextBox TextBox_Name_Group;
+        private System.Windows.Forms.Label Add_Group_Button;
     }
 }
 

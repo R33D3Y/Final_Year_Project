@@ -79,8 +79,6 @@ namespace Final_Year_Project
                 
                 calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
                 calendar.SetData(database.GetData(dt), dt);
-                
-                Setup_Groups();
 
                 Dashboard_Panel.Visible = true;
                 Login_Panel.Visible = false;
@@ -190,6 +188,8 @@ namespace Final_Year_Project
         {
             List<CalendarGroup> cg = database.GetGroups();
 
+            ComboBox_Group.Items.Clear();
+
             for (int i = 0; i < cg.Count; i++)
             {
                 ComboBox_Group.Items.Add(cg[i].GetName());
@@ -211,7 +211,7 @@ namespace Final_Year_Project
                 }
             }
 
-            database.Add_Event(TextBox_Name.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, ComboBox_Emoji.Text, group);
+            database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, ComboBox_Emoji.Text, group);
 
             DateTime tempDt = DateTime.Now;
             dt = new DateTime(tempDt.Year, tempDt.Month, 1);
@@ -235,6 +235,13 @@ namespace Final_Year_Project
 
         private void Dashboard_Add_Event_Click(object sender, EventArgs e)
         {
+            TextBox_Name_Event.Text = "Event Name";
+            TextBox_Description.Text = "Description";
+            ComboBox_Group.SelectedIndex = -1;
+            ComboBox_Emoji.SelectedIndex = -1;
+            
+            Setup_Groups();
+
             Dashboard_Panel.Visible = false;
             Event_Panel.Visible = true;
             PictureBox_Back.Visible = true;
@@ -249,13 +256,40 @@ namespace Final_Year_Project
 
             PictureBox_Back.Visible = false;
         }
+
+        private void ColourPicker_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.ShowDialog();
+            
+            Colour_Panel.BackColor = cd.Color;
+        }
+
+        private void Dashboard_Add_Group_Click(object sender, EventArgs e)
+        {
+            Dashboard_Panel.Visible = false;
+            Group_Panel.Visible = true;
+            PictureBox_Back.Visible = true;
+        }
+
+        private void Add_Group_Button_Click(object sender, EventArgs e)
+        {
+            database.Add_Group(TextBox_Name_Group.Text, Colour_Panel.BackColor.ToArgb());
+
+            Dashboard_Panel.Visible = true;
+            Event_Panel.Visible = false;
+            Group_Panel.Visible = false;
+            Search_Panel.Visible = false;
+
+            PictureBox_Back.Visible = false;
+        }
     }
 
     public class Database
     {
         private SqlConnection connection;
         private User user;
-        private List<CalendarGroup> groups = new List<CalendarGroup>();
+        private List<CalendarGroup> groups;
 
         public Database(string u, string p)
         {
@@ -313,6 +347,19 @@ namespace Final_Year_Project
             cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
             cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
             cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void Add_Group(string name, int colour)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Group", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@User_ID", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@Colour", SqlDbType.Int).Value = colour;
 
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -417,7 +464,7 @@ namespace Final_Year_Project
                     }
                 }
                 
-                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4]), new CalendarGroup((int)rdr[6], (string)rdr[9], Color.FromName((string)rdr[11]))));
+                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4]), new CalendarGroup((int)rdr[6], (string)rdr[9], Color.FromArgb((int)rdr[11]))));
             }
 
             data.Add(tempList);
@@ -432,8 +479,6 @@ namespace Final_Year_Project
             }
 
             connection.Close();
-
-            RetrieveGroups();
 
             return data;
         }
@@ -485,9 +530,11 @@ namespace Final_Year_Project
 
             SqlDataReader rdr = cmd.ExecuteReader();
 
+            groups = new List<CalendarGroup>();
+
             while (rdr.Read())
             {
-                groups.Add(new CalendarGroup((int)rdr[0], (string)rdr[1], Color.FromName((string)rdr[2])));
+                groups.Add(new CalendarGroup((int)rdr[0], (string)rdr[1], Color.FromArgb((int)rdr[2])));
             }
 
             connection.Close();
@@ -495,6 +542,8 @@ namespace Final_Year_Project
 
         public List<CalendarGroup> GetGroups()
         {
+            RetrieveGroups();
+
             return groups;
         }
 
@@ -758,7 +807,7 @@ namespace Final_Year_Project
                                         PanelClickEvent(s, e);
                                     };
 
-                                    for (int h = 0; h < data[data_count].Count; h++)
+                                    for (int h = 0; (h < data[data_count].Count && h < 5); h++)
                                     {
                                         Color txt = Color.Black;
 
@@ -915,7 +964,8 @@ namespace Final_Year_Project
                             string[] numbers = Regex.Split(parent.GetControlFromPosition(g, datePoint).Text, @"\D+");
                             int index = int.Parse(numbers[0]);
                             Render();
-                            DateTime dt = new DateTime(2018, 1, index);
+
+                            //DateTime dt = new DateTime(2018, 1, index);
                             //RemoveEvent(GetEvent(dt, "Football"));
 
                             throw new NotImplementedException();
