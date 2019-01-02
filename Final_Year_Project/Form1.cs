@@ -1,7 +1,12 @@
-﻿using System;
+﻿using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Device.Location;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -13,7 +18,7 @@ namespace Final_Year_Project
         private Calendar calendar;
         private Database database;
         private DateTime dt;
-        private Boolean populate = false;
+        private readonly bool populate = true;
 
         public Form1()
         {
@@ -241,10 +246,37 @@ namespace Final_Year_Project
             ComboBox_Emoji.SelectedIndex = -1;
             
             Setup_Groups();
+            Setup_Location();
 
             Dashboard_Panel.Visible = false;
             Event_Panel.Visible = true;
             PictureBox_Back.Visible = true;
+        }
+
+        private void Setup_Location()
+        {
+            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+            GeoCoordinate coord = watcher.Position.Location;
+
+            double latitude = 0;
+            double longitude = 0;
+
+            while (coord.IsUnknown)
+            {
+                watcher.TryStart(false, TimeSpan.FromMilliseconds(2000));
+                coord = watcher.Position.Location;
+
+                if (coord.IsUnknown != true)
+                {
+                    latitude = coord.Latitude;
+                    longitude = coord.Longitude;
+                }
+            }
+
+            GMap_Control.MapProvider = BingMapProvider.Instance;
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+            GMap_Control.Position = new PointLatLng(latitude, longitude);
+            GMap_Control.ShowCenter = false;
         }
 
         private void PictureBox_Back_Click(object sender, EventArgs e)
@@ -282,6 +314,64 @@ namespace Final_Year_Project
             Search_Panel.Visible = false;
 
             PictureBox_Back.Visible = false;
+        }
+
+        private void Search_Location_Click(object sender, EventArgs e)
+        {
+            GMap_Control.SetPositionByKeywords(TextBox_Location_Search.Text);
+            PointLatLng latLng = GMap_Control.Position;
+            double lat = latLng.Lat;
+            double lng = latLng.Lng;
+
+            GMap_Control.Overlays.Clear();
+
+            GMapOverlay markers = new GMapOverlay("markers");
+            GMap_Control.Overlays.Add(markers);
+
+            GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+            markers.Markers.Add(marker);
+
+            TextBox_Location.Text = lat + "," + lng;
+        }
+
+        private void GMap_Control_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                double lat = GMap_Control.FromLocalToLatLng(e.X, e.Y).Lat;
+                double lng = GMap_Control.FromLocalToLatLng(e.X, e.Y).Lng;
+
+                GMap_Control.Overlays.Clear();
+
+                GMapOverlay markers = new GMapOverlay("markers");
+                GMap_Control.Overlays.Add(markers);
+
+                GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+                markers.Markers.Add(marker);
+
+                TextBox_Location.Text = lat + "," + lng;
+            }
+        }
+
+        private bool maptype = false;
+
+        private void Map_Type_Click(object sender, EventArgs e)
+        {
+            if (maptype)
+            {
+                GMap_Control.MapProvider = BingMapProvider.Instance;
+                GMaps.Instance.Mode = AccessMode.ServerOnly;
+
+                maptype = false;
+            }
+
+            else
+            {
+                GMap_Control.MapProvider = BingSatelliteMapProvider.Instance;
+                GMaps.Instance.Mode = AccessMode.ServerOnly;
+
+                maptype = true;
+            }
         }
     }
 
@@ -375,27 +465,27 @@ namespace Final_Year_Project
 
             for (int i = 0; i < 10; i++)
             {
-                PopulateDB("Football", "Footy with the lads", dt, "Football", "339 Main Road Broomfield", 2, 1);
-                PopulateDB("Shopping", "Christmas shopping", dt, "Football", "339 Main Road Broomfield", 1, 1);
-                PopulateDB("Work", "Lab Write Up", dt, "Football", "339 Main Road Broomfield", 1, 1);
+                PopulateDB("Football", "Footy with the lads", dt, "Football", "51.7644403180351,0.23895263671875", 2, 1);
+                PopulateDB("Shopping", "Christmas shopping", dt, "Football", "51.7848338937353,0.3790283203125", 1, 1);
+                PopulateDB("Work", "Lab Write Up", dt, "Football", "51.907001886741,0.3570556640625", 1, 1);
                 
                 daycount++;
                 dt = new DateTime(dt.Year, dt.Month, daycount);
                 
-                PopulateDB("Work", "Office", dt, "Football", "339 Main Road Broomfield", 1, 1);
+                PopulateDB("Work", "Office", dt, "Football", "51.7848338937353,0.3790283203125", 1, 1);
 
                 daycount++;
                 dt = new DateTime(dt.Year, dt.Month, daycount);
 
-                PopulateDB("Birthday", "John's House", dt, "Football", "339 Main Road Broomfield", 3, 1);
-                PopulateDB("Dinner", "Emily's", dt, "Football", "339 Main Road Broomfield", 3, 1);
+                PopulateDB("Birthday", "John's House", dt, "Football", "51.7644403180351,0.23895263671875", 3, 1);
+                PopulateDB("Dinner", "Emily's", dt, "Football", "51.907001886741,0.3570556640625", 3, 1);
 
                 daycount++;
                 dt = new DateTime(dt.Year, dt.Month, daycount);
             }
 
             dt = new DateTime(dt.Year, 11, 15);
-            PopulateDB("Test", "Testing", dt, "Test", "339 Main Road Broomfield", 1, 1);
+            PopulateDB("Test", "Testing", dt, "Test", "51.7848338937353,0.3790283203125", 1, 1);
         }
 
         private void PopulateDB(string name, string description, DateTime datetime, string emoji, string location, int group, int owner)
@@ -828,7 +918,7 @@ namespace Final_Year_Project
                                             IsBalloon = true
                                         };
 
-                                        t.SetToolTip(l, data[data_count][h].GetLocation());
+                                        t.SetToolTip(l, data[data_count][h].GetDescription());
 
                                         p.Controls.Add(l);
                                     }
@@ -984,9 +1074,13 @@ namespace Final_Year_Project
 
 
 /*
- * References:
- * Logo: https://www.logolynx.com/topic/calendar
- * Icons: https://icons8.com/
- * Arrow Images: https://emojipedia.org/softbank/
- * MS MySQL: https://www.microsoft.com/en-us/download/details.aspx?id=54257
+ * References -
+     * Logo: https://www.logolynx.com/topic/calendar
+     * Icons: https://icons8.com/
+     * Arrow Images: https://emojipedia.org/softbank/
+     * MS MySQL: https://www.microsoft.com/en-us/download/details.aspx?id=54257
+     * Map:
+         * Bing - https://www.bing.com/maps
+         * NuGet Package - https://archive.codeplex.com/?p=greatmaps
+         * Tutorial - http://www.independent-software.com/gmap-net-beginners-tutorial-maps-markers-polygons-routes-updated-for-vs2015-and-gmap1-7.html
 */

@@ -52,10 +52,14 @@
             this.Textbox_Username = new System.Windows.Forms.TextBox();
             this.Event_Panel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.Map_Type_Button = new System.Windows.Forms.Label();
+            this.GMap_Control = new GMap.NET.WindowsForms.GMapControl();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.TextBox_Location_Search = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.TextBox_Location = new System.Windows.Forms.TextBox();
             this.Add_Event_Button = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.Search_Location_Button = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ComboBox_Emoji = new System.Windows.Forms.ComboBox();
             this.ComboBox_Group = new System.Windows.Forms.ComboBox();
@@ -410,10 +414,14 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel5.Controls.Add(this.Map_Type_Button);
+            this.panel5.Controls.Add(this.GMap_Control);
+            this.panel5.Controls.Add(this.panel10);
+            this.panel5.Controls.Add(this.TextBox_Location_Search);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.TextBox_Location);
             this.panel5.Controls.Add(this.Add_Event_Button);
-            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.Search_Location_Button);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.ComboBox_Emoji);
             this.panel5.Controls.Add(this.ComboBox_Group);
@@ -430,12 +438,75 @@
             this.panel5.Size = new System.Drawing.Size(561, 352);
             this.panel5.TabIndex = 0;
             // 
+            // Map_Type_Button
+            // 
+            this.Map_Type_Button.BackColor = System.Drawing.Color.White;
+            this.Map_Type_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Map_Type_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Map_Type_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Map_Type_Button.Location = new System.Drawing.Point(408, 310);
+            this.Map_Type_Button.Name = "Map_Type_Button";
+            this.Map_Type_Button.Size = new System.Drawing.Size(138, 30);
+            this.Map_Type_Button.TabIndex = 23;
+            this.Map_Type_Button.Text = "Switch Map Type";
+            this.Map_Type_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Map_Type_Button.Click += new System.EventHandler(this.Map_Type_Click);
+            // 
+            // GMap_Control
+            // 
+            this.GMap_Control.Bearing = 0F;
+            this.GMap_Control.CanDragMap = true;
+            this.GMap_Control.EmptyTileColor = System.Drawing.Color.Navy;
+            this.GMap_Control.GrayScaleMode = false;
+            this.GMap_Control.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.GMap_Control.LevelsKeepInMemmory = 5;
+            this.GMap_Control.Location = new System.Drawing.Point(275, 126);
+            this.GMap_Control.MarkersEnabled = true;
+            this.GMap_Control.MaxZoom = 18;
+            this.GMap_Control.MinZoom = 0;
+            this.GMap_Control.MouseWheelZoomEnabled = true;
+            this.GMap_Control.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
+            this.GMap_Control.Name = "GMap_Control";
+            this.GMap_Control.NegativeMode = false;
+            this.GMap_Control.PolygonsEnabled = true;
+            this.GMap_Control.RetryLoadTile = 0;
+            this.GMap_Control.RoutesEnabled = true;
+            this.GMap_Control.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.GMap_Control.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.GMap_Control.ShowTileGridLines = false;
+            this.GMap_Control.Size = new System.Drawing.Size(271, 181);
+            this.GMap_Control.TabIndex = 22;
+            this.GMap_Control.Zoom = 15D;
+            this.GMap_Control.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GMap_Control_MouseClick);
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Location = new System.Drawing.Point(326, 117);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(201, 1);
+            this.panel10.TabIndex = 21;
+            // 
+            // TextBox_Location_Search
+            // 
+            this.TextBox_Location_Search.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Location_Search.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Location_Search.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Location_Search.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Location_Search.Location = new System.Drawing.Point(326, 94);
+            this.TextBox_Location_Search.Name = "TextBox_Location_Search";
+            this.TextBox_Location_Search.Size = new System.Drawing.Size(200, 20);
+            this.TextBox_Location_Search.TabIndex = 20;
+            this.TextBox_Location_Search.Text = "Enter Address or Place";
+            this.TextBox_Location_Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Candara", 12F);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(26, 217);
+            this.label5.Location = new System.Drawing.Point(7, 202);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 19);
             this.label5.TabIndex = 19;
@@ -443,11 +514,12 @@
             // 
             // TextBox_Location
             // 
-            this.TextBox_Location.Location = new System.Drawing.Point(335, 211);
+            this.TextBox_Location.Location = new System.Drawing.Point(190, 310);
             this.TextBox_Location.Name = "TextBox_Location";
-            this.TextBox_Location.Size = new System.Drawing.Size(176, 20);
+            this.TextBox_Location.Size = new System.Drawing.Size(74, 20);
             this.TextBox_Location.TabIndex = 18;
-            this.TextBox_Location.Text = "Random Address/Location";
+            this.TextBox_Location.Text = ",";
+            this.TextBox_Location.Visible = false;
             // 
             // Add_Event_Button
             // 
@@ -455,7 +527,7 @@
             this.Add_Event_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add_Event_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Add_Event_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Add_Event_Button.Location = new System.Drawing.Point(369, 313);
+            this.Add_Event_Button.Location = new System.Drawing.Point(14, 310);
             this.Add_Event_Button.Name = "Add_Event_Button";
             this.Add_Event_Button.Size = new System.Drawing.Size(170, 30);
             this.Add_Event_Button.TabIndex = 17;
@@ -465,27 +537,28 @@
             this.Add_Event_Button.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
             this.Add_Event_Button.MouseHover += new System.EventHandler(this.Login_MouseHover);
             // 
-            // label4
+            // Search_Location_Button
             // 
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("Candara", 12F);
-            this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label4.Location = new System.Drawing.Point(14, 313);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 30);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Search...";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label4.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
-            this.label4.MouseHover += new System.EventHandler(this.Login_MouseHover);
+            this.Search_Location_Button.BackColor = System.Drawing.Color.White;
+            this.Search_Location_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Search_Location_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Search_Location_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Location_Button.Location = new System.Drawing.Point(276, 310);
+            this.Search_Location_Button.Name = "Search_Location_Button";
+            this.Search_Location_Button.Size = new System.Drawing.Size(126, 30);
+            this.Search_Location_Button.TabIndex = 16;
+            this.Search_Location_Button.Text = "Search";
+            this.Search_Location_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Search_Location_Button.Click += new System.EventHandler(this.Search_Location_Click);
+            this.Search_Location_Button.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
+            this.Search_Location_Button.MouseHover += new System.EventHandler(this.Login_MouseHover);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Candara", 12F);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(431, 108);
+            this.label3.Location = new System.Drawing.Point(14, 252);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 19);
             this.label3.TabIndex = 15;
@@ -498,7 +571,7 @@
             this.ComboBox_Emoji.Font = new System.Drawing.Font("Candara", 12F);
             this.ComboBox_Emoji.ForeColor = System.Drawing.Color.White;
             this.ComboBox_Emoji.FormattingEnabled = true;
-            this.ComboBox_Emoji.Location = new System.Drawing.Point(486, 105);
+            this.ComboBox_Emoji.Location = new System.Drawing.Point(69, 249);
             this.ComboBox_Emoji.Name = "ComboBox_Emoji";
             this.ComboBox_Emoji.Size = new System.Drawing.Size(49, 27);
             this.ComboBox_Emoji.TabIndex = 14;
@@ -509,7 +582,7 @@
             this.ComboBox_Group.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBox_Group.ForeColor = System.Drawing.Color.White;
             this.ComboBox_Group.FormattingEnabled = true;
-            this.ComboBox_Group.Location = new System.Drawing.Point(88, 216);
+            this.ComboBox_Group.Location = new System.Drawing.Point(69, 201);
             this.ComboBox_Group.Name = "ComboBox_Group";
             this.ComboBox_Group.Size = new System.Drawing.Size(200, 21);
             this.ComboBox_Group.TabIndex = 12;
@@ -859,7 +932,7 @@
         private System.Windows.Forms.ComboBox ComboBox_Emoji;
         private System.Windows.Forms.ComboBox ComboBox_Group;
         private System.Windows.Forms.Label Add_Event_Button;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Search_Location_Button;
         private System.Windows.Forms.TextBox TextBox_Location;
         private System.Windows.Forms.MonthCalendar DatePicker;
         private System.Windows.Forms.Label Dashboard_Add_Event;
@@ -872,6 +945,10 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.TextBox TextBox_Name_Group;
         private System.Windows.Forms.Label Add_Group_Button;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.TextBox TextBox_Location_Search;
+        private GMap.NET.WindowsForms.GMapControl GMap_Control;
+        private System.Windows.Forms.Label Map_Type_Button;
     }
 }
 
