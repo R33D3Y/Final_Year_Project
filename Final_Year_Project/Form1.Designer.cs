@@ -29,11 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelCalendarHeader = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Dashboard_Panel = new System.Windows.Forms.Panel();
+            this.Dashboard_Search_Button = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.Dashboard_Search = new System.Windows.Forms.TextBox();
             this.Dashboard_Add_Group = new System.Windows.Forms.Label();
             this.Dashboard_Add_Event = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.MonthCalendar();
@@ -52,6 +58,9 @@
             this.Textbox_Username = new System.Windows.Forms.TextBox();
             this.Event_Panel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.TextBox_Event_ID = new System.Windows.Forms.TextBox();
+            this.Update_Event_Button = new System.Windows.Forms.Label();
+            this.Remove_Event_Button = new System.Windows.Forms.Label();
             this.Map_Type_Button = new System.Windows.Forms.Label();
             this.GMap_Control = new GMap.NET.WindowsForms.GMapControl();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -79,6 +88,16 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.TextBox_Name_Group = new System.Windows.Forms.TextBox();
             this.Search_Panel = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.Search_Event_Update = new System.Windows.Forms.Label();
+            this.Search_Switch_Map_Button = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.Search_Description = new System.Windows.Forms.RichTextBox();
+            this.GMap_Control_Search = new GMap.NET.WindowsForms.GMapControl();
+            this.Search_Data = new System.Windows.Forms.DataGridView();
+            this.Search_Panel_Button = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.TextBox_Search = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.PictureBox_Back = new System.Windows.Forms.PictureBox();
             this.PictureBox_Logout = new System.Windows.Forms.PictureBox();
@@ -99,6 +118,9 @@
             this.panel5.SuspendLayout();
             this.Group_Panel.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.Search_Panel.SuspendLayout();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Search_Data)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
@@ -190,7 +212,10 @@
             // 
             // Dashboard_Panel
             // 
-            this.Dashboard_Panel.BackColor = System.Drawing.Color.Green;
+            this.Dashboard_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Panel.Controls.Add(this.Dashboard_Search_Button);
+            this.Dashboard_Panel.Controls.Add(this.panel14);
+            this.Dashboard_Panel.Controls.Add(this.Dashboard_Search);
             this.Dashboard_Panel.Controls.Add(this.Dashboard_Add_Group);
             this.Dashboard_Panel.Controls.Add(this.Dashboard_Add_Event);
             this.Dashboard_Panel.Controls.Add(this.DatePicker);
@@ -201,6 +226,42 @@
             this.Dashboard_Panel.Size = new System.Drawing.Size(845, 696);
             this.Dashboard_Panel.TabIndex = 2;
             this.Dashboard_Panel.Visible = false;
+            // 
+            // Dashboard_Search_Button
+            // 
+            this.Dashboard_Search_Button.BackColor = System.Drawing.Color.White;
+            this.Dashboard_Search_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Dashboard_Search_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Dashboard_Search_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Search_Button.Location = new System.Drawing.Point(607, 334);
+            this.Dashboard_Search_Button.Name = "Dashboard_Search_Button";
+            this.Dashboard_Search_Button.Size = new System.Drawing.Size(227, 30);
+            this.Dashboard_Search_Button.TabIndex = 25;
+            this.Dashboard_Search_Button.Text = "Search";
+            this.Dashboard_Search_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Dashboard_Search_Button.Click += new System.EventHandler(this.Dashboard_Search_Button_Click);
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.White;
+            this.panel14.Location = new System.Drawing.Point(607, 324);
+            this.panel14.Margin = new System.Windows.Forms.Padding(0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(228, 1);
+            this.panel14.TabIndex = 5;
+            // 
+            // Dashboard_Search
+            // 
+            this.Dashboard_Search.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Search.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Dashboard_Search.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dashboard_Search.ForeColor = System.Drawing.Color.White;
+            this.Dashboard_Search.Location = new System.Drawing.Point(613, 302);
+            this.Dashboard_Search.Name = "Dashboard_Search";
+            this.Dashboard_Search.Size = new System.Drawing.Size(222, 20);
+            this.Dashboard_Search.TabIndex = 24;
+            this.Dashboard_Search.Text = "Enter Search Criteria";
+            this.Dashboard_Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Dashboard_Add_Group
             // 
@@ -242,9 +303,9 @@
             // 
             this.Login_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Login_Panel.Controls.Add(this.panel1);
-            this.Login_Panel.Location = new System.Drawing.Point(1463, 65);
+            this.Login_Panel.Location = new System.Drawing.Point(1619, 12);
             this.Login_Panel.Name = "Login_Panel";
-            this.Login_Panel.Size = new System.Drawing.Size(395, 400);
+            this.Login_Panel.Size = new System.Drawing.Size(250, 380);
             this.Login_Panel.TabIndex = 3;
             // 
             // panel1
@@ -262,7 +323,7 @@
             this.panel1.Controls.Add(this.Textbox_Password);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.Textbox_Username);
-            this.panel1.Location = new System.Drawing.Point(91, 27);
+            this.panel1.Location = new System.Drawing.Point(19, 17);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(213, 346);
             this.panel1.TabIndex = 0;
@@ -403,7 +464,7 @@
             // 
             // Event_Panel
             // 
-            this.Event_Panel.BackColor = System.Drawing.Color.Gold;
+            this.Event_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Event_Panel.Controls.Add(this.panel5);
             this.Event_Panel.Location = new System.Drawing.Point(863, 12);
             this.Event_Panel.Name = "Event_Panel";
@@ -413,7 +474,11 @@
             // 
             // panel5
             // 
+            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel5.Controls.Add(this.TextBox_Event_ID);
+            this.panel5.Controls.Add(this.Update_Event_Button);
+            this.panel5.Controls.Add(this.Remove_Event_Button);
             this.panel5.Controls.Add(this.Map_Type_Button);
             this.panel5.Controls.Add(this.GMap_Control);
             this.panel5.Controls.Add(this.panel10);
@@ -438,6 +503,44 @@
             this.panel5.Size = new System.Drawing.Size(561, 352);
             this.panel5.TabIndex = 0;
             // 
+            // TextBox_Event_ID
+            // 
+            this.TextBox_Event_ID.Location = new System.Drawing.Point(97, 279);
+            this.TextBox_Event_ID.Name = "TextBox_Event_ID";
+            this.TextBox_Event_ID.Size = new System.Drawing.Size(74, 20);
+            this.TextBox_Event_ID.TabIndex = 26;
+            this.TextBox_Event_ID.Visible = false;
+            // 
+            // Update_Event_Button
+            // 
+            this.Update_Event_Button.BackColor = System.Drawing.Color.White;
+            this.Update_Event_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Update_Event_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Update_Event_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Update_Event_Button.Location = new System.Drawing.Point(17, 310);
+            this.Update_Event_Button.Name = "Update_Event_Button";
+            this.Update_Event_Button.Size = new System.Drawing.Size(170, 30);
+            this.Update_Event_Button.TabIndex = 25;
+            this.Update_Event_Button.Text = "Update Event";
+            this.Update_Event_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Update_Event_Button.Visible = false;
+            this.Update_Event_Button.Click += new System.EventHandler(this.Update_Event_Button_Click);
+            // 
+            // Remove_Event_Button
+            // 
+            this.Remove_Event_Button.BackColor = System.Drawing.Color.White;
+            this.Remove_Event_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Remove_Event_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Remove_Event_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Remove_Event_Button.Location = new System.Drawing.Point(193, 310);
+            this.Remove_Event_Button.Name = "Remove_Event_Button";
+            this.Remove_Event_Button.Size = new System.Drawing.Size(170, 30);
+            this.Remove_Event_Button.TabIndex = 24;
+            this.Remove_Event_Button.Text = "Remove Event";
+            this.Remove_Event_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Remove_Event_Button.Visible = false;
+            this.Remove_Event_Button.Click += new System.EventHandler(this.Remove_Event_Button_Click);
+            // 
             // Map_Type_Button
             // 
             this.Map_Type_Button.BackColor = System.Drawing.Color.White;
@@ -460,10 +563,10 @@
             this.GMap_Control.GrayScaleMode = false;
             this.GMap_Control.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.GMap_Control.LevelsKeepInMemmory = 5;
-            this.GMap_Control.Location = new System.Drawing.Point(275, 126);
+            this.GMap_Control.Location = new System.Drawing.Point(272, 115);
             this.GMap_Control.MarkersEnabled = true;
             this.GMap_Control.MaxZoom = 18;
-            this.GMap_Control.MinZoom = 0;
+            this.GMap_Control.MinZoom = 5;
             this.GMap_Control.MouseWheelZoomEnabled = true;
             this.GMap_Control.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
             this.GMap_Control.Name = "GMap_Control";
@@ -474,7 +577,7 @@
             this.GMap_Control.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Control.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Control.ShowTileGridLines = false;
-            this.GMap_Control.Size = new System.Drawing.Size(271, 181);
+            this.GMap_Control.Size = new System.Drawing.Size(274, 190);
             this.GMap_Control.TabIndex = 22;
             this.GMap_Control.Zoom = 15D;
             this.GMap_Control.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GMap_Control_MouseClick);
@@ -482,10 +585,10 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Location = new System.Drawing.Point(326, 117);
+            this.panel10.Location = new System.Drawing.Point(272, 108);
             this.panel10.Margin = new System.Windows.Forms.Padding(0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(201, 1);
+            this.panel10.Size = new System.Drawing.Size(171, 1);
             this.panel10.TabIndex = 21;
             // 
             // TextBox_Location_Search
@@ -494,9 +597,9 @@
             this.TextBox_Location_Search.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBox_Location_Search.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Location_Search.ForeColor = System.Drawing.Color.White;
-            this.TextBox_Location_Search.Location = new System.Drawing.Point(326, 94);
+            this.TextBox_Location_Search.Location = new System.Drawing.Point(275, 86);
             this.TextBox_Location_Search.Name = "TextBox_Location_Search";
-            this.TextBox_Location_Search.Size = new System.Drawing.Size(200, 20);
+            this.TextBox_Location_Search.Size = new System.Drawing.Size(170, 20);
             this.TextBox_Location_Search.TabIndex = 20;
             this.TextBox_Location_Search.Text = "Enter Address or Place";
             this.TextBox_Location_Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -506,7 +609,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Candara", 12F);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(7, 202);
+            this.label5.Location = new System.Drawing.Point(17, 202);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 19);
             this.label5.TabIndex = 19;
@@ -514,7 +617,7 @@
             // 
             // TextBox_Location
             // 
-            this.TextBox_Location.Location = new System.Drawing.Point(190, 310);
+            this.TextBox_Location.Location = new System.Drawing.Point(17, 279);
             this.TextBox_Location.Name = "TextBox_Location";
             this.TextBox_Location.Size = new System.Drawing.Size(74, 20);
             this.TextBox_Location.TabIndex = 18;
@@ -527,7 +630,7 @@
             this.Add_Event_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add_Event_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Add_Event_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Add_Event_Button.Location = new System.Drawing.Point(14, 310);
+            this.Add_Event_Button.Location = new System.Drawing.Point(17, 310);
             this.Add_Event_Button.Name = "Add_Event_Button";
             this.Add_Event_Button.Size = new System.Drawing.Size(170, 30);
             this.Add_Event_Button.TabIndex = 17;
@@ -543,9 +646,9 @@
             this.Search_Location_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Search_Location_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Search_Location_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Search_Location_Button.Location = new System.Drawing.Point(276, 310);
+            this.Search_Location_Button.Location = new System.Drawing.Point(451, 83);
             this.Search_Location_Button.Name = "Search_Location_Button";
-            this.Search_Location_Button.Size = new System.Drawing.Size(126, 30);
+            this.Search_Location_Button.Size = new System.Drawing.Size(95, 25);
             this.Search_Location_Button.TabIndex = 16;
             this.Search_Location_Button.Text = "Search";
             this.Search_Location_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -558,7 +661,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Candara", 12F);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(14, 252);
+            this.label3.Location = new System.Drawing.Point(17, 239);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 19);
             this.label3.TabIndex = 15;
@@ -571,21 +674,24 @@
             this.ComboBox_Emoji.Font = new System.Drawing.Font("Candara", 12F);
             this.ComboBox_Emoji.ForeColor = System.Drawing.Color.White;
             this.ComboBox_Emoji.FormattingEnabled = true;
-            this.ComboBox_Emoji.Location = new System.Drawing.Point(69, 249);
+            this.ComboBox_Emoji.Location = new System.Drawing.Point(79, 236);
             this.ComboBox_Emoji.Name = "ComboBox_Emoji";
-            this.ComboBox_Emoji.Size = new System.Drawing.Size(49, 27);
+            this.ComboBox_Emoji.Size = new System.Drawing.Size(139, 27);
             this.ComboBox_Emoji.TabIndex = 14;
+            this.ComboBox_Emoji.Text = "Select Emoji";
             // 
             // ComboBox_Group
             // 
             this.ComboBox_Group.BackColor = System.Drawing.Color.RoyalBlue;
             this.ComboBox_Group.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBox_Group.Font = new System.Drawing.Font("Candara", 12F);
             this.ComboBox_Group.ForeColor = System.Drawing.Color.White;
             this.ComboBox_Group.FormattingEnabled = true;
-            this.ComboBox_Group.Location = new System.Drawing.Point(69, 201);
+            this.ComboBox_Group.Location = new System.Drawing.Point(79, 202);
             this.ComboBox_Group.Name = "ComboBox_Group";
-            this.ComboBox_Group.Size = new System.Drawing.Size(200, 21);
+            this.ComboBox_Group.Size = new System.Drawing.Size(139, 27);
             this.ComboBox_Group.TabIndex = 12;
+            this.ComboBox_Group.Text = "Select Group";
             // 
             // panel7
             // 
@@ -602,18 +708,18 @@
             this.TextBox_Description.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBox_Description.Font = new System.Drawing.Font("Candara", 12F);
             this.TextBox_Description.ForeColor = System.Drawing.Color.White;
-            this.TextBox_Description.Location = new System.Drawing.Point(18, 54);
+            this.TextBox_Description.Location = new System.Drawing.Point(17, 54);
             this.TextBox_Description.Name = "TextBox_Description";
             this.TextBox_Description.Size = new System.Drawing.Size(199, 129);
             this.TextBox_Description.TabIndex = 11;
-            this.TextBox_Description.Text = "Description";
+            this.TextBox_Description.Text = "Enter Description";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Candara", 12F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(284, 66);
+            this.label2.Location = new System.Drawing.Point(271, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 19);
             this.label2.TabIndex = 10;
@@ -631,10 +737,10 @@
             this.DateTimePicker_Time.CustomFormat = "";
             this.DateTimePicker_Time.Font = new System.Drawing.Font("Candara", 12F);
             this.DateTimePicker_Time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.DateTimePicker_Time.Location = new System.Drawing.Point(335, 61);
+            this.DateTimePicker_Time.Location = new System.Drawing.Point(322, 51);
             this.DateTimePicker_Time.Name = "DateTimePicker_Time";
             this.DateTimePicker_Time.ShowUpDown = true;
-            this.DateTimePicker_Time.Size = new System.Drawing.Size(200, 27);
+            this.DateTimePicker_Time.Size = new System.Drawing.Size(93, 27);
             this.DateTimePicker_Time.TabIndex = 9;
             // 
             // label1
@@ -642,7 +748,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Candara", 12F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(284, 26);
+            this.label1.Location = new System.Drawing.Point(271, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 19);
             this.label1.TabIndex = 8;
@@ -656,13 +762,12 @@
             this.DateTimePicker_Date.CalendarTitleBackColor = System.Drawing.Color.White;
             this.DateTimePicker_Date.CalendarTitleForeColor = System.Drawing.Color.White;
             this.DateTimePicker_Date.CalendarTrailingForeColor = System.Drawing.Color.White;
-            this.DateTimePicker_Date.Checked = false;
             this.DateTimePicker_Date.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DateTimePicker_Date.CustomFormat = "";
             this.DateTimePicker_Date.Font = new System.Drawing.Font("Candara", 12F);
-            this.DateTimePicker_Date.Location = new System.Drawing.Point(335, 21);
+            this.DateTimePicker_Date.Location = new System.Drawing.Point(322, 18);
             this.DateTimePicker_Date.Name = "DateTimePicker_Date";
-            this.DateTimePicker_Date.Size = new System.Drawing.Size(200, 27);
+            this.DateTimePicker_Date.Size = new System.Drawing.Size(224, 27);
             this.DateTimePicker_Date.TabIndex = 7;
             // 
             // panel6
@@ -684,30 +789,30 @@
             this.TextBox_Name_Event.Name = "TextBox_Name_Event";
             this.TextBox_Name_Event.Size = new System.Drawing.Size(200, 20);
             this.TextBox_Name_Event.TabIndex = 3;
-            this.TextBox_Name_Event.Text = "Event Name";
-            this.TextBox_Name_Event.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox_Name_Event.Text = "Enter Event Name";
             // 
             // Group_Panel
             // 
-            this.Group_Panel.BackColor = System.Drawing.Color.MediumOrchid;
+            this.Group_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Group_Panel.Controls.Add(this.panel9);
-            this.Group_Panel.Location = new System.Drawing.Point(1463, 471);
+            this.Group_Panel.Location = new System.Drawing.Point(588, 714);
             this.Group_Panel.Name = "Group_Panel";
-            this.Group_Panel.Size = new System.Drawing.Size(395, 236);
+            this.Group_Panel.Size = new System.Drawing.Size(269, 168);
             this.Group_Panel.TabIndex = 5;
             this.Group_Panel.Visible = false;
             // 
             // panel9
             // 
+            this.panel9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel9.BackColor = System.Drawing.Color.RoyalBlue;
             this.panel9.Controls.Add(this.Add_Group_Button);
             this.panel9.Controls.Add(this.Colour_Panel);
             this.panel9.Controls.Add(this.ColourPicker_Button);
             this.panel9.Controls.Add(this.panel8);
             this.panel9.Controls.Add(this.TextBox_Name_Group);
-            this.panel9.Location = new System.Drawing.Point(29, 23);
+            this.panel9.Location = new System.Drawing.Point(13, 12);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(345, 195);
+            this.panel9.Size = new System.Drawing.Size(243, 144);
             this.panel9.TabIndex = 20;
             // 
             // Add_Group_Button
@@ -716,9 +821,9 @@
             this.Add_Group_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add_Group_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Add_Group_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Add_Group_Button.Location = new System.Drawing.Point(77, 154);
+            this.Add_Group_Button.Location = new System.Drawing.Point(19, 91);
             this.Add_Group_Button.Name = "Add_Group_Button";
-            this.Add_Group_Button.Size = new System.Drawing.Size(170, 30);
+            this.Add_Group_Button.Size = new System.Drawing.Size(205, 30);
             this.Add_Group_Button.TabIndex = 22;
             this.Add_Group_Button.Text = "Add Group";
             this.Add_Group_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -727,9 +832,9 @@
             // Colour_Panel
             // 
             this.Colour_Panel.BackColor = System.Drawing.Color.Black;
-            this.Colour_Panel.Location = new System.Drawing.Point(249, 106);
+            this.Colour_Panel.Location = new System.Drawing.Point(152, 58);
             this.Colour_Panel.Name = "Colour_Panel";
-            this.Colour_Panel.Size = new System.Drawing.Size(30, 30);
+            this.Colour_Panel.Size = new System.Drawing.Size(72, 30);
             this.Colour_Panel.TabIndex = 19;
             // 
             // ColourPicker_Button
@@ -738,9 +843,9 @@
             this.ColourPicker_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ColourPicker_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.ColourPicker_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ColourPicker_Button.Location = new System.Drawing.Point(73, 106);
+            this.ColourPicker_Button.Location = new System.Drawing.Point(19, 58);
             this.ColourPicker_Button.Name = "ColourPicker_Button";
-            this.ColourPicker_Button.Size = new System.Drawing.Size(170, 30);
+            this.ColourPicker_Button.Size = new System.Drawing.Size(127, 30);
             this.ColourPicker_Button.TabIndex = 18;
             this.ColourPicker_Button.Text = "Choose Colour";
             this.ColourPicker_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -749,7 +854,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Location = new System.Drawing.Point(77, 66);
+            this.panel8.Location = new System.Drawing.Point(23, 47);
             this.panel8.Margin = new System.Windows.Forms.Padding(0);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(201, 1);
@@ -761,32 +866,211 @@
             this.TextBox_Name_Group.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBox_Name_Group.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox_Name_Group.ForeColor = System.Drawing.Color.White;
-            this.TextBox_Name_Group.Location = new System.Drawing.Point(77, 43);
+            this.TextBox_Name_Group.Location = new System.Drawing.Point(23, 24);
             this.TextBox_Name_Group.Name = "TextBox_Name_Group";
             this.TextBox_Name_Group.Size = new System.Drawing.Size(200, 20);
             this.TextBox_Name_Group.TabIndex = 20;
-            this.TextBox_Name_Group.Text = "Group Name";
+            this.TextBox_Name_Group.Text = "Enter Group Name";
             this.TextBox_Name_Group.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Search_Panel
             // 
-            this.Search_Panel.BackColor = System.Drawing.Color.Fuchsia;
+            this.Search_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Search_Panel.Controls.Add(this.panel11);
             this.Search_Panel.Location = new System.Drawing.Point(863, 398);
             this.Search_Panel.Name = "Search_Panel";
-            this.Search_Panel.Size = new System.Drawing.Size(594, 309);
+            this.Search_Panel.Size = new System.Drawing.Size(845, 376);
             this.Search_Panel.TabIndex = 6;
             this.Search_Panel.Visible = false;
             // 
+            // panel11
+            // 
+            this.panel11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel11.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel11.Controls.Add(this.Search_Event_Update);
+            this.panel11.Controls.Add(this.Search_Switch_Map_Button);
+            this.panel11.Controls.Add(this.panel12);
+            this.panel11.Controls.Add(this.Search_Description);
+            this.panel11.Controls.Add(this.GMap_Control_Search);
+            this.panel11.Controls.Add(this.Search_Data);
+            this.panel11.Controls.Add(this.Search_Panel_Button);
+            this.panel11.Controls.Add(this.panel13);
+            this.panel11.Controls.Add(this.TextBox_Search);
+            this.panel11.Location = new System.Drawing.Point(17, 14);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(810, 348);
+            this.panel11.TabIndex = 21;
+            // 
+            // Search_Event_Update
+            // 
+            this.Search_Event_Update.BackColor = System.Drawing.Color.White;
+            this.Search_Event_Update.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Search_Event_Update.Font = new System.Drawing.Font("Candara", 12F);
+            this.Search_Event_Update.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Event_Update.Location = new System.Drawing.Point(541, 306);
+            this.Search_Event_Update.Name = "Search_Event_Update";
+            this.Search_Event_Update.Size = new System.Drawing.Size(260, 30);
+            this.Search_Event_Update.TabIndex = 27;
+            this.Search_Event_Update.Text = "Update Event Selected";
+            this.Search_Event_Update.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Search_Event_Update.Click += new System.EventHandler(this.Search_Event_Update_Click);
+            // 
+            // Search_Switch_Map_Button
+            // 
+            this.Search_Switch_Map_Button.BackColor = System.Drawing.Color.White;
+            this.Search_Switch_Map_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Search_Switch_Map_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Search_Switch_Map_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Switch_Map_Button.Location = new System.Drawing.Point(663, 266);
+            this.Search_Switch_Map_Button.Name = "Search_Switch_Map_Button";
+            this.Search_Switch_Map_Button.Size = new System.Drawing.Size(138, 30);
+            this.Search_Switch_Map_Button.TabIndex = 24;
+            this.Search_Switch_Map_Button.Text = "Switch Map Type";
+            this.Search_Switch_Map_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Search_Switch_Map_Button.Click += new System.EventHandler(this.Search_Switch_Map_Button_Click);
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Location = new System.Drawing.Point(21, 335);
+            this.panel12.Margin = new System.Windows.Forms.Padding(0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(514, 1);
+            this.panel12.TabIndex = 6;
+            // 
+            // Search_Description
+            // 
+            this.Search_Description.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Search_Description.Font = new System.Drawing.Font("Candara", 12F);
+            this.Search_Description.ForeColor = System.Drawing.Color.White;
+            this.Search_Description.Location = new System.Drawing.Point(21, 267);
+            this.Search_Description.Name = "Search_Description";
+            this.Search_Description.ReadOnly = true;
+            this.Search_Description.Size = new System.Drawing.Size(514, 66);
+            this.Search_Description.TabIndex = 24;
+            this.Search_Description.Text = "Event Description";
+            // 
+            // GMap_Control_Search
+            // 
+            this.GMap_Control_Search.Bearing = 0F;
+            this.GMap_Control_Search.CanDragMap = true;
+            this.GMap_Control_Search.EmptyTileColor = System.Drawing.Color.Navy;
+            this.GMap_Control_Search.GrayScaleMode = false;
+            this.GMap_Control_Search.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.GMap_Control_Search.LevelsKeepInMemmory = 5;
+            this.GMap_Control_Search.Location = new System.Drawing.Point(541, 57);
+            this.GMap_Control_Search.MarkersEnabled = true;
+            this.GMap_Control_Search.MaxZoom = 18;
+            this.GMap_Control_Search.MinZoom = 5;
+            this.GMap_Control_Search.MouseWheelZoomEnabled = true;
+            this.GMap_Control_Search.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
+            this.GMap_Control_Search.Name = "GMap_Control_Search";
+            this.GMap_Control_Search.NegativeMode = false;
+            this.GMap_Control_Search.PolygonsEnabled = true;
+            this.GMap_Control_Search.RetryLoadTile = 0;
+            this.GMap_Control_Search.RoutesEnabled = true;
+            this.GMap_Control_Search.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.GMap_Control_Search.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.GMap_Control_Search.ShowTileGridLines = false;
+            this.GMap_Control_Search.Size = new System.Drawing.Size(260, 204);
+            this.GMap_Control_Search.TabIndex = 24;
+            this.GMap_Control_Search.Zoom = 15D;
+            // 
+            // Search_Data
+            // 
+            this.Search_Data.AllowUserToAddRows = false;
+            this.Search_Data.AllowUserToDeleteRows = false;
+            this.Search_Data.AllowUserToOrderColumns = true;
+            this.Search_Data.AllowUserToResizeColumns = false;
+            this.Search_Data.AllowUserToResizeRows = false;
+            this.Search_Data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Search_Data.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Search_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Search_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Data.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Search_Data.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Data.Location = new System.Drawing.Point(21, 57);
+            this.Search_Data.MultiSelect = false;
+            this.Search_Data.Name = "Search_Data";
+            this.Search_Data.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Search_Data.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Search_Data.RowHeadersVisible = false;
+            this.Search_Data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Search_Data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Search_Data.Size = new System.Drawing.Size(514, 204);
+            this.Search_Data.TabIndex = 23;
+            this.Search_Data.Click += new System.EventHandler(this.Search_Data_Click);
+            // 
+            // Search_Panel_Button
+            // 
+            this.Search_Panel_Button.BackColor = System.Drawing.Color.White;
+            this.Search_Panel_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Search_Panel_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Search_Panel_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Panel_Button.Location = new System.Drawing.Point(307, 16);
+            this.Search_Panel_Button.Name = "Search_Panel_Button";
+            this.Search_Panel_Button.Size = new System.Drawing.Size(95, 25);
+            this.Search_Panel_Button.TabIndex = 22;
+            this.Search_Panel_Button.Text = "Search";
+            this.Search_Panel_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Search_Panel_Button.Click += new System.EventHandler(this.Search_Button_Click);
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Location = new System.Drawing.Point(21, 39);
+            this.panel13.Margin = new System.Windows.Forms.Padding(0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(281, 1);
+            this.panel13.TabIndex = 21;
+            // 
+            // TextBox_Search
+            // 
+            this.TextBox_Search.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Search.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Search.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Search.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Search.Location = new System.Drawing.Point(21, 16);
+            this.TextBox_Search.Name = "TextBox_Search";
+            this.TextBox_Search.Size = new System.Drawing.Size(278, 20);
+            this.TextBox_Search.TabIndex = 20;
+            this.TextBox_Search.Text = "Enter Search Criteria";
+            this.TextBox_Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.IndianRed;
+            this.panel4.BackColor = System.Drawing.Color.RoyalBlue;
             this.panel4.Controls.Add(this.PictureBox_Back);
             this.panel4.Controls.Add(this.PictureBox_Logout);
             this.panel4.Controls.Add(this.PictureBox_Minimise);
             this.panel4.Controls.Add(this.PictureBox_Close);
             this.panel4.Location = new System.Drawing.Point(1463, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(395, 47);
+            this.panel4.Size = new System.Drawing.Size(150, 44);
             this.panel4.TabIndex = 5;
             // 
             // PictureBox_Back
@@ -794,7 +1078,7 @@
             this.PictureBox_Back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Back.BackgroundImage")));
             this.PictureBox_Back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Back.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Back.Location = new System.Drawing.Point(254, 6);
+            this.PictureBox_Back.Location = new System.Drawing.Point(6, 7);
             this.PictureBox_Back.Name = "PictureBox_Back";
             this.PictureBox_Back.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Back.TabIndex = 3;
@@ -809,7 +1093,7 @@
             this.PictureBox_Logout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Logout.BackgroundImage")));
             this.PictureBox_Logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Logout.Location = new System.Drawing.Point(290, 6);
+            this.PictureBox_Logout.Location = new System.Drawing.Point(42, 7);
             this.PictureBox_Logout.Name = "PictureBox_Logout";
             this.PictureBox_Logout.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Logout.TabIndex = 2;
@@ -824,7 +1108,7 @@
             this.PictureBox_Minimise.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Minimise.BackgroundImage")));
             this.PictureBox_Minimise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Minimise.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Minimise.Location = new System.Drawing.Point(326, 6);
+            this.PictureBox_Minimise.Location = new System.Drawing.Point(78, 7);
             this.PictureBox_Minimise.Name = "PictureBox_Minimise";
             this.PictureBox_Minimise.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Minimise.TabIndex = 1;
@@ -835,10 +1119,11 @@
             // 
             // PictureBox_Close
             // 
+            this.PictureBox_Close.BackColor = System.Drawing.Color.RoyalBlue;
             this.PictureBox_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Close.BackgroundImage")));
             this.PictureBox_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Close.Location = new System.Drawing.Point(362, 6);
+            this.PictureBox_Close.Location = new System.Drawing.Point(114, 7);
             this.PictureBox_Close.Name = "PictureBox_Close";
             this.PictureBox_Close.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Close.TabIndex = 0;
@@ -851,7 +1136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1872, 719);
+            this.ClientSize = new System.Drawing.Size(1870, 890);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Group_Panel);
@@ -883,6 +1168,10 @@
             this.Group_Panel.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.Search_Panel.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Search_Data)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
@@ -949,6 +1238,22 @@
         private System.Windows.Forms.TextBox TextBox_Location_Search;
         private GMap.NET.WindowsForms.GMapControl GMap_Control;
         private System.Windows.Forms.Label Map_Type_Button;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.DataGridView Search_Data;
+        private System.Windows.Forms.Label Search_Panel_Button;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.TextBox TextBox_Search;
+        private GMap.NET.WindowsForms.GMapControl GMap_Control_Search;
+        private System.Windows.Forms.RichTextBox Search_Description;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Label Search_Switch_Map_Button;
+        private System.Windows.Forms.Label Dashboard_Search_Button;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.TextBox Dashboard_Search;
+        private System.Windows.Forms.Label Update_Event_Button;
+        private System.Windows.Forms.Label Remove_Event_Button;
+        private System.Windows.Forms.TextBox TextBox_Event_ID;
+        private System.Windows.Forms.Label Search_Event_Update;
     }
 }
 

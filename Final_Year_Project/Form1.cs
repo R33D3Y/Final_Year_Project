@@ -15,7 +15,6 @@ namespace Final_Year_Project
 {
     public partial class Form1 : Form
     {
-        private Calendar calendar;
         private Database database;
         private DateTime dt;
         private readonly bool populate = true;
@@ -27,20 +26,19 @@ namespace Final_Year_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Add Emojis to Event ComboBox
-            Setup_Emojis();
+            
         }
 
         private void Calendar_Back_Click(object sender, EventArgs e)
         {
             dt = dt.AddMonths(-1);
-            calendar.SetData(database.GetData(dt), dt);
+            SetData(database.GetData(dt), dt);
         }
 
         private void Calendar_Forward_Click(object sender, EventArgs e)
         {
             dt = dt.AddMonths(1);
-            calendar.SetData(database.GetData(dt), dt);
+            SetData(database.GetData(dt), dt);
         }
 
         private void PictureBox_MouseHover(object sender, EventArgs e)
@@ -81,9 +79,10 @@ namespace Final_Year_Project
                 {
                     database.Populate(dt); // TODO: REMOVE ME
                 }
-                
-                calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
-                calendar.SetData(database.GetData(dt), dt);
+
+                calendar = tableLayoutPanel;
+                header = tableLayoutPanelCalendarHeader;
+                SetData(database.GetData(dt), dt);
 
                 Dashboard_Panel.Visible = true;
                 Login_Panel.Visible = false;
@@ -143,7 +142,7 @@ namespace Final_Year_Project
         {
             if (database != null)
             {
-                database.SetData(calendar.GetData());
+                database.SetData(GetData());
             }
 
             Application.Exit();
@@ -157,20 +156,22 @@ namespace Final_Year_Project
         private void PictureBox_Form_MouseHover(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackColor = Color.FromArgb(175, 70, 70);
+            pb.BackColor = Color.CornflowerBlue;
         }
 
         private void PictureBox_Form_MouseLeave(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackColor = Color.IndianRed;
+            pb.BackColor = Color.RoyalBlue;
         }
 
         private void PictureBox_Logout_Click(object sender, EventArgs e)
         {
+            ResetForm();
+
             if (database != null)
             {
-                database.SetData(calendar.GetData());
+                database.SetData(GetData());
                 Textbox_Username.Text = "Username";
                 Textbox_Password.Text = "Password";
                 database = null;
@@ -186,6 +187,8 @@ namespace Final_Year_Project
 
         private void Setup_Emojis()
         {
+            ComboBox_Emoji.Items.Clear();
+
             ComboBox_Emoji.Items.Add("⚽️");
         }
 
@@ -221,8 +224,9 @@ namespace Final_Year_Project
             DateTime tempDt = DateTime.Now;
             dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
-            calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
-            calendar.SetData(database.GetData(dt), dt);
+            calendar = tableLayoutPanel;
+            header = tableLayoutPanelCalendarHeader;
+            SetData(database.GetData(dt), dt);
 
             Dashboard_Panel.Visible = true;
             Event_Panel.Visible = false;
@@ -234,19 +238,14 @@ namespace Final_Year_Project
             DateTime tempDt = e.Start;
             dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
-            calendar = new Calendar(tableLayoutPanel, tableLayoutPanelCalendarHeader);
-            calendar.SetData(database.GetData(dt), dt);
+            calendar = tableLayoutPanel;
+            header = tableLayoutPanelCalendarHeader;
+            SetData(database.GetData(dt), dt);
         }
 
         private void Dashboard_Add_Event_Click(object sender, EventArgs e)
         {
-            TextBox_Name_Event.Text = "Event Name";
-            TextBox_Description.Text = "Description";
-            ComboBox_Group.SelectedIndex = -1;
-            ComboBox_Emoji.SelectedIndex = -1;
-            
-            Setup_Groups();
-            Setup_Location();
+            ResetForm();
 
             Dashboard_Panel.Visible = false;
             Event_Panel.Visible = true;
@@ -281,12 +280,17 @@ namespace Final_Year_Project
 
         private void PictureBox_Back_Click(object sender, EventArgs e)
         {
+            Dashboard_Search.Text = "Enter Search Criteria";
+
             Dashboard_Panel.Visible = true;
             Event_Panel.Visible = false;
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
 
             PictureBox_Back.Visible = false;
+
+            Update_Event_Button.Visible = false;
+            Remove_Event_Button.Visible = false;
         }
 
         private void ColourPicker_Click(object sender, EventArgs e)
@@ -299,6 +303,8 @@ namespace Final_Year_Project
 
         private void Dashboard_Add_Group_Click(object sender, EventArgs e)
         {
+            ResetForm();
+
             Dashboard_Panel.Visible = false;
             Group_Panel.Visible = true;
             PictureBox_Back.Visible = true;
@@ -373,6 +379,539 @@ namespace Final_Year_Project
                 maptype = true;
             }
         }
+
+        private void Search_Button_Click(object sender, EventArgs e)
+        {
+            Search(TextBox_Search.Text);
+        }
+
+        private void Search(string text)
+        {
+            Search_Data.DataSource = database.Get_Search_Results(text);
+            
+            foreach (DataGridViewRow row in Search_Data.Rows)
+            {
+                row.Cells[4].Value = database.Emoji((string)row.Cells[4].Value);
+            }
+
+            Search_Data.Columns[0].Visible = false; // Event ID
+            Search_Data.Columns[2].Visible = false; // Event Description
+            Search_Data.Columns[5].Visible = false; // Group ID
+            Search_Data.Columns[7].Visible = false; // Event Location
+
+            Search_Data.Columns[1].HeaderText = "Event Name";
+            Search_Data.Columns[3].HeaderText = "Date/Time";
+            Search_Data.Columns[4].HeaderText = "Emoji";
+            Search_Data.Columns[6].HeaderText = "Group";
+        }
+
+        private void Search_Data_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Search_Data.SelectedRows)
+            {
+                int Event_ID = (int)row.Cells[0].Value;
+                string Event_Name = row.Cells[1].Value.ToString();
+                string Event_Description = row.Cells[2].Value.ToString();
+                DateTime Event_DateTime = (DateTime)row.Cells[3].Value;
+                string Event_Emoji = database.Emoji(row.Cells[4].Value.ToString());
+                int Group_ID = (int)row.Cells[5].Value;
+                string Group_Name = row.Cells[6].Value.ToString();
+                string [] Event_Location = row.Cells[7].Value.ToString().Split(',');
+
+                double lat = Convert.ToDouble(Event_Location[0]);
+                double lng = Convert.ToDouble(Event_Location[1]);
+
+                GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+                GMaps.Instance.Mode = AccessMode.ServerOnly;
+                GMap_Control_Search.Position = new PointLatLng(lat, lng);
+                GMap_Control_Search.ShowCenter = false;
+
+                GMap_Control_Search.Overlays.Clear();
+
+                GMapOverlay markers = new GMapOverlay("markers");
+                GMap_Control_Search.Overlays.Add(markers);
+
+                GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+                markers.Markers.Add(marker);
+
+                Search_Description.Text = Event_Description;
+            }
+        }
+
+        private bool maptype_search = false;
+
+        private void Search_Switch_Map_Button_Click(object sender, EventArgs e)
+        {
+            if (maptype_search)
+            {
+                GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+                GMaps.Instance.Mode = AccessMode.ServerOnly;
+
+                maptype_search = false;
+            }
+
+            else
+            {
+                GMap_Control_Search.MapProvider = BingSatelliteMapProvider.Instance;
+                GMaps.Instance.Mode = AccessMode.ServerOnly;
+
+                maptype_search = true;
+            }
+        }
+
+        private void Dashboard_Search_Button_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+
+            Search(Dashboard_Search.Text);
+
+            Dashboard_Panel.Visible = false;
+            Search_Panel.Visible = true;
+            PictureBox_Back.Visible = true;
+        }
+
+        private void ResetForm()
+        {
+            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+            GeoCoordinate coord = watcher.Position.Location;
+
+            double latitude = 0;
+            double longitude = 0;
+
+            while (coord.IsUnknown)
+            {
+                watcher.TryStart(false, TimeSpan.FromMilliseconds(2000));
+                coord = watcher.Position.Location;
+
+                if (coord.IsUnknown != true)
+                {
+                    latitude = coord.Latitude;
+                    longitude = coord.Longitude;
+                }
+            }
+
+            GMap_Control.MapProvider = BingMapProvider.Instance;
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+            GMap_Control.Position = new PointLatLng(latitude, longitude);
+            GMap_Control.ShowCenter = false;
+            maptype = false;
+
+            TextBox_Event_ID.Text = "";
+            TextBox_Name_Event.Text = "Enter Event Name";
+            TextBox_Description.Text = "Enter Description";
+            ComboBox_Emoji.Items.Clear();
+            ComboBox_Group.Items.Clear();
+            TextBox_Location.Text = ",";
+            TextBox_Location_Search.Text = "Enter Address or Place";
+            DateTimePicker_Date.Text = DateTime.Now.ToLongDateString();
+            DateTimePicker_Time.Text = DateTime.Now.ToLongTimeString();
+
+            GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+            GMap_Control_Search.Position = new PointLatLng(latitude, longitude);
+            GMap_Control_Search.ShowCenter = false;
+            maptype_search = false;
+
+            Setup_Emojis();
+            Setup_Groups();
+
+            ComboBox_Emoji.Text = "Select Emoji";
+            ComboBox_Group.Text = "Select Group";
+
+            TextBox_Search.Text = "Enter Search Criteria";
+            Search_Description.Text = "Event Description";
+
+            Colour_Panel.BackColor = Color.Black;
+            TextBox_Name_Group.Text = "Enter Group Name";
+        }
+
+        private TableLayoutPanel calendar;
+        private TableLayoutPanel header;
+        private List<List<CalendarEvent>> data;
+        private DateTime startDate;
+
+        // Calendar Class
+
+        public void Render()
+        {
+            string[] day_names = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            string[] days = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st" };
+
+            int day_count = 0;
+            int data_count = 0;
+
+            bool switch_colour = true;
+
+            calendar.Visible = false;
+            calendar.Controls.Clear();
+
+            if (header.GetControlFromPosition(1, 0) == null)
+            {
+                header.Controls.Add(new Label() { Text = startDate.ToString("MMMM") + " " + startDate.Year, Font = new Font("Candara", 16, FontStyle.Bold), ForeColor = Color.White, AutoSize = false, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, BackColor = Color.FromArgb(40, 40, 40), TextAlign = ContentAlignment.MiddleCenter });
+            }
+
+            else
+            {
+                header.GetControlFromPosition(1, 0).Text = startDate.ToString("MMMM") + " " + startDate.Year;
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+                TableLayoutPanel p = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    Margin = new Padding(0, 0, 0, 0),
+                    BackColor = Color.FromArgb(40, 40, 40)
+                };
+
+                p.Controls.Add(new Label() { Text = day_names[i], ForeColor = Color.White, Font = new Font("Candara", 9, FontStyle.Bold), AutoSize = true, Anchor = AnchorStyles.None });
+                calendar.Controls.Add(p);
+            }
+
+            switch (startDate.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    break;
+                case DayOfWeek.Tuesday:
+                    RenderEmptyCells(calendar, 1);
+                    break;
+                case DayOfWeek.Wednesday:
+                    RenderEmptyCells(calendar, 2);
+                    break;
+                case DayOfWeek.Thursday:
+                    RenderEmptyCells(calendar, 3);
+                    break;
+                case DayOfWeek.Friday:
+                    RenderEmptyCells(calendar, 4);
+                    break;
+                case DayOfWeek.Saturday:
+                    RenderEmptyCells(calendar, 5);
+                    break;
+                case DayOfWeek.Sunday:
+                    RenderEmptyCells(calendar, 6);
+                    break;
+            }
+
+            for (int i = 0; i < calendar.RowCount; i++)
+            {
+                for (int j = 0; j < calendar.ColumnCount; j++)
+                {
+                    if (calendar.GetControlFromPosition(j, i) == null)
+                    {
+                        //Console.WriteLine(calendar.GetRowHeights()[i]);
+
+                        if (calendar.GetRowHeights()[i] == 20)
+                        {
+                            try
+                            {
+                                if (days.Length == day_count || day_count >= startDate.AddMonths(1).AddDays(-1).Day)
+                                {
+                                    calendar.Controls.Add(new Label() { Text = "" });
+                                }
+
+                                else
+                                {
+                                    calendar.Controls.Add(new Label() { Text = days[day_count], Font = new Font("Candara", 9), ForeColor = Color.White, BackColor = Color.DimGray, Anchor = AnchorStyles.Left, Margin = new Padding(0, 0, 0, 0) });
+                                }
+                            }
+
+                            catch (Exception ex_var)
+                            {
+                                //Console.WriteLine(ex_var.Message);
+                            }
+
+                            day_count++;
+                        }
+
+                        else
+                        {
+                            if (days.Length == data_count || data_count >= startDate.AddMonths(1).AddDays(-1).Day)
+                            {
+                                calendar.Controls.Add(new Label() { Text = "" });
+                            }
+
+                            else
+                            {
+                                try
+                                {
+                                    TableLayoutPanel p = new TableLayoutPanel
+                                    {
+                                        ColumnCount = 1,
+                                        RowCount = data[data_count].Count,
+                                        Dock = DockStyle.Fill,
+                                        Margin = new Padding(0, 0, 0, 0)
+                                    };
+
+                                    p.Click += (s, e) =>
+                                    {
+                                        PanelClickEvent(s, e);
+                                    };
+
+                                    for (int h = 0; (h < data[data_count].Count && h < 5); h++)
+                                    {
+                                        Color txt = Color.Black;
+
+                                        if (data[data_count][h].GetCalendarGroup().GetColor().GetBrightness() < 0.3)
+                                        {
+                                            txt = Color.White;
+                                        }
+
+                                        Label l = new Label() { Text = data[data_count][h].GetName(), ForeColor = txt, BackColor = data[data_count][h].GetCalendarGroup().GetColor(), Height = 15, Margin = new Padding(0, 0, 0, 0) };
+                                        l.Click += (s, e) =>
+                                        {
+                                            s = l.Parent;
+                                            PanelClickEvent(s, e);
+                                        };
+
+                                        ToolTip t = new ToolTip
+                                        {
+                                            IsBalloon = true
+                                        };
+
+                                        t.SetToolTip(l, data[data_count][h].GetDescription());
+
+                                        p.Controls.Add(l);
+                                    }
+
+                                    if (switch_colour)
+                                    {
+                                        p.BackColor = Color.DarkGray;
+                                        switch_colour = false;
+                                    }
+
+                                    else
+                                    {
+                                        p.BackColor = Color.LightGray;
+                                        switch_colour = true;
+                                    }
+
+                                    calendar.Controls.Add(p);
+                                }
+
+                                catch (NullReferenceException ex_var)
+                                {
+                                    //Console.WriteLine(ex_var.Message);
+
+                                    TableLayoutPanel p = new TableLayoutPanel
+                                    {
+                                        Dock = DockStyle.Fill,
+                                        Margin = new Padding(0, 0, 0, 0)
+                                    };
+
+                                    if (switch_colour)
+                                    {
+                                        p.BackColor = Color.DarkGray;
+                                        switch_colour = false;
+                                    }
+
+                                    else
+                                    {
+                                        p.BackColor = Color.LightGray;
+                                        switch_colour = true;
+                                    }
+
+                                    p.Click += (s, ev) =>
+                                    {
+                                        PanelClickEvent(s, ev);
+                                    };
+
+                                    calendar.Controls.Add(p);
+                                }
+
+                                catch (Exception ex_var)
+                                {
+                                    //Console.WriteLine(ex_var.Message);
+                                }
+                            }
+
+                            data_count++;
+                        }
+                    }
+                }
+            }
+
+            calendar.Visible = true;
+        }
+
+        private void RenderEmptyCells(TableLayoutPanel t, int x)
+        {
+            for (int i = 0; i < x; i++)
+            {
+                t.Controls.Add(new Label() { Text = "" }, i, 1);
+                t.Controls.Add(new Label() { Text = "" }, i, 2);
+            }
+        }
+
+        public CalendarEvent GetEvent(DateTime d, string n)
+        {
+            for (int i = 0; i < data[d.Day - 1].Count; i++)
+            {
+                if (data[d.Day - 1][i].GetName().Equals(n))
+                {
+                    //Console.WriteLine("Success: " + data[d.Day - 1][i].GetDateTime());
+
+                    return data[d.Day - 1][i];
+                }
+            }
+
+            //Console.WriteLine("Failed");
+
+            return null;
+        }
+
+        public void SetData(List<List<CalendarEvent>> d, DateTime dt)
+        {
+            data = d;
+            startDate = dt;
+
+            Render();
+        }
+
+        public List<List<CalendarEvent>> GetData()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                data.RemoveAt(data.Count - 1);
+            }
+
+            return data;
+        }
+
+        public void PanelClickEvent(object s, EventArgs e)
+        {
+            TableLayoutPanel temp = (TableLayoutPanel)s;
+            TableLayoutPanel parent = (TableLayoutPanel)temp.Parent;
+            bool found = false;
+
+            for (int g = 0; g < 7; g++)
+            {
+                for (int h = 0; h < 11; h++)
+                {
+                    if (parent.GetControlFromPosition(g, h) == temp)
+                    {
+                        int datePoint = h - 1;
+                        found = true;
+
+                        if (parent.GetControlFromPosition(g, datePoint).Text.Equals(""))
+                        {
+                            //Console.WriteLine("Empty Field");
+                        }
+
+                        else
+                        {
+                            string[] numbers = Regex.Split(parent.GetControlFromPosition(g, datePoint).Text, @"\D+");
+                            int index = int.Parse(numbers[0]);
+
+                            DateTime selected_dt = new DateTime(dt.Year, dt.Month, index);
+
+                            ResetForm();
+
+                            Search(selected_dt.ToString("dd/MM/yyyy"));
+                            TextBox_Search.Text = selected_dt.ToString("dd/MM/yyyy");
+
+                            Search_Panel.Visible = true;
+                            Dashboard_Panel.Visible = false;
+                            PictureBox_Back.Visible = true;
+                        }
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                //Console.WriteLine("Nothing found");
+            }
+        }
+
+        private void Update_Event_Button_Click(object sender, EventArgs e)
+        {
+            DateTime datetime = new DateTime(DateTimePicker_Date.Value.Year, DateTimePicker_Date.Value.Month, DateTimePicker_Date.Value.Day, DateTimePicker_Time.Value.Hour, DateTimePicker_Time.Value.Minute, DateTimePicker_Time.Value.Second);
+
+            List<CalendarGroup> cg = database.GetGroups();
+            int group = 0;
+
+            for (int i = 0; i < cg.Count; i++)
+            {
+                if (ComboBox_Group.Text == cg[i].GetName())
+                {
+                    group = cg[i].GetID();
+                }
+            }
+
+            database.Update_Event(Convert.ToInt32(TextBox_Event_ID.Text), TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, ComboBox_Emoji.Text, group);
+            
+            calendar = tableLayoutPanel;
+            header = tableLayoutPanelCalendarHeader;
+            SetData(database.GetData(dt), dt);
+
+            Update_Event_Button.Visible = false;
+            Remove_Event_Button.Visible = false;
+            PictureBox_Back.Visible = false;
+            Dashboard_Panel.Visible = true;
+            Event_Panel.Visible = false;
+        }
+
+        private void Remove_Event_Button_Click(object sender, EventArgs e)
+        {
+            database.Delete_Event(Convert.ToInt32(TextBox_Event_ID.Text));
+
+            calendar = tableLayoutPanel;
+            header = tableLayoutPanelCalendarHeader;
+            SetData(database.GetData(dt), dt);
+
+            Update_Event_Button.Visible = false;
+            Remove_Event_Button.Visible = false;
+            PictureBox_Back.Visible = false;
+            Dashboard_Panel.Visible = true;
+            Event_Panel.Visible = false;
+        }
+
+        private void Search_Event_Update_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Search_Data.SelectedRows)
+            {
+                int Event_ID = (int)row.Cells[0].Value;
+                string Event_Name = row.Cells[1].Value.ToString();
+                string Event_Description = row.Cells[2].Value.ToString();
+                DateTime Event_DateTime = (DateTime)row.Cells[3].Value;
+                string Event_Emoji = row.Cells[4].Value.ToString();
+                int Group_ID = (int)row.Cells[5].Value;
+                string Group_Name = row.Cells[6].Value.ToString();
+                string[] Event_Location = row.Cells[7].Value.ToString().Split(',');
+
+                double lat = Convert.ToDouble(Event_Location[0]);
+                double lng = Convert.ToDouble(Event_Location[1]);
+
+                ResetForm();
+
+                GMap_Control.MapProvider = BingMapProvider.Instance;
+                GMaps.Instance.Mode = AccessMode.ServerOnly;
+                GMap_Control.Position = new PointLatLng(lat, lng);
+                GMap_Control.ShowCenter = false;
+
+                GMap_Control.Overlays.Clear();
+
+                GMapOverlay markers = new GMapOverlay("markers");
+                GMap_Control.Overlays.Add(markers);
+
+                GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+                markers.Markers.Add(marker);
+
+                TextBox_Event_ID.Text = Convert.ToString(Event_ID);
+                TextBox_Name_Event.Text = Event_Name;
+                TextBox_Description.Text = Event_Description;
+                ComboBox_Group.Text = Group_Name;
+                ComboBox_Emoji.Text = Event_Emoji;
+                DateTimePicker_Date.Text = Event_DateTime.ToLongDateString();
+                DateTimePicker_Time.Text = Event_DateTime.ToLongTimeString();
+                TextBox_Location.Text = lat + "," + lng;
+
+                Search_Panel.Visible = false;
+                Event_Panel.Visible = true;
+                Update_Event_Button.Visible = true;
+                Remove_Event_Button.Visible = true;
+            }
+        }
     }
 
     public class Database
@@ -443,6 +982,34 @@ namespace Final_Year_Project
             connection.Close();
         }
 
+        public void Update_Event(int id, string name, string description, DateTime datetime, string location, string emoji, int group)
+        {
+            SqlCommand cmd = new SqlCommand("Update_Event", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+            cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
+            cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
+            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji);
+            cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
+            cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void Delete_Event(int id)
+        {
+            SqlCommand cmd = new SqlCommand("Remove_Event", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
         public void Add_Group(string name, int colour)
         {
             SqlCommand cmd = new SqlCommand("Add_Group", connection);
@@ -454,6 +1021,43 @@ namespace Final_Year_Project
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+        }
+
+        public BindingSource Get_Search_Results(string text)
+        {
+            if (text == "Enter Search Criteria")
+            {
+                text = "%";
+            }
+
+            else
+            {
+                text = "%" + text + "%";
+            }
+
+            SqlDataAdapter sqa = new SqlDataAdapter("" +
+                "SELECT Event_ID, Event_Name, Event_Description, Event_DateTime, Event_Emoji, Group_ID, Group_Name, Event_Location FROM [Final_Year_Project].[dbo].[Event_Table] " +
+                "FULL JOIN Group_Table On Group_Table.Group_ID = Event_Table.Event_Group " +
+                "WHERE (Event_Owner = " + user.GetID() + " OR Group_Owner = " + user.GetID() + ") " +
+                "AND Event_ID IS NOT NULL " +
+                "AND (Event_Name Like '" + text + "' " +
+                "OR Event_Description Like '" + text + "' " +
+                "OR CONVERT(VARCHAR(10), Event_DateTime, 103) like '" + text + "' " +
+                "OR Event_Emoji Like '" + text + "' " +
+                "OR Group_Name Like '" + text + "')", connection);
+
+            connection.Open();
+
+            DataTable table = new DataTable();
+            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            sqa.Fill(table);
+
+            connection.Close();
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = table;
+
+            return bs;
         }
 
         public void Populate(DateTime dt)
@@ -637,7 +1241,7 @@ namespace Final_Year_Project
             return groups;
         }
 
-        private string Emoji(string e)
+        public string Emoji(string e)
         {
             if (e == "Football")
             {
@@ -651,13 +1255,8 @@ namespace Final_Year_Project
 
             else
             {
-                return "";
+                return "Emoji Not Found: " + e;
             }
-        }
-
-        public void Remove_Event(int id)
-        {
-            
         }
     }
 
@@ -766,308 +1365,6 @@ namespace Final_Year_Project
         public string GetEmoji()
         {
             return emoji;
-        }
-    }
-
-    public class Calendar
-    {
-        private TableLayoutPanel calendar;
-        private TableLayoutPanel header;
-        private List<List<CalendarEvent>> data;
-        private DateTime startDate;
-
-        public Calendar(TableLayoutPanel t, TableLayoutPanel h)
-        {
-            calendar = t;
-            header = h;
-        }
-
-        public void Render()
-        {
-            string[] day_names = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-            string[] days = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st"};
-            
-            int day_count = 0;
-            int data_count = 0;
-
-            bool switch_colour = true;
-
-            calendar.Visible = false;
-            calendar.Controls.Clear();
-
-            if (header.GetControlFromPosition(1, 0) == null)
-            {
-                header.Controls.Add(new Label() { Text = startDate.ToString("MMMM") + " " + startDate.Year, Font = new Font("Candara", 16, FontStyle.Bold), ForeColor = Color.White, AutoSize = false, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, BackColor = Color.FromArgb(40, 40, 40), TextAlign = ContentAlignment.MiddleCenter });
-            }
-
-            else
-            {
-                header.GetControlFromPosition(1, 0).Text = startDate.ToString("MMMM") + " " + startDate.Year;
-            }
-
-            for (int i = 0; i < 7; i++)
-            {
-                TableLayoutPanel p = new TableLayoutPanel
-                {
-                    Dock = DockStyle.Fill,
-                    Margin = new Padding(0, 0, 0, 0),
-                    BackColor = Color.FromArgb(40, 40, 40)
-                };
-
-                p.Controls.Add(new Label() { Text = day_names[i], ForeColor = Color.White, Font = new Font("Candara", 9, FontStyle.Bold), AutoSize = true, Anchor = AnchorStyles.None });
-                calendar.Controls.Add(p);
-            }
-            
-            switch (startDate.DayOfWeek)
-            {
-                case DayOfWeek.Monday:
-                    break;
-                case DayOfWeek.Tuesday:
-                    RenderEmptyCells(calendar, 1);
-                    break;
-                case DayOfWeek.Wednesday:
-                    RenderEmptyCells(calendar, 2);
-                    break;
-                case DayOfWeek.Thursday:
-                    RenderEmptyCells(calendar, 3);
-                    break;
-                case DayOfWeek.Friday:
-                    RenderEmptyCells(calendar, 4);
-                    break;
-                case DayOfWeek.Saturday:
-                    RenderEmptyCells(calendar, 5);
-                    break;
-                case DayOfWeek.Sunday:
-                    RenderEmptyCells(calendar, 6);
-                    break;
-            }
-
-            for (int i = 0; i < calendar.RowCount; i++)
-            {
-                for (int j = 0; j < calendar.ColumnCount; j++)
-                {
-                    if (calendar.GetControlFromPosition(j, i) == null)
-                    {
-                        //Console.WriteLine(calendar.GetRowHeights()[i]);
-
-                        if (calendar.GetRowHeights()[i] == 20)
-                        {
-                            try
-                            {
-                                if (days.Length == day_count || day_count >= startDate.AddMonths(1).AddDays(-1).Day)
-                                {
-                                    calendar.Controls.Add(new Label() { Text = ""});
-                                }
-
-                                else
-                                {
-                                    calendar.Controls.Add(new Label() { Text = days[day_count], Font = new Font("Candara", 9), ForeColor = Color.White, BackColor = Color.DimGray, Anchor = AnchorStyles.Left, Margin = new Padding(0, 0, 0, 0) });
-                                }
-                            }
-
-                            catch (Exception ex_var)
-                            {
-                                Console.WriteLine(ex_var.Message);
-                            }
-
-                            day_count++;
-                        }
-
-                        else
-                        {
-                            if (days.Length == data_count || data_count >= startDate.AddMonths(1).AddDays(-1).Day)
-                            {
-                                calendar.Controls.Add(new Label() { Text = "" });
-                            }
-
-                            else
-                            {
-                                try
-                                {
-                                    TableLayoutPanel p = new TableLayoutPanel
-                                    {
-                                        ColumnCount = 1,
-                                        RowCount = data[data_count].Count,
-                                        Dock = DockStyle.Fill,
-                                        Margin = new Padding(0, 0, 0, 0)
-                                    };
-
-                                    p.Click += (s, e) =>
-                                    {
-                                        PanelClickEvent(s, e);
-                                    };
-
-                                    for (int h = 0; (h < data[data_count].Count && h < 5); h++)
-                                    {
-                                        Color txt = Color.Black;
-
-                                        if (data[data_count][h].GetCalendarGroup().GetColor().GetBrightness() < 0.3)
-                                        {
-                                            txt = Color.White;
-                                        }
-
-                                        Label l = new Label() { Text = data[data_count][h].GetName(), ForeColor = txt, BackColor = data[data_count][h].GetCalendarGroup().GetColor(), Height = 15, Margin = new Padding(0, 0, 0, 0) };
-                                        l.Click += (s, e) =>
-                                        {
-                                            s = l.Parent;
-                                            PanelClickEvent(s, e);
-                                        };
-
-                                        ToolTip t = new ToolTip
-                                        {
-                                            IsBalloon = true
-                                        };
-
-                                        t.SetToolTip(l, data[data_count][h].GetDescription());
-
-                                        p.Controls.Add(l);
-                                    }
-
-                                    if (switch_colour)
-                                    {
-                                        p.BackColor = Color.DarkGray;
-                                        switch_colour = false;
-                                    }
-
-                                    else
-                                    {
-                                        p.BackColor = Color.LightGray;
-                                        switch_colour = true;
-                                    }
-
-                                    calendar.Controls.Add(p);
-                                }
-
-                                catch (NullReferenceException ex_var)
-                                {
-                                    Console.WriteLine(ex_var.Message);
-
-                                    TableLayoutPanel p = new TableLayoutPanel
-                                    {
-                                        Dock = DockStyle.Fill,
-                                        Margin = new Padding(0, 0, 0, 0)
-                                    };
-
-                                    if (switch_colour)
-                                    {
-                                        p.BackColor = Color.DarkGray;
-                                        switch_colour = false;
-                                    }
-
-                                    else
-                                    {
-                                        p.BackColor = Color.LightGray;
-                                        switch_colour = true;
-                                    }
-
-                                    p.Click += (s, ev) =>
-                                    {
-                                        PanelClickEvent(s, ev);
-                                    };
-
-                                    calendar.Controls.Add(p);
-                                }
-
-                                catch (Exception ex_var)
-                                {
-                                    Console.WriteLine(ex_var.Message);
-                                }
-                            }
-
-                            data_count++;
-                        }
-                    }
-                }
-            }
-
-            calendar.Visible = true;
-        }
-
-        private void RenderEmptyCells(TableLayoutPanel t, int x)
-        {
-            for (int i = 0; i < x; i++)
-            {
-                t.Controls.Add(new Label() { Text = "" }, i, 1);
-                t.Controls.Add(new Label() { Text = "" }, i, 2);
-            }
-        }
-
-        public CalendarEvent GetEvent(DateTime d, string n)
-        {
-            for (int i = 0; i < data[d.Day - 1].Count; i++)
-            {
-                if (data[d.Day - 1][i].GetName().Equals(n))
-                {
-                    Console.WriteLine("Success: " + data[d.Day - 1][i].GetDateTime());
-
-                    return data[d.Day - 1][i];
-                }
-            }
-
-            Console.WriteLine("Failed");
-
-            return null;
-        }
-
-        public void SetData(List<List<CalendarEvent>> d, DateTime dt)
-        {
-            data = d;
-            startDate = dt;
-
-            Render();
-        }
-
-        public List<List<CalendarEvent>> GetData()
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                data.RemoveAt(data.Count - 1);
-            }
-
-            return data;
-        }
-
-        public void PanelClickEvent(object s, EventArgs e)
-        {
-            TableLayoutPanel temp = (TableLayoutPanel)s;
-            TableLayoutPanel parent = (TableLayoutPanel)temp.Parent;
-            bool found = false;
-
-            for (int g = 0; g < 7; g++)
-            {
-                for (int h = 0; h < 11; h++)
-                {
-                    if (parent.GetControlFromPosition(g, h) == temp)
-                    {
-                        int datePoint = h - 1;
-                        found = true;
-
-                        if (parent.GetControlFromPosition(g, datePoint).Text.Equals(""))
-                        {
-                            Console.WriteLine("Empty Field");
-                        }
-
-                        else
-                        {
-                            Console.WriteLine("Date: " + parent.GetControlFromPosition(g, datePoint).Text);
-
-                            string[] numbers = Regex.Split(parent.GetControlFromPosition(g, datePoint).Text, @"\D+");
-                            int index = int.Parse(numbers[0]);
-                            Render();
-
-                            //DateTime dt = new DateTime(2018, 1, index);
-                            //RemoveEvent(GetEvent(dt, "Football"));
-
-                            throw new NotImplementedException();
-                        }
-                    }
-                }
-            }
-
-            if (!found)
-            {
-                Console.WriteLine("Nothing found");
-            }
         }
     }
 }
