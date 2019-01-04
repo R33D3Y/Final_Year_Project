@@ -32,11 +32,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelCalendarHeader = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Dashboard_Panel = new System.Windows.Forms.Panel();
+            this.Find_Friends_Button = new System.Windows.Forms.Label();
             this.Dashboard_Search_Button = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.Dashboard_Search = new System.Windows.Forms.TextBox();
@@ -82,6 +89,7 @@
             this.TextBox_Name_Event = new System.Windows.Forms.TextBox();
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.Data_Groups = new System.Windows.Forms.DataGridView();
             this.Add_Group_Button = new System.Windows.Forms.Label();
             this.Colour_Panel = new System.Windows.Forms.Panel();
             this.ColourPicker_Button = new System.Windows.Forms.Label();
@@ -103,6 +111,19 @@
             this.PictureBox_Logout = new System.Windows.Forms.PictureBox();
             this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
             this.PictureBox_Close = new System.Windows.Forms.PictureBox();
+            this.Friends_Panel = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.TextBox_Friends_Nickname = new System.Windows.Forms.TextBox();
+            this.Add_Friend_Button = new System.Windows.Forms.Label();
+            this.Search_Friends = new System.Windows.Forms.DataGridView();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.TextBox_Search_Username = new System.Windows.Forms.TextBox();
+            this.Search_Username_Button = new System.Windows.Forms.Label();
+            this.Check_Boxes_Column = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.User_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nickname_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanelCalendarHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -118,6 +139,7 @@
             this.panel5.SuspendLayout();
             this.Group_Panel.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).BeginInit();
             this.Search_Panel.SuspendLayout();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Data)).BeginInit();
@@ -126,6 +148,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).BeginInit();
+            this.Friends_Panel.SuspendLayout();
+            this.panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Search_Friends)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -213,6 +238,7 @@
             // Dashboard_Panel
             // 
             this.Dashboard_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Panel.Controls.Add(this.Find_Friends_Button);
             this.Dashboard_Panel.Controls.Add(this.Dashboard_Search_Button);
             this.Dashboard_Panel.Controls.Add(this.panel14);
             this.Dashboard_Panel.Controls.Add(this.Dashboard_Search);
@@ -226,6 +252,20 @@
             this.Dashboard_Panel.Size = new System.Drawing.Size(845, 696);
             this.Dashboard_Panel.TabIndex = 2;
             this.Dashboard_Panel.Visible = false;
+            // 
+            // Find_Friends_Button
+            // 
+            this.Find_Friends_Button.BackColor = System.Drawing.Color.White;
+            this.Find_Friends_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Find_Friends_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Find_Friends_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Find_Friends_Button.Location = new System.Drawing.Point(607, 375);
+            this.Find_Friends_Button.Name = "Find_Friends_Button";
+            this.Find_Friends_Button.Size = new System.Drawing.Size(227, 30);
+            this.Find_Friends_Button.TabIndex = 26;
+            this.Find_Friends_Button.Text = "Find Friends";
+            this.Find_Friends_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Find_Friends_Button.Click += new System.EventHandler(this.Find_Friends_Button_Click);
             // 
             // Dashboard_Search_Button
             // 
@@ -795,9 +835,9 @@
             // 
             this.Group_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Group_Panel.Controls.Add(this.panel9);
-            this.Group_Panel.Location = new System.Drawing.Point(588, 714);
+            this.Group_Panel.Location = new System.Drawing.Point(242, 714);
             this.Group_Panel.Name = "Group_Panel";
-            this.Group_Panel.Size = new System.Drawing.Size(269, 168);
+            this.Group_Panel.Size = new System.Drawing.Size(615, 187);
             this.Group_Panel.TabIndex = 5;
             this.Group_Panel.Visible = false;
             // 
@@ -805,15 +845,67 @@
             // 
             this.panel9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel9.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel9.Controls.Add(this.Data_Groups);
             this.panel9.Controls.Add(this.Add_Group_Button);
             this.panel9.Controls.Add(this.Colour_Panel);
             this.panel9.Controls.Add(this.ColourPicker_Button);
             this.panel9.Controls.Add(this.panel8);
             this.panel9.Controls.Add(this.TextBox_Name_Group);
-            this.panel9.Location = new System.Drawing.Point(13, 12);
+            this.panel9.Location = new System.Drawing.Point(3, 7);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(243, 144);
+            this.panel9.Size = new System.Drawing.Size(601, 173);
             this.panel9.TabIndex = 20;
+            // 
+            // Data_Groups
+            // 
+            this.Data_Groups.AllowUserToAddRows = false;
+            this.Data_Groups.AllowUserToDeleteRows = false;
+            this.Data_Groups.AllowUserToResizeColumns = false;
+            this.Data_Groups.AllowUserToResizeRows = false;
+            this.Data_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Data_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Data_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Data_Groups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Data_Groups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Check_Boxes_Column,
+            this.User_ID_Column,
+            this.Username_Column,
+            this.Nickname_Column});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Data_Groups.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups.Location = new System.Drawing.Point(230, 11);
+            this.Data_Groups.MultiSelect = false;
+            this.Data_Groups.Name = "Data_Groups";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Groups.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Data_Groups.RowHeadersVisible = false;
+            this.Data_Groups.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Data_Groups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Data_Groups.Size = new System.Drawing.Size(356, 152);
+            this.Data_Groups.TabIndex = 26;
+            this.Data_Groups.Click += new System.EventHandler(this.Data_Groups_Click);
             // 
             // Add_Group_Button
             // 
@@ -821,7 +913,7 @@
             this.Add_Group_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add_Group_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Add_Group_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Add_Group_Button.Location = new System.Drawing.Point(19, 91);
+            this.Add_Group_Button.Location = new System.Drawing.Point(18, 123);
             this.Add_Group_Button.Name = "Add_Group_Button";
             this.Add_Group_Button.Size = new System.Drawing.Size(205, 30);
             this.Add_Group_Button.TabIndex = 22;
@@ -832,7 +924,7 @@
             // Colour_Panel
             // 
             this.Colour_Panel.BackColor = System.Drawing.Color.Black;
-            this.Colour_Panel.Location = new System.Drawing.Point(152, 58);
+            this.Colour_Panel.Location = new System.Drawing.Point(152, 68);
             this.Colour_Panel.Name = "Colour_Panel";
             this.Colour_Panel.Size = new System.Drawing.Size(72, 30);
             this.Colour_Panel.TabIndex = 19;
@@ -843,7 +935,7 @@
             this.ColourPicker_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ColourPicker_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.ColourPicker_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ColourPicker_Button.Location = new System.Drawing.Point(19, 58);
+            this.ColourPicker_Button.Location = new System.Drawing.Point(19, 68);
             this.ColourPicker_Button.Name = "ColourPicker_Button";
             this.ColourPicker_Button.Size = new System.Drawing.Size(127, 30);
             this.ColourPicker_Button.TabIndex = 18;
@@ -981,43 +1073,42 @@
             // 
             this.Search_Data.AllowUserToAddRows = false;
             this.Search_Data.AllowUserToDeleteRows = false;
-            this.Search_Data.AllowUserToOrderColumns = true;
             this.Search_Data.AllowUserToResizeColumns = false;
             this.Search_Data.AllowUserToResizeRows = false;
             this.Search_Data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Search_Data.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.Search_Data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Search_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.Search_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Data.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Data.DefaultCellStyle = dataGridViewCellStyle5;
             this.Search_Data.GridColor = System.Drawing.Color.RoyalBlue;
             this.Search_Data.Location = new System.Drawing.Point(21, 57);
             this.Search_Data.MultiSelect = false;
             this.Search_Data.Name = "Search_Data";
             this.Search_Data.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Search_Data.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Search_Data.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.Search_Data.RowHeadersVisible = false;
             this.Search_Data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Search_Data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1132,11 +1223,188 @@
             this.PictureBox_Close.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
             this.PictureBox_Close.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
+            // Friends_Panel
+            // 
+            this.Friends_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Friends_Panel.Controls.Add(this.panel16);
+            this.Friends_Panel.Location = new System.Drawing.Point(1714, 398);
+            this.Friends_Panel.Name = "Friends_Panel";
+            this.Friends_Panel.Size = new System.Drawing.Size(335, 347);
+            this.Friends_Panel.TabIndex = 7;
+            this.Friends_Panel.Visible = false;
+            // 
+            // panel16
+            // 
+            this.panel16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel16.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel16.Controls.Add(this.panel18);
+            this.panel16.Controls.Add(this.TextBox_Friends_Nickname);
+            this.panel16.Controls.Add(this.Add_Friend_Button);
+            this.panel16.Controls.Add(this.Search_Friends);
+            this.panel16.Controls.Add(this.panel17);
+            this.panel16.Controls.Add(this.TextBox_Search_Username);
+            this.panel16.Controls.Add(this.Search_Username_Button);
+            this.panel16.Location = new System.Drawing.Point(8, 13);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(321, 320);
+            this.panel16.TabIndex = 20;
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.Color.White;
+            this.panel18.Location = new System.Drawing.Point(23, 279);
+            this.panel18.Margin = new System.Windows.Forms.Padding(0);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(274, 1);
+            this.panel18.TabIndex = 28;
+            // 
+            // TextBox_Friends_Nickname
+            // 
+            this.TextBox_Friends_Nickname.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Friends_Nickname.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Friends_Nickname.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Friends_Nickname.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Friends_Nickname.Location = new System.Drawing.Point(26, 257);
+            this.TextBox_Friends_Nickname.Name = "TextBox_Friends_Nickname";
+            this.TextBox_Friends_Nickname.Size = new System.Drawing.Size(268, 20);
+            this.TextBox_Friends_Nickname.TabIndex = 27;
+            this.TextBox_Friends_Nickname.Text = "Enter Nickname";
+            this.TextBox_Friends_Nickname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox_Friends_Nickname.TextChanged += new System.EventHandler(this.TextBox_Friends_Nickname_TextChanged);
+            // 
+            // Add_Friend_Button
+            // 
+            this.Add_Friend_Button.BackColor = System.Drawing.Color.White;
+            this.Add_Friend_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Add_Friend_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Add_Friend_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Add_Friend_Button.Location = new System.Drawing.Point(19, 287);
+            this.Add_Friend_Button.Name = "Add_Friend_Button";
+            this.Add_Friend_Button.Size = new System.Drawing.Size(275, 25);
+            this.Add_Friend_Button.TabIndex = 26;
+            this.Add_Friend_Button.Text = "Select User To Add As Friend";
+            this.Add_Friend_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Add_Friend_Button.Click += new System.EventHandler(this.Add_Friend_Button_Click);
+            // 
+            // Search_Friends
+            // 
+            this.Search_Friends.AllowUserToAddRows = false;
+            this.Search_Friends.AllowUserToDeleteRows = false;
+            this.Search_Friends.AllowUserToResizeColumns = false;
+            this.Search_Friends.AllowUserToResizeRows = false;
+            this.Search_Friends.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Search_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Search_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.Search_Friends.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Friends.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Search_Friends.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Friends.Location = new System.Drawing.Point(23, 47);
+            this.Search_Friends.MultiSelect = false;
+            this.Search_Friends.Name = "Search_Friends";
+            this.Search_Friends.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Search_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.Search_Friends.RowHeadersVisible = false;
+            this.Search_Friends.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Search_Friends.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Search_Friends.Size = new System.Drawing.Size(274, 204);
+            this.Search_Friends.TabIndex = 25;
+            this.Search_Friends.Click += new System.EventHandler(this.Search_Friends_Click);
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.White;
+            this.panel17.Location = new System.Drawing.Point(23, 38);
+            this.panel17.Margin = new System.Windows.Forms.Padding(0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(171, 1);
+            this.panel17.TabIndex = 24;
+            // 
+            // TextBox_Search_Username
+            // 
+            this.TextBox_Search_Username.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Search_Username.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Search_Username.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Search_Username.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Search_Username.Location = new System.Drawing.Point(26, 16);
+            this.TextBox_Search_Username.Name = "TextBox_Search_Username";
+            this.TextBox_Search_Username.Size = new System.Drawing.Size(170, 20);
+            this.TextBox_Search_Username.TabIndex = 23;
+            this.TextBox_Search_Username.Text = "Enter Username";
+            this.TextBox_Search_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Search_Username_Button
+            // 
+            this.Search_Username_Button.BackColor = System.Drawing.Color.White;
+            this.Search_Username_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Search_Username_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Search_Username_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Username_Button.Location = new System.Drawing.Point(202, 13);
+            this.Search_Username_Button.Name = "Search_Username_Button";
+            this.Search_Username_Button.Size = new System.Drawing.Size(95, 25);
+            this.Search_Username_Button.TabIndex = 22;
+            this.Search_Username_Button.Text = "Search";
+            this.Search_Username_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Search_Username_Button.Click += new System.EventHandler(this.Search_Username_Button_Click);
+            // 
+            // Check_Boxes_Column
+            // 
+            this.Check_Boxes_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Check_Boxes_Column.HeaderText = "Add To Group";
+            this.Check_Boxes_Column.Name = "Check_Boxes_Column";
+            this.Check_Boxes_Column.Width = 120;
+            // 
+            // User_ID_Column
+            // 
+            this.User_ID_Column.HeaderText = "User ID";
+            this.User_ID_Column.Name = "User_ID_Column";
+            this.User_ID_Column.ReadOnly = true;
+            this.User_ID_Column.Visible = false;
+            this.User_ID_Column.Width = 83;
+            // 
+            // Username_Column
+            // 
+            this.Username_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Username_Column.HeaderText = "User Name";
+            this.Username_Column.Name = "Username_Column";
+            this.Username_Column.ReadOnly = true;
+            this.Username_Column.Width = 109;
+            // 
+            // Nickname_Column
+            // 
+            this.Nickname_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nickname_Column.HeaderText = "Nickname";
+            this.Nickname_Column.Name = "Nickname_Column";
+            this.Nickname_Column.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1870, 890);
+            this.ClientSize = new System.Drawing.Size(2073, 909);
+            this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Group_Panel);
@@ -1168,6 +1436,7 @@
             this.Group_Panel.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).EndInit();
             this.Search_Panel.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -1177,6 +1446,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).EndInit();
+            this.Friends_Panel.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Search_Friends)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1254,6 +1527,21 @@
         private System.Windows.Forms.Label Remove_Event_Button;
         private System.Windows.Forms.TextBox TextBox_Event_ID;
         private System.Windows.Forms.Label Search_Event_Update;
+        private System.Windows.Forms.Panel Friends_Panel;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.TextBox TextBox_Friends_Nickname;
+        private System.Windows.Forms.Label Add_Friend_Button;
+        private System.Windows.Forms.DataGridView Search_Friends;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.TextBox TextBox_Search_Username;
+        private System.Windows.Forms.Label Search_Username_Button;
+        private System.Windows.Forms.DataGridView Data_Groups;
+        private System.Windows.Forms.Label Find_Friends_Button;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Check_Boxes_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn User_ID_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nickname_Column;
     }
 }
 

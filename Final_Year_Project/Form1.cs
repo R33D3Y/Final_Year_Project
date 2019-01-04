@@ -84,6 +84,8 @@ namespace Final_Year_Project
                 header = tableLayoutPanelCalendarHeader;
                 SetData(database.GetData(dt), dt);
 
+                ResetForm();
+
                 Dashboard_Panel.Visible = true;
                 Login_Panel.Visible = false;
                 PictureBox_Logout.Visible = true;
@@ -181,6 +183,7 @@ namespace Final_Year_Project
             Event_Panel.Visible = false;
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
+            Friends_Panel.Visible = false;
 
             Login_Panel.Visible = true;
         }
@@ -286,6 +289,7 @@ namespace Final_Year_Project
             Event_Panel.Visible = false;
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
+            Friends_Panel.Visible = false;
 
             PictureBox_Back.Visible = false;
 
@@ -312,7 +316,17 @@ namespace Final_Year_Project
 
         private void Add_Group_Button_Click(object sender, EventArgs e)
         {
-            database.Add_Group(TextBox_Name_Group.Text, Colour_Panel.BackColor.ToArgb());
+            int Group_ID = database.Add_Group(TextBox_Name_Group.Text, Colour_Panel.BackColor.ToArgb());
+            
+            foreach (DataGridViewRow row in Data_Groups.Rows)
+            {
+                if ((bool)row.Cells[0].Value == true)
+                {
+                    int User_ID = (int)row.Cells[1].Value;
+
+                    database.Add_Friend_To_Group(User_ID, Group_ID);
+                }
+            }
 
             Dashboard_Panel.Visible = true;
             Event_Panel.Visible = false;
@@ -512,8 +526,12 @@ namespace Final_Year_Project
             GMap_Control_Search.ShowCenter = false;
             maptype_search = false;
 
-            Setup_Emojis();
-            Setup_Groups();
+            if (database != null)
+            {
+                Setup_Emojis();
+                Setup_Groups();
+                Setup_Friends();
+            }
 
             ComboBox_Emoji.Text = "Select Emoji";
             ComboBox_Group.Text = "Select Group";
@@ -615,7 +633,7 @@ namespace Final_Year_Project
                                 }
                             }
 
-                            catch (Exception ex_var)
+                            catch (Exception)
                             {
                                 //Console.WriteLine(ex_var.Message);
                             }
@@ -688,7 +706,7 @@ namespace Final_Year_Project
                                     calendar.Controls.Add(p);
                                 }
 
-                                catch (NullReferenceException ex_var)
+                                catch (NullReferenceException)
                                 {
                                     //Console.WriteLine(ex_var.Message);
 
@@ -718,7 +736,7 @@ namespace Final_Year_Project
                                     calendar.Controls.Add(p);
                                 }
 
-                                catch (Exception ex_var)
+                                catch (Exception)
                                 {
                                     //Console.WriteLine(ex_var.Message);
                                 }
@@ -912,6 +930,124 @@ namespace Final_Year_Project
                 Remove_Event_Button.Visible = true;
             }
         }
+
+        private void Search_Username_Button_Click(object sender, EventArgs e)
+        {
+            Search_Friends.DataSource = database.Get_Friend_Results(TextBox_Search_Username.Text);
+
+            Search_Friends.Columns[0].Visible = false; // User ID
+
+            Search_Friends.Columns[1].HeaderText = "User Name";
+        }
+
+        private void Search_Friends_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Search_Friends.SelectedRows)
+            {
+                int User_ID = (int)row.Cells[0].Value;
+                string User_Name = row.Cells[1].Value.ToString();
+
+                TextBox_Friends_Nickname.Text = User_Name;
+                Add_Friend_Button.Text = "Add " + User_Name + " As A Friend!";
+            }
+        }
+
+        private void Add_Friend_Button_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Search_Friends.SelectedRows)
+            {
+                int User_ID = (int)row.Cells[0].Value;
+                string User_Name = row.Cells[1].Value.ToString();
+                string User_Nickname;
+
+                if (TextBox_Friends_Nickname.Text == "Enter Nickname")
+                {
+                    User_Nickname = "No Nickname";
+                }
+
+                else
+                {
+                    User_Nickname = TextBox_Friends_Nickname.Text;
+                }
+
+                database.Add_Friend(User_ID, User_Name, User_Nickname);
+
+                Search_Friends.DataSource = database.Get_Friend_Results(TextBox_Search_Username.Text);
+
+                Search_Friends.Columns[0].Visible = false; // User ID
+
+                Search_Friends.Columns[1].HeaderText = "User Name";
+            }
+        }
+
+        private void TextBox_Friends_Nickname_TextChanged(object sender, EventArgs e)
+        {
+            Add_Friend_Button.Text = "Add " + TextBox_Friends_Nickname.Text + " As A Friend!";
+        }
+
+        private void Setup_Friends()
+        {
+            List<Friend> f = database.GetFriends();
+
+            Data_Groups.Rows.Clear();
+
+            for (int i = 0; i < f.Count; i++)
+            {
+                Data_Groups.Rows.Add(false, f[i].GetID(), f[i].GetUserName(), f[i].GetNickName());
+            }
+        }
+
+        private void Data_Groups_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Groups.SelectedRows)
+            {
+                if ((bool)row.Cells[0].Value)
+                {
+                    row.Cells[0].Value = false;
+                }
+
+                else
+                {
+                    row.Cells[0].Value = true;
+                }
+            }
+        }
+
+        private void Find_Friends_Button_Click(object sender, EventArgs e)
+        {
+            PictureBox_Back.Visible = true;
+            Dashboard_Panel.Visible = false;
+            Friends_Panel.Visible = true;
+        }
+    }
+
+    public class Friend
+    {
+        private int id;
+        private string username;
+        private string nickname;
+
+        public Friend(int i, string u, string n)
+        {
+            id = i;
+            username = u;
+            nickname = n;
+        }
+
+        public int GetID()
+        {
+            return id;
+        }
+
+        public string GetUserName()
+        {
+            return username;
+        }
+
+        public string GetNickName()
+        {
+            return nickname;
+        }
     }
 
     public class Database
@@ -919,6 +1055,7 @@ namespace Final_Year_Project
         private SqlConnection connection;
         private User user;
         private List<CalendarGroup> groups;
+        private List<Friend> friends;
 
         public Database(string u, string p)
         {
@@ -1010,7 +1147,7 @@ namespace Final_Year_Project
             connection.Close();
         }
 
-        public void Add_Group(string name, int colour)
+        public int Add_Group(string name, int colour)
         {
             SqlCommand cmd = new SqlCommand("Add_Group", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -1018,9 +1155,70 @@ namespace Final_Year_Project
             cmd.Parameters.Add("@User_ID", SqlDbType.Int).Value = user.GetID();
             cmd.Parameters.Add("@Colour", SqlDbType.Int).Value = colour;
 
+            int id = 0;
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                id = Convert.ToInt32(rdr[0]);
+            }
+
+            connection.Close();
+
+            return id;
+        }
+
+        public void Add_Friend_To_Group(int user, int group)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Friend_To_Group", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User", SqlDbType.Int).Value = user;
+            cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
+
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+        }
+
+        public void Add_Friend(int id, string name, string nickname)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Friend", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID_1", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@ID_2", SqlDbType.Int).Value = id;
+            cmd.Parameters.Add("@Name_1", SqlDbType.VarChar).Value = user.GetUsername();
+            cmd.Parameters.Add("@Name_2", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@Nickname_1", SqlDbType.VarChar).Value = user.GetUsername();
+            cmd.Parameters.Add("@Nickname_2", SqlDbType.VarChar).Value = nickname;
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public List<Friend> GetFriends()
+        {
+            SqlCommand cmd = new SqlCommand("Get_Friends", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User", SqlDbType.Int).Value = user.GetID();
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            friends = new List<Friend>();
+
+            while (rdr.Read())
+            {
+                friends.Add(new Friend((int)rdr[0], (string)rdr[1], (string)rdr[2]));
+            }
+
+            connection.Close();
+
+            return friends;
         }
 
         public BindingSource Get_Search_Results(string text)
@@ -1045,6 +1243,40 @@ namespace Final_Year_Project
                 "OR CONVERT(VARCHAR(10), Event_DateTime, 103) like '" + text + "' " +
                 "OR Event_Emoji Like '" + text + "' " +
                 "OR Group_Name Like '" + text + "')", connection);
+
+            connection.Open();
+
+            DataTable table = new DataTable();
+            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            sqa.Fill(table);
+
+            connection.Close();
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = table;
+
+            return bs;
+        }
+
+        public BindingSource Get_Friend_Results(string text)
+        {
+            if (text == "Enter Username")
+            {
+                text = "%";
+            }
+
+            else
+            {
+                text = "%" + text + "%";
+            }
+
+            SqlDataAdapter sqa = new SqlDataAdapter("" +
+                "SELECT User_ID, User_Name " +
+                "FROM [Final_Year_Project].[dbo].[User_Table] " +
+                "WHERE User_ID != " + user.GetID() + " " +
+                "AND User_ID NOT IN (SELECT User_ID_2 " +
+                                    "FROM[Final_Year_Project].[dbo].[Friends_Table] " +
+                                    "WHERE User_ID_1 = " + user.GetID() + ")", connection);
 
             connection.Open();
 
