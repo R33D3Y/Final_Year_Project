@@ -59,6 +59,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.Form_Button_Panel = new System.Windows.Forms.Panel();
+            this.PictureBox_Drag = new System.Windows.Forms.PictureBox();
             this.PictureBox_Back = new System.Windows.Forms.PictureBox();
             this.PictureBox_Logout = new System.Windows.Forms.PictureBox();
             this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
@@ -139,6 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Form_Button_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Drag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
@@ -442,21 +444,36 @@
             // Form_Button_Panel
             // 
             this.Form_Button_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Form_Button_Panel.Controls.Add(this.PictureBox_Drag);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Back);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Logout);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Minimise);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Close);
-            this.Form_Button_Panel.Location = new System.Drawing.Point(695, 5);
+            this.Form_Button_Panel.Location = new System.Drawing.Point(656, 5);
             this.Form_Button_Panel.Name = "Form_Button_Panel";
-            this.Form_Button_Panel.Size = new System.Drawing.Size(150, 44);
+            this.Form_Button_Panel.Size = new System.Drawing.Size(189, 44);
             this.Form_Button_Panel.TabIndex = 5;
+            // 
+            // PictureBox_Drag
+            // 
+            this.PictureBox_Drag.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Drag.BackgroundImage")));
+            this.PictureBox_Drag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Drag.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Drag.Location = new System.Drawing.Point(79, 7);
+            this.PictureBox_Drag.Name = "PictureBox_Drag";
+            this.PictureBox_Drag.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Drag.TabIndex = 5;
+            this.PictureBox_Drag.TabStop = false;
+            this.PictureBox_Drag.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_Drag_MouseDown);
+            this.PictureBox_Drag.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Drag.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
             // PictureBox_Back
             // 
             this.PictureBox_Back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Back.BackgroundImage")));
             this.PictureBox_Back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Back.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Back.Location = new System.Drawing.Point(6, 7);
+            this.PictureBox_Back.Location = new System.Drawing.Point(7, 7);
             this.PictureBox_Back.Name = "PictureBox_Back";
             this.PictureBox_Back.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Back.TabIndex = 3;
@@ -471,7 +488,7 @@
             this.PictureBox_Logout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Logout.BackgroundImage")));
             this.PictureBox_Logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Logout.Location = new System.Drawing.Point(42, 7);
+            this.PictureBox_Logout.Location = new System.Drawing.Point(43, 7);
             this.PictureBox_Logout.Name = "PictureBox_Logout";
             this.PictureBox_Logout.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Logout.TabIndex = 2;
@@ -486,7 +503,7 @@
             this.PictureBox_Minimise.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Minimise.BackgroundImage")));
             this.PictureBox_Minimise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Minimise.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Minimise.Location = new System.Drawing.Point(78, 7);
+            this.PictureBox_Minimise.Location = new System.Drawing.Point(115, 7);
             this.PictureBox_Minimise.Name = "PictureBox_Minimise";
             this.PictureBox_Minimise.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Minimise.TabIndex = 1;
@@ -501,7 +518,7 @@
             this.PictureBox_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Close.BackgroundImage")));
             this.PictureBox_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Close.Location = new System.Drawing.Point(114, 7);
+            this.PictureBox_Close.Location = new System.Drawing.Point(151, 7);
             this.PictureBox_Close.Name = "PictureBox_Close";
             this.PictureBox_Close.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Close.TabIndex = 0;
@@ -889,6 +906,7 @@
             // ComboBox_Emoji
             // 
             this.ComboBox_Emoji.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ComboBox_Emoji.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_Emoji.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBox_Emoji.Font = new System.Drawing.Font("Candara", 12F);
             this.ComboBox_Emoji.ForeColor = System.Drawing.Color.White;
@@ -897,11 +915,11 @@
             this.ComboBox_Emoji.Name = "ComboBox_Emoji";
             this.ComboBox_Emoji.Size = new System.Drawing.Size(139, 27);
             this.ComboBox_Emoji.TabIndex = 14;
-            this.ComboBox_Emoji.Text = "Select Emoji";
             // 
             // ComboBox_Group
             // 
             this.ComboBox_Group.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ComboBox_Group.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_Group.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBox_Group.Font = new System.Drawing.Font("Candara", 12F);
             this.ComboBox_Group.ForeColor = System.Drawing.Color.White;
@@ -910,7 +928,6 @@
             this.ComboBox_Group.Name = "ComboBox_Group";
             this.ComboBox_Group.Size = new System.Drawing.Size(139, 27);
             this.ComboBox_Group.TabIndex = 12;
-            this.ComboBox_Group.Text = "Select Group";
             // 
             // panel7
             // 
@@ -1531,11 +1548,11 @@
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
             this.Controls.Add(this.Login_Panel);
+            this.Controls.Add(this.Event_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Group_Panel);
-            this.Controls.Add(this.Event_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -1550,6 +1567,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.Form_Button_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Drag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
@@ -1673,6 +1691,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Group_ID_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Group_Name_Column;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Group_Checkbox_Column;
+        private System.Windows.Forms.PictureBox PictureBox_Drag;
     }
 }
 

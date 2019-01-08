@@ -8,6 +8,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Device.Location;
 using System.Drawing;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -18,6 +21,7 @@ namespace Final_Year_Project
         private Database database;
         private DateTime dt;
         private List<int> visibleGroups = new List<int>();
+        private List<Emoji> emojis;
         private readonly bool populate = false;
 
         public Form1()
@@ -81,11 +85,12 @@ namespace Final_Year_Project
                     database.Populate(dt); // TODO: REMOVE ME
                 }
 
+                Setup_Emojis();
+
                 calendar = tableLayoutPanel;
                 header = tableLayoutPanelCalendarHeader;
                 SetData(database.GetData(dt), dt);
-
-                ResetForm();
+                Setup_Dashboard_Groups();
 
                 Dashboard_Panel.Visible = true;
                 Login_Panel.Visible = false;
@@ -193,9 +198,24 @@ namespace Final_Year_Project
 
         private void Setup_Emojis()
         {
+            TextReader tr = new StreamReader(@"Emojis.txt", Encoding.Unicode, true);
+            emojis = new List<Emoji>();
+            string line;
+
+            while ((line = tr.ReadLine()) != null)
+            {
+                string[] split = line.Split(',');
+                emojis.Add(new Emoji(split[0], split[1]));
+            }
+
+            database.SetEmojis(emojis);
+
             ComboBox_Emoji.Items.Clear();
 
-            ComboBox_Emoji.Items.Add("⚽️");
+            foreach (Emoji e in emojis)
+            {
+                ComboBox_Emoji.Items.Add(e.GetIcon());
+            }
         }
 
         private void Setup_Groups()
@@ -230,8 +250,8 @@ namespace Final_Year_Project
             DateTime tempDt = DateTime.Now;
             dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
-            //calendar = tableLayoutPanel;
-            //header = tableLayoutPanelCalendarHeader;
+            calendar = tableLayoutPanel;
+            header = tableLayoutPanelCalendarHeader;
             SetData(database.GetData(dt), dt);
 
             Dashboard_Panel.Visible = true;
@@ -410,7 +430,7 @@ namespace Final_Year_Project
             
             foreach (DataGridViewRow row in Search_Data.Rows)
             {
-                row.Cells[4].Value = database.Emoji((string)row.Cells[4].Value);
+                row.Cells[4].Value = database.Emoji((string)row.Cells[4].Value, false);
             }
 
             Search_Data.Columns[0].Visible = false; // Event ID
@@ -436,7 +456,7 @@ namespace Final_Year_Project
                 string Event_Name = row.Cells[1].Value.ToString();
                 string Event_Description = row.Cells[2].Value.ToString();
                 DateTime Event_DateTime = (DateTime)row.Cells[3].Value;
-                string Event_Emoji = database.Emoji(row.Cells[4].Value.ToString());
+                string Event_Emoji = database.Emoji(row.Cells[4].Value.ToString(), false);
                 int Group_ID = (int)row.Cells[5].Value;
                 string Group_Name = row.Cells[6].Value.ToString();
                 string [] Event_Location = row.Cells[7].Value.ToString().Split(',');
@@ -1107,6 +1127,24 @@ namespace Final_Year_Project
             Dashboard_Panel.Visible = false;
             Friends_Panel.Visible = true;
         }
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd,
+                         int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void PictureBox_Drag_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
     }
 
     public class Friend
@@ -1144,6 +1182,7 @@ namespace Final_Year_Project
         private User user;
         private List<CalendarGroup> groups;
         private List<Friend> friends;
+        private List<Emoji> emojis;
 
         public Database(string u, string p)
         {
@@ -1197,7 +1236,7 @@ namespace Final_Year_Project
             cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
             cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
             cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
-            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji);
+            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji, true);
             cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
             cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
             cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
@@ -1215,7 +1254,7 @@ namespace Final_Year_Project
             cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
             cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
             cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
-            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji);
+            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji, true);
             cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
             cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
 
@@ -1307,6 +1346,11 @@ namespace Final_Year_Project
             connection.Close();
 
             return friends;
+        }
+
+        public void SetEmojis(List<Emoji> le)
+        {
+            emojis = le;
         }
 
         public BindingSource Get_Search_Results(string text)
@@ -1484,7 +1528,7 @@ namespace Final_Year_Project
                 }
 
                 //Console.WriteLine("Add Day " + day);
-                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4]), new CalendarGroup((int)rdr[8], (string)rdr[9], Color.FromArgb((int)rdr[11]))));
+                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4], false), new CalendarGroup((int)rdr[8], (string)rdr[9], Color.FromArgb((int)rdr[11]))));
             }
 
             data.Add(tempList);
@@ -1540,7 +1584,7 @@ namespace Final_Year_Project
                         cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = data[i][j].GetName();
                         cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = data[i][j].GetDescription();
                         cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = data[i][j].GetDateTime();
-                        cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(data[i][j].GetEmoji());
+                        cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(data[i][j].GetEmoji(), true);
                         cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = data[i][j].GetLocation();
                         cmd.Parameters.Add("@Group", SqlDbType.Int).Value = data[i][j].GetCalendarGroup().GetID();
 
@@ -1593,22 +1637,50 @@ namespace Final_Year_Project
             return gs;
         }
 
-        public string Emoji(string e)
+        public string Emoji(string i, bool name)
         {
-            if (e == "Football")
+            foreach (Emoji emoji in emojis)
             {
-                return "⚽️";
+                if (name)
+                {
+                    if (emoji.GetIcon().Equals(i))
+                    {
+                        return emoji.GetName();
+                    }
+                }
+
+                else
+                {
+                    if (emoji.GetName().Equals(i))
+                    {
+                        return emoji.GetIcon();
+                    }
+                }
             }
 
-            else if (e == "⚽️")
-            {
-                return "Football";
-            }
+            return "####";
+        }
+    }
 
-            else
-            {
-                return "Emoji Not Found: " + e;
-            }
+    public class Emoji
+    {
+        private string name;
+        private string icon;
+
+        public Emoji(string n, string i)
+        {
+            name = n;
+            icon = i;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public string GetIcon()
+        {
+            return icon;
         }
     }
 
@@ -1725,12 +1797,12 @@ namespace Final_Year_Project
  * TODO -
     * Themes
     * Sign-up
-    * Reassociate buttons with hover and leave - DONE
     * Create tests
-    * Groups on dashboard > Show/Hide - DONE
     * Notifications
     * Friends to request friendship
-    * Add more Emoji's
+    * Add more Emoji's - DONE
+    * Filter and restirct entries
+    * Remove and update groups
  * References -
      * Logo: https://www.logolynx.com/topic/calendar
      * Icons: https://icons8.com/
@@ -1740,4 +1812,7 @@ namespace Final_Year_Project
          * Bing - https://www.bing.com/maps
          * NuGet Package - https://archive.codeplex.com/?p=greatmaps
          * Tutorial - http://www.independent-software.com/gmap-net-beginners-tutorial-maps-markers-polygons-routes-updated-for-vs2015-and-gmap1-7.html
+     * Code Assitance:
+         * Code Project - https://www.codeproject.com/
+         * Stack Overflow - https://stackoverflow.com/
 */
