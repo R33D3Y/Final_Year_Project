@@ -286,7 +286,7 @@ namespace Final_Year_Project
 
         private void PictureBox_Back_Click(object sender, EventArgs e)
         {
-            Dashboard_Search.Text = "Enter Search Criteria";
+            ResetForm();
 
             Dashboard_Panel.Visible = true;
             Event_Panel.Visible = false;
@@ -330,6 +330,8 @@ namespace Final_Year_Project
                     database.Add_Friend_To_Group(User_ID, Group_ID);
                 }
             }
+
+            ResetForm();
 
             Dashboard_Panel.Visible = true;
             Event_Panel.Visible = false;
@@ -420,6 +422,10 @@ namespace Final_Year_Project
             Search_Data.Columns[3].HeaderText = "Date/Time";
             Search_Data.Columns[4].HeaderText = "Emoji";
             Search_Data.Columns[6].HeaderText = "Group";
+
+            Search_Data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Search_Data.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Search_Data.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void Search_Data_Click(object sender, EventArgs e)
@@ -512,6 +518,7 @@ namespace Final_Year_Project
             GMap_Control.Position = new PointLatLng(latitude, longitude);
             GMap_Control.ShowCenter = false;
             maptype = false;
+            GMap_Control.Overlays.Clear();
 
             TextBox_Event_ID.Text = "";
             TextBox_Name_Event.Text = "Enter Event Name";
@@ -528,6 +535,7 @@ namespace Final_Year_Project
             GMap_Control_Search.Position = new PointLatLng(latitude, longitude);
             GMap_Control_Search.ShowCenter = false;
             maptype_search = false;
+            GMap_Control_Search.Overlays.Clear();
 
             if (database != null)
             {
@@ -545,6 +553,8 @@ namespace Final_Year_Project
 
             Colour_Panel.BackColor = Color.Black;
             TextBox_Name_Group.Text = "Enter Group Name";
+
+            Dashboard_Search.Text = "Enter Search Criteria";
         }
 
         // Calendar Class
@@ -951,6 +961,8 @@ namespace Final_Year_Project
             Search_Friends.Columns[0].Visible = false; // User ID
 
             Search_Friends.Columns[1].HeaderText = "User Name";
+
+            Search_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void Search_Friends_Click(object sender, EventArgs e)
@@ -1718,6 +1730,7 @@ namespace Final_Year_Project
     * Groups on dashboard > Show/Hide - DONE
     * Notifications
     * Friends to request friendship
+    * Add more Emoji's
  * References -
      * Logo: https://www.logolynx.com/topic/calendar
      * Icons: https://icons8.com/

@@ -1530,12 +1530,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
-            this.Controls.Add(this.Event_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Group_Panel);
+            this.Controls.Add(this.Event_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
