@@ -17,7 +17,8 @@ namespace Final_Year_Project
     {
         private Database database;
         private DateTime dt;
-        private readonly bool populate = true;
+        private List<int> visibleGroups = new List<int>();
+        private readonly bool populate = false;
 
         public Form1()
         {
@@ -111,13 +112,13 @@ namespace Final_Year_Project
             }
         }
 
-        private void Login_MouseHover(object sender, EventArgs e)
+        private void Label_MouseHover(object sender, EventArgs e)
         {
             Label l = (Label)sender;
             l.BackColor = Color.Silver;
         }
 
-        private void Login_MouseLeave(object sender, EventArgs e)
+        private void Label_MouseLeave(object sender, EventArgs e)
         {
             Label l = (Label)sender;
             l.BackColor = Color.White;
@@ -173,7 +174,7 @@ namespace Final_Year_Project
 
             if (database != null)
             {
-                database.SetData(GetData());
+                //database.SetData(GetData());
                 Textbox_Username.Text = "Username";
                 Textbox_Password.Text = "Password";
                 database = null;
@@ -184,6 +185,8 @@ namespace Final_Year_Project
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
+
+            PictureBox_Logout.Visible = false;
 
             Login_Panel.Visible = true;
         }
@@ -227,8 +230,8 @@ namespace Final_Year_Project
             DateTime tempDt = DateTime.Now;
             dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
-            calendar = tableLayoutPanel;
-            header = tableLayoutPanelCalendarHeader;
+            //calendar = tableLayoutPanel;
+            //header = tableLayoutPanelCalendarHeader;
             SetData(database.GetData(dt), dt);
 
             Dashboard_Panel.Visible = true;
@@ -531,6 +534,7 @@ namespace Final_Year_Project
                 Setup_Emojis();
                 Setup_Groups();
                 Setup_Friends();
+                Setup_Dashboard_Groups();
             }
 
             ComboBox_Emoji.Text = "Select Emoji";
@@ -543,12 +547,12 @@ namespace Final_Year_Project
             TextBox_Name_Group.Text = "Enter Group Name";
         }
 
+        // Calendar Class
+
         private TableLayoutPanel calendar;
         private TableLayoutPanel header;
         private List<List<CalendarEvent>> data;
         private DateTime startDate;
-
-        // Calendar Class
 
         public void Render()
         {
@@ -646,6 +650,8 @@ namespace Final_Year_Project
                             if (days.Length == data_count || data_count >= startDate.AddMonths(1).AddDays(-1).Day)
                             {
                                 calendar.Controls.Add(new Label() { Text = "" });
+
+                                //Console.WriteLine(data_count);
                             }
 
                             else
@@ -669,6 +675,8 @@ namespace Final_Year_Project
                                     {
                                         Color txt = Color.Black;
 
+                                        //Console.WriteLine(data[data_count][h].GetName() + " " + data[data_count][h].GetDateTime() + " " + data_count); // Output
+
                                         if (data[data_count][h].GetCalendarGroup().GetColor().GetBrightness() < 0.3)
                                         {
                                             txt = Color.White;
@@ -688,7 +696,10 @@ namespace Final_Year_Project
 
                                         t.SetToolTip(l, data[data_count][h].GetDescription());
 
-                                        p.Controls.Add(l);
+                                        if (visibleGroups.Contains(data[data_count][h].GetCalendarGroup().GetID()))
+                                        {
+                                            p.Controls.Add(l);
+                                        }
                                     }
 
                                     if (switch_colour)
@@ -708,7 +719,7 @@ namespace Final_Year_Project
 
                                 catch (NullReferenceException)
                                 {
-                                    //Console.WriteLine(ex_var.Message);
+                                    //Console.WriteLine("Empty Day " + data_count);
 
                                     TableLayoutPanel p = new TableLayoutPanel
                                     {
@@ -791,6 +802,8 @@ namespace Final_Year_Project
             {
                 data.RemoveAt(data.Count - 1);
             }
+
+            //Console.WriteLine(data);
 
             return data;
         }
@@ -994,6 +1007,69 @@ namespace Final_Year_Project
             for (int i = 0; i < f.Count; i++)
             {
                 Data_Groups.Rows.Add(false, f[i].GetID(), f[i].GetUserName(), f[i].GetNickName());
+            }
+        }
+
+        private void Setup_Dashboard_Groups()
+        {
+            List<int> temp = database.GetGroupIDs();
+
+            foreach (int i in temp)
+            {
+                if (!visibleGroups.Contains(i))
+                {
+                    visibleGroups.Add(i);
+                }
+            }
+
+            foreach (int i in visibleGroups)
+            {
+                if (!temp.Contains(i))
+                {
+                    visibleGroups.Remove(i);
+                }
+            }
+
+            Groups_Data.Rows.Clear();
+
+            List<CalendarGroup> cg = database.GetGroups();
+
+            foreach (CalendarGroup c in cg)
+            {
+                bool visible = false;
+
+                if (visibleGroups.Contains(c.GetID()))
+                {
+                    visible = true;
+                }
+
+                Groups_Data.Rows.Add(c.GetID(), c.GetName(), visible);
+            }
+
+            Render();
+        }
+
+        private void Group_Data_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Groups_Data.SelectedRows)
+            {
+                if ((bool)row.Cells[2].Value)
+                {
+                    row.Cells[2].Value = false;
+
+                    visibleGroups.Remove((int)row.Cells[0].Value);
+
+                    Render();
+                }
+
+                else
+                {
+                    row.Cells[2].Value = true;
+
+                    visibleGroups.Add((int)row.Cells[0].Value);
+
+                    Render();
+                }
             }
         }
 
@@ -1371,26 +1447,32 @@ namespace Final_Year_Project
 
             while (rdr.Read())
             {
+                //Console.WriteLine("CONDITION 1: " + tempList[0].GetDateTime().Date);
+                //Console.WriteLine("Incoming Event Date: " + ((DateTime)rdr[3]).Date);
+
                 if (tempList.Count > 0 && tempList[0].GetDateTime().Date != ((DateTime)rdr[3]).Date)
                 {
+                    //Console.WriteLine("Reset List " + day);
+
                     data.Add(tempList);
                     tempList = new List<CalendarEvent>();
                     day++;
                 }
 
-                else
+                //Console.WriteLine("Incoming Day " + ((DateTime)rdr[3]).Day + " Day " + day);
+
+                while (day != ((DateTime)rdr[3]).Day)
                 {
-                    while (day != ((DateTime)rdr[3]).Day)
-                    {
-                        tempList = new List<CalendarEvent>();
-                        tempList.Add(null);
-                        data.Add(tempList);
-                        tempList = new List<CalendarEvent>();
-                        day++;
-                    }
+                    //Console.WriteLine("Skip Day " + day);
+                    tempList = new List<CalendarEvent>();
+                    tempList.Add(null);
+                    data.Add(tempList);
+                    tempList = new List<CalendarEvent>();
+                    day++;
                 }
-                
-                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4]), new CalendarGroup((int)rdr[6], (string)rdr[9], Color.FromArgb((int)rdr[11]))));
+
+                //Console.WriteLine("Add Day " + day);
+                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4]), new CalendarGroup((int)rdr[8], (string)rdr[9], Color.FromArgb((int)rdr[11]))));
             }
 
             data.Add(tempList);
@@ -1405,6 +1487,22 @@ namespace Final_Year_Project
             }
 
             connection.Close();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                for (int j = 0; j < data[i].Count; j++)
+                {
+                    if (data[i][j] != null)
+                    {
+                        //Console.WriteLine(i + " " + data[i][j].GetDateTime() + " " + data[i][j].GetName() + " " + data[i][j].GetDateTime().Day);
+                    }
+
+                    else
+                    {
+                        //Console.WriteLine(i + " Empty Day");
+                    }
+                }
+            }
 
             return data;
         }
@@ -1422,7 +1520,7 @@ namespace Final_Year_Project
             {
                 for (int j = 0; j < data[i].Count; j++)
                 {
-                    try
+                    if (data[i][j] != null)
                     {
                         SqlCommand cmd = new SqlCommand("Update_Event", connection);
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -1432,13 +1530,9 @@ namespace Final_Year_Project
                         cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = data[i][j].GetDateTime();
                         cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(data[i][j].GetEmoji());
                         cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = data[i][j].GetLocation();
+                        cmd.Parameters.Add("@Group", SqlDbType.Int).Value = data[i][j].GetCalendarGroup().GetID();
 
                         cmd.ExecuteNonQuery();
-                    }
-
-                    catch (Exception)
-                    {
-
                     }
                 }
             }
@@ -1471,6 +1565,20 @@ namespace Final_Year_Project
             RetrieveGroups();
 
             return groups;
+        }
+
+        public List<int> GetGroupIDs()
+        {
+            RetrieveGroups();
+
+            List<int> gs = new List<int>();
+
+            foreach (CalendarGroup g in groups)
+            {
+                gs.Add(g.GetID());
+            }
+
+            return gs;
         }
 
         public string Emoji(string e)
@@ -1601,8 +1709,15 @@ namespace Final_Year_Project
     }
 }
 
-
 /*
+ * TODO -
+    * Themes
+    * Sign-up
+    * Reassociate buttons with hover and leave - DONE
+    * Create tests
+    * Groups on dashboard > Show/Hide - DONE
+    * Notifications
+    * Friends to request friendship
  * References -
      * Logo: https://www.logolynx.com/topic/calendar
      * Icons: https://icons8.com/

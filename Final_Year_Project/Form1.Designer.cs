@@ -28,21 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanelCalendarHeader = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Dashboard_Panel = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.Groups_Data = new System.Windows.Forms.DataGridView();
+            this.Group_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Group_Name_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Group_Checkbox_Column = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Find_Friends_Button = new System.Windows.Forms.Label();
             this.Dashboard_Search_Button = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -50,6 +54,15 @@
             this.Dashboard_Add_Group = new System.Windows.Forms.Label();
             this.Dashboard_Add_Event = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.MonthCalendar();
+            this.tableLayoutPanelCalendarHeader = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.Form_Button_Panel = new System.Windows.Forms.Panel();
+            this.PictureBox_Back = new System.Windows.Forms.PictureBox();
+            this.PictureBox_Logout = new System.Windows.Forms.PictureBox();
+            this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
+            this.PictureBox_Close = new System.Windows.Forms.PictureBox();
             this.Login_Panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PictureBox_Password_Cross = new System.Windows.Forms.PictureBox();
@@ -90,6 +103,10 @@
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.Data_Groups = new System.Windows.Forms.DataGridView();
+            this.Check_Boxes_Column = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.User_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nickname_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Add_Group_Button = new System.Windows.Forms.Label();
             this.Colour_Panel = new System.Windows.Forms.Panel();
             this.ColourPicker_Button = new System.Windows.Forms.Label();
@@ -106,11 +123,6 @@
             this.Search_Panel_Button = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.TextBox_Search = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.PictureBox_Back = new System.Windows.Forms.PictureBox();
-            this.PictureBox_Logout = new System.Windows.Forms.PictureBox();
-            this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
-            this.PictureBox_Close = new System.Windows.Forms.PictureBox();
             this.Friends_Panel = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
@@ -120,14 +132,17 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.TextBox_Search_Username = new System.Windows.Forms.TextBox();
             this.Search_Username_Button = new System.Windows.Forms.Label();
-            this.Check_Boxes_Column = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.User_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nickname_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dashboard_Panel.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
             this.tableLayoutPanelCalendarHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.Dashboard_Panel.SuspendLayout();
+            this.Form_Button_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).BeginInit();
             this.Login_Panel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Password_Cross)).BeginInit();
@@ -143,50 +158,204 @@
             this.Search_Panel.SuspendLayout();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Data)).BeginInit();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).BeginInit();
             this.Friends_Panel.SuspendLayout();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Friends)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel
+            // Dashboard_Panel
             // 
-            this.tableLayoutPanel.AutoSize = true;
-            this.tableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tableLayoutPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tableLayoutPanel.ColumnCount = 7;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(3, 50);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 13;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(595, 640);
-            this.tableLayoutPanel.TabIndex = 0;
+            this.Dashboard_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Dashboard_Panel.Controls.Add(this.panel4);
+            this.Dashboard_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dashboard_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Dashboard_Panel.Name = "Dashboard_Panel";
+            this.Dashboard_Panel.Size = new System.Drawing.Size(850, 710);
+            this.Dashboard_Panel.TabIndex = 2;
+            this.Dashboard_Panel.Visible = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel4.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel4.Controls.Add(this.Groups_Data);
+            this.panel4.Controls.Add(this.Find_Friends_Button);
+            this.panel4.Controls.Add(this.Dashboard_Search_Button);
+            this.panel4.Controls.Add(this.panel14);
+            this.panel4.Controls.Add(this.Dashboard_Search);
+            this.panel4.Controls.Add(this.Dashboard_Add_Group);
+            this.panel4.Controls.Add(this.Dashboard_Add_Event);
+            this.panel4.Controls.Add(this.DatePicker);
+            this.panel4.Controls.Add(this.tableLayoutPanelCalendarHeader);
+            this.panel4.Controls.Add(this.tableLayoutPanel);
+            this.panel4.Location = new System.Drawing.Point(6, 5);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(839, 700);
+            this.panel4.TabIndex = 27;
+            // 
+            // Groups_Data
+            // 
+            this.Groups_Data.AllowUserToAddRows = false;
+            this.Groups_Data.AllowUserToDeleteRows = false;
+            this.Groups_Data.AllowUserToResizeColumns = false;
+            this.Groups_Data.AllowUserToResizeRows = false;
+            this.Groups_Data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Groups_Data.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Groups_Data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Groups_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Groups_Data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Groups_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Groups_Data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Group_ID_Column,
+            this.Group_Name_Column,
+            this.Group_Checkbox_Column});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Groups_Data.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Groups_Data.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Groups_Data.Location = new System.Drawing.Point(607, 413);
+            this.Groups_Data.MultiSelect = false;
+            this.Groups_Data.Name = "Groups_Data";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Groups_Data.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Groups_Data.RowHeadersVisible = false;
+            this.Groups_Data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Groups_Data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Groups_Data.Size = new System.Drawing.Size(227, 279);
+            this.Groups_Data.TabIndex = 36;
+            this.Groups_Data.Click += new System.EventHandler(this.Group_Data_Click);
+            // 
+            // Group_ID_Column
+            // 
+            this.Group_ID_Column.HeaderText = "ID";
+            this.Group_ID_Column.Name = "Group_ID_Column";
+            this.Group_ID_Column.Visible = false;
+            this.Group_ID_Column.Width = 29;
+            // 
+            // Group_Name_Column
+            // 
+            this.Group_Name_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Group_Name_Column.HeaderText = "Group";
+            this.Group_Name_Column.Name = "Group_Name_Column";
+            this.Group_Name_Column.ReadOnly = true;
+            // 
+            // Group_Checkbox_Column
+            // 
+            this.Group_Checkbox_Column.HeaderText = "Visible";
+            this.Group_Checkbox_Column.Name = "Group_Checkbox_Column";
+            this.Group_Checkbox_Column.Width = 58;
+            // 
+            // Find_Friends_Button
+            // 
+            this.Find_Friends_Button.BackColor = System.Drawing.Color.White;
+            this.Find_Friends_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Find_Friends_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Find_Friends_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Find_Friends_Button.Location = new System.Drawing.Point(607, 377);
+            this.Find_Friends_Button.Name = "Find_Friends_Button";
+            this.Find_Friends_Button.Size = new System.Drawing.Size(227, 30);
+            this.Find_Friends_Button.TabIndex = 35;
+            this.Find_Friends_Button.Text = "Find Friends";
+            this.Find_Friends_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Find_Friends_Button.Click += new System.EventHandler(this.Find_Friends_Button_Click);
+            this.Find_Friends_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Find_Friends_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
+            // Dashboard_Search_Button
+            // 
+            this.Dashboard_Search_Button.BackColor = System.Drawing.Color.White;
+            this.Dashboard_Search_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Dashboard_Search_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Dashboard_Search_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Search_Button.Location = new System.Drawing.Point(607, 336);
+            this.Dashboard_Search_Button.Name = "Dashboard_Search_Button";
+            this.Dashboard_Search_Button.Size = new System.Drawing.Size(227, 30);
+            this.Dashboard_Search_Button.TabIndex = 34;
+            this.Dashboard_Search_Button.Text = "Search";
+            this.Dashboard_Search_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Dashboard_Search_Button.Click += new System.EventHandler(this.Dashboard_Search_Button_Click);
+            this.Dashboard_Search_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Dashboard_Search_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.White;
+            this.panel14.Location = new System.Drawing.Point(607, 326);
+            this.panel14.Margin = new System.Windows.Forms.Padding(0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(228, 1);
+            this.panel14.TabIndex = 30;
+            // 
+            // Dashboard_Search
+            // 
+            this.Dashboard_Search.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Search.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Dashboard_Search.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dashboard_Search.ForeColor = System.Drawing.Color.White;
+            this.Dashboard_Search.Location = new System.Drawing.Point(613, 304);
+            this.Dashboard_Search.Name = "Dashboard_Search";
+            this.Dashboard_Search.Size = new System.Drawing.Size(222, 20);
+            this.Dashboard_Search.TabIndex = 33;
+            this.Dashboard_Search.Text = "Enter Search Criteria";
+            this.Dashboard_Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Dashboard_Add_Group
+            // 
+            this.Dashboard_Add_Group.BackColor = System.Drawing.Color.White;
+            this.Dashboard_Add_Group.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Dashboard_Add_Group.Font = new System.Drawing.Font("Candara", 12F);
+            this.Dashboard_Add_Group.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Add_Group.Location = new System.Drawing.Point(608, 92);
+            this.Dashboard_Add_Group.Name = "Dashboard_Add_Group";
+            this.Dashboard_Add_Group.Size = new System.Drawing.Size(227, 30);
+            this.Dashboard_Add_Group.TabIndex = 32;
+            this.Dashboard_Add_Group.Text = "Add Group";
+            this.Dashboard_Add_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Dashboard_Add_Group.Click += new System.EventHandler(this.Dashboard_Add_Group_Click);
+            this.Dashboard_Add_Group.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Dashboard_Add_Group.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
+            // Dashboard_Add_Event
+            // 
+            this.Dashboard_Add_Event.BackColor = System.Drawing.Color.White;
+            this.Dashboard_Add_Event.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Dashboard_Add_Event.Font = new System.Drawing.Font("Candara", 12F);
+            this.Dashboard_Add_Event.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Add_Event.Location = new System.Drawing.Point(608, 52);
+            this.Dashboard_Add_Event.Name = "Dashboard_Add_Event";
+            this.Dashboard_Add_Event.Size = new System.Drawing.Size(227, 30);
+            this.Dashboard_Add_Event.TabIndex = 31;
+            this.Dashboard_Add_Event.Text = "Add Event";
+            this.Dashboard_Add_Event.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Dashboard_Add_Event.Click += new System.EventHandler(this.Dashboard_Add_Event_Click);
+            this.Dashboard_Add_Event.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Dashboard_Add_Event.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
+            // DatePicker
+            // 
+            this.DatePicker.Location = new System.Drawing.Point(607, 131);
+            this.DatePicker.MaxSelectionCount = 1;
+            this.DatePicker.Name = "DatePicker";
+            this.DatePicker.TabIndex = 29;
+            this.DatePicker.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.DatePicker_DateSelected);
             // 
             // tableLayoutPanelCalendarHeader
             // 
@@ -196,12 +365,12 @@
             this.tableLayoutPanelCalendarHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanelCalendarHeader.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanelCalendarHeader.Controls.Add(this.pictureBox2, 2, 0);
-            this.tableLayoutPanelCalendarHeader.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanelCalendarHeader.Location = new System.Drawing.Point(3, 5);
             this.tableLayoutPanelCalendarHeader.Name = "tableLayoutPanelCalendarHeader";
             this.tableLayoutPanelCalendarHeader.RowCount = 1;
             this.tableLayoutPanelCalendarHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanelCalendarHeader.Size = new System.Drawing.Size(341, 44);
-            this.tableLayoutPanelCalendarHeader.TabIndex = 1;
+            this.tableLayoutPanelCalendarHeader.TabIndex = 28;
             // 
             // pictureBox1
             // 
@@ -235,117 +404,120 @@
             this.pictureBox2.MouseLeave += new System.EventHandler(this.PictureBox_MouseLeave);
             this.pictureBox2.MouseHover += new System.EventHandler(this.PictureBox_MouseHover);
             // 
-            // Dashboard_Panel
+            // tableLayoutPanel
             // 
-            this.Dashboard_Panel.BackColor = System.Drawing.Color.RoyalBlue;
-            this.Dashboard_Panel.Controls.Add(this.Find_Friends_Button);
-            this.Dashboard_Panel.Controls.Add(this.Dashboard_Search_Button);
-            this.Dashboard_Panel.Controls.Add(this.panel14);
-            this.Dashboard_Panel.Controls.Add(this.Dashboard_Search);
-            this.Dashboard_Panel.Controls.Add(this.Dashboard_Add_Group);
-            this.Dashboard_Panel.Controls.Add(this.Dashboard_Add_Event);
-            this.Dashboard_Panel.Controls.Add(this.DatePicker);
-            this.Dashboard_Panel.Controls.Add(this.tableLayoutPanelCalendarHeader);
-            this.Dashboard_Panel.Controls.Add(this.tableLayoutPanel);
-            this.Dashboard_Panel.Location = new System.Drawing.Point(12, 12);
-            this.Dashboard_Panel.Name = "Dashboard_Panel";
-            this.Dashboard_Panel.Size = new System.Drawing.Size(845, 696);
-            this.Dashboard_Panel.TabIndex = 2;
-            this.Dashboard_Panel.Visible = false;
+            this.tableLayoutPanel.AutoSize = true;
+            this.tableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tableLayoutPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tableLayoutPanel.ColumnCount = 7;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(3, 52);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 13;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(595, 640);
+            this.tableLayoutPanel.TabIndex = 27;
             // 
-            // Find_Friends_Button
+            // Form_Button_Panel
             // 
-            this.Find_Friends_Button.BackColor = System.Drawing.Color.White;
-            this.Find_Friends_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Find_Friends_Button.Font = new System.Drawing.Font("Candara", 12F);
-            this.Find_Friends_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Find_Friends_Button.Location = new System.Drawing.Point(607, 375);
-            this.Find_Friends_Button.Name = "Find_Friends_Button";
-            this.Find_Friends_Button.Size = new System.Drawing.Size(227, 30);
-            this.Find_Friends_Button.TabIndex = 26;
-            this.Find_Friends_Button.Text = "Find Friends";
-            this.Find_Friends_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Find_Friends_Button.Click += new System.EventHandler(this.Find_Friends_Button_Click);
+            this.Form_Button_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Form_Button_Panel.Controls.Add(this.PictureBox_Back);
+            this.Form_Button_Panel.Controls.Add(this.PictureBox_Logout);
+            this.Form_Button_Panel.Controls.Add(this.PictureBox_Minimise);
+            this.Form_Button_Panel.Controls.Add(this.PictureBox_Close);
+            this.Form_Button_Panel.Location = new System.Drawing.Point(695, 5);
+            this.Form_Button_Panel.Name = "Form_Button_Panel";
+            this.Form_Button_Panel.Size = new System.Drawing.Size(150, 44);
+            this.Form_Button_Panel.TabIndex = 5;
             // 
-            // Dashboard_Search_Button
+            // PictureBox_Back
             // 
-            this.Dashboard_Search_Button.BackColor = System.Drawing.Color.White;
-            this.Dashboard_Search_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Dashboard_Search_Button.Font = new System.Drawing.Font("Candara", 12F);
-            this.Dashboard_Search_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Dashboard_Search_Button.Location = new System.Drawing.Point(607, 334);
-            this.Dashboard_Search_Button.Name = "Dashboard_Search_Button";
-            this.Dashboard_Search_Button.Size = new System.Drawing.Size(227, 30);
-            this.Dashboard_Search_Button.TabIndex = 25;
-            this.Dashboard_Search_Button.Text = "Search";
-            this.Dashboard_Search_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Dashboard_Search_Button.Click += new System.EventHandler(this.Dashboard_Search_Button_Click);
+            this.PictureBox_Back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Back.BackgroundImage")));
+            this.PictureBox_Back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Back.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Back.Location = new System.Drawing.Point(6, 7);
+            this.PictureBox_Back.Name = "PictureBox_Back";
+            this.PictureBox_Back.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Back.TabIndex = 3;
+            this.PictureBox_Back.TabStop = false;
+            this.PictureBox_Back.Visible = false;
+            this.PictureBox_Back.Click += new System.EventHandler(this.PictureBox_Back_Click);
+            this.PictureBox_Back.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Back.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
-            // panel14
+            // PictureBox_Logout
             // 
-            this.panel14.BackColor = System.Drawing.Color.White;
-            this.panel14.Location = new System.Drawing.Point(607, 324);
-            this.panel14.Margin = new System.Windows.Forms.Padding(0);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(228, 1);
-            this.panel14.TabIndex = 5;
+            this.PictureBox_Logout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Logout.BackgroundImage")));
+            this.PictureBox_Logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Logout.Location = new System.Drawing.Point(42, 7);
+            this.PictureBox_Logout.Name = "PictureBox_Logout";
+            this.PictureBox_Logout.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Logout.TabIndex = 2;
+            this.PictureBox_Logout.TabStop = false;
+            this.PictureBox_Logout.Visible = false;
+            this.PictureBox_Logout.Click += new System.EventHandler(this.PictureBox_Logout_Click);
+            this.PictureBox_Logout.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Logout.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
-            // Dashboard_Search
+            // PictureBox_Minimise
             // 
-            this.Dashboard_Search.BackColor = System.Drawing.Color.RoyalBlue;
-            this.Dashboard_Search.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Dashboard_Search.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dashboard_Search.ForeColor = System.Drawing.Color.White;
-            this.Dashboard_Search.Location = new System.Drawing.Point(613, 302);
-            this.Dashboard_Search.Name = "Dashboard_Search";
-            this.Dashboard_Search.Size = new System.Drawing.Size(222, 20);
-            this.Dashboard_Search.TabIndex = 24;
-            this.Dashboard_Search.Text = "Enter Search Criteria";
-            this.Dashboard_Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PictureBox_Minimise.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Minimise.BackgroundImage")));
+            this.PictureBox_Minimise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Minimise.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Minimise.Location = new System.Drawing.Point(78, 7);
+            this.PictureBox_Minimise.Name = "PictureBox_Minimise";
+            this.PictureBox_Minimise.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Minimise.TabIndex = 1;
+            this.PictureBox_Minimise.TabStop = false;
+            this.PictureBox_Minimise.Click += new System.EventHandler(this.PictureBox_Minimise_Click);
+            this.PictureBox_Minimise.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Minimise.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
-            // Dashboard_Add_Group
+            // PictureBox_Close
             // 
-            this.Dashboard_Add_Group.BackColor = System.Drawing.Color.White;
-            this.Dashboard_Add_Group.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Dashboard_Add_Group.Font = new System.Drawing.Font("Candara", 12F);
-            this.Dashboard_Add_Group.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Dashboard_Add_Group.Location = new System.Drawing.Point(608, 90);
-            this.Dashboard_Add_Group.Name = "Dashboard_Add_Group";
-            this.Dashboard_Add_Group.Size = new System.Drawing.Size(227, 30);
-            this.Dashboard_Add_Group.TabIndex = 19;
-            this.Dashboard_Add_Group.Text = "Add Group";
-            this.Dashboard_Add_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Dashboard_Add_Group.Click += new System.EventHandler(this.Dashboard_Add_Group_Click);
-            // 
-            // Dashboard_Add_Event
-            // 
-            this.Dashboard_Add_Event.BackColor = System.Drawing.Color.White;
-            this.Dashboard_Add_Event.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Dashboard_Add_Event.Font = new System.Drawing.Font("Candara", 12F);
-            this.Dashboard_Add_Event.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Dashboard_Add_Event.Location = new System.Drawing.Point(608, 50);
-            this.Dashboard_Add_Event.Name = "Dashboard_Add_Event";
-            this.Dashboard_Add_Event.Size = new System.Drawing.Size(227, 30);
-            this.Dashboard_Add_Event.TabIndex = 18;
-            this.Dashboard_Add_Event.Text = "Add Event";
-            this.Dashboard_Add_Event.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Dashboard_Add_Event.Click += new System.EventHandler(this.Dashboard_Add_Event_Click);
-            // 
-            // DatePicker
-            // 
-            this.DatePicker.Location = new System.Drawing.Point(607, 129);
-            this.DatePicker.MaxSelectionCount = 1;
-            this.DatePicker.Name = "DatePicker";
-            this.DatePicker.TabIndex = 2;
-            this.DatePicker.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.DatePicker_DateSelected);
+            this.PictureBox_Close.BackColor = System.Drawing.Color.RoyalBlue;
+            this.PictureBox_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Close.BackgroundImage")));
+            this.PictureBox_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Close.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Close.Location = new System.Drawing.Point(114, 7);
+            this.PictureBox_Close.Name = "PictureBox_Close";
+            this.PictureBox_Close.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Close.TabIndex = 0;
+            this.PictureBox_Close.TabStop = false;
+            this.PictureBox_Close.Click += new System.EventHandler(this.PictureBox_Close_Click);
+            this.PictureBox_Close.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Close.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
             // Login_Panel
             // 
             this.Login_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Login_Panel.Controls.Add(this.panel1);
-            this.Login_Panel.Location = new System.Drawing.Point(1619, 12);
+            this.Login_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Login_Panel.Location = new System.Drawing.Point(0, 0);
             this.Login_Panel.Name = "Login_Panel";
-            this.Login_Panel.Size = new System.Drawing.Size(250, 380);
+            this.Login_Panel.Size = new System.Drawing.Size(850, 710);
             this.Login_Panel.TabIndex = 3;
             // 
             // panel1
@@ -363,7 +535,7 @@
             this.panel1.Controls.Add(this.Textbox_Password);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.Textbox_Username);
-            this.panel1.Location = new System.Drawing.Point(19, 17);
+            this.panel1.Location = new System.Drawing.Point(319, 182);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(213, 346);
             this.panel1.TabIndex = 0;
@@ -434,8 +606,8 @@
             this.SignUp_Button.Text = "Sign Up";
             this.SignUp_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SignUp_Button.Click += new System.EventHandler(this.SignUp_Button_Click);
-            this.SignUp_Button.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
-            this.SignUp_Button.MouseHover += new System.EventHandler(this.Login_MouseHover);
+            this.SignUp_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.SignUp_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Login_Button
             // 
@@ -450,8 +622,8 @@
             this.Login_Button.Text = "Login";
             this.Login_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Login_Button.Click += new System.EventHandler(this.Login_Button_Click);
-            this.Login_Button.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
-            this.Login_Button.MouseHover += new System.EventHandler(this.Login_MouseHover);
+            this.Login_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Login_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // pictureBox3
             // 
@@ -506,9 +678,10 @@
             // 
             this.Event_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Event_Panel.Controls.Add(this.panel5);
-            this.Event_Panel.Location = new System.Drawing.Point(863, 12);
+            this.Event_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Event_Panel.Location = new System.Drawing.Point(0, 0);
             this.Event_Panel.Name = "Event_Panel";
-            this.Event_Panel.Size = new System.Drawing.Size(594, 380);
+            this.Event_Panel.Size = new System.Drawing.Size(850, 710);
             this.Event_Panel.TabIndex = 4;
             this.Event_Panel.Visible = false;
             // 
@@ -538,7 +711,7 @@
             this.panel5.Controls.Add(this.DateTimePicker_Date);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.TextBox_Name_Event);
-            this.panel5.Location = new System.Drawing.Point(17, 14);
+            this.panel5.Location = new System.Drawing.Point(145, 179);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(561, 352);
             this.panel5.TabIndex = 0;
@@ -565,6 +738,8 @@
             this.Update_Event_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Update_Event_Button.Visible = false;
             this.Update_Event_Button.Click += new System.EventHandler(this.Update_Event_Button_Click);
+            this.Update_Event_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Update_Event_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Remove_Event_Button
             // 
@@ -580,6 +755,8 @@
             this.Remove_Event_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Remove_Event_Button.Visible = false;
             this.Remove_Event_Button.Click += new System.EventHandler(this.Remove_Event_Button_Click);
+            this.Remove_Event_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Remove_Event_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Map_Type_Button
             // 
@@ -594,6 +771,8 @@
             this.Map_Type_Button.Text = "Switch Map Type";
             this.Map_Type_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Map_Type_Button.Click += new System.EventHandler(this.Map_Type_Click);
+            this.Map_Type_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Map_Type_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // GMap_Control
             // 
@@ -677,8 +856,8 @@
             this.Add_Event_Button.Text = "Add Event";
             this.Add_Event_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Add_Event_Button.Click += new System.EventHandler(this.Add_Event_Button_Click);
-            this.Add_Event_Button.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
-            this.Add_Event_Button.MouseHover += new System.EventHandler(this.Login_MouseHover);
+            this.Add_Event_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Add_Event_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Search_Location_Button
             // 
@@ -693,8 +872,8 @@
             this.Search_Location_Button.Text = "Search";
             this.Search_Location_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Search_Location_Button.Click += new System.EventHandler(this.Search_Location_Click);
-            this.Search_Location_Button.MouseLeave += new System.EventHandler(this.Login_MouseLeave);
-            this.Search_Location_Button.MouseHover += new System.EventHandler(this.Login_MouseHover);
+            this.Search_Location_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Search_Location_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // label3
             // 
@@ -835,9 +1014,10 @@
             // 
             this.Group_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Group_Panel.Controls.Add(this.panel9);
-            this.Group_Panel.Location = new System.Drawing.Point(242, 714);
+            this.Group_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Group_Panel.Location = new System.Drawing.Point(0, 0);
             this.Group_Panel.Name = "Group_Panel";
-            this.Group_Panel.Size = new System.Drawing.Size(615, 187);
+            this.Group_Panel.Size = new System.Drawing.Size(850, 710);
             this.Group_Panel.TabIndex = 5;
             this.Group_Panel.Visible = false;
             // 
@@ -851,7 +1031,7 @@
             this.panel9.Controls.Add(this.ColourPicker_Button);
             this.panel9.Controls.Add(this.panel8);
             this.panel9.Controls.Add(this.TextBox_Name_Group);
-            this.panel9.Location = new System.Drawing.Point(3, 7);
+            this.panel9.Location = new System.Drawing.Point(121, 269);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(601, 173);
             this.panel9.TabIndex = 20;
@@ -866,46 +1046,76 @@
             this.Data_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.Data_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Data_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Groups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.Data_Groups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Data_Groups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Check_Boxes_Column,
             this.User_ID_Column,
             this.Username_Column,
             this.Nickname_Column});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Groups.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups.DefaultCellStyle = dataGridViewCellStyle5;
             this.Data_Groups.GridColor = System.Drawing.Color.RoyalBlue;
             this.Data_Groups.Location = new System.Drawing.Point(230, 11);
             this.Data_Groups.MultiSelect = false;
             this.Data_Groups.Name = "Data_Groups";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Data_Groups.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Groups.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.Data_Groups.RowHeadersVisible = false;
             this.Data_Groups.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Data_Groups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Data_Groups.Size = new System.Drawing.Size(356, 152);
             this.Data_Groups.TabIndex = 26;
             this.Data_Groups.Click += new System.EventHandler(this.Data_Groups_Click);
+            // 
+            // Check_Boxes_Column
+            // 
+            this.Check_Boxes_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Check_Boxes_Column.HeaderText = "Add To Group";
+            this.Check_Boxes_Column.Name = "Check_Boxes_Column";
+            this.Check_Boxes_Column.Width = 120;
+            // 
+            // User_ID_Column
+            // 
+            this.User_ID_Column.HeaderText = "User ID";
+            this.User_ID_Column.Name = "User_ID_Column";
+            this.User_ID_Column.ReadOnly = true;
+            this.User_ID_Column.Visible = false;
+            this.User_ID_Column.Width = 83;
+            // 
+            // Username_Column
+            // 
+            this.Username_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Username_Column.HeaderText = "User Name";
+            this.Username_Column.Name = "Username_Column";
+            this.Username_Column.ReadOnly = true;
+            this.Username_Column.Width = 109;
+            // 
+            // Nickname_Column
+            // 
+            this.Nickname_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nickname_Column.HeaderText = "Nickname";
+            this.Nickname_Column.Name = "Nickname_Column";
+            this.Nickname_Column.ReadOnly = true;
             // 
             // Add_Group_Button
             // 
@@ -920,6 +1130,8 @@
             this.Add_Group_Button.Text = "Add Group";
             this.Add_Group_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Add_Group_Button.Click += new System.EventHandler(this.Add_Group_Button_Click);
+            this.Add_Group_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Add_Group_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Colour_Panel
             // 
@@ -942,6 +1154,8 @@
             this.ColourPicker_Button.Text = "Choose Colour";
             this.ColourPicker_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ColourPicker_Button.Click += new System.EventHandler(this.ColourPicker_Click);
+            this.ColourPicker_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.ColourPicker_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // panel8
             // 
@@ -969,9 +1183,10 @@
             // 
             this.Search_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Search_Panel.Controls.Add(this.panel11);
-            this.Search_Panel.Location = new System.Drawing.Point(863, 398);
+            this.Search_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Search_Panel.Location = new System.Drawing.Point(0, 0);
             this.Search_Panel.Name = "Search_Panel";
-            this.Search_Panel.Size = new System.Drawing.Size(845, 376);
+            this.Search_Panel.Size = new System.Drawing.Size(850, 710);
             this.Search_Panel.TabIndex = 6;
             this.Search_Panel.Visible = false;
             // 
@@ -988,7 +1203,7 @@
             this.panel11.Controls.Add(this.Search_Panel_Button);
             this.panel11.Controls.Add(this.panel13);
             this.panel11.Controls.Add(this.TextBox_Search);
-            this.panel11.Location = new System.Drawing.Point(17, 14);
+            this.panel11.Location = new System.Drawing.Point(20, 181);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(810, 348);
             this.panel11.TabIndex = 21;
@@ -1006,6 +1221,8 @@
             this.Search_Event_Update.Text = "Update Event Selected";
             this.Search_Event_Update.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Search_Event_Update.Click += new System.EventHandler(this.Search_Event_Update_Click);
+            this.Search_Event_Update.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Search_Event_Update.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Search_Switch_Map_Button
             // 
@@ -1020,6 +1237,8 @@
             this.Search_Switch_Map_Button.Text = "Switch Map Type";
             this.Search_Switch_Map_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Search_Switch_Map_Button.Click += new System.EventHandler(this.Search_Switch_Map_Button_Click);
+            this.Search_Switch_Map_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Search_Switch_Map_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // panel12
             // 
@@ -1079,36 +1298,36 @@
             this.Search_Data.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.Search_Data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Search_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.Search_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Data.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Data.DefaultCellStyle = dataGridViewCellStyle8;
             this.Search_Data.GridColor = System.Drawing.Color.RoyalBlue;
             this.Search_Data.Location = new System.Drawing.Point(21, 57);
             this.Search_Data.MultiSelect = false;
             this.Search_Data.Name = "Search_Data";
             this.Search_Data.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Search_Data.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Search_Data.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.Search_Data.RowHeadersVisible = false;
             this.Search_Data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Search_Data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1129,6 +1348,8 @@
             this.Search_Panel_Button.Text = "Search";
             this.Search_Panel_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Search_Panel_Button.Click += new System.EventHandler(this.Search_Button_Click);
+            this.Search_Panel_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Search_Panel_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // panel13
             // 
@@ -1152,84 +1373,14 @@
             this.TextBox_Search.Text = "Enter Search Criteria";
             this.TextBox_Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel4.Controls.Add(this.PictureBox_Back);
-            this.panel4.Controls.Add(this.PictureBox_Logout);
-            this.panel4.Controls.Add(this.PictureBox_Minimise);
-            this.panel4.Controls.Add(this.PictureBox_Close);
-            this.panel4.Location = new System.Drawing.Point(1463, 12);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(150, 44);
-            this.panel4.TabIndex = 5;
-            // 
-            // PictureBox_Back
-            // 
-            this.PictureBox_Back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Back.BackgroundImage")));
-            this.PictureBox_Back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox_Back.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Back.Location = new System.Drawing.Point(6, 7);
-            this.PictureBox_Back.Name = "PictureBox_Back";
-            this.PictureBox_Back.Size = new System.Drawing.Size(30, 30);
-            this.PictureBox_Back.TabIndex = 3;
-            this.PictureBox_Back.TabStop = false;
-            this.PictureBox_Back.Visible = false;
-            this.PictureBox_Back.Click += new System.EventHandler(this.PictureBox_Back_Click);
-            this.PictureBox_Back.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
-            this.PictureBox_Back.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
-            // 
-            // PictureBox_Logout
-            // 
-            this.PictureBox_Logout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Logout.BackgroundImage")));
-            this.PictureBox_Logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Logout.Location = new System.Drawing.Point(42, 7);
-            this.PictureBox_Logout.Name = "PictureBox_Logout";
-            this.PictureBox_Logout.Size = new System.Drawing.Size(30, 30);
-            this.PictureBox_Logout.TabIndex = 2;
-            this.PictureBox_Logout.TabStop = false;
-            this.PictureBox_Logout.Visible = false;
-            this.PictureBox_Logout.Click += new System.EventHandler(this.PictureBox_Logout_Click);
-            this.PictureBox_Logout.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
-            this.PictureBox_Logout.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
-            // 
-            // PictureBox_Minimise
-            // 
-            this.PictureBox_Minimise.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Minimise.BackgroundImage")));
-            this.PictureBox_Minimise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox_Minimise.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Minimise.Location = new System.Drawing.Point(78, 7);
-            this.PictureBox_Minimise.Name = "PictureBox_Minimise";
-            this.PictureBox_Minimise.Size = new System.Drawing.Size(30, 30);
-            this.PictureBox_Minimise.TabIndex = 1;
-            this.PictureBox_Minimise.TabStop = false;
-            this.PictureBox_Minimise.Click += new System.EventHandler(this.PictureBox_Minimise_Click);
-            this.PictureBox_Minimise.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
-            this.PictureBox_Minimise.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
-            // 
-            // PictureBox_Close
-            // 
-            this.PictureBox_Close.BackColor = System.Drawing.Color.RoyalBlue;
-            this.PictureBox_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Close.BackgroundImage")));
-            this.PictureBox_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox_Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Close.Location = new System.Drawing.Point(114, 7);
-            this.PictureBox_Close.Name = "PictureBox_Close";
-            this.PictureBox_Close.Size = new System.Drawing.Size(30, 30);
-            this.PictureBox_Close.TabIndex = 0;
-            this.PictureBox_Close.TabStop = false;
-            this.PictureBox_Close.Click += new System.EventHandler(this.PictureBox_Close_Click);
-            this.PictureBox_Close.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
-            this.PictureBox_Close.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
-            // 
             // Friends_Panel
             // 
             this.Friends_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Friends_Panel.Controls.Add(this.panel16);
-            this.Friends_Panel.Location = new System.Drawing.Point(1714, 398);
+            this.Friends_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Friends_Panel.Location = new System.Drawing.Point(0, 0);
             this.Friends_Panel.Name = "Friends_Panel";
-            this.Friends_Panel.Size = new System.Drawing.Size(335, 347);
+            this.Friends_Panel.Size = new System.Drawing.Size(850, 710);
             this.Friends_Panel.TabIndex = 7;
             this.Friends_Panel.Visible = false;
             // 
@@ -1244,7 +1395,7 @@
             this.panel16.Controls.Add(this.panel17);
             this.panel16.Controls.Add(this.TextBox_Search_Username);
             this.panel16.Controls.Add(this.Search_Username_Button);
-            this.panel16.Location = new System.Drawing.Point(8, 13);
+            this.panel16.Location = new System.Drawing.Point(265, 195);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(321, 320);
             this.panel16.TabIndex = 20;
@@ -1285,6 +1436,8 @@
             this.Add_Friend_Button.Text = "Select User To Add As Friend";
             this.Add_Friend_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Add_Friend_Button.Click += new System.EventHandler(this.Add_Friend_Button_Click);
+            this.Add_Friend_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Add_Friend_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Search_Friends
             // 
@@ -1296,36 +1449,36 @@
             this.Search_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.Search_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Search_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.Search_Friends.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Friends.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Friends.DefaultCellStyle = dataGridViewCellStyle11;
             this.Search_Friends.GridColor = System.Drawing.Color.RoyalBlue;
             this.Search_Friends.Location = new System.Drawing.Point(23, 47);
             this.Search_Friends.MultiSelect = false;
             this.Search_Friends.Name = "Search_Friends";
             this.Search_Friends.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Search_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Search_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.Search_Friends.RowHeadersVisible = false;
             this.Search_Friends.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Search_Friends.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1368,60 +1521,39 @@
             this.Search_Username_Button.Text = "Search";
             this.Search_Username_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Search_Username_Button.Click += new System.EventHandler(this.Search_Username_Button_Click);
-            // 
-            // Check_Boxes_Column
-            // 
-            this.Check_Boxes_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Check_Boxes_Column.HeaderText = "Add To Group";
-            this.Check_Boxes_Column.Name = "Check_Boxes_Column";
-            this.Check_Boxes_Column.Width = 120;
-            // 
-            // User_ID_Column
-            // 
-            this.User_ID_Column.HeaderText = "User ID";
-            this.User_ID_Column.Name = "User_ID_Column";
-            this.User_ID_Column.ReadOnly = true;
-            this.User_ID_Column.Visible = false;
-            this.User_ID_Column.Width = 83;
-            // 
-            // Username_Column
-            // 
-            this.Username_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Username_Column.HeaderText = "User Name";
-            this.Username_Column.Name = "Username_Column";
-            this.Username_Column.ReadOnly = true;
-            this.Username_Column.Width = 109;
-            // 
-            // Nickname_Column
-            // 
-            this.Nickname_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Nickname_Column.HeaderText = "Nickname";
-            this.Nickname_Column.Name = "Nickname_Column";
-            this.Nickname_Column.ReadOnly = true;
+            this.Search_Username_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Search_Username_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2073, 909);
-            this.Controls.Add(this.Friends_Panel);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.Search_Panel);
-            this.Controls.Add(this.Group_Panel);
+            this.ClientSize = new System.Drawing.Size(850, 710);
+            this.Controls.Add(this.Form_Button_Panel);
             this.Controls.Add(this.Event_Panel);
-            this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Dashboard_Panel);
+            this.Controls.Add(this.Login_Panel);
+            this.Controls.Add(this.Search_Panel);
+            this.Controls.Add(this.Friends_Panel);
+            this.Controls.Add(this.Group_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Dashboard_Panel.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).EndInit();
             this.tableLayoutPanelCalendarHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.Dashboard_Panel.ResumeLayout(false);
-            this.Dashboard_Panel.PerformLayout();
+            this.Form_Button_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).EndInit();
             this.Login_Panel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1441,11 +1573,6 @@
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Data)).EndInit();
-            this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).EndInit();
             this.Friends_Panel.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
@@ -1455,11 +1582,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelCalendarHeader;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel Dashboard_Panel;
         private System.Windows.Forms.Panel Login_Panel;
         private System.Windows.Forms.Panel Event_Panel;
@@ -1475,7 +1597,7 @@
         private System.Windows.Forms.PictureBox PictureBox_Lock;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel Form_Button_Panel;
         private System.Windows.Forms.PictureBox PictureBox_Close;
         private System.Windows.Forms.PictureBox PictureBox_Minimise;
         private System.Windows.Forms.PictureBox PictureBox_Password_Cross;
@@ -1496,12 +1618,9 @@
         private System.Windows.Forms.Label Add_Event_Button;
         private System.Windows.Forms.Label Search_Location_Button;
         private System.Windows.Forms.TextBox TextBox_Location;
-        private System.Windows.Forms.MonthCalendar DatePicker;
-        private System.Windows.Forms.Label Dashboard_Add_Event;
         private System.Windows.Forms.PictureBox PictureBox_Back;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label ColourPicker_Button;
-        private System.Windows.Forms.Label Dashboard_Add_Group;
         private System.Windows.Forms.Panel Colour_Panel;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
@@ -1520,9 +1639,6 @@
         private System.Windows.Forms.RichTextBox Search_Description;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label Search_Switch_Map_Button;
-        private System.Windows.Forms.Label Dashboard_Search_Button;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.TextBox Dashboard_Search;
         private System.Windows.Forms.Label Update_Event_Button;
         private System.Windows.Forms.Label Remove_Event_Button;
         private System.Windows.Forms.TextBox TextBox_Event_ID;
@@ -1537,11 +1653,26 @@
         private System.Windows.Forms.TextBox TextBox_Search_Username;
         private System.Windows.Forms.Label Search_Username_Button;
         private System.Windows.Forms.DataGridView Data_Groups;
-        private System.Windows.Forms.Label Find_Friends_Button;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Check_Boxes_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn User_ID_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nickname_Column;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label Find_Friends_Button;
+        private System.Windows.Forms.Label Dashboard_Search_Button;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.TextBox Dashboard_Search;
+        private System.Windows.Forms.Label Dashboard_Add_Group;
+        private System.Windows.Forms.Label Dashboard_Add_Event;
+        private System.Windows.Forms.MonthCalendar DatePicker;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelCalendarHeader;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private System.Windows.Forms.DataGridView Groups_Data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Group_ID_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Group_Name_Column;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Group_Checkbox_Column;
     }
 }
 
