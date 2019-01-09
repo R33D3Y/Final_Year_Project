@@ -59,6 +59,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.Form_Button_Panel = new System.Windows.Forms.Panel();
+            this.PictureBox_Signup_Back = new System.Windows.Forms.PictureBox();
             this.PictureBox_Settings = new System.Windows.Forms.PictureBox();
             this.PictureBox_Drag = new System.Windows.Forms.PictureBox();
             this.PictureBox_Back = new System.Windows.Forms.PictureBox();
@@ -66,7 +67,9 @@
             this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
             this.PictureBox_Close = new System.Windows.Forms.PictureBox();
             this.Login_Panel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Label_Internet = new System.Windows.Forms.Label();
+            this.PictureBox_Internet = new System.Windows.Forms.PictureBox();
+            this.Login_Control_Panel = new System.Windows.Forms.Panel();
             this.PictureBox_Password_Cross = new System.Windows.Forms.PictureBox();
             this.PictureBox_Username_Cross = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -141,6 +144,29 @@
             this.Settings_Light_Panel = new System.Windows.Forms.Panel();
             this.Settings_Light_Button = new System.Windows.Forms.Label();
             this.Settings_Dark_Button = new System.Windows.Forms.Label();
+            this.Signup_Panel = new System.Windows.Forms.Panel();
+            this.Signup_Control_Panel = new System.Windows.Forms.Panel();
+            this.Signup_Tick_Email = new System.Windows.Forms.PictureBox();
+            this.Signup_Tick_Password = new System.Windows.Forms.PictureBox();
+            this.Signup_Tick_Password_Retype = new System.Windows.Forms.PictureBox();
+            this.Signup_Cross_Password_Retype = new System.Windows.Forms.PictureBox();
+            this.Signup_Cross_Password = new System.Windows.Forms.PictureBox();
+            this.Signup_Cross_Email = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.Signup_TextBox_Password_Retype = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.Signup_TextBox_Password = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.Signup_TextBox_Email = new System.Windows.Forms.TextBox();
+            this.Signup_Tick_Username = new System.Windows.Forms.PictureBox();
+            this.Signup_Cross_Username = new System.Windows.Forms.PictureBox();
+            this.Signup_Panel_Button = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.Signup_TextBox_Username = new System.Windows.Forms.TextBox();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -148,6 +174,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Form_Button_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Signup_Back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Drag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
@@ -155,7 +182,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).BeginInit();
             this.Login_Panel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Internet)).BeginInit();
+            this.Login_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Password_Cross)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Username_Cross)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Lock)).BeginInit();
@@ -174,6 +202,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.Search_Friends)).BeginInit();
             this.Settings_Panel.SuspendLayout();
             this.Settings_Control_Panel.SuspendLayout();
+            this.Signup_Panel.SuspendLayout();
+            this.Signup_Control_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Email)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Password)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Password_Retype)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Password_Retype)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Password)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Email)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Username)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Username)).BeginInit();
             this.SuspendLayout();
             // 
             // Dashboard_Panel
@@ -457,6 +495,7 @@
             // Form_Button_Panel
             // 
             this.Form_Button_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Form_Button_Panel.Controls.Add(this.PictureBox_Signup_Back);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Settings);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Drag);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Back);
@@ -467,6 +506,19 @@
             this.Form_Button_Panel.Name = "Form_Button_Panel";
             this.Form_Button_Panel.Size = new System.Drawing.Size(224, 44);
             this.Form_Button_Panel.TabIndex = 5;
+            // 
+            // PictureBox_Signup_Back
+            // 
+            this.PictureBox_Signup_Back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Signup_Back.BackgroundImage")));
+            this.PictureBox_Signup_Back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Signup_Back.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Signup_Back.Location = new System.Drawing.Point(7, 7);
+            this.PictureBox_Signup_Back.Name = "PictureBox_Signup_Back";
+            this.PictureBox_Signup_Back.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Signup_Back.TabIndex = 7;
+            this.PictureBox_Signup_Back.TabStop = false;
+            this.PictureBox_Signup_Back.Visible = false;
+            this.PictureBox_Signup_Back.Click += new System.EventHandler(this.PictureBox_Signup_Back_Click);
             // 
             // PictureBox_Settings
             // 
@@ -559,32 +611,55 @@
             // Login_Panel
             // 
             this.Login_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.Login_Panel.Controls.Add(this.panel1);
+            this.Login_Panel.Controls.Add(this.Label_Internet);
+            this.Login_Panel.Controls.Add(this.PictureBox_Internet);
+            this.Login_Panel.Controls.Add(this.Login_Control_Panel);
             this.Login_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Login_Panel.Location = new System.Drawing.Point(0, 0);
             this.Login_Panel.Name = "Login_Panel";
             this.Login_Panel.Size = new System.Drawing.Size(850, 710);
             this.Login_Panel.TabIndex = 3;
             // 
-            // panel1
+            // Label_Internet
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.PictureBox_Password_Cross);
-            this.panel1.Controls.Add(this.PictureBox_Username_Cross);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.PictureBox_Lock);
-            this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.SignUp_Button);
-            this.panel1.Controls.Add(this.Login_Button);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.Textbox_Password);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.Textbox_Username);
-            this.panel1.Location = new System.Drawing.Point(319, 182);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(213, 346);
-            this.panel1.TabIndex = 0;
+            this.Label_Internet.AutoSize = true;
+            this.Label_Internet.Font = new System.Drawing.Font("Candara", 12F);
+            this.Label_Internet.ForeColor = System.Drawing.Color.White;
+            this.Label_Internet.Location = new System.Drawing.Point(80, 23);
+            this.Label_Internet.Name = "Label_Internet";
+            this.Label_Internet.Size = new System.Drawing.Size(211, 19);
+            this.Label_Internet.TabIndex = 23;
+            this.Label_Internet.Text = "Internet Connection Required";
+            // 
+            // PictureBox_Internet
+            // 
+            this.PictureBox_Internet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Internet.BackgroundImage")));
+            this.PictureBox_Internet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Internet.Location = new System.Drawing.Point(12, 10);
+            this.PictureBox_Internet.Name = "PictureBox_Internet";
+            this.PictureBox_Internet.Size = new System.Drawing.Size(50, 50);
+            this.PictureBox_Internet.TabIndex = 1;
+            this.PictureBox_Internet.TabStop = false;
+            // 
+            // Login_Control_Panel
+            // 
+            this.Login_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Login_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Login_Control_Panel.Controls.Add(this.PictureBox_Password_Cross);
+            this.Login_Control_Panel.Controls.Add(this.PictureBox_Username_Cross);
+            this.Login_Control_Panel.Controls.Add(this.panel3);
+            this.Login_Control_Panel.Controls.Add(this.PictureBox_Lock);
+            this.Login_Control_Panel.Controls.Add(this.pictureBox4);
+            this.Login_Control_Panel.Controls.Add(this.SignUp_Button);
+            this.Login_Control_Panel.Controls.Add(this.Login_Button);
+            this.Login_Control_Panel.Controls.Add(this.pictureBox3);
+            this.Login_Control_Panel.Controls.Add(this.Textbox_Password);
+            this.Login_Control_Panel.Controls.Add(this.panel2);
+            this.Login_Control_Panel.Controls.Add(this.Textbox_Username);
+            this.Login_Control_Panel.Location = new System.Drawing.Point(319, 182);
+            this.Login_Control_Panel.Name = "Login_Control_Panel";
+            this.Login_Control_Panel.Size = new System.Drawing.Size(213, 346);
+            this.Login_Control_Panel.TabIndex = 0;
             // 
             // PictureBox_Password_Cross
             // 
@@ -695,7 +770,6 @@
             this.Textbox_Password.Text = "Password";
             this.Textbox_Password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Textbox_Password.UseSystemPasswordChar = true;
-            this.Textbox_Password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
             // panel2
             // 
@@ -718,7 +792,6 @@
             this.Textbox_Username.TabIndex = 0;
             this.Textbox_Username.Text = "Username";
             this.Textbox_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Textbox_Username.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
             // Event_Panel
             // 
@@ -1642,7 +1715,7 @@
             this.Settings_Light_Button.Name = "Settings_Light_Button";
             this.Settings_Light_Button.Size = new System.Drawing.Size(171, 30);
             this.Settings_Light_Button.TabIndex = 8;
-            this.Settings_Light_Button.Text = "Change Light Colour";
+            this.Settings_Light_Button.Text = "Change Colour";
             this.Settings_Light_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Settings_Light_Button.Click += new System.EventHandler(this.Settings_Light_Click);
             this.Settings_Light_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
@@ -1658,11 +1731,288 @@
             this.Settings_Dark_Button.Name = "Settings_Dark_Button";
             this.Settings_Dark_Button.Size = new System.Drawing.Size(171, 30);
             this.Settings_Dark_Button.TabIndex = 7;
-            this.Settings_Dark_Button.Text = "Change Dark Colour";
+            this.Settings_Dark_Button.Text = "Change Colour";
             this.Settings_Dark_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Settings_Dark_Button.Click += new System.EventHandler(this.Settings_Dark_Button_Click);
             this.Settings_Dark_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
             this.Settings_Dark_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
+            // Signup_Panel
+            // 
+            this.Signup_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Signup_Panel.Controls.Add(this.Signup_Control_Panel);
+            this.Signup_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Signup_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Signup_Panel.Name = "Signup_Panel";
+            this.Signup_Panel.Size = new System.Drawing.Size(850, 710);
+            this.Signup_Panel.TabIndex = 9;
+            this.Signup_Panel.Visible = false;
+            // 
+            // Signup_Control_Panel
+            // 
+            this.Signup_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Signup_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Tick_Email);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Tick_Password);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Tick_Password_Retype);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Cross_Password_Retype);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Cross_Password);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Cross_Email);
+            this.Signup_Control_Panel.Controls.Add(this.label9);
+            this.Signup_Control_Panel.Controls.Add(this.label8);
+            this.Signup_Control_Panel.Controls.Add(this.label7);
+            this.Signup_Control_Panel.Controls.Add(this.label6);
+            this.Signup_Control_Panel.Controls.Add(this.panel15);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_TextBox_Password_Retype);
+            this.Signup_Control_Panel.Controls.Add(this.panel5);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_TextBox_Password);
+            this.Signup_Control_Panel.Controls.Add(this.panel4);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_TextBox_Email);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Tick_Username);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Cross_Username);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_Panel_Button);
+            this.Signup_Control_Panel.Controls.Add(this.panel11);
+            this.Signup_Control_Panel.Controls.Add(this.Signup_TextBox_Username);
+            this.Signup_Control_Panel.Location = new System.Drawing.Point(199, 257);
+            this.Signup_Control_Panel.Name = "Signup_Control_Panel";
+            this.Signup_Control_Panel.Size = new System.Drawing.Size(452, 197);
+            this.Signup_Control_Panel.TabIndex = 0;
+            // 
+            // Signup_Tick_Email
+            // 
+            this.Signup_Tick_Email.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Signup_Tick_Email.BackgroundImage")));
+            this.Signup_Tick_Email.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Signup_Tick_Email.Location = new System.Drawing.Point(424, 47);
+            this.Signup_Tick_Email.Name = "Signup_Tick_Email";
+            this.Signup_Tick_Email.Size = new System.Drawing.Size(20, 20);
+            this.Signup_Tick_Email.TabIndex = 29;
+            this.Signup_Tick_Email.TabStop = false;
+            this.Signup_Tick_Email.Visible = false;
+            // 
+            // Signup_Tick_Password
+            // 
+            this.Signup_Tick_Password.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Signup_Tick_Password.BackgroundImage")));
+            this.Signup_Tick_Password.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Signup_Tick_Password.Location = new System.Drawing.Point(424, 86);
+            this.Signup_Tick_Password.Name = "Signup_Tick_Password";
+            this.Signup_Tick_Password.Size = new System.Drawing.Size(20, 20);
+            this.Signup_Tick_Password.TabIndex = 28;
+            this.Signup_Tick_Password.TabStop = false;
+            this.Signup_Tick_Password.Visible = false;
+            // 
+            // Signup_Tick_Password_Retype
+            // 
+            this.Signup_Tick_Password_Retype.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Signup_Tick_Password_Retype.BackgroundImage")));
+            this.Signup_Tick_Password_Retype.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Signup_Tick_Password_Retype.Location = new System.Drawing.Point(424, 125);
+            this.Signup_Tick_Password_Retype.Name = "Signup_Tick_Password_Retype";
+            this.Signup_Tick_Password_Retype.Size = new System.Drawing.Size(20, 20);
+            this.Signup_Tick_Password_Retype.TabIndex = 27;
+            this.Signup_Tick_Password_Retype.TabStop = false;
+            this.Signup_Tick_Password_Retype.Visible = false;
+            // 
+            // Signup_Cross_Password_Retype
+            // 
+            this.Signup_Cross_Password_Retype.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Signup_Cross_Password_Retype.BackgroundImage")));
+            this.Signup_Cross_Password_Retype.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Signup_Cross_Password_Retype.Location = new System.Drawing.Point(424, 125);
+            this.Signup_Cross_Password_Retype.Name = "Signup_Cross_Password_Retype";
+            this.Signup_Cross_Password_Retype.Size = new System.Drawing.Size(20, 20);
+            this.Signup_Cross_Password_Retype.TabIndex = 26;
+            this.Signup_Cross_Password_Retype.TabStop = false;
+            this.Signup_Cross_Password_Retype.Visible = false;
+            // 
+            // Signup_Cross_Password
+            // 
+            this.Signup_Cross_Password.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Signup_Cross_Password.BackgroundImage")));
+            this.Signup_Cross_Password.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Signup_Cross_Password.Location = new System.Drawing.Point(424, 86);
+            this.Signup_Cross_Password.Name = "Signup_Cross_Password";
+            this.Signup_Cross_Password.Size = new System.Drawing.Size(20, 20);
+            this.Signup_Cross_Password.TabIndex = 25;
+            this.Signup_Cross_Password.TabStop = false;
+            this.Signup_Cross_Password.Visible = false;
+            // 
+            // Signup_Cross_Email
+            // 
+            this.Signup_Cross_Email.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Signup_Cross_Email.BackgroundImage")));
+            this.Signup_Cross_Email.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Signup_Cross_Email.Location = new System.Drawing.Point(424, 47);
+            this.Signup_Cross_Email.Name = "Signup_Cross_Email";
+            this.Signup_Cross_Email.Size = new System.Drawing.Size(20, 20);
+            this.Signup_Cross_Email.TabIndex = 24;
+            this.Signup_Cross_Email.TabStop = false;
+            this.Signup_Cross_Email.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Candara", 12F);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(4, 127);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(136, 19);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Re-Type Password:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Candara", 12F);
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(60, 88);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 19);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Password:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Candara", 12F);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(32, 50);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(108, 19);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Email Address:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Candara", 12F);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(57, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 19);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Username:";
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Location = new System.Drawing.Point(144, 149);
+            this.panel15.Margin = new System.Windows.Forms.Padding(0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(272, 1);
+            this.panel15.TabIndex = 19;
+            // 
+            // Signup_TextBox_Password_Retype
+            // 
+            this.Signup_TextBox_Password_Retype.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Signup_TextBox_Password_Retype.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Signup_TextBox_Password_Retype.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Signup_TextBox_Password_Retype.ForeColor = System.Drawing.Color.White;
+            this.Signup_TextBox_Password_Retype.Location = new System.Drawing.Point(145, 125);
+            this.Signup_TextBox_Password_Retype.Name = "Signup_TextBox_Password_Retype";
+            this.Signup_TextBox_Password_Retype.Size = new System.Drawing.Size(270, 20);
+            this.Signup_TextBox_Password_Retype.TabIndex = 18;
+            this.Signup_TextBox_Password_Retype.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Signup_TextBox_Password_Retype.UseSystemPasswordChar = true;
+            this.Signup_TextBox_Password_Retype.TextChanged += new System.EventHandler(this.Signup_TextBox_Password_Retype_TextChanged);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Location = new System.Drawing.Point(144, 110);
+            this.panel5.Margin = new System.Windows.Forms.Padding(0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(272, 1);
+            this.panel5.TabIndex = 17;
+            // 
+            // Signup_TextBox_Password
+            // 
+            this.Signup_TextBox_Password.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Signup_TextBox_Password.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Signup_TextBox_Password.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Signup_TextBox_Password.ForeColor = System.Drawing.Color.White;
+            this.Signup_TextBox_Password.Location = new System.Drawing.Point(145, 86);
+            this.Signup_TextBox_Password.Name = "Signup_TextBox_Password";
+            this.Signup_TextBox_Password.Size = new System.Drawing.Size(270, 20);
+            this.Signup_TextBox_Password.TabIndex = 16;
+            this.Signup_TextBox_Password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Signup_TextBox_Password.UseSystemPasswordChar = true;
+            this.Signup_TextBox_Password.TextChanged += new System.EventHandler(this.Signup_TextBox_Password_TextChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Location = new System.Drawing.Point(144, 71);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(272, 1);
+            this.panel4.TabIndex = 15;
+            // 
+            // Signup_TextBox_Email
+            // 
+            this.Signup_TextBox_Email.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Signup_TextBox_Email.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Signup_TextBox_Email.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Signup_TextBox_Email.ForeColor = System.Drawing.Color.White;
+            this.Signup_TextBox_Email.Location = new System.Drawing.Point(145, 47);
+            this.Signup_TextBox_Email.Name = "Signup_TextBox_Email";
+            this.Signup_TextBox_Email.Size = new System.Drawing.Size(270, 20);
+            this.Signup_TextBox_Email.TabIndex = 14;
+            this.Signup_TextBox_Email.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Signup_TextBox_Email.TextChanged += new System.EventHandler(this.Signup_TextBox_Email_TextChanged);
+            // 
+            // Signup_Tick_Username
+            // 
+            this.Signup_Tick_Username.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Signup_Tick_Username.BackgroundImage")));
+            this.Signup_Tick_Username.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Signup_Tick_Username.Location = new System.Drawing.Point(424, 7);
+            this.Signup_Tick_Username.Name = "Signup_Tick_Username";
+            this.Signup_Tick_Username.Size = new System.Drawing.Size(20, 20);
+            this.Signup_Tick_Username.TabIndex = 12;
+            this.Signup_Tick_Username.TabStop = false;
+            this.Signup_Tick_Username.Visible = false;
+            // 
+            // Signup_Cross_Username
+            // 
+            this.Signup_Cross_Username.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Signup_Cross_Username.BackgroundImage")));
+            this.Signup_Cross_Username.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Signup_Cross_Username.Location = new System.Drawing.Point(424, 7);
+            this.Signup_Cross_Username.Name = "Signup_Cross_Username";
+            this.Signup_Cross_Username.Size = new System.Drawing.Size(20, 20);
+            this.Signup_Cross_Username.TabIndex = 10;
+            this.Signup_Cross_Username.TabStop = false;
+            this.Signup_Cross_Username.Visible = false;
+            // 
+            // Signup_Panel_Button
+            // 
+            this.Signup_Panel_Button.BackColor = System.Drawing.Color.White;
+            this.Signup_Panel_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Signup_Panel_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Signup_Panel_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Signup_Panel_Button.Location = new System.Drawing.Point(144, 157);
+            this.Signup_Panel_Button.Name = "Signup_Panel_Button";
+            this.Signup_Panel_Button.Size = new System.Drawing.Size(272, 30);
+            this.Signup_Panel_Button.TabIndex = 7;
+            this.Signup_Panel_Button.Text = "Sign Up";
+            this.Signup_Panel_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Signup_Panel_Button.Click += new System.EventHandler(this.Signup_Panel_Button_Click);
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Location = new System.Drawing.Point(144, 31);
+            this.panel11.Margin = new System.Windows.Forms.Padding(0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(272, 1);
+            this.panel11.TabIndex = 2;
+            // 
+            // Signup_TextBox_Username
+            // 
+            this.Signup_TextBox_Username.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Signup_TextBox_Username.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Signup_TextBox_Username.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Signup_TextBox_Username.ForeColor = System.Drawing.Color.White;
+            this.Signup_TextBox_Username.Location = new System.Drawing.Point(145, 7);
+            this.Signup_TextBox_Username.Name = "Signup_TextBox_Username";
+            this.Signup_TextBox_Username.Size = new System.Drawing.Size(270, 20);
+            this.Signup_TextBox_Username.TabIndex = 0;
+            this.Signup_TextBox_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Signup_TextBox_Username.TextChanged += new System.EventHandler(this.Signup_TextBox_Username_TextChanged);
             // 
             // Form1
             // 
@@ -1670,8 +2020,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
-            this.Controls.Add(this.Settings_Panel);
             this.Controls.Add(this.Login_Panel);
+            this.Controls.Add(this.Signup_Panel);
+            this.Controls.Add(this.Settings_Panel);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Friends_Panel);
@@ -1691,6 +2042,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.Form_Button_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Signup_Back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Settings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Drag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
@@ -1698,8 +2050,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Minimise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Close)).EndInit();
             this.Login_Panel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Login_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Internet)).EndInit();
+            this.Login_Control_Panel.ResumeLayout(false);
+            this.Login_Control_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Password_Cross)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Username_Cross)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Lock)).EndInit();
@@ -1722,6 +2076,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.Search_Friends)).EndInit();
             this.Settings_Panel.ResumeLayout(false);
             this.Settings_Control_Panel.ResumeLayout(false);
+            this.Signup_Panel.ResumeLayout(false);
+            this.Signup_Control_Panel.ResumeLayout(false);
+            this.Signup_Control_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Email)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Password)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Password_Retype)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Password_Retype)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Password)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Email)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Username)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Username)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1732,7 +2097,7 @@
         private System.Windows.Forms.Panel Event_Panel;
         private System.Windows.Forms.Panel Group_Panel;
         private System.Windows.Forms.Panel Search_Panel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Login_Control_Panel;
         private System.Windows.Forms.TextBox Textbox_Username;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox Textbox_Password;
@@ -1827,6 +2192,32 @@
         private System.Windows.Forms.Label Settings_Dark_Button;
         private System.Windows.Forms.Label Settings_Commit;
         private System.Windows.Forms.PictureBox PictureBox_Settings;
+        private System.Windows.Forms.Panel Signup_Panel;
+        private System.Windows.Forms.Panel Signup_Control_Panel;
+        private System.Windows.Forms.PictureBox Signup_Tick_Email;
+        private System.Windows.Forms.PictureBox Signup_Tick_Password;
+        private System.Windows.Forms.PictureBox Signup_Tick_Password_Retype;
+        private System.Windows.Forms.PictureBox Signup_Cross_Password_Retype;
+        private System.Windows.Forms.PictureBox Signup_Cross_Password;
+        private System.Windows.Forms.PictureBox Signup_Cross_Email;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.TextBox Signup_TextBox_Password_Retype;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.TextBox Signup_TextBox_Password;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox Signup_TextBox_Email;
+        private System.Windows.Forms.PictureBox Signup_Tick_Username;
+        private System.Windows.Forms.PictureBox Signup_Cross_Username;
+        private System.Windows.Forms.Label Signup_Panel_Button;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.TextBox Signup_TextBox_Username;
+        private System.Windows.Forms.PictureBox PictureBox_Signup_Back;
+        private System.Windows.Forms.Label Label_Internet;
+        private System.Windows.Forms.PictureBox PictureBox_Internet;
     }
 }
 

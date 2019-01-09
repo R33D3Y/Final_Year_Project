@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Device.Location;
 using System.Drawing;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,8 +28,6 @@ namespace Final_Year_Project
 
         private Color lightColour = Color.CornflowerBlue;
         private Color darkColour = Color.RoyalBlue;
-        //private Color lightColour = Color.Red;
-        //private Color darkColour = Color.DarkRed;
 
         private readonly bool populate = false;
 
@@ -38,8 +38,38 @@ namespace Final_Year_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Console.WriteLine(lightColour.ToArgb() + " " + darkColour.ToArgb());
+            if (CheckForInternetConnection())
+            {
+                PictureBox_Internet.Visible = false;
+                Label_Internet.Visible = false;
+            }
+
+            else
+            {
+                Login_Button.Enabled = false;
+                SignUp_Button.Enabled = false;
+            }
+
             Set_Colours();
+        }
+
+        private bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (client.OpenRead("http://clients3.google.com/generate_204"))
+                {
+                    return true;
+                }
+            }
+
+            catch
+            {
+                return false;
+            }
+
+            //https://stackoverflow.com/questions/2031824/what-is-the-best-way-to-check-for-internet-connectivity-using-net
         }
 
         private void Set_Colours()
@@ -164,7 +194,12 @@ namespace Final_Year_Project
 
         private void SignUp_Button_Click(object sender, EventArgs e)
         {
-            SignUp();
+            database = new Database();
+
+            Login_Panel.Visible = false;
+            Signup_Panel.Visible = true;
+
+            PictureBox_Signup_Back.Visible = true;
         }
 
         private void Login()
@@ -210,19 +245,6 @@ namespace Final_Year_Project
             }
         }
 
-        private void SignUp()
-        {
-
-        }
-
-        private void Login_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                Login();
-            }
-        }
-
         private void Label_MouseHover(object sender, EventArgs e)
         {
             Label l = (Label)sender;
@@ -254,11 +276,6 @@ namespace Final_Year_Project
 
         private void PictureBox_Close_Click(object sender, EventArgs e)
         {
-            if (database != null)
-            {
-                database.SetData(GetData());
-            }
-
             Application.Exit();
         }
 
@@ -1281,6 +1298,139 @@ namespace Final_Year_Project
             Update_Event_Button.Visible = false;
             Remove_Event_Button.Visible = false;
         }
+
+        private bool goodUsername = false;
+        private bool goodEmail = false;
+        private bool goodPassword = false;
+        private bool goodPasswordRetype = false;
+
+        private void Signup_TextBox_Username_TextChanged(object sender, EventArgs e)
+        {
+            if (!database.Username_Lookup(Signup_TextBox_Username.Text) && Signup_TextBox_Username.Text.Length > 0)
+            {
+                goodUsername = true;
+                Signup_Tick_Username.Visible = true;
+                Signup_Cross_Username.Visible = false;
+            }
+
+            else
+            {
+                goodUsername = false;
+                Signup_Tick_Username.Visible = false;
+                Signup_Cross_Username.Visible = true;
+            }
+        }
+
+        private void Signup_TextBox_Email_TextChanged(object sender, EventArgs e)
+        {
+            if (!database.Email_Lookup(Signup_TextBox_Email.Text) && Signup_TextBox_Email.Text.Contains("@") && Signup_TextBox_Email.Text.Contains("."))
+            {
+                goodEmail = true;
+                Signup_Tick_Email.Visible = true;
+                Signup_Cross_Email.Visible = false;
+            }
+
+            else
+            {
+                goodEmail = false;
+                Signup_Tick_Email.Visible = false;
+                Signup_Cross_Email.Visible = true;
+            }
+        }
+
+        private void Signup_TextBox_Password_TextChanged(object sender, EventArgs e)
+        {
+            if (Signup_TextBox_Password.Text.Length > 6)
+            {
+                goodPassword = true;
+                Signup_Tick_Password.Visible = true;
+                Signup_Cross_Password.Visible = false;
+            }
+
+            else
+            {
+                goodPassword = false;
+                Signup_Tick_Password.Visible = false;
+                Signup_Cross_Password.Visible = true;
+            }
+        }
+
+        private void Signup_TextBox_Password_Retype_TextChanged(object sender, EventArgs e)
+        {
+            if (Signup_TextBox_Password.Text.Equals(Signup_TextBox_Password_Retype.Text) && Signup_TextBox_Password_Retype.Text.Length > 6)
+            {
+                goodPasswordRetype = true;
+                Signup_Tick_Password_Retype.Visible = true;
+                Signup_Cross_Password_Retype.Visible = false;
+            }
+
+            else
+            {
+                goodPasswordRetype = false;
+                Signup_Tick_Password_Retype.Visible = false;
+                Signup_Cross_Password_Retype.Visible = true;
+            }
+        }
+
+        private void Signup_Panel_Button_Click(object sender, EventArgs e)
+        {
+            if (goodEmail && goodUsername && goodPassword && goodPasswordRetype)
+            {
+                database.Add_User(Signup_TextBox_Username.Text, Signup_TextBox_Password.Text, Signup_TextBox_Email.Text, -10185235, -12490271);
+                
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                var mail = new MailMessage();
+                mail.From = new MailAddress("calendarapplicationreed@gmail.com");
+                mail.To.Add(Signup_TextBox_Email.Text);
+                mail.Subject = "Calendar Application Registration";
+                mail.IsBodyHtml = true;
+                string htmlBody;
+                htmlBody = "Hi " + Signup_TextBox_Username.Text + "!<br /><br />Welcome to a new calendar experience. You are now all ready to start using the application with the Username: " + Signup_TextBox_Username.Text + " and the password you entered.<br /><br />Kind Regards,<br />Jack Reed";
+                mail.Body = htmlBody;
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("calendarapplicationreed@gmail.com", "EC16325_Reed");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+
+                Signup_TextBox_Username.Text = "";
+                Signup_TextBox_Email.Text = "";
+                Signup_TextBox_Password.Text = "";
+                Signup_TextBox_Password_Retype.Text = "";
+
+                Signup_Cross_Username.Visible = false;
+                Signup_Cross_Email.Visible = false;
+                Signup_Cross_Password.Visible = false;
+                Signup_Cross_Password_Retype.Visible = false;
+
+                database = null;
+
+                Signup_Panel.Visible = false;
+                Login_Panel.Visible = true;
+
+                PictureBox_Signup_Back.Visible = false;
+            }
+        }
+
+        private void PictureBox_Signup_Back_Click(object sender, EventArgs e)
+        {
+            Signup_TextBox_Username.Text = "";
+            Signup_TextBox_Email.Text = "";
+            Signup_TextBox_Password.Text = "";
+            Signup_TextBox_Password_Retype.Text = "";
+
+            Signup_Cross_Username.Visible = false;
+            Signup_Cross_Email.Visible = false;
+            Signup_Cross_Password.Visible = false;
+            Signup_Cross_Password_Retype.Visible = false;
+
+            database = null;
+
+            Login_Panel.Visible = true;
+            Signup_Panel.Visible = false;
+
+            PictureBox_Signup_Back.Visible = false;
+        }
     }
 
     public class Friend
@@ -1331,6 +1481,17 @@ namespace Final_Year_Project
             connection = new SqlConnection(builder.ToString());
 
             user = LoginUser(u, p);
+        }
+
+        public Database()
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder["Server"] = @"R33D3Y.ddns.net\SQLEXPRESS";
+            builder["User ID"] = "DB_Reader";
+            builder["Password"] = "Reed_DB_Reader";
+            builder["Database"] = "Final_Year_Project";
+
+            connection = new SqlConnection(builder.ToString());
         }
 
         private User LoginUser(string username, string password)
@@ -1831,6 +1992,67 @@ namespace Final_Year_Project
             }
 
             return "####";
+        }
+
+        public bool Email_Lookup(string text)
+        {
+            SqlCommand cmd = new SqlCommand("Email_Lookup", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = text;
+
+            bool exsists = false;
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                exsists = (bool)rdr[0];
+            }
+
+            connection.Close();
+
+            return exsists;
+        }
+
+        public bool Username_Lookup(string text)
+        {
+            SqlCommand cmd = new SqlCommand("Username_Lookup", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = text;
+
+            bool exsists = false;
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                exsists = (bool)rdr[0];
+            }
+
+            connection.Close();
+
+            return exsists;
+        }
+
+        public void Add_User(string text1, string text2, string text3, int v1, int v2)
+        {
+            SqlCommand cmd = new SqlCommand("Create_User", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Username", SqlDbType.VarChar).Value = text1;
+            cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = text2;
+            cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = text3;
+            cmd.Parameters.Add("@Light", SqlDbType.Int).Value = v1;
+            cmd.Parameters.Add("@Dark", SqlDbType.Int).Value = v2;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
         }
     }
 
