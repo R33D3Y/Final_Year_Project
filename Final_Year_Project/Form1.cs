@@ -19,9 +19,16 @@ namespace Final_Year_Project
     public partial class Form1 : Form
     {
         private Database database;
+        
         private DateTime dt;
         private List<int> visibleGroups = new List<int>();
         private List<Emoji> emojis;
+
+        private Color lightColour = Color.CornflowerBlue;
+        private Color darkColour = Color.RoyalBlue;
+        //private Color lightColour = Color.Red;
+        //private Color darkColour = Color.DarkRed;
+
         private readonly bool populate = false;
 
         public Form1()
@@ -31,7 +38,99 @@ namespace Final_Year_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            //Console.WriteLine(lightColour.ToArgb() + " " + darkColour.ToArgb());
+            Set_Colours();
+        }
+
+        private void Set_Colours()
+        {
+            // Form Panel
+            Form_Button_Panel.BackColor = darkColour;
+            PictureBox_Back.BackColor = darkColour;
+            PictureBox_Settings.BackColor = darkColour;
+            PictureBox_Logout.BackColor = darkColour;
+            PictureBox_Drag.BackColor = darkColour;
+            PictureBox_Minimise.BackColor = darkColour;
+            PictureBox_Close.BackColor = darkColour;
+
+            // Dashboard Panel
+            Dashboard_Panel.BackColor = lightColour;
+
+            Dashboard_Add_Event.ForeColor = lightColour;
+            Dashboard_Add_Group.ForeColor = lightColour;
+            Dashboard_Search_Button.ForeColor = lightColour;
+            Find_Friends_Button.ForeColor = lightColour;
+
+            Dashboard_Control_Panel.BackColor = darkColour;
+            Dashboard_Search.BackColor = darkColour;
+            Groups_Data.BackgroundColor = darkColour;
+            Groups_Data.DefaultCellStyle.BackColor = darkColour;
+            Groups_Data.DefaultCellStyle.SelectionForeColor = lightColour;
+
+            // Event Panel
+            Event_Panel.BackColor = lightColour;
+            Event_Control_Panel.BackColor = darkColour;
+
+            TextBox_Name_Event.BackColor = darkColour;
+            TextBox_Description.BackColor = darkColour;
+            ComboBox_Group.BackColor = darkColour;
+            ComboBox_Emoji.BackColor = darkColour;
+            TextBox_Location_Search.BackColor = darkColour;
+
+            Search_Location_Button.ForeColor = lightColour;
+            Add_Event_Button.ForeColor = lightColour;
+            Update_Event_Button.ForeColor = lightColour;
+            Remove_Event_Button.ForeColor = lightColour;
+            Map_Type_Button.ForeColor = lightColour;
+
+            // Friends Panel
+            Friends_Panel.BackColor = lightColour;
+            Friends_Control_Panel.BackColor = darkColour;
+
+            TextBox_Search_Username.BackColor = darkColour;
+            TextBox_Friends_Nickname.BackColor = darkColour;
+
+            Search_Username_Button.ForeColor = lightColour;
+            Add_Friend_Button.ForeColor = lightColour;
+            Search_Friends.BackgroundColor = darkColour;
+            Search_Friends.DefaultCellStyle.BackColor = darkColour;
+            Search_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
+
+            // Group Panel
+            Group_Panel.BackColor = lightColour;
+            Group_Control_Panel.BackColor = darkColour;
+
+            TextBox_Name_Group.BackColor = darkColour;
+
+            ColourPicker_Button.ForeColor = lightColour;
+            Add_Group_Button.ForeColor = lightColour;
+            Data_Groups.BackgroundColor = darkColour;
+            Data_Groups.DefaultCellStyle.BackColor = darkColour;
+            Data_Groups.DefaultCellStyle.SelectionForeColor = lightColour;
+
+            // Search Panel
+            Search_Panel.BackColor = lightColour;
+            Search_Control_Panel.BackColor = darkColour;
+
+            TextBox_Search.BackColor = darkColour;
+            Search_Description.BackColor = darkColour;
+
+            Search_Panel_Button.ForeColor = lightColour;
+            Search_Switch_Map_Button.ForeColor = lightColour;
+            Search_Event_Update.ForeColor = lightColour;
+            Search_Data.BackgroundColor = darkColour;
+            Search_Data.DefaultCellStyle.BackColor = darkColour;
+            Search_Data.DefaultCellStyle.SelectionForeColor = lightColour;
+
+            // Settings Panel
+            Settings_Panel.BackColor = lightColour;
+            Settings_Control_Panel.BackColor = darkColour;
+
+            Settings_Light_Button.ForeColor = lightColour;
+            Settings_Dark_Button.ForeColor = lightColour;
+            Settings_Commit.ForeColor = lightColour;
+            Settings_Light_Panel.BackColor = lightColour;
+            Settings_Dark_Panel.BackColor = darkColour;
         }
 
         private void Calendar_Back_Click(object sender, EventArgs e)
@@ -89,12 +188,19 @@ namespace Final_Year_Project
 
                 calendar = tableLayoutPanel;
                 header = tableLayoutPanelCalendarHeader;
+                Setup_Dashboard_Groups(false);
                 SetData(database.GetData(dt), dt);
-                Setup_Dashboard_Groups();
+
+                List<Color> temp = database.Get_User_Colours();
+                lightColour = temp[0];
+                darkColour = temp[1];
+
+                Set_Colours();
 
                 Dashboard_Panel.Visible = true;
                 Login_Panel.Visible = false;
                 PictureBox_Logout.Visible = true;
+                PictureBox_Settings.Visible = true;
             }
 
             else
@@ -164,33 +270,42 @@ namespace Final_Year_Project
         private void PictureBox_Form_MouseHover(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackColor = Color.CornflowerBlue;
+            pb.BackColor = lightColour;
         }
 
         private void PictureBox_Form_MouseLeave(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackColor = Color.RoyalBlue;
+            pb.BackColor = darkColour;
         }
 
         private void PictureBox_Logout_Click(object sender, EventArgs e)
         {
-            ResetForm();
-
             if (database != null)
             {
-                //database.SetData(GetData());
                 Textbox_Username.Text = "Username";
                 Textbox_Password.Text = "Password";
                 database = null;
             }
+
+            visibleGroups = new List<int>();
+
+            ResetForm();
+
+            lightColour = Color.CornflowerBlue;
+            darkColour = Color.RoyalBlue;
+
+            Set_Colours();
 
             Dashboard_Panel.Visible = false;
             Event_Panel.Visible = false;
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
+            Settings_Panel.Visible = false;
 
+            PictureBox_Settings.Visible = false;
+            PictureBox_Back.Visible = false;
             PictureBox_Logout.Visible = false;
 
             Login_Panel.Visible = true;
@@ -278,32 +393,6 @@ namespace Final_Year_Project
             PictureBox_Back.Visible = true;
         }
 
-        private void Setup_Location()
-        {
-            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
-            GeoCoordinate coord = watcher.Position.Location;
-
-            double latitude = 0;
-            double longitude = 0;
-
-            while (coord.IsUnknown)
-            {
-                watcher.TryStart(false, TimeSpan.FromMilliseconds(2000));
-                coord = watcher.Position.Location;
-
-                if (coord.IsUnknown != true)
-                {
-                    latitude = coord.Latitude;
-                    longitude = coord.Longitude;
-                }
-            }
-
-            GMap_Control.MapProvider = BingMapProvider.Instance;
-            GMaps.Instance.Mode = AccessMode.ServerOnly;
-            GMap_Control.Position = new PointLatLng(latitude, longitude);
-            GMap_Control.ShowCenter = false;
-        }
-
         private void PictureBox_Back_Click(object sender, EventArgs e)
         {
             ResetForm();
@@ -313,6 +402,7 @@ namespace Final_Year_Project
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
+            Settings_Panel.Visible = false;
 
             PictureBox_Back.Visible = false;
 
@@ -562,7 +652,7 @@ namespace Final_Year_Project
                 Setup_Emojis();
                 Setup_Groups();
                 Setup_Friends();
-                Setup_Dashboard_Groups();
+                Setup_Dashboard_Groups(true);
             }
 
             ComboBox_Emoji.Text = "Select Emoji";
@@ -594,6 +684,7 @@ namespace Final_Year_Project
 
             bool switch_colour = true;
 
+            SuspendLayout();
             calendar.Visible = false;
             calendar.Controls.Clear();
 
@@ -789,6 +880,7 @@ namespace Final_Year_Project
                 }
             }
 
+            ResumeLayout();
             calendar.Visible = true;
         }
 
@@ -1042,7 +1134,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Setup_Dashboard_Groups()
+        private void Setup_Dashboard_Groups(bool render)
         {
             List<int> temp = database.GetGroupIDs();
 
@@ -1078,7 +1170,10 @@ namespace Final_Year_Project
                 Groups_Data.Rows.Add(c.GetID(), c.GetName(), visible);
             }
 
-            Render();
+            if (render)
+            {
+                Render();
+            }
         }
 
         private void Group_Data_Click(object sender, EventArgs e)
@@ -1144,6 +1239,47 @@ namespace Final_Year_Project
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void Settings_Light_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.ShowDialog();
+
+            Settings_Light_Panel.BackColor = cd.Color;
+        }
+
+        private void Settings_Dark_Button_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.ShowDialog();
+
+            Settings_Dark_Panel.BackColor = cd.Color;
+        }
+
+        private void Settings_Commit_Click(object sender, EventArgs e)
+        {
+            lightColour = Settings_Light_Panel.BackColor;
+            darkColour = Settings_Dark_Panel.BackColor;
+
+            Set_Colours();
+
+            database.Update_User_Colours(lightColour, darkColour);
+        }
+
+        private void PictureBox_Settings_Click(object sender, EventArgs e)
+        {
+            Dashboard_Panel.Visible = false;
+            Event_Panel.Visible = false;
+            Group_Panel.Visible = false;
+            Search_Panel.Visible = false;
+            Friends_Panel.Visible = false;
+            Settings_Panel.Visible = true;
+
+            PictureBox_Back.Visible = true;
+
+            Update_Event_Button.Visible = false;
+            Remove_Event_Button.Visible = false;
         }
     }
 
@@ -1227,6 +1363,42 @@ namespace Final_Year_Project
             connection.Close();
 
             return new User(i, u);
+        }
+
+        public void Update_User_Colours(Color light, Color dark)
+        {
+            SqlCommand cmd = new SqlCommand("Update_User_Colours", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@Light", SqlDbType.Int).Value = light.ToArgb();
+            cmd.Parameters.Add("@Dark", SqlDbType.Int).Value = dark.ToArgb();
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public List<Color> Get_User_Colours()
+        {
+            SqlCommand cmd = new SqlCommand("Get_User_Colours", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User", SqlDbType.VarChar).Value = user.GetID();
+
+            List<Color> temp = new List<Color>();
+            
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                temp.Add(Color.FromArgb((int)rdr[0]));
+                temp.Add(Color.FromArgb((int)rdr[1]));
+            }
+
+            connection.Close();
+
+            return temp;
         }
 
         public void Add_Event(string name, string description, DateTime datetime, string location, string emoji, int group)
@@ -1795,12 +1967,10 @@ namespace Final_Year_Project
 
 /*
  * TODO -
-    * Themes
     * Sign-up
     * Create tests
     * Notifications
     * Friends to request friendship
-    * Add more Emoji's - DONE
     * Filter and restirct entries
     * Remove and update groups
  * References -

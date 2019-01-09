@@ -42,7 +42,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Dashboard_Panel = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.Dashboard_Control_Panel = new System.Windows.Forms.Panel();
             this.Groups_Data = new System.Windows.Forms.DataGridView();
             this.Group_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Group_Name_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +59,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.Form_Button_Panel = new System.Windows.Forms.Panel();
+            this.PictureBox_Settings = new System.Windows.Forms.PictureBox();
             this.PictureBox_Drag = new System.Windows.Forms.PictureBox();
             this.PictureBox_Back = new System.Windows.Forms.PictureBox();
             this.PictureBox_Logout = new System.Windows.Forms.PictureBox();
@@ -78,7 +79,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.Textbox_Username = new System.Windows.Forms.TextBox();
             this.Event_Panel = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.Event_Control_Panel = new System.Windows.Forms.Panel();
             this.TextBox_Event_ID = new System.Windows.Forms.TextBox();
             this.Update_Event_Button = new System.Windows.Forms.Label();
             this.Remove_Event_Button = new System.Windows.Forms.Label();
@@ -102,7 +103,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.TextBox_Name_Event = new System.Windows.Forms.TextBox();
             this.Group_Panel = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
+            this.Group_Control_Panel = new System.Windows.Forms.Panel();
             this.Data_Groups = new System.Windows.Forms.DataGridView();
             this.Check_Boxes_Column = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.User_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -114,7 +115,7 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.TextBox_Name_Group = new System.Windows.Forms.TextBox();
             this.Search_Panel = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
+            this.Search_Control_Panel = new System.Windows.Forms.Panel();
             this.Search_Event_Update = new System.Windows.Forms.Label();
             this.Search_Switch_Map_Button = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -125,7 +126,7 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.TextBox_Search = new System.Windows.Forms.TextBox();
             this.Friends_Panel = new System.Windows.Forms.Panel();
-            this.panel16 = new System.Windows.Forms.Panel();
+            this.Friends_Control_Panel = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.TextBox_Friends_Nickname = new System.Windows.Forms.TextBox();
             this.Add_Friend_Button = new System.Windows.Forms.Label();
@@ -133,13 +134,21 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.TextBox_Search_Username = new System.Windows.Forms.TextBox();
             this.Search_Username_Button = new System.Windows.Forms.Label();
+            this.Settings_Panel = new System.Windows.Forms.Panel();
+            this.Settings_Control_Panel = new System.Windows.Forms.Panel();
+            this.Settings_Commit = new System.Windows.Forms.Label();
+            this.Settings_Dark_Panel = new System.Windows.Forms.Panel();
+            this.Settings_Light_Panel = new System.Windows.Forms.Panel();
+            this.Settings_Light_Button = new System.Windows.Forms.Label();
+            this.Settings_Dark_Button = new System.Windows.Forms.Label();
             this.Dashboard_Panel.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
             this.tableLayoutPanelCalendarHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Form_Button_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Drag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).BeginInit();
@@ -153,22 +162,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.Event_Panel.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.Event_Control_Panel.SuspendLayout();
             this.Group_Panel.SuspendLayout();
-            this.panel9.SuspendLayout();
+            this.Group_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).BeginInit();
             this.Search_Panel.SuspendLayout();
-            this.panel11.SuspendLayout();
+            this.Search_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Data)).BeginInit();
             this.Friends_Panel.SuspendLayout();
-            this.panel16.SuspendLayout();
+            this.Friends_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Friends)).BeginInit();
+            this.Settings_Panel.SuspendLayout();
+            this.Settings_Control_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Dashboard_Panel
             // 
             this.Dashboard_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.Dashboard_Panel.Controls.Add(this.panel4);
+            this.Dashboard_Panel.Controls.Add(this.Dashboard_Control_Panel);
             this.Dashboard_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dashboard_Panel.Location = new System.Drawing.Point(0, 0);
             this.Dashboard_Panel.Name = "Dashboard_Panel";
@@ -176,24 +187,24 @@
             this.Dashboard_Panel.TabIndex = 2;
             this.Dashboard_Panel.Visible = false;
             // 
-            // panel4
+            // Dashboard_Control_Panel
             // 
-            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel4.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel4.Controls.Add(this.Groups_Data);
-            this.panel4.Controls.Add(this.Find_Friends_Button);
-            this.panel4.Controls.Add(this.Dashboard_Search_Button);
-            this.panel4.Controls.Add(this.panel14);
-            this.panel4.Controls.Add(this.Dashboard_Search);
-            this.panel4.Controls.Add(this.Dashboard_Add_Group);
-            this.panel4.Controls.Add(this.Dashboard_Add_Event);
-            this.panel4.Controls.Add(this.DatePicker);
-            this.panel4.Controls.Add(this.tableLayoutPanelCalendarHeader);
-            this.panel4.Controls.Add(this.tableLayoutPanel);
-            this.panel4.Location = new System.Drawing.Point(6, 5);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(839, 700);
-            this.panel4.TabIndex = 27;
+            this.Dashboard_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Dashboard_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Dashboard_Control_Panel.Controls.Add(this.Groups_Data);
+            this.Dashboard_Control_Panel.Controls.Add(this.Find_Friends_Button);
+            this.Dashboard_Control_Panel.Controls.Add(this.Dashboard_Search_Button);
+            this.Dashboard_Control_Panel.Controls.Add(this.panel14);
+            this.Dashboard_Control_Panel.Controls.Add(this.Dashboard_Search);
+            this.Dashboard_Control_Panel.Controls.Add(this.Dashboard_Add_Group);
+            this.Dashboard_Control_Panel.Controls.Add(this.Dashboard_Add_Event);
+            this.Dashboard_Control_Panel.Controls.Add(this.DatePicker);
+            this.Dashboard_Control_Panel.Controls.Add(this.tableLayoutPanelCalendarHeader);
+            this.Dashboard_Control_Panel.Controls.Add(this.tableLayoutPanel);
+            this.Dashboard_Control_Panel.Location = new System.Drawing.Point(6, 5);
+            this.Dashboard_Control_Panel.Name = "Dashboard_Control_Panel";
+            this.Dashboard_Control_Panel.Size = new System.Drawing.Size(839, 700);
+            this.Dashboard_Control_Panel.TabIndex = 27;
             // 
             // Groups_Data
             // 
@@ -203,8 +214,9 @@
             this.Groups_Data.AllowUserToResizeRows = false;
             this.Groups_Data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Groups_Data.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Groups_Data.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Groups_Data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.Groups_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.Groups_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Candara", 12F);
@@ -361,6 +373,7 @@
             // 
             // tableLayoutPanelCalendarHeader
             // 
+            this.tableLayoutPanelCalendarHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tableLayoutPanelCalendarHeader.ColumnCount = 3;
             this.tableLayoutPanelCalendarHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanelCalendarHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
@@ -444,22 +457,38 @@
             // Form_Button_Panel
             // 
             this.Form_Button_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Form_Button_Panel.Controls.Add(this.PictureBox_Settings);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Drag);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Back);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Logout);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Minimise);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Close);
-            this.Form_Button_Panel.Location = new System.Drawing.Point(656, 5);
+            this.Form_Button_Panel.Location = new System.Drawing.Point(622, 5);
             this.Form_Button_Panel.Name = "Form_Button_Panel";
-            this.Form_Button_Panel.Size = new System.Drawing.Size(189, 44);
+            this.Form_Button_Panel.Size = new System.Drawing.Size(224, 44);
             this.Form_Button_Panel.TabIndex = 5;
+            // 
+            // PictureBox_Settings
+            // 
+            this.PictureBox_Settings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Settings.BackgroundImage")));
+            this.PictureBox_Settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Settings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Settings.Location = new System.Drawing.Point(43, 7);
+            this.PictureBox_Settings.Name = "PictureBox_Settings";
+            this.PictureBox_Settings.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Settings.TabIndex = 6;
+            this.PictureBox_Settings.TabStop = false;
+            this.PictureBox_Settings.Visible = false;
+            this.PictureBox_Settings.Click += new System.EventHandler(this.PictureBox_Settings_Click);
+            this.PictureBox_Settings.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Settings.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
             // PictureBox_Drag
             // 
             this.PictureBox_Drag.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Drag.BackgroundImage")));
             this.PictureBox_Drag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Drag.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Drag.Location = new System.Drawing.Point(79, 7);
+            this.PictureBox_Drag.Location = new System.Drawing.Point(115, 7);
             this.PictureBox_Drag.Name = "PictureBox_Drag";
             this.PictureBox_Drag.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Drag.TabIndex = 5;
@@ -488,7 +517,7 @@
             this.PictureBox_Logout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Logout.BackgroundImage")));
             this.PictureBox_Logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Logout.Location = new System.Drawing.Point(43, 7);
+            this.PictureBox_Logout.Location = new System.Drawing.Point(79, 7);
             this.PictureBox_Logout.Name = "PictureBox_Logout";
             this.PictureBox_Logout.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Logout.TabIndex = 2;
@@ -503,7 +532,7 @@
             this.PictureBox_Minimise.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Minimise.BackgroundImage")));
             this.PictureBox_Minimise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Minimise.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Minimise.Location = new System.Drawing.Point(115, 7);
+            this.PictureBox_Minimise.Location = new System.Drawing.Point(151, 7);
             this.PictureBox_Minimise.Name = "PictureBox_Minimise";
             this.PictureBox_Minimise.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Minimise.TabIndex = 1;
@@ -514,11 +543,11 @@
             // 
             // PictureBox_Close
             // 
-            this.PictureBox_Close.BackColor = System.Drawing.Color.RoyalBlue;
+            this.PictureBox_Close.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Close.BackgroundImage")));
             this.PictureBox_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Close.Location = new System.Drawing.Point(151, 7);
+            this.PictureBox_Close.Location = new System.Drawing.Point(187, 7);
             this.PictureBox_Close.Name = "PictureBox_Close";
             this.PictureBox_Close.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Close.TabIndex = 0;
@@ -694,7 +723,7 @@
             // Event_Panel
             // 
             this.Event_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.Event_Panel.Controls.Add(this.panel5);
+            this.Event_Panel.Controls.Add(this.Event_Control_Panel);
             this.Event_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Event_Panel.Location = new System.Drawing.Point(0, 0);
             this.Event_Panel.Name = "Event_Panel";
@@ -702,36 +731,36 @@
             this.Event_Panel.TabIndex = 4;
             this.Event_Panel.Visible = false;
             // 
-            // panel5
+            // Event_Control_Panel
             // 
-            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel5.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel5.Controls.Add(this.TextBox_Event_ID);
-            this.panel5.Controls.Add(this.Update_Event_Button);
-            this.panel5.Controls.Add(this.Remove_Event_Button);
-            this.panel5.Controls.Add(this.Map_Type_Button);
-            this.panel5.Controls.Add(this.GMap_Control);
-            this.panel5.Controls.Add(this.panel10);
-            this.panel5.Controls.Add(this.TextBox_Location_Search);
-            this.panel5.Controls.Add(this.label5);
-            this.panel5.Controls.Add(this.TextBox_Location);
-            this.panel5.Controls.Add(this.Add_Event_Button);
-            this.panel5.Controls.Add(this.Search_Location_Button);
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.ComboBox_Emoji);
-            this.panel5.Controls.Add(this.ComboBox_Group);
-            this.panel5.Controls.Add(this.panel7);
-            this.panel5.Controls.Add(this.TextBox_Description);
-            this.panel5.Controls.Add(this.label2);
-            this.panel5.Controls.Add(this.DateTimePicker_Time);
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Controls.Add(this.DateTimePicker_Date);
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.TextBox_Name_Event);
-            this.panel5.Location = new System.Drawing.Point(145, 179);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(561, 352);
-            this.panel5.TabIndex = 0;
+            this.Event_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Event_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Event_Control_Panel.Controls.Add(this.TextBox_Event_ID);
+            this.Event_Control_Panel.Controls.Add(this.Update_Event_Button);
+            this.Event_Control_Panel.Controls.Add(this.Remove_Event_Button);
+            this.Event_Control_Panel.Controls.Add(this.Map_Type_Button);
+            this.Event_Control_Panel.Controls.Add(this.GMap_Control);
+            this.Event_Control_Panel.Controls.Add(this.panel10);
+            this.Event_Control_Panel.Controls.Add(this.TextBox_Location_Search);
+            this.Event_Control_Panel.Controls.Add(this.label5);
+            this.Event_Control_Panel.Controls.Add(this.TextBox_Location);
+            this.Event_Control_Panel.Controls.Add(this.Add_Event_Button);
+            this.Event_Control_Panel.Controls.Add(this.Search_Location_Button);
+            this.Event_Control_Panel.Controls.Add(this.label3);
+            this.Event_Control_Panel.Controls.Add(this.ComboBox_Emoji);
+            this.Event_Control_Panel.Controls.Add(this.ComboBox_Group);
+            this.Event_Control_Panel.Controls.Add(this.panel7);
+            this.Event_Control_Panel.Controls.Add(this.TextBox_Description);
+            this.Event_Control_Panel.Controls.Add(this.label2);
+            this.Event_Control_Panel.Controls.Add(this.DateTimePicker_Time);
+            this.Event_Control_Panel.Controls.Add(this.label1);
+            this.Event_Control_Panel.Controls.Add(this.DateTimePicker_Date);
+            this.Event_Control_Panel.Controls.Add(this.panel6);
+            this.Event_Control_Panel.Controls.Add(this.TextBox_Name_Event);
+            this.Event_Control_Panel.Location = new System.Drawing.Point(145, 179);
+            this.Event_Control_Panel.Name = "Event_Control_Panel";
+            this.Event_Control_Panel.Size = new System.Drawing.Size(561, 352);
+            this.Event_Control_Panel.TabIndex = 0;
             // 
             // TextBox_Event_ID
             // 
@@ -1030,7 +1059,7 @@
             // Group_Panel
             // 
             this.Group_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.Group_Panel.Controls.Add(this.panel9);
+            this.Group_Panel.Controls.Add(this.Group_Control_Panel);
             this.Group_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Group_Panel.Location = new System.Drawing.Point(0, 0);
             this.Group_Panel.Name = "Group_Panel";
@@ -1038,20 +1067,20 @@
             this.Group_Panel.TabIndex = 5;
             this.Group_Panel.Visible = false;
             // 
-            // panel9
+            // Group_Control_Panel
             // 
-            this.panel9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel9.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel9.Controls.Add(this.Data_Groups);
-            this.panel9.Controls.Add(this.Add_Group_Button);
-            this.panel9.Controls.Add(this.Colour_Panel);
-            this.panel9.Controls.Add(this.ColourPicker_Button);
-            this.panel9.Controls.Add(this.panel8);
-            this.panel9.Controls.Add(this.TextBox_Name_Group);
-            this.panel9.Location = new System.Drawing.Point(121, 269);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(601, 173);
-            this.panel9.TabIndex = 20;
+            this.Group_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Group_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Group_Control_Panel.Controls.Add(this.Data_Groups);
+            this.Group_Control_Panel.Controls.Add(this.Add_Group_Button);
+            this.Group_Control_Panel.Controls.Add(this.Colour_Panel);
+            this.Group_Control_Panel.Controls.Add(this.ColourPicker_Button);
+            this.Group_Control_Panel.Controls.Add(this.panel8);
+            this.Group_Control_Panel.Controls.Add(this.TextBox_Name_Group);
+            this.Group_Control_Panel.Location = new System.Drawing.Point(121, 269);
+            this.Group_Control_Panel.Name = "Group_Control_Panel";
+            this.Group_Control_Panel.Size = new System.Drawing.Size(601, 173);
+            this.Group_Control_Panel.TabIndex = 20;
             // 
             // Data_Groups
             // 
@@ -1061,8 +1090,9 @@
             this.Data_Groups.AllowUserToResizeRows = false;
             this.Data_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Data_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Data_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.Data_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.Data_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Candara", 12F);
@@ -1199,7 +1229,7 @@
             // Search_Panel
             // 
             this.Search_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.Search_Panel.Controls.Add(this.panel11);
+            this.Search_Panel.Controls.Add(this.Search_Control_Panel);
             this.Search_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Search_Panel.Location = new System.Drawing.Point(0, 0);
             this.Search_Panel.Name = "Search_Panel";
@@ -1207,23 +1237,23 @@
             this.Search_Panel.TabIndex = 6;
             this.Search_Panel.Visible = false;
             // 
-            // panel11
+            // Search_Control_Panel
             // 
-            this.panel11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel11.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel11.Controls.Add(this.Search_Event_Update);
-            this.panel11.Controls.Add(this.Search_Switch_Map_Button);
-            this.panel11.Controls.Add(this.panel12);
-            this.panel11.Controls.Add(this.Search_Description);
-            this.panel11.Controls.Add(this.GMap_Control_Search);
-            this.panel11.Controls.Add(this.Search_Data);
-            this.panel11.Controls.Add(this.Search_Panel_Button);
-            this.panel11.Controls.Add(this.panel13);
-            this.panel11.Controls.Add(this.TextBox_Search);
-            this.panel11.Location = new System.Drawing.Point(20, 181);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(810, 348);
-            this.panel11.TabIndex = 21;
+            this.Search_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Search_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Control_Panel.Controls.Add(this.Search_Event_Update);
+            this.Search_Control_Panel.Controls.Add(this.Search_Switch_Map_Button);
+            this.Search_Control_Panel.Controls.Add(this.panel12);
+            this.Search_Control_Panel.Controls.Add(this.Search_Description);
+            this.Search_Control_Panel.Controls.Add(this.GMap_Control_Search);
+            this.Search_Control_Panel.Controls.Add(this.Search_Data);
+            this.Search_Control_Panel.Controls.Add(this.Search_Panel_Button);
+            this.Search_Control_Panel.Controls.Add(this.panel13);
+            this.Search_Control_Panel.Controls.Add(this.TextBox_Search);
+            this.Search_Control_Panel.Location = new System.Drawing.Point(20, 181);
+            this.Search_Control_Panel.Name = "Search_Control_Panel";
+            this.Search_Control_Panel.Size = new System.Drawing.Size(810, 348);
+            this.Search_Control_Panel.TabIndex = 21;
             // 
             // Search_Event_Update
             // 
@@ -1313,8 +1343,9 @@
             this.Search_Data.AllowUserToResizeRows = false;
             this.Search_Data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Search_Data.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Data.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Search_Data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.Search_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.Search_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Candara", 12F);
@@ -1393,7 +1424,7 @@
             // Friends_Panel
             // 
             this.Friends_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.Friends_Panel.Controls.Add(this.panel16);
+            this.Friends_Panel.Controls.Add(this.Friends_Control_Panel);
             this.Friends_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Friends_Panel.Location = new System.Drawing.Point(0, 0);
             this.Friends_Panel.Name = "Friends_Panel";
@@ -1401,21 +1432,21 @@
             this.Friends_Panel.TabIndex = 7;
             this.Friends_Panel.Visible = false;
             // 
-            // panel16
+            // Friends_Control_Panel
             // 
-            this.panel16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel16.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel16.Controls.Add(this.panel18);
-            this.panel16.Controls.Add(this.TextBox_Friends_Nickname);
-            this.panel16.Controls.Add(this.Add_Friend_Button);
-            this.panel16.Controls.Add(this.Search_Friends);
-            this.panel16.Controls.Add(this.panel17);
-            this.panel16.Controls.Add(this.TextBox_Search_Username);
-            this.panel16.Controls.Add(this.Search_Username_Button);
-            this.panel16.Location = new System.Drawing.Point(265, 195);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(321, 320);
-            this.panel16.TabIndex = 20;
+            this.Friends_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Friends_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Friends_Control_Panel.Controls.Add(this.panel18);
+            this.Friends_Control_Panel.Controls.Add(this.TextBox_Friends_Nickname);
+            this.Friends_Control_Panel.Controls.Add(this.Add_Friend_Button);
+            this.Friends_Control_Panel.Controls.Add(this.Search_Friends);
+            this.Friends_Control_Panel.Controls.Add(this.panel17);
+            this.Friends_Control_Panel.Controls.Add(this.TextBox_Search_Username);
+            this.Friends_Control_Panel.Controls.Add(this.Search_Username_Button);
+            this.Friends_Control_Panel.Location = new System.Drawing.Point(265, 195);
+            this.Friends_Control_Panel.Name = "Friends_Control_Panel";
+            this.Friends_Control_Panel.Size = new System.Drawing.Size(321, 320);
+            this.Friends_Control_Panel.TabIndex = 20;
             // 
             // panel18
             // 
@@ -1464,8 +1495,9 @@
             this.Search_Friends.AllowUserToResizeRows = false;
             this.Search_Friends.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Search_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Friends.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Search_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.Search_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.Search_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Candara", 12F);
@@ -1541,18 +1573,110 @@
             this.Search_Username_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
             this.Search_Username_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
+            // Settings_Panel
+            // 
+            this.Settings_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Settings_Panel.Controls.Add(this.Settings_Control_Panel);
+            this.Settings_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Settings_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Settings_Panel.Name = "Settings_Panel";
+            this.Settings_Panel.Size = new System.Drawing.Size(850, 710);
+            this.Settings_Panel.TabIndex = 8;
+            this.Settings_Panel.Visible = false;
+            // 
+            // Settings_Control_Panel
+            // 
+            this.Settings_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Settings_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Settings_Control_Panel.Controls.Add(this.Settings_Commit);
+            this.Settings_Control_Panel.Controls.Add(this.Settings_Dark_Panel);
+            this.Settings_Control_Panel.Controls.Add(this.Settings_Light_Panel);
+            this.Settings_Control_Panel.Controls.Add(this.Settings_Light_Button);
+            this.Settings_Control_Panel.Controls.Add(this.Settings_Dark_Button);
+            this.Settings_Control_Panel.Location = new System.Drawing.Point(288, 291);
+            this.Settings_Control_Panel.Name = "Settings_Control_Panel";
+            this.Settings_Control_Panel.Size = new System.Drawing.Size(275, 129);
+            this.Settings_Control_Panel.TabIndex = 0;
+            // 
+            // Settings_Commit
+            // 
+            this.Settings_Commit.BackColor = System.Drawing.Color.White;
+            this.Settings_Commit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Settings_Commit.Font = new System.Drawing.Font("Candara", 12F);
+            this.Settings_Commit.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Settings_Commit.Location = new System.Drawing.Point(13, 86);
+            this.Settings_Commit.Name = "Settings_Commit";
+            this.Settings_Commit.Size = new System.Drawing.Size(250, 30);
+            this.Settings_Commit.TabIndex = 22;
+            this.Settings_Commit.Text = "Commit Changes";
+            this.Settings_Commit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Settings_Commit.Click += new System.EventHandler(this.Settings_Commit_Click);
+            this.Settings_Commit.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Settings_Commit.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
+            // Settings_Dark_Panel
+            // 
+            this.Settings_Dark_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Settings_Dark_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Settings_Dark_Panel.Location = new System.Drawing.Point(191, 49);
+            this.Settings_Dark_Panel.Name = "Settings_Dark_Panel";
+            this.Settings_Dark_Panel.Size = new System.Drawing.Size(72, 30);
+            this.Settings_Dark_Panel.TabIndex = 21;
+            // 
+            // Settings_Light_Panel
+            // 
+            this.Settings_Light_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Settings_Light_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Settings_Light_Panel.Location = new System.Drawing.Point(191, 13);
+            this.Settings_Light_Panel.Name = "Settings_Light_Panel";
+            this.Settings_Light_Panel.Size = new System.Drawing.Size(72, 30);
+            this.Settings_Light_Panel.TabIndex = 20;
+            // 
+            // Settings_Light_Button
+            // 
+            this.Settings_Light_Button.BackColor = System.Drawing.Color.White;
+            this.Settings_Light_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Settings_Light_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Settings_Light_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Settings_Light_Button.Location = new System.Drawing.Point(13, 13);
+            this.Settings_Light_Button.Name = "Settings_Light_Button";
+            this.Settings_Light_Button.Size = new System.Drawing.Size(171, 30);
+            this.Settings_Light_Button.TabIndex = 8;
+            this.Settings_Light_Button.Text = "Change Light Colour";
+            this.Settings_Light_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Settings_Light_Button.Click += new System.EventHandler(this.Settings_Light_Click);
+            this.Settings_Light_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Settings_Light_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
+            // Settings_Dark_Button
+            // 
+            this.Settings_Dark_Button.BackColor = System.Drawing.Color.White;
+            this.Settings_Dark_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Settings_Dark_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Settings_Dark_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Settings_Dark_Button.Location = new System.Drawing.Point(13, 50);
+            this.Settings_Dark_Button.Name = "Settings_Dark_Button";
+            this.Settings_Dark_Button.Size = new System.Drawing.Size(171, 30);
+            this.Settings_Dark_Button.TabIndex = 7;
+            this.Settings_Dark_Button.Text = "Change Dark Colour";
+            this.Settings_Dark_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Settings_Dark_Button.Click += new System.EventHandler(this.Settings_Dark_Button_Click);
+            this.Settings_Dark_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Settings_Dark_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
+            this.Controls.Add(this.Settings_Panel);
             this.Controls.Add(this.Login_Panel);
-            this.Controls.Add(this.Event_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Search_Panel);
+            this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Group_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -1560,13 +1684,14 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Dashboard_Panel.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.Dashboard_Control_Panel.ResumeLayout(false);
+            this.Dashboard_Control_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).EndInit();
             this.tableLayoutPanelCalendarHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.Form_Button_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Settings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Drag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logout)).EndInit();
@@ -1581,20 +1706,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.Event_Panel.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.Event_Control_Panel.ResumeLayout(false);
+            this.Event_Control_Panel.PerformLayout();
             this.Group_Panel.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
+            this.Group_Control_Panel.ResumeLayout(false);
+            this.Group_Control_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).EndInit();
             this.Search_Panel.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
+            this.Search_Control_Panel.ResumeLayout(false);
+            this.Search_Control_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Data)).EndInit();
             this.Friends_Panel.ResumeLayout(false);
-            this.panel16.ResumeLayout(false);
-            this.panel16.PerformLayout();
+            this.Friends_Control_Panel.ResumeLayout(false);
+            this.Friends_Control_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Friends)).EndInit();
+            this.Settings_Panel.ResumeLayout(false);
+            this.Settings_Control_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1621,7 +1748,7 @@
         private System.Windows.Forms.PictureBox PictureBox_Password_Cross;
         private System.Windows.Forms.PictureBox PictureBox_Username_Cross;
         private System.Windows.Forms.PictureBox PictureBox_Logout;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel Event_Control_Panel;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TextBox TextBox_Name_Event;
         private System.Windows.Forms.DateTimePicker DateTimePicker_Date;
@@ -1640,7 +1767,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label ColourPicker_Button;
         private System.Windows.Forms.Panel Colour_Panel;
-        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel Group_Control_Panel;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.TextBox TextBox_Name_Group;
         private System.Windows.Forms.Label Add_Group_Button;
@@ -1648,7 +1775,7 @@
         private System.Windows.Forms.TextBox TextBox_Location_Search;
         private GMap.NET.WindowsForms.GMapControl GMap_Control;
         private System.Windows.Forms.Label Map_Type_Button;
-        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel Search_Control_Panel;
         private System.Windows.Forms.DataGridView Search_Data;
         private System.Windows.Forms.Label Search_Panel_Button;
         private System.Windows.Forms.Panel panel13;
@@ -1662,7 +1789,7 @@
         private System.Windows.Forms.TextBox TextBox_Event_ID;
         private System.Windows.Forms.Label Search_Event_Update;
         private System.Windows.Forms.Panel Friends_Panel;
-        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel Friends_Control_Panel;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.TextBox TextBox_Friends_Nickname;
         private System.Windows.Forms.Label Add_Friend_Button;
@@ -1675,7 +1802,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn User_ID_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nickname_Column;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel Dashboard_Control_Panel;
         private System.Windows.Forms.Label Find_Friends_Button;
         private System.Windows.Forms.Label Dashboard_Search_Button;
         private System.Windows.Forms.Panel panel14;
@@ -1692,6 +1819,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Group_Name_Column;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Group_Checkbox_Column;
         private System.Windows.Forms.PictureBox PictureBox_Drag;
+        private System.Windows.Forms.Panel Settings_Panel;
+        private System.Windows.Forms.Panel Settings_Control_Panel;
+        private System.Windows.Forms.Panel Settings_Dark_Panel;
+        private System.Windows.Forms.Panel Settings_Light_Panel;
+        private System.Windows.Forms.Label Settings_Light_Button;
+        private System.Windows.Forms.Label Settings_Dark_Button;
+        private System.Windows.Forms.Label Settings_Commit;
+        private System.Windows.Forms.PictureBox PictureBox_Settings;
     }
 }
 
