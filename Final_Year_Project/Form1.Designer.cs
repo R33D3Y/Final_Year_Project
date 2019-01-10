@@ -83,6 +83,8 @@
             this.Textbox_Username = new System.Windows.Forms.TextBox();
             this.Event_Panel = new System.Windows.Forms.Panel();
             this.Event_Control_Panel = new System.Windows.Forms.Panel();
+            this.Event_Button_Emoji = new System.Windows.Forms.Label();
+            this.Event_TextBox_Emoji = new System.Windows.Forms.TextBox();
             this.TextBox_Event_ID = new System.Windows.Forms.TextBox();
             this.Update_Event_Button = new System.Windows.Forms.Label();
             this.Remove_Event_Button = new System.Windows.Forms.Label();
@@ -94,8 +96,6 @@
             this.TextBox_Location = new System.Windows.Forms.TextBox();
             this.Add_Event_Button = new System.Windows.Forms.Label();
             this.Search_Location_Button = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.ComboBox_Emoji = new System.Windows.Forms.ComboBox();
             this.ComboBox_Group = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.TextBox_Description = new System.Windows.Forms.RichTextBox();
@@ -167,6 +167,10 @@
             this.Signup_Panel_Button = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.Signup_TextBox_Username = new System.Windows.Forms.TextBox();
+            this.Emoji_Panel = new System.Windows.Forms.Panel();
+            this.Emoji_Control_Panel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Table_Layout_Panel_Emoji = new System.Windows.Forms.TableLayoutPanel();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -212,6 +216,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Email)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Username)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Username)).BeginInit();
+            this.Emoji_Panel.SuspendLayout();
+            this.Emoji_Control_Panel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Dashboard_Panel
@@ -808,6 +815,8 @@
             // 
             this.Event_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Event_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Event_Control_Panel.Controls.Add(this.Event_Button_Emoji);
+            this.Event_Control_Panel.Controls.Add(this.Event_TextBox_Emoji);
             this.Event_Control_Panel.Controls.Add(this.TextBox_Event_ID);
             this.Event_Control_Panel.Controls.Add(this.Update_Event_Button);
             this.Event_Control_Panel.Controls.Add(this.Remove_Event_Button);
@@ -819,8 +828,6 @@
             this.Event_Control_Panel.Controls.Add(this.TextBox_Location);
             this.Event_Control_Panel.Controls.Add(this.Add_Event_Button);
             this.Event_Control_Panel.Controls.Add(this.Search_Location_Button);
-            this.Event_Control_Panel.Controls.Add(this.label3);
-            this.Event_Control_Panel.Controls.Add(this.ComboBox_Emoji);
             this.Event_Control_Panel.Controls.Add(this.ComboBox_Group);
             this.Event_Control_Panel.Controls.Add(this.panel7);
             this.Event_Control_Panel.Controls.Add(this.TextBox_Description);
@@ -834,6 +841,31 @@
             this.Event_Control_Panel.Name = "Event_Control_Panel";
             this.Event_Control_Panel.Size = new System.Drawing.Size(561, 352);
             this.Event_Control_Panel.TabIndex = 0;
+            // 
+            // Event_Button_Emoji
+            // 
+            this.Event_Button_Emoji.BackColor = System.Drawing.Color.White;
+            this.Event_Button_Emoji.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Event_Button_Emoji.Font = new System.Drawing.Font("Candara", 12F);
+            this.Event_Button_Emoji.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Event_Button_Emoji.Location = new System.Drawing.Point(17, 236);
+            this.Event_Button_Emoji.Name = "Event_Button_Emoji";
+            this.Event_Button_Emoji.Size = new System.Drawing.Size(147, 30);
+            this.Event_Button_Emoji.TabIndex = 28;
+            this.Event_Button_Emoji.Text = "Select Emoji";
+            this.Event_Button_Emoji.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Event_Button_Emoji.Click += new System.EventHandler(this.Event_Button_Emoji_Click);
+            // 
+            // Event_TextBox_Emoji
+            // 
+            this.Event_TextBox_Emoji.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Event_TextBox_Emoji.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Event_TextBox_Emoji.Font = new System.Drawing.Font("Candara", 16F);
+            this.Event_TextBox_Emoji.ForeColor = System.Drawing.Color.White;
+            this.Event_TextBox_Emoji.Location = new System.Drawing.Point(170, 238);
+            this.Event_TextBox_Emoji.Name = "Event_TextBox_Emoji";
+            this.Event_TextBox_Emoji.Size = new System.Drawing.Size(48, 27);
+            this.Event_TextBox_Emoji.TabIndex = 27;
             // 
             // TextBox_Event_ID
             // 
@@ -993,30 +1025,6 @@
             this.Search_Location_Button.Click += new System.EventHandler(this.Search_Location_Click);
             this.Search_Location_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
             this.Search_Location_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Candara", 12F);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(17, 239);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 19);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Emoji:";
-            // 
-            // ComboBox_Emoji
-            // 
-            this.ComboBox_Emoji.BackColor = System.Drawing.Color.RoyalBlue;
-            this.ComboBox_Emoji.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_Emoji.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBox_Emoji.Font = new System.Drawing.Font("Candara", 12F);
-            this.ComboBox_Emoji.ForeColor = System.Drawing.Color.White;
-            this.ComboBox_Emoji.FormattingEnabled = true;
-            this.ComboBox_Emoji.Location = new System.Drawing.Point(79, 236);
-            this.ComboBox_Emoji.Name = "ComboBox_Emoji";
-            this.ComboBox_Emoji.Size = new System.Drawing.Size(139, 27);
-            this.ComboBox_Emoji.TabIndex = 14;
             // 
             // ComboBox_Group
             // 
@@ -2014,17 +2022,81 @@
             this.Signup_TextBox_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Signup_TextBox_Username.TextChanged += new System.EventHandler(this.Signup_TextBox_Username_TextChanged);
             // 
+            // Emoji_Panel
+            // 
+            this.Emoji_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Emoji_Panel.Controls.Add(this.Emoji_Control_Panel);
+            this.Emoji_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Emoji_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Emoji_Panel.Name = "Emoji_Panel";
+            this.Emoji_Panel.Size = new System.Drawing.Size(850, 710);
+            this.Emoji_Panel.TabIndex = 10;
+            this.Emoji_Panel.Visible = false;
+            // 
+            // Emoji_Control_Panel
+            // 
+            this.Emoji_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Emoji_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Emoji_Control_Panel.Controls.Add(this.panel1);
+            this.Emoji_Control_Panel.Location = new System.Drawing.Point(246, 226);
+            this.Emoji_Control_Panel.Name = "Emoji_Control_Panel";
+            this.Emoji_Control_Panel.Size = new System.Drawing.Size(359, 258);
+            this.Emoji_Control_Panel.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel1.Controls.Add(this.Table_Layout_Panel_Emoji);
+            this.panel1.Location = new System.Drawing.Point(8, 8);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(343, 241);
+            this.panel1.TabIndex = 24;
+            // 
+            // Table_Layout_Panel_Emoji
+            // 
+            this.Table_Layout_Panel_Emoji.AutoScroll = true;
+            this.Table_Layout_Panel_Emoji.ColumnCount = 8;
+            this.Table_Layout_Panel_Emoji.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
+            this.Table_Layout_Panel_Emoji.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Table_Layout_Panel_Emoji.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.Table_Layout_Panel_Emoji.Location = new System.Drawing.Point(0, 0);
+            this.Table_Layout_Panel_Emoji.Name = "Table_Layout_Panel_Emoji";
+            this.Table_Layout_Panel_Emoji.RowCount = 12;
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.Table_Layout_Panel_Emoji.Size = new System.Drawing.Size(343, 241);
+            this.Table_Layout_Panel_Emoji.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
+            this.Controls.Add(this.Event_Panel);
+            this.Controls.Add(this.Emoji_Panel);
             this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Signup_Panel);
             this.Controls.Add(this.Settings_Panel);
             this.Controls.Add(this.Search_Panel);
-            this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Dashboard_Panel);
@@ -2087,6 +2159,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Email)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Signup_Tick_Username)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Signup_Cross_Username)).EndInit();
+            this.Emoji_Panel.ResumeLayout(false);
+            this.Emoji_Control_Panel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2122,8 +2197,6 @@
         private System.Windows.Forms.DateTimePicker DateTimePicker_Time;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.RichTextBox TextBox_Description;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox ComboBox_Emoji;
         private System.Windows.Forms.ComboBox ComboBox_Group;
         private System.Windows.Forms.Label Add_Event_Button;
         private System.Windows.Forms.Label Search_Location_Button;
@@ -2218,6 +2291,12 @@
         private System.Windows.Forms.PictureBox PictureBox_Signup_Back;
         private System.Windows.Forms.Label Label_Internet;
         private System.Windows.Forms.PictureBox PictureBox_Internet;
+        private System.Windows.Forms.Panel Emoji_Panel;
+        private System.Windows.Forms.Panel Emoji_Control_Panel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel Table_Layout_Panel_Emoji;
+        private System.Windows.Forms.TextBox Event_TextBox_Emoji;
+        private System.Windows.Forms.Label Event_Button_Emoji;
     }
 }
 

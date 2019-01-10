@@ -104,9 +104,10 @@ namespace Final_Year_Project
             TextBox_Name_Event.BackColor = darkColour;
             TextBox_Description.BackColor = darkColour;
             ComboBox_Group.BackColor = darkColour;
-            ComboBox_Emoji.BackColor = darkColour;
+            Event_TextBox_Emoji.BackColor = darkColour;
             TextBox_Location_Search.BackColor = darkColour;
 
+            Event_Button_Emoji.ForeColor = lightColour;
             Search_Location_Button.ForeColor = lightColour;
             Add_Event_Button.ForeColor = lightColour;
             Update_Event_Button.ForeColor = lightColour;
@@ -161,6 +162,12 @@ namespace Final_Year_Project
             Settings_Commit.ForeColor = lightColour;
             Settings_Light_Panel.BackColor = lightColour;
             Settings_Dark_Panel.BackColor = darkColour;
+
+            // Emoji Panel
+            Emoji_Panel.BackColor = lightColour;
+            Emoji_Control_Panel.BackColor = darkColour;
+
+            Table_Layout_Panel_Emoji.BackColor = darkColour;
         }
 
         private void Calendar_Back_Click(object sender, EventArgs e)
@@ -296,6 +303,18 @@ namespace Final_Year_Project
             pb.BackColor = darkColour;
         }
 
+        private void Emoji_MouseHover(object sender, EventArgs e)
+        {
+            Label l = (Label)sender;
+            l.BackColor = lightColour;
+        }
+
+        private void Emoji_MouseLeave(object sender, EventArgs e)
+        {
+            Label l = (Label)sender;
+            l.BackColor = darkColour;
+        }
+
         private void PictureBox_Logout_Click(object sender, EventArgs e)
         {
             if (database != null)
@@ -342,11 +361,27 @@ namespace Final_Year_Project
 
             database.SetEmojis(emojis);
 
-            ComboBox_Emoji.Items.Clear();
+            Table_Layout_Panel_Emoji.Controls.Clear();
 
-            foreach (Emoji e in emojis)
+            foreach (Emoji emoji in emojis)
             {
-                ComboBox_Emoji.Items.Add(e.GetIcon());
+                Label label = new Label() { Text = emoji.GetIcon(), Font = new Font("Candara", 16), ForeColor = Color.White, Width = 40, Height = 40, Cursor = Cursors.Hand, TextAlign = ContentAlignment.MiddleCenter };
+                label.Click += (se, ev) =>
+                {
+                    Event_TextBox_Emoji.Text = label.Text;
+                    Emoji_Panel.Visible = false;
+                    Event_Panel.Visible = true;
+                };
+                label.MouseHover += (se, ev) =>
+                {
+                    Emoji_MouseHover(se, ev);
+                };
+                label.MouseLeave += (se, ev) =>
+                {
+                    Emoji_MouseLeave(se, ev);
+                };
+
+                Table_Layout_Panel_Emoji.Controls.Add(label);
             }
         }
 
@@ -377,7 +412,7 @@ namespace Final_Year_Project
                 }
             }
 
-            database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, ComboBox_Emoji.Text, group);
+            database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
 
             DateTime tempDt = DateTime.Now;
             dt = new DateTime(tempDt.Year, tempDt.Month, 1);
@@ -650,7 +685,7 @@ namespace Final_Year_Project
             TextBox_Event_ID.Text = "";
             TextBox_Name_Event.Text = "Enter Event Name";
             TextBox_Description.Text = "Enter Description";
-            ComboBox_Emoji.Items.Clear();
+            Event_TextBox_Emoji.Text = "";
             ComboBox_Group.Items.Clear();
             TextBox_Location.Text = ",";
             TextBox_Location_Search.Text = "Enter Address or Place";
@@ -671,8 +706,7 @@ namespace Final_Year_Project
                 Setup_Friends();
                 Setup_Dashboard_Groups(true);
             }
-
-            ComboBox_Emoji.Text = "Select Emoji";
+            
             ComboBox_Group.Text = "Select Group";
 
             TextBox_Search.Text = "Enter Search Criteria";
@@ -1008,7 +1042,7 @@ namespace Final_Year_Project
                 }
             }
 
-            database.Update_Event(Convert.ToInt32(TextBox_Event_ID.Text), TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, ComboBox_Emoji.Text, group);
+            database.Update_Event(Convert.ToInt32(TextBox_Event_ID.Text), TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
             
             calendar = tableLayoutPanel;
             header = tableLayoutPanelCalendarHeader;
@@ -1071,7 +1105,7 @@ namespace Final_Year_Project
                 TextBox_Name_Event.Text = Event_Name;
                 TextBox_Description.Text = Event_Description;
                 ComboBox_Group.Text = Group_Name;
-                ComboBox_Emoji.Text = Event_Emoji;
+                Event_TextBox_Emoji.Text = Event_Emoji;
                 DateTimePicker_Date.Text = Event_DateTime.ToLongDateString();
                 DateTimePicker_Time.Text = Event_DateTime.ToLongTimeString();
                 TextBox_Location.Text = lat + "," + lng;
@@ -1430,6 +1464,12 @@ namespace Final_Year_Project
             Signup_Panel.Visible = false;
 
             PictureBox_Signup_Back.Visible = false;
+        }
+
+        private void Event_Button_Emoji_Click(object sender, EventArgs e)
+        {
+            Emoji_Panel.Visible = true;
+            Event_Panel.Visible = false;
         }
     }
 
@@ -2189,11 +2229,11 @@ namespace Final_Year_Project
 
 /*
  * TODO -
-    * Sign-up
     * Create tests
     * Notifications
     * Friends to request friendship
-    * Filter and restirct entries
+    * Remove friends
+    * Filter and restirct entries (SQL Injection Prevention)
     * Remove and update groups
  * References -
      * Logo: https://www.logolynx.com/topic/calendar
