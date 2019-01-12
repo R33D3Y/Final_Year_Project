@@ -921,34 +921,148 @@ namespace Final_Year_Project
                                         PanelClickEvent(s, e);
                                     };
 
-                                    for (int h = 0; (h < data[data_count].Count && h < 5); h++)
+                                    List<CalendarGroup> lcg = new List<CalendarGroup>();
+
+                                    foreach (CalendarEvent ce in data[data_count])
                                     {
-                                        Color txt = Color.Black;
-
-                                        //Console.WriteLine(data[data_count][h].GetName() + " " + data[data_count][h].GetDateTime() + " " + data_count); // Output
-
-                                        if (data[data_count][h].GetCalendarGroup().GetColor().GetBrightness() < 0.3)
+                                        if (lcg.Count == 0)
                                         {
-                                            txt = Color.White;
+                                            lcg.Add(ce.GetCalendarGroup());
                                         }
 
-                                        Label l = new Label() { Text = data[data_count][h].GetName(), ForeColor = txt, BackColor = data[data_count][h].GetCalendarGroup().GetColor(), Height = 15, Margin = new Padding(0, 0, 0, 0) };
-                                        l.Click += (s, e) =>
+                                        else
                                         {
-                                            s = l.Parent;
-                                            PanelClickEvent(s, e);
-                                        };
+                                            bool found = false;
+                                            foreach (CalendarGroup cg in lcg)
+                                            {
+                                                if (ce.GetCalendarGroup().GetID() == cg.GetID())
+                                                {
+                                                    found = true;
+                                                }
+                                            }
 
-                                        ToolTip t = new ToolTip
+                                            if (!found)
+                                            {
+                                                lcg.Add(ce.GetCalendarGroup());
+                                            }
+                                        }
+                                    }
+
+                                    //Console.WriteLine(lcg.Count);
+
+                                    if (data[data_count].Count > 5)
+                                    {
+                                        int addedCount = 0;
+
+                                        foreach (CalendarGroup cg in lcg)
                                         {
-                                            IsBalloon = true
-                                        };
+                                            Color txt = Color.Black;
 
-                                        t.SetToolTip(l, data[data_count][h].GetDescription());
+                                            if (cg.GetColor().GetBrightness() < 0.3)
+                                            {
+                                                txt = Color.White;
+                                            }
 
-                                        if (visibleGroups.Contains(data[data_count][h].GetCalendarGroup().GetID()))
+                                            Label l = new Label() { ForeColor = txt, BackColor = cg.GetColor(), Height = 15, Margin = new Padding(0, 0, 0, 0) };
+                                            l.Click += (s, e) =>
+                                            {
+                                                s = l.Parent;
+                                                PanelClickEvent(s, e);
+                                            };
+
+                                            ToolTip t = new ToolTip
+                                            {
+                                                IsBalloon = true
+                                            };
+
+                                            t.SetToolTip(l, cg.GetName());
+
+                                            int count = 0;
+
+                                            foreach (CalendarEvent ce in data[data_count])
+                                            {
+                                                //Console.WriteLine(count);
+                                                if (ce.GetCalendarGroup().GetID() == cg.GetID() && count < 6)
+                                                {
+                                                    l.Text = l.Text + ce.GetEmoji() + " ";
+                                                    //Console.WriteLine("Fire");
+                                                    count++;
+                                                }
+                                            }
+
+                                            if (count == 1)
+                                            {
+                                                foreach (CalendarEvent ce in data[data_count])
+                                                {
+                                                    //Console.WriteLine(count);
+                                                    if (ce.GetCalendarGroup().GetID() == cg.GetID() && count < 6)
+                                                    {
+                                                        l.Text = ce.GetEmoji() + " " + ce.GetName();
+                                                        
+                                                        t.SetToolTip(l, ce.GetDescription());
+                                                    }
+                                                }
+                                            }
+
+                                            if (visibleGroups.Contains(cg.GetID()))
+                                            {
+                                                if (addedCount < 4)
+                                                {
+                                                    p.Controls.Add(l);
+                                                    addedCount++;
+                                                }
+
+                                                else if (addedCount < 5)
+                                                {
+                                                    l = new Label() { ForeColor = txt, BackColor = Color.White, Height = 15, Margin = new Padding(0, 0, 0, 0) };
+                                                    l.Click += (s, e) =>
+                                                    {
+                                                        s = l.Parent;
+                                                        PanelClickEvent(s, e);
+                                                    };
+
+                                                    t.SetToolTip(l, "More Events");
+
+                                                    l.Text = "            ...";
+
+                                                    p.Controls.Add(l);
+                                                    addedCount++;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    else
+                                    {
+                                        for (int h = 0; (h < data[data_count].Count && h < 5); h++)
                                         {
-                                            p.Controls.Add(l);
+                                            Color txt = Color.Black;
+
+                                            //Console.WriteLine(data[data_count][h].GetName() + " " + data[data_count][h].GetDateTime() + " " + data_count); // Output
+
+                                            if (data[data_count][h].GetCalendarGroup().GetColor().GetBrightness() < 0.3)
+                                            {
+                                                txt = Color.White;
+                                            }
+
+                                            Label l = new Label() { Text = data[data_count][h].GetEmoji() + " " + data[data_count][h].GetName(), ForeColor = txt, BackColor = data[data_count][h].GetCalendarGroup().GetColor(), Height = 15, Margin = new Padding(0, 0, 0, 0) };
+                                            l.Click += (s, e) =>
+                                            {
+                                                s = l.Parent;
+                                                PanelClickEvent(s, e);
+                                            };
+
+                                            ToolTip t = new ToolTip
+                                            {
+                                                IsBalloon = true
+                                            };
+
+                                            t.SetToolTip(l, data[data_count][h].GetDescription());
+
+                                            if (visibleGroups.Contains(data[data_count][h].GetCalendarGroup().GetID()))
+                                            {
+                                                p.Controls.Add(l);
+                                            }
                                         }
                                     }
 
@@ -2229,7 +2343,7 @@ namespace Final_Year_Project
                 }
             }
 
-            return "####";
+            return "X";
         }
 
         public bool Email_Lookup(string text)
