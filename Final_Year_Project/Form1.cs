@@ -407,31 +407,83 @@ namespace Final_Year_Project
 
         private void Add_Event_Button_Click(object sender, EventArgs e)
         {
-            DateTime datetime = new DateTime(DateTimePicker_Date.Value.Year, DateTimePicker_Date.Value.Month, DateTimePicker_Date.Value.Day, DateTimePicker_Time.Value.Hour, DateTimePicker_Time.Value.Minute, DateTimePicker_Time.Value.Second);
-
-            List<CalendarGroup> cg = database.GetGroups();
-            int group = 0;
-
-            for (int i = 0; i < cg.Count; i++)
+            if (!SQLSafe(TextBox_Name_Event.Text) || TextBox_Name_Event.Text.Equals(""))
             {
-                if (ComboBox_Group.Text == cg[i].GetName())
+                Event_Cross_Name.Visible = true;
+            }
+
+            else
+            {
+                Event_Cross_Name.Visible = false;
+            }
+
+            if (!SQLSafe(TextBox_Description.Text))
+            {
+                Event_Cross_Description.Visible = true;
+            }
+
+            else
+            {
+                Event_Cross_Description.Visible = false;
+            }
+
+            if (ComboBox_Group.Text.Equals(""))
+            {
+                Event_Cross_Group.Visible = true;
+            }
+
+            else
+            {
+                Event_Cross_Group.Visible = false;
+            }
+
+            if (SQLSafe(TextBox_Name_Event.Text) && SQLSafe(TextBox_Description.Text) && !ComboBox_Group.Text.Equals("") && !TextBox_Name_Event.Text.Equals(""))
+            {
+                Event_Cross_Name.Visible = false;
+                Event_Cross_Description.Visible = false;
+                Event_Cross_Group.Visible = false;
+
+                DateTime datetime = new DateTime(DateTimePicker_Date.Value.Year, DateTimePicker_Date.Value.Month, DateTimePicker_Date.Value.Day, DateTimePicker_Time.Value.Hour, DateTimePicker_Time.Value.Minute, DateTimePicker_Time.Value.Second);
+
+                List<CalendarGroup> cg = database.GetGroups();
+                int group = 0;
+
+                for (int i = 0; i < cg.Count; i++)
                 {
-                    group = cg[i].GetID();
+                    if (ComboBox_Group.Text == cg[i].GetName())
+                    {
+                        group = cg[i].GetID();
+                    }
+                }
+
+                database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
+
+                DateTime tempDt = DateTime.Now;
+                dt = new DateTime(tempDt.Year, tempDt.Month, 1);
+
+                calendar = tableLayoutPanel;
+                header = tableLayoutPanelCalendarHeader;
+                SetData(database.GetData(dt), dt);
+
+                Dashboard_Panel.Visible = true;
+                Event_Panel.Visible = false;
+                PictureBox_Back.Visible = false;
+            }
+        }
+
+        private bool SQLSafe(string str)
+        {
+            string[] illegalCharacters = { "'", ";", ",", "@" };
+
+            foreach (string cha in illegalCharacters)
+            {
+                if (str.Contains(cha))
+                {
+                    return false;
                 }
             }
 
-            database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
-
-            DateTime tempDt = DateTime.Now;
-            dt = new DateTime(tempDt.Year, tempDt.Month, 1);
-
-            calendar = tableLayoutPanel;
-            header = tableLayoutPanelCalendarHeader;
-            SetData(database.GetData(dt), dt);
-
-            Dashboard_Panel.Visible = true;
-            Event_Panel.Visible = false;
-            PictureBox_Back.Visible = false;
+            return true;
         }
 
         private void DatePicker_DateSelected(object sender, DateRangeEventArgs e)
@@ -458,15 +510,14 @@ namespace Final_Year_Project
             ResetForm();
 
             Dashboard_Panel.Visible = true;
+
             Event_Panel.Visible = false;
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
             Settings_Panel.Visible = false;
             Notification_Panel.Visible = false;
-
             PictureBox_Back.Visible = false;
-
             Update_Event_Button.Visible = false;
             Remove_Event_Button.Visible = false;
         }
@@ -490,26 +541,36 @@ namespace Final_Year_Project
 
         private void Add_Group_Button_Click(object sender, EventArgs e)
         {
-            int Group_ID = database.Add_Group(TextBox_Name_Group.Text, Colour_Panel.BackColor.ToArgb());
-            
-            foreach (DataGridViewRow row in Data_Groups.Rows)
+            if (TextBox_Name_Group.Text.Equals("") || !SQLSafe(TextBox_Name_Group.Text))
             {
-                if ((bool)row.Cells[0].Value == true)
-                {
-                    int User_ID = (int)row.Cells[1].Value;
-
-                    database.Add_Friend_To_Group(User_ID, Group_ID);
-                }
+                Group_Cross_Name.Visible = true;
             }
 
-            ResetForm();
+            else
+            {
+                Group_Cross_Name.Visible = false;
 
-            Dashboard_Panel.Visible = true;
-            Event_Panel.Visible = false;
-            Group_Panel.Visible = false;
-            Search_Panel.Visible = false;
+                int Group_ID = database.Add_Group(TextBox_Name_Group.Text, Colour_Panel.BackColor.ToArgb());
 
-            PictureBox_Back.Visible = false;
+                foreach (DataGridViewRow row in Data_Groups.Rows)
+                {
+                    if ((bool)row.Cells[0].Value == true)
+                    {
+                        int User_ID = (int)row.Cells[1].Value;
+
+                        database.Add_Friend_To_Group(User_ID, Group_ID);
+                    }
+                }
+
+                ResetForm();
+
+                Dashboard_Panel.Visible = true;
+                Event_Panel.Visible = false;
+                Group_Panel.Visible = false;
+                Search_Panel.Visible = false;
+
+                PictureBox_Back.Visible = false;
+            }
         }
 
         private void Search_Location_Click(object sender, EventArgs e)
@@ -610,23 +671,27 @@ namespace Final_Year_Project
                 string Event_Emoji = database.Emoji(row.Cells[4].Value.ToString(), false);
                 int Group_ID = (int)row.Cells[5].Value;
                 string Group_Name = row.Cells[6].Value.ToString();
-                string [] Event_Location = row.Cells[7].Value.ToString().Split(',');
 
-                double lat = Convert.ToDouble(Event_Location[0]);
-                double lng = Convert.ToDouble(Event_Location[1]);
+                if (!row.Cells[7].Value.ToString().Equals(","))
+                {
+                    string[] Event_Location = row.Cells[7].Value.ToString().Split(',');
 
-                GMap_Control_Search.MapProvider = BingMapProvider.Instance;
-                GMaps.Instance.Mode = AccessMode.ServerOnly;
-                GMap_Control_Search.Position = new PointLatLng(lat, lng);
-                GMap_Control_Search.ShowCenter = false;
+                    double lat = Convert.ToDouble(Event_Location[0]);
+                    double lng = Convert.ToDouble(Event_Location[1]);
 
-                GMap_Control_Search.Overlays.Clear();
+                    GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+                    GMaps.Instance.Mode = AccessMode.ServerOnly;
+                    GMap_Control_Search.Position = new PointLatLng(lat, lng);
+                    GMap_Control_Search.ShowCenter = false;
 
-                GMapOverlay markers = new GMapOverlay("markers");
-                GMap_Control_Search.Overlays.Add(markers);
+                    GMap_Control_Search.Overlays.Clear();
 
-                GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
-                markers.Markers.Add(marker);
+                    GMapOverlay markers = new GMapOverlay("markers");
+                    GMap_Control_Search.Overlays.Add(markers);
+
+                    GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+                    markers.Markers.Add(marker);
+                }
 
                 Search_Description.Text = Event_Description;
             }
@@ -1094,25 +1159,31 @@ namespace Final_Year_Project
                 string Event_Emoji = row.Cells[4].Value.ToString();
                 int Group_ID = (int)row.Cells[5].Value;
                 string Group_Name = row.Cells[6].Value.ToString();
-                string[] Event_Location = row.Cells[7].Value.ToString().Split(',');
-
-                double lat = Convert.ToDouble(Event_Location[0]);
-                double lng = Convert.ToDouble(Event_Location[1]);
 
                 ResetForm();
 
-                GMap_Control.MapProvider = BingMapProvider.Instance;
-                GMaps.Instance.Mode = AccessMode.ServerOnly;
-                GMap_Control.Position = new PointLatLng(lat, lng);
-                GMap_Control.ShowCenter = false;
+                if (!row.Cells[7].Value.ToString().Equals(","))
+                {
+                    string[] Event_Location = row.Cells[7].Value.ToString().Split(',');
 
-                GMap_Control.Overlays.Clear();
+                    double lat = Convert.ToDouble(Event_Location[0]);
+                    double lng = Convert.ToDouble(Event_Location[1]);
 
-                GMapOverlay markers = new GMapOverlay("markers");
-                GMap_Control.Overlays.Add(markers);
+                    GMap_Control.MapProvider = BingMapProvider.Instance;
+                    GMaps.Instance.Mode = AccessMode.ServerOnly;
+                    GMap_Control.Position = new PointLatLng(lat, lng);
+                    GMap_Control.ShowCenter = false;
 
-                GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
-                markers.Markers.Add(marker);
+                    GMap_Control.Overlays.Clear();
+
+                    GMapOverlay markers = new GMapOverlay("markers");
+                    GMap_Control.Overlays.Add(markers);
+
+                    GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+                    markers.Markers.Add(marker);
+
+                    TextBox_Location.Text = lat + "," + lng;
+                }
 
                 TextBox_Event_ID.Text = Convert.ToString(Event_ID);
                 TextBox_Name_Event.Text = Event_Name;
@@ -1121,7 +1192,6 @@ namespace Final_Year_Project
                 Event_TextBox_Emoji.Text = Event_Emoji;
                 DateTimePicker_Date.Text = Event_DateTime.ToLongDateString();
                 DateTimePicker_Time.Text = Event_DateTime.ToLongTimeString();
-                TextBox_Location.Text = lat + "," + lng;
 
                 Search_Panel.Visible = false;
                 Event_Panel.Visible = true;
@@ -1559,6 +1629,45 @@ namespace Final_Year_Project
             Notification_Panel.Visible = true;
             Dashboard_Panel.Visible = false;
             PictureBox_Back.Visible = true;
+        }
+
+        private void TextBox_Name_Group_TextChanged(object sender, EventArgs e)
+        {
+            if (TextBox_Name_Group.Text.Equals("") || !SQLSafe(TextBox_Name_Group.Text))
+            {
+                Group_Cross_Name.Visible = true;
+            }
+
+            else
+            {
+                Group_Cross_Name.Visible = false;
+            }
+        }
+
+        private void TextBox_Name_Event_TextChanged(object sender, EventArgs e)
+        {
+            if (TextBox_Name_Event.Text.Equals("") || !SQLSafe(TextBox_Name_Event.Text))
+            {
+                Event_Cross_Name.Visible = true;
+            }
+
+            else
+            {
+                Event_Cross_Name.Visible = false;
+            }
+        }
+
+        private void TextBox_Description_TextChanged(object sender, EventArgs e)
+        {
+            if (!SQLSafe(TextBox_Description.Text))
+            {
+                Event_Cross_Description.Visible = true;
+            }
+
+            else
+            {
+                Event_Cross_Description.Visible = false;
+            }
         }
     }
 
@@ -2440,7 +2549,7 @@ namespace Final_Year_Project
     * Create tests
     * Notifications - Friend Requests implemented
     * Remove friends
-    * Filter and restirct entries (SQL Injection Prevention)
+    * Filter and restirct entries (SQL Injection Prevention) - Semi-Done (Maybe Signup Page)
     * Remove and update groups
  * References -
      * Logo: https://www.logolynx.com/topic/calendar

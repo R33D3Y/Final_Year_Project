@@ -84,6 +84,9 @@
             this.Textbox_Username = new System.Windows.Forms.TextBox();
             this.Event_Panel = new System.Windows.Forms.Panel();
             this.Event_Control_Panel = new System.Windows.Forms.Panel();
+            this.Event_Cross_Group = new System.Windows.Forms.PictureBox();
+            this.Event_Cross_Description = new System.Windows.Forms.PictureBox();
+            this.Event_Cross_Name = new System.Windows.Forms.PictureBox();
             this.Event_Button_Emoji = new System.Windows.Forms.Label();
             this.Event_TextBox_Emoji = new System.Windows.Forms.TextBox();
             this.TextBox_Event_ID = new System.Windows.Forms.TextBox();
@@ -108,6 +111,7 @@
             this.TextBox_Name_Event = new System.Windows.Forms.TextBox();
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.Group_Control_Panel = new System.Windows.Forms.Panel();
+            this.Group_Cross_Name = new System.Windows.Forms.PictureBox();
             this.Data_Groups = new System.Windows.Forms.DataGridView();
             this.Check_Boxes_Column = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.User_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -200,8 +204,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.Event_Panel.SuspendLayout();
             this.Event_Control_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Group)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Description)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Name)).BeginInit();
             this.Group_Panel.SuspendLayout();
             this.Group_Control_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Group_Cross_Name)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).BeginInit();
             this.Search_Panel.SuspendLayout();
             this.Search_Control_Panel.SuspendLayout();
@@ -840,6 +848,9 @@
             // 
             this.Event_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Event_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Event_Control_Panel.Controls.Add(this.Event_Cross_Group);
+            this.Event_Control_Panel.Controls.Add(this.Event_Cross_Description);
+            this.Event_Control_Panel.Controls.Add(this.Event_Cross_Name);
             this.Event_Control_Panel.Controls.Add(this.Event_Button_Emoji);
             this.Event_Control_Panel.Controls.Add(this.Event_TextBox_Emoji);
             this.Event_Control_Panel.Controls.Add(this.TextBox_Event_ID);
@@ -866,6 +877,42 @@
             this.Event_Control_Panel.Name = "Event_Control_Panel";
             this.Event_Control_Panel.Size = new System.Drawing.Size(561, 352);
             this.Event_Control_Panel.TabIndex = 0;
+            // 
+            // Event_Cross_Group
+            // 
+            this.Event_Cross_Group.BackColor = System.Drawing.Color.White;
+            this.Event_Cross_Group.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Event_Cross_Group.BackgroundImage")));
+            this.Event_Cross_Group.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Event_Cross_Group.Location = new System.Drawing.Point(223, 206);
+            this.Event_Cross_Group.Name = "Event_Cross_Group";
+            this.Event_Cross_Group.Size = new System.Drawing.Size(20, 20);
+            this.Event_Cross_Group.TabIndex = 31;
+            this.Event_Cross_Group.TabStop = false;
+            this.Event_Cross_Group.Visible = false;
+            // 
+            // Event_Cross_Description
+            // 
+            this.Event_Cross_Description.BackColor = System.Drawing.Color.White;
+            this.Event_Cross_Description.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Event_Cross_Description.BackgroundImage")));
+            this.Event_Cross_Description.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Event_Cross_Description.Location = new System.Drawing.Point(223, 53);
+            this.Event_Cross_Description.Name = "Event_Cross_Description";
+            this.Event_Cross_Description.Size = new System.Drawing.Size(20, 20);
+            this.Event_Cross_Description.TabIndex = 30;
+            this.Event_Cross_Description.TabStop = false;
+            this.Event_Cross_Description.Visible = false;
+            // 
+            // Event_Cross_Name
+            // 
+            this.Event_Cross_Name.BackColor = System.Drawing.Color.White;
+            this.Event_Cross_Name.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Event_Cross_Name.BackgroundImage")));
+            this.Event_Cross_Name.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Event_Cross_Name.Location = new System.Drawing.Point(223, 22);
+            this.Event_Cross_Name.Name = "Event_Cross_Name";
+            this.Event_Cross_Name.Size = new System.Drawing.Size(20, 20);
+            this.Event_Cross_Name.TabIndex = 29;
+            this.Event_Cross_Name.TabStop = false;
+            this.Event_Cross_Name.Visible = false;
             // 
             // Event_Button_Emoji
             // 
@@ -1084,6 +1131,7 @@
             this.TextBox_Description.Size = new System.Drawing.Size(199, 129);
             this.TextBox_Description.TabIndex = 11;
             this.TextBox_Description.Text = "Enter Description";
+            this.TextBox_Description.TextChanged += new System.EventHandler(this.TextBox_Description_TextChanged);
             // 
             // label2
             // 
@@ -1161,6 +1209,7 @@
             this.TextBox_Name_Event.Size = new System.Drawing.Size(200, 20);
             this.TextBox_Name_Event.TabIndex = 3;
             this.TextBox_Name_Event.Text = "Enter Event Name";
+            this.TextBox_Name_Event.TextChanged += new System.EventHandler(this.TextBox_Name_Event_TextChanged);
             // 
             // Group_Panel
             // 
@@ -1177,6 +1226,7 @@
             // 
             this.Group_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Group_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Group_Control_Panel.Controls.Add(this.Group_Cross_Name);
             this.Group_Control_Panel.Controls.Add(this.Data_Groups);
             this.Group_Control_Panel.Controls.Add(this.Add_Group_Button);
             this.Group_Control_Panel.Controls.Add(this.Colour_Panel);
@@ -1187,6 +1237,18 @@
             this.Group_Control_Panel.Name = "Group_Control_Panel";
             this.Group_Control_Panel.Size = new System.Drawing.Size(601, 173);
             this.Group_Control_Panel.TabIndex = 20;
+            // 
+            // Group_Cross_Name
+            // 
+            this.Group_Cross_Name.BackColor = System.Drawing.Color.White;
+            this.Group_Cross_Name.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Group_Cross_Name.BackgroundImage")));
+            this.Group_Cross_Name.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Group_Cross_Name.Location = new System.Drawing.Point(206, 25);
+            this.Group_Cross_Name.Name = "Group_Cross_Name";
+            this.Group_Cross_Name.Size = new System.Drawing.Size(20, 20);
+            this.Group_Cross_Name.TabIndex = 31;
+            this.Group_Cross_Name.TabStop = false;
+            this.Group_Cross_Name.Visible = false;
             // 
             // Data_Groups
             // 
@@ -1316,7 +1378,7 @@
             this.panel8.Location = new System.Drawing.Point(23, 47);
             this.panel8.Margin = new System.Windows.Forms.Padding(0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(201, 1);
+            this.panel8.Size = new System.Drawing.Size(175, 1);
             this.panel8.TabIndex = 21;
             // 
             // TextBox_Name_Group
@@ -1327,10 +1389,11 @@
             this.TextBox_Name_Group.ForeColor = System.Drawing.Color.White;
             this.TextBox_Name_Group.Location = new System.Drawing.Point(23, 24);
             this.TextBox_Name_Group.Name = "TextBox_Name_Group";
-            this.TextBox_Name_Group.Size = new System.Drawing.Size(200, 20);
+            this.TextBox_Name_Group.Size = new System.Drawing.Size(172, 20);
             this.TextBox_Name_Group.TabIndex = 20;
             this.TextBox_Name_Group.Text = "Enter Group Name";
             this.TextBox_Name_Group.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox_Name_Group.TextChanged += new System.EventHandler(this.TextBox_Name_Group_TextChanged);
             // 
             // Search_Panel
             // 
@@ -2147,16 +2210,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
+            this.Controls.Add(this.Event_Panel);
+            this.Controls.Add(this.Group_Panel);
+            this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Notification_Panel);
             this.Controls.Add(this.Friends_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
-            this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Login_Panel);
-            this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Emoji_Panel);
             this.Controls.Add(this.Signup_Panel);
             this.Controls.Add(this.Settings_Panel);
-            this.Controls.Add(this.Search_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -2192,9 +2255,13 @@
             this.Event_Panel.ResumeLayout(false);
             this.Event_Control_Panel.ResumeLayout(false);
             this.Event_Control_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Group)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Description)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Name)).EndInit();
             this.Group_Panel.ResumeLayout(false);
             this.Group_Control_Panel.ResumeLayout(false);
             this.Group_Control_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Group_Cross_Name)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).EndInit();
             this.Search_Panel.ResumeLayout(false);
             this.Search_Control_Panel.ResumeLayout(false);
@@ -2361,6 +2428,10 @@
         private System.Windows.Forms.Panel Notification_Panel;
         private System.Windows.Forms.Panel Notification_Control_Panel;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel_Notifications;
+        private System.Windows.Forms.PictureBox Event_Cross_Group;
+        private System.Windows.Forms.PictureBox Event_Cross_Description;
+        private System.Windows.Forms.PictureBox Event_Cross_Name;
+        private System.Windows.Forms.PictureBox Group_Cross_Name;
     }
 }
 
