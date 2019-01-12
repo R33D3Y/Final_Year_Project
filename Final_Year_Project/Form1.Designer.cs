@@ -59,6 +59,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.Form_Button_Panel = new System.Windows.Forms.Panel();
+            this.PictureBox_Notification = new System.Windows.Forms.PictureBox();
             this.PictureBox_Signup_Back = new System.Windows.Forms.PictureBox();
             this.PictureBox_Settings = new System.Windows.Forms.PictureBox();
             this.PictureBox_Drag = new System.Windows.Forms.PictureBox();
@@ -171,6 +172,9 @@
             this.Emoji_Control_Panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Table_Layout_Panel_Emoji = new System.Windows.Forms.TableLayoutPanel();
+            this.Notification_Panel = new System.Windows.Forms.Panel();
+            this.Notification_Control_Panel = new System.Windows.Forms.Panel();
+            this.FlowLayoutPanel_Notifications = new System.Windows.Forms.FlowLayoutPanel();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -178,6 +182,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Form_Button_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Notification)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Signup_Back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Drag)).BeginInit();
@@ -219,6 +224,8 @@
             this.Emoji_Panel.SuspendLayout();
             this.Emoji_Control_Panel.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.Notification_Panel.SuspendLayout();
+            this.Notification_Control_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Dashboard_Panel
@@ -231,6 +238,7 @@
             this.Dashboard_Panel.Size = new System.Drawing.Size(850, 710);
             this.Dashboard_Panel.TabIndex = 2;
             this.Dashboard_Panel.Visible = false;
+            this.Dashboard_Panel.VisibleChanged += new System.EventHandler(this.Dashboard_Panel_VisibleChanged);
             // 
             // Dashboard_Control_Panel
             // 
@@ -502,6 +510,7 @@
             // Form_Button_Panel
             // 
             this.Form_Button_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Form_Button_Panel.Controls.Add(this.PictureBox_Notification);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Signup_Back);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Settings);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Drag);
@@ -509,10 +518,26 @@
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Logout);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Minimise);
             this.Form_Button_Panel.Controls.Add(this.PictureBox_Close);
-            this.Form_Button_Panel.Location = new System.Drawing.Point(622, 5);
+            this.Form_Button_Panel.Location = new System.Drawing.Point(587, 5);
             this.Form_Button_Panel.Name = "Form_Button_Panel";
-            this.Form_Button_Panel.Size = new System.Drawing.Size(224, 44);
+            this.Form_Button_Panel.Size = new System.Drawing.Size(259, 44);
             this.Form_Button_Panel.TabIndex = 5;
+            // 
+            // PictureBox_Notification
+            // 
+            this.PictureBox_Notification.BackColor = System.Drawing.Color.Transparent;
+            this.PictureBox_Notification.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Notification.BackgroundImage")));
+            this.PictureBox_Notification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Notification.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Notification.Location = new System.Drawing.Point(43, 7);
+            this.PictureBox_Notification.Name = "PictureBox_Notification";
+            this.PictureBox_Notification.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Notification.TabIndex = 8;
+            this.PictureBox_Notification.TabStop = false;
+            this.PictureBox_Notification.Visible = false;
+            this.PictureBox_Notification.Click += new System.EventHandler(this.PictureBox_Notification_Click);
+            this.PictureBox_Notification.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Notification.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
             // PictureBox_Signup_Back
             // 
@@ -532,7 +557,7 @@
             this.PictureBox_Settings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Settings.BackgroundImage")));
             this.PictureBox_Settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Settings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Settings.Location = new System.Drawing.Point(43, 7);
+            this.PictureBox_Settings.Location = new System.Drawing.Point(78, 7);
             this.PictureBox_Settings.Name = "PictureBox_Settings";
             this.PictureBox_Settings.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Settings.TabIndex = 6;
@@ -547,7 +572,7 @@
             this.PictureBox_Drag.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Drag.BackgroundImage")));
             this.PictureBox_Drag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Drag.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Drag.Location = new System.Drawing.Point(115, 7);
+            this.PictureBox_Drag.Location = new System.Drawing.Point(150, 7);
             this.PictureBox_Drag.Name = "PictureBox_Drag";
             this.PictureBox_Drag.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Drag.TabIndex = 5;
@@ -576,7 +601,7 @@
             this.PictureBox_Logout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Logout.BackgroundImage")));
             this.PictureBox_Logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Logout.Location = new System.Drawing.Point(79, 7);
+            this.PictureBox_Logout.Location = new System.Drawing.Point(114, 7);
             this.PictureBox_Logout.Name = "PictureBox_Logout";
             this.PictureBox_Logout.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Logout.TabIndex = 2;
@@ -591,7 +616,7 @@
             this.PictureBox_Minimise.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Minimise.BackgroundImage")));
             this.PictureBox_Minimise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Minimise.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Minimise.Location = new System.Drawing.Point(151, 7);
+            this.PictureBox_Minimise.Location = new System.Drawing.Point(186, 7);
             this.PictureBox_Minimise.Name = "PictureBox_Minimise";
             this.PictureBox_Minimise.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Minimise.TabIndex = 1;
@@ -606,7 +631,7 @@
             this.PictureBox_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Close.BackgroundImage")));
             this.PictureBox_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox_Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox_Close.Location = new System.Drawing.Point(187, 7);
+            this.PictureBox_Close.Location = new System.Drawing.Point(222, 7);
             this.PictureBox_Close.Name = "PictureBox_Close";
             this.PictureBox_Close.Size = new System.Drawing.Size(30, 30);
             this.PictureBox_Close.TabIndex = 0;
@@ -1548,7 +1573,7 @@
             this.TextBox_Friends_Nickname.Name = "TextBox_Friends_Nickname";
             this.TextBox_Friends_Nickname.Size = new System.Drawing.Size(268, 20);
             this.TextBox_Friends_Nickname.TabIndex = 27;
-            this.TextBox_Friends_Nickname.Text = "Enter Nickname";
+            this.TextBox_Friends_Nickname.Text = "Enter A Nickname";
             this.TextBox_Friends_Nickname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBox_Friends_Nickname.TextChanged += new System.EventHandler(this.TextBox_Friends_Nickname_TextChanged);
             // 
@@ -2085,26 +2110,58 @@
             this.Table_Layout_Panel_Emoji.Size = new System.Drawing.Size(343, 241);
             this.Table_Layout_Panel_Emoji.TabIndex = 0;
             // 
+            // Notification_Panel
+            // 
+            this.Notification_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Notification_Panel.Controls.Add(this.Notification_Control_Panel);
+            this.Notification_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Notification_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Notification_Panel.Name = "Notification_Panel";
+            this.Notification_Panel.Size = new System.Drawing.Size(850, 710);
+            this.Notification_Panel.TabIndex = 11;
+            this.Notification_Panel.Visible = false;
+            // 
+            // Notification_Control_Panel
+            // 
+            this.Notification_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Notification_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Notification_Control_Panel.Controls.Add(this.FlowLayoutPanel_Notifications);
+            this.Notification_Control_Panel.Location = new System.Drawing.Point(310, 195);
+            this.Notification_Control_Panel.Name = "Notification_Control_Panel";
+            this.Notification_Control_Panel.Size = new System.Drawing.Size(230, 320);
+            this.Notification_Control_Panel.TabIndex = 20;
+            // 
+            // FlowLayoutPanel_Notifications
+            // 
+            this.FlowLayoutPanel_Notifications.AutoScroll = true;
+            this.FlowLayoutPanel_Notifications.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutPanel_Notifications.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.FlowLayoutPanel_Notifications.Location = new System.Drawing.Point(0, 0);
+            this.FlowLayoutPanel_Notifications.Name = "FlowLayoutPanel_Notifications";
+            this.FlowLayoutPanel_Notifications.Size = new System.Drawing.Size(230, 320);
+            this.FlowLayoutPanel_Notifications.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
+            this.Controls.Add(this.Notification_Panel);
+            this.Controls.Add(this.Friends_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
+            this.Controls.Add(this.Group_Panel);
+            this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Emoji_Panel);
-            this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Signup_Panel);
             this.Controls.Add(this.Settings_Panel);
             this.Controls.Add(this.Search_Panel);
-            this.Controls.Add(this.Friends_Panel);
-            this.Controls.Add(this.Group_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Calendar Application";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Dashboard_Panel.ResumeLayout(false);
             this.Dashboard_Control_Panel.ResumeLayout(false);
@@ -2114,6 +2171,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.Form_Button_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Notification)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Signup_Back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Settings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Drag)).EndInit();
@@ -2162,6 +2220,8 @@
             this.Emoji_Panel.ResumeLayout(false);
             this.Emoji_Control_Panel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.Notification_Panel.ResumeLayout(false);
+            this.Notification_Control_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2297,6 +2357,10 @@
         private System.Windows.Forms.TableLayoutPanel Table_Layout_Panel_Emoji;
         private System.Windows.Forms.TextBox Event_TextBox_Emoji;
         private System.Windows.Forms.Label Event_Button_Emoji;
+        private System.Windows.Forms.PictureBox PictureBox_Notification;
+        private System.Windows.Forms.Panel Notification_Panel;
+        private System.Windows.Forms.Panel Notification_Control_Panel;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel_Notifications;
     }
 }
 

@@ -25,6 +25,7 @@ namespace Final_Year_Project
         private DateTime dt;
         private List<int> visibleGroups = new List<int>();
         private List<Emoji> emojis;
+        private List<Notification> notifications = new List<Notification>();
 
         private Color lightColour = Color.CornflowerBlue;
         private Color darkColour = Color.RoyalBlue;
@@ -82,6 +83,7 @@ namespace Final_Year_Project
             PictureBox_Drag.BackColor = darkColour;
             PictureBox_Minimise.BackColor = darkColour;
             PictureBox_Close.BackColor = darkColour;
+            PictureBox_Notification.BackColor = darkColour;
 
             // Dashboard Panel
             Dashboard_Panel.BackColor = lightColour;
@@ -168,6 +170,12 @@ namespace Final_Year_Project
             Emoji_Control_Panel.BackColor = darkColour;
 
             Table_Layout_Panel_Emoji.BackColor = darkColour;
+
+            // Notification Panel
+            Notification_Panel.BackColor = lightColour;
+            Notification_Control_Panel.BackColor = darkColour;
+
+            FlowLayoutPanel_Notifications.BackColor = darkColour;
         }
 
         private void Calendar_Back_Click(object sender, EventArgs e)
@@ -455,6 +463,7 @@ namespace Final_Year_Project
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
             Settings_Panel.Visible = false;
+            Notification_Panel.Visible = false;
 
             PictureBox_Back.Visible = false;
 
@@ -716,6 +725,10 @@ namespace Final_Year_Project
             TextBox_Name_Group.Text = "Enter Group Name";
 
             Dashboard_Search.Text = "Enter Search Criteria";
+
+            Add_Friend_Button.Text = "Select User To Add As Friend";
+            TextBox_Search_Username.Text = "Enter Username";
+            TextBox_Friends_Nickname.Text = "Enter A Nickname";
         }
 
         // Calendar Class
@@ -1160,6 +1173,18 @@ namespace Final_Year_Project
 
                 database.Add_Friend(User_ID, User_Name, User_Nickname);
 
+                int id = database.Get_Friend_Request(User_ID);
+
+                if (id != 0)
+                {
+                    database.Remove_Notification(id);
+                }
+
+                else
+                {
+                    database.Add_Notification(User_ID, 1);
+                }
+
                 Search_Friends.DataSource = database.Get_Friend_Results(TextBox_Search_Username.Text);
 
                 Search_Friends.Columns[0].Visible = false; // User ID
@@ -1470,6 +1495,70 @@ namespace Final_Year_Project
         {
             Emoji_Panel.Visible = true;
             Event_Panel.Visible = false;
+        }
+
+        private void Dashboard_Panel_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Dashboard_Panel.Visible)
+            {
+                notifications = database.Get_Notifications();
+
+                if (notifications.Count > 0)
+                {
+                    PictureBox_Notification.Visible = true;
+                }
+
+                else
+                {
+                    PictureBox_Notification.Visible = false;
+                }
+            }
+        }
+
+        private void PictureBox_Notification_Click(object sender, EventArgs e)
+        {
+            FlowLayoutPanel_Notifications.Controls.Clear();
+
+            foreach (Notification n in notifications)
+            {
+                if (n.GetNType() == 1)
+                {
+                    string username = database.User_Lookup(n.GetSender());
+                    Friend_Request fr = new Friend_Request(darkColour, username);
+                    fr.Add_Button.Click += (se, ev) =>
+                    {
+                        Search_Friends.DataSource = database.Get_Friend_Results(username);
+
+                        Search_Friends.Columns[0].Visible = false; // User ID
+
+                        Search_Friends.Columns[1].HeaderText = "User Name";
+
+                        Search_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                        Notification_Panel.Visible = false;
+                        Friends_Panel.Visible = true;
+                    };
+
+                    fr.Delete_Button.Click += (se, ev) =>
+                    {
+                        database.Remove_Notification(n.GetID());
+                        FlowLayoutPanel_Notifications.Controls.Remove(fr);
+
+                        if (FlowLayoutPanel_Notifications.Controls.Count == 0)
+                        {
+                            Notification_Panel.Visible = false;
+                            Dashboard_Panel.Visible = true;
+                            PictureBox_Back.Visible = false;
+                        }
+                    };
+
+                    FlowLayoutPanel_Notifications.Controls.Add(fr);
+                }
+            }
+            
+            Notification_Panel.Visible = true;
+            Dashboard_Panel.Visible = false;
+            PictureBox_Back.Visible = true;
         }
     }
 
@@ -2094,6 +2183,101 @@ namespace Final_Year_Project
 
             connection.Close();
         }
+
+        public void Add_Notification(int user_ID, int v)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Notification", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Sender_User_ID", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@Reciever_User_ID", SqlDbType.Int).Value = user_ID;
+            cmd.Parameters.Add("@Type", SqlDbType.Int).Value = v;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public void Remove_Notification(int id)
+        {
+            SqlCommand cmd = new SqlCommand("Remove_Notification", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Notification_ID", SqlDbType.Int).Value = id;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public List<Notification> Get_Notifications()
+        {
+            SqlCommand cmd = new SqlCommand("Get_Notifications", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User_ID", SqlDbType.Int).Value = user.GetID();
+
+            List<Notification> notifications = new List<Notification>();
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                notifications.Add(new Notification((int)rdr[0], (int)rdr[1], (int)rdr[2], (int)rdr[3]));
+            }
+
+            connection.Close();
+
+            return notifications;
+        }
+
+        public int Get_Friend_Request(int sender)
+        {
+            SqlCommand cmd = new SqlCommand("Get_Friend_Request", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Sender_ID", SqlDbType.Int).Value = sender;
+            cmd.Parameters.Add("@Reciever_ID", SqlDbType.Int).Value = user.GetID();
+
+            int id = 0;
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                id = (int)rdr[0];
+            }
+
+            connection.Close();
+
+            return id;
+        }
+
+        public string User_Lookup(int v)
+        {
+            SqlCommand cmd = new SqlCommand("User_Lookup", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = v;
+
+            string username = "";
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                username = (string)rdr[0];
+            }
+
+            connection.Close();
+
+            return username;
+        }
     }
 
     public class Emoji
@@ -2116,6 +2300,30 @@ namespace Final_Year_Project
         {
             return icon;
         }
+    }
+
+    public class Notification
+    {
+        private int id;
+        private int type;
+        private int sender;
+        private int reciever;
+
+        public Notification(int a, int b, int c, int d)
+        {
+            id = a;
+            type = b;
+            sender = c;
+            reciever = d;
+        }
+
+        public int GetID() { return id; }
+
+        public int GetNType() { return type; }
+
+        public int GetSender() { return sender; }
+
+        public int GetReciever() { return reciever; }
     }
 
     public class User
@@ -2230,8 +2438,7 @@ namespace Final_Year_Project
 /*
  * TODO -
     * Create tests
-    * Notifications
-    * Friends to request friendship
+    * Notifications - Friend Requests implemented
     * Remove friends
     * Filter and restirct entries (SQL Injection Prevention)
     * Remove and update groups
