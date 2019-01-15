@@ -125,9 +125,14 @@ namespace Final_Year_Project
 
             Search_Username_Button.ForeColor = lightColour;
             Add_Friend_Button.ForeColor = lightColour;
+            Remove_Friend_Button.ForeColor = lightColour;
+            Update_Friend_Button.ForeColor = lightColour;
             Search_Friends.BackgroundColor = darkColour;
             Search_Friends.DefaultCellStyle.BackColor = darkColour;
             Search_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
+            Data_Friends.BackgroundColor = darkColour;
+            Data_Friends.DefaultCellStyle.BackColor = darkColour;
+            Data_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
 
             // Group Panel
             Group_Panel.BackColor = lightColour;
@@ -175,7 +180,7 @@ namespace Final_Year_Project
             Notification_Panel.BackColor = lightColour;
             Notification_Control_Panel.BackColor = darkColour;
 
-            FlowLayoutPanel_Notifications.BackColor = darkColour;
+            TableLayoutPanel_Notifications.BackColor = darkColour;
         }
 
         private void Calendar_Back_Click(object sender, EventArgs e)
@@ -794,6 +799,15 @@ namespace Final_Year_Project
             Add_Friend_Button.Text = "Select User To Add As Friend";
             TextBox_Search_Username.Text = "Enter Username";
             TextBox_Friends_Nickname.Text = "Enter A Nickname";
+
+            Data_Friends.DataSource = null;
+            Data_Friends.Refresh();
+            Data_Groups.DataSource = null;
+            Data_Groups.Refresh();
+            Search_Data.DataSource = null;
+            Search_Data.Refresh();
+            Search_Friends.DataSource = null;
+            Search_Friends.Refresh();
         }
 
         // Calendar Class
@@ -1006,28 +1020,28 @@ namespace Final_Year_Project
 
                                             if (visibleGroups.Contains(cg.GetID()))
                                             {
-                                                if (addedCount < 4)
+                                                if (addedCount < 5)
                                                 {
                                                     p.Controls.Add(l);
                                                     addedCount++;
                                                 }
 
-                                                else if (addedCount < 5)
-                                                {
-                                                    l = new Label() { ForeColor = txt, BackColor = Color.White, Height = 15, Margin = new Padding(0, 0, 0, 0) };
-                                                    l.Click += (s, e) =>
-                                                    {
-                                                        s = l.Parent;
-                                                        PanelClickEvent(s, e);
-                                                    };
+                                                //else if (addedCount < 5)
+                                                //{
+                                                //    l = new Label() { ForeColor = txt, BackColor = Color.White, Height = 15, Margin = new Padding(0, 0, 0, 0) };
+                                                //    l.Click += (s, e) =>
+                                                //    {
+                                                //        s = l.Parent;
+                                                //        PanelClickEvent(s, e);
+                                                //    };
 
-                                                    t.SetToolTip(l, "More Events");
+                                                //    t.SetToolTip(l, "More Events");
 
-                                                    l.Text = "            ...";
+                                                //    l.Text = "            ...";
 
-                                                    p.Controls.Add(l);
-                                                    addedCount++;
-                                                }
+                                                //    p.Controls.Add(l);
+                                                //    addedCount++;
+                                                //}
                                             }
                                         }
                                     }
@@ -1375,11 +1389,22 @@ namespace Final_Year_Project
 
                 Search_Friends.Columns[1].HeaderText = "User Name";
             }
+
+            Data_Friends.DataSource = database.Get_Friends();
+
+            Data_Friends.Columns[0].Visible = false; // User ID
+
+            Data_Friends.Columns[1].HeaderText = "Friends";
+
+            Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void TextBox_Friends_Nickname_TextChanged(object sender, EventArgs e)
         {
-            Add_Friend_Button.Text = "Add " + TextBox_Friends_Nickname.Text + " As A Friend!";
+            if (Search_Friends.DataSource != null)
+            {
+                Add_Friend_Button.Text = "Add " + TextBox_Friends_Nickname.Text + "!";
+            }
         }
 
         private void Setup_Friends()
@@ -1701,14 +1726,14 @@ namespace Final_Year_Project
 
         private void PictureBox_Notification_Click(object sender, EventArgs e)
         {
-            FlowLayoutPanel_Notifications.Controls.Clear();
+            TableLayoutPanel_Notifications.Controls.Clear();
 
             foreach (Notification n in notifications)
             {
                 if (n.GetNType() == 1)
                 {
                     string username = database.User_Lookup(n.GetSender());
-                    Friend_Request fr = new Friend_Request(darkColour, username);
+                    Friend_Request fr = new Friend_Request(darkColour, lightColour, username);
                     fr.Add_Button.Click += (se, ev) =>
                     {
                         Search_Friends.DataSource = database.Get_Friend_Results(username);
@@ -1726,9 +1751,9 @@ namespace Final_Year_Project
                     fr.Delete_Button.Click += (se, ev) =>
                     {
                         database.Remove_Notification(n.GetID());
-                        FlowLayoutPanel_Notifications.Controls.Remove(fr);
+                        TableLayoutPanel_Notifications.Controls.Remove(fr);
 
-                        if (FlowLayoutPanel_Notifications.Controls.Count == 0)
+                        if (TableLayoutPanel_Notifications.Controls.Count == 0)
                         {
                             Notification_Panel.Visible = false;
                             Dashboard_Panel.Visible = true;
@@ -1736,12 +1761,20 @@ namespace Final_Year_Project
                         }
                     };
 
-                    FlowLayoutPanel_Notifications.Controls.Add(fr);
+                    TableLayoutPanel_Notifications.Controls.Add(fr);
                 }
             }
-            
+
             Notification_Panel.Visible = true;
             Dashboard_Panel.Visible = false;
+            Event_Panel.Visible = false;
+            Group_Panel.Visible = false;
+            Search_Panel.Visible = false;
+            Friends_Panel.Visible = false;
+            Settings_Panel.Visible = false;
+            PictureBox_Back.Visible = false;
+            Update_Event_Button.Visible = false;
+            Remove_Event_Button.Visible = false;
             PictureBox_Back.Visible = true;
         }
 
@@ -1782,6 +1815,71 @@ namespace Final_Year_Project
             {
                 Event_Cross_Description.Visible = false;
             }
+        }
+
+        private void Friends_Control_Panel_VisibleChanged(object sender, EventArgs e)
+        {
+            Data_Friends.DataSource = database.Get_Friends();
+
+            Data_Friends.Columns[0].Visible = false; // User ID
+
+            Data_Friends.Columns[1].HeaderText = "Friends";
+
+            Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void Notification_Panel_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Dashboard_Panel.Visible)
+            {
+                notifications = database.Get_Notifications();
+
+                if (notifications.Count > 0)
+                {
+                    PictureBox_Notification.Visible = true;
+                }
+
+                else
+                {
+                    PictureBox_Notification.Visible = false;
+                }
+            }
+        }
+
+        private void Remove_Friend_Button_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Friends.SelectedRows)
+            {
+                int User_ID = (int)row.Cells[0].Value;
+
+                database.Remove_Friend(User_ID);
+            }
+
+            Data_Friends.DataSource = database.Get_Friends();
+
+            Data_Friends.Columns[0].Visible = false; // User ID
+
+            Data_Friends.Columns[1].HeaderText = "Friends";
+
+            Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void Update_Friend_Button_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Friends.SelectedRows)
+            {
+                int User_ID = (int)row.Cells[0].Value;
+
+                database.Update_Friend(User_ID, TextBox_Friends_Nickname.Text);
+            }
+
+            Data_Friends.DataSource = database.Get_Friends();
+
+            Data_Friends.Columns[0].Visible = false; // User ID
+
+            Data_Friends.Columns[1].HeaderText = "Friends";
+
+            Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 
@@ -2501,6 +2599,57 @@ namespace Final_Year_Project
 
             return username;
         }
+
+        public BindingSource Get_Friends()
+        {
+            SqlDataAdapter sqa = new SqlDataAdapter("" +
+                "SELECT User_ID_2, User_Nickname_2 " +
+                "FROM Friends_Table " +
+                "WHERE User_ID_1 = " + user.GetID() + "" +
+                "AND EXISTS (Select * From Friends_Table Where User_ID_2 = " + user.GetID() + ")", connection);
+
+            connection.Open();
+
+            DataTable table = new DataTable();
+            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            sqa.Fill(table);
+
+            connection.Close();
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = table;
+
+            return bs;
+        }
+
+        public void Remove_Friend(int id)
+        {
+            SqlCommand cmd = new SqlCommand("Remove_Friend", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User_ID", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@Friend_ID", SqlDbType.Int).Value = id;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        internal void Update_Friend(int user_ID, string text)
+        {
+            SqlCommand cmd = new SqlCommand("Update_Friend", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User_ID", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@Friend_ID", SqlDbType.Int).Value = user_ID;
+            cmd.Parameters.Add("@Nickname", SqlDbType.VarChar).Value = text;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
     }
 
     public class Emoji
@@ -2662,9 +2811,8 @@ namespace Final_Year_Project
  * TODO -
     * Create tests
     * Notifications - Friend Requests implemented
-    * Remove friends
-    * Filter and restirct entries (SQL Injection Prevention) - Semi-Done (Maybe Signup Page)
     * Remove and update groups
+    * Filter and restirct entries (SQL Injection Prevention) - Semi-Done (Maybe Signup Page)
  * References -
      * Logo: https://www.logolynx.com/topic/calendar
      * Icons: https://icons8.com/
