@@ -139,12 +139,23 @@ namespace Final_Year_Project
             Group_Control_Panel.BackColor = darkColour;
 
             TextBox_Name_Group.BackColor = darkColour;
+            TextBox_Group_Update.BackColor = darkColour;
 
             ColourPicker_Button.ForeColor = lightColour;
             Add_Group_Button.ForeColor = lightColour;
+            Update_Group.ForeColor = lightColour;
+            Update_Colour_Group.ForeColor = lightColour;
+            Remove_Group_Name.ForeColor = lightColour;
+
             Data_Groups.BackgroundColor = darkColour;
             Data_Groups.DefaultCellStyle.BackColor = darkColour;
             Data_Groups.DefaultCellStyle.SelectionForeColor = lightColour;
+            Data_Display_Groups.BackgroundColor = darkColour;
+            Data_Display_Groups.DefaultCellStyle.BackColor = darkColour;
+            Data_Display_Groups.DefaultCellStyle.SelectionForeColor = lightColour;
+            Data_Groups_Friends.BackgroundColor = darkColour;
+            Data_Groups_Friends.DefaultCellStyle.BackColor = darkColour;
+            Data_Groups_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
 
             // Search Panel
             Search_Panel.BackColor = lightColour;
@@ -539,6 +550,15 @@ namespace Final_Year_Project
         {
             ResetForm();
 
+            List<CalendarGroup> g = database.GetGroups();
+
+            Data_Display_Groups.Rows.Clear();
+
+            for (int i = 0; i < g.Count; i++)
+            {
+                Data_Display_Groups.Rows.Add(g[i].GetID(), g[i].GetName());
+            }
+
             Dashboard_Panel.Visible = false;
             Group_Panel.Visible = true;
             PictureBox_Back.Visible = true;
@@ -568,13 +588,6 @@ namespace Final_Year_Project
                 }
 
                 ResetForm();
-
-                Dashboard_Panel.Visible = true;
-                Event_Panel.Visible = false;
-                Group_Panel.Visible = false;
-                Search_Panel.Visible = false;
-
-                PictureBox_Back.Visible = false;
             }
         }
 
@@ -1288,8 +1301,6 @@ namespace Final_Year_Project
                 int Group_ID = (int)row.Cells[5].Value;
                 string Group_Name = row.Cells[6].Value.ToString();
 
-                ResetForm();
-
                 if (!row.Cells[7].Value.ToString().Equals(","))
                 {
                     string[] Event_Location = row.Cells[7].Value.ToString().Split(',');
@@ -1428,6 +1439,14 @@ namespace Final_Year_Project
                 if (!visibleGroups.Contains(i))
                 {
                     visibleGroups.Add(i);
+                }
+            }
+
+            for (int i = 0; i < visibleGroups.Count; i++)
+            {
+                if (!temp.Contains(visibleGroups[i]))
+                {
+                    visibleGroups.Remove(visibleGroups[i]);
                 }
             }
 
@@ -1574,7 +1593,7 @@ namespace Final_Year_Project
 
         private void Signup_TextBox_Username_TextChanged(object sender, EventArgs e)
         {
-            if (!database.Username_Lookup(Signup_TextBox_Username.Text) && Signup_TextBox_Username.Text.Length > 0)
+            if (!database.Username_Lookup(Signup_TextBox_Username.Text) && Signup_TextBox_Username.Text.Length > 0 && SQLSafe(Signup_TextBox_Username.Text))
             {
                 goodUsername = true;
                 Signup_Tick_Username.Visible = true;
@@ -1880,6 +1899,127 @@ namespace Final_Year_Project
             Data_Friends.Columns[1].HeaderText = "Friends";
 
             Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void Data_Display_Groups_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Display_Groups.SelectedRows)
+            {
+                int Group_ID = (int)row.Cells[0].Value;
+
+                List<Friend> fg = database.Get_Friends_From_Groups(Group_ID);
+
+                List<Friend> fa = database.GetFriends();
+
+                Data_Groups_Friends.Rows.Clear();
+
+                foreach (Friend f in fa)
+                {
+                    bool found = false;
+                    Console.WriteLine("F: " + f.GetUserName());
+
+                    foreach (Friend ff in fg)
+                    {
+                        Console.WriteLine("FF: " + ff.GetUserName());
+                        if (ff.GetID() == f.GetID())
+                        {
+                            Data_Groups_Friends.Rows.Add(true, f.GetID(), f.GetUserName(), f.GetNickName());
+                            Console.WriteLine("Found");
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        Data_Groups_Friends.Rows.Add(false, f.GetID(), f.GetUserName(), f.GetNickName());
+                    }
+                }
+
+                List<CalendarGroup> lcg = database.GetGroups();
+
+                foreach (CalendarGroup cg in lcg)
+                {
+                    if (cg.GetID() == Group_ID)
+                    {
+                        TextBox_Group_Update.Text = cg.GetName();
+                        Colour_Panel_Update.BackColor = cg.GetColor();
+                    }
+                }
+            }
+        }
+
+        private void Data_Groups_Friends_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Groups_Friends.SelectedRows)
+            {
+                if ((bool)row.Cells[0].Value)
+                {
+                    row.Cells[0].Value = false;
+                }
+
+                else
+                {
+                    row.Cells[0].Value = true;
+                }
+            }
+        }
+
+        private void Update_Colour_Group_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.ShowDialog();
+
+            Colour_Panel_Update.BackColor = cd.Color;
+        }
+
+        private void Remove_Group_Name_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Display_Groups.SelectedRows)
+            {
+                int Group_ID = (int)row.Cells[0].Value;
+
+                database.Remove_Group(Group_ID);
+            }
+        }
+
+        private void TextBox_Group_Update_TextChanged(object sender, EventArgs e)
+        {
+            if (SQLSafe(TextBox_Group_Update.Text))
+            {
+                Groups_Cross_Update_Name.Visible = false;
+            }
+
+            else
+            {
+                Groups_Cross_Update_Name.Visible = true;
+            }
+        }
+
+        private void Update_Group_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Display_Groups.SelectedRows)
+            {
+                int Group_ID = (int)row.Cells[0].Value;
+
+                foreach (DataGridViewRow row2 in Data_Groups_Friends.SelectedRows)
+                {
+                    int Friend_ID = (int)row2.Cells[1].Value;
+
+                    if ((bool)row2.Cells[0].Value)
+                    {
+                        database.Remove_From_Group(Group_ID, Friend_ID);
+                        database.Add_Friend_To_Group(Friend_ID, Group_ID);
+                    }
+
+                    else
+                    {
+                        database.Remove_From_Group(Group_ID, Friend_ID);
+                    }
+                }
+
+                database.Update_Group(Group_ID, TextBox_Group_Update.Text, Colour_Panel_Update.BackColor.ToArgb());
+            }
         }
     }
 
@@ -2650,6 +2790,71 @@ namespace Final_Year_Project
 
             connection.Close();
         }
+
+        public List<Friend> Get_Friends_From_Groups(int g)
+        {
+            SqlCommand cmd = new SqlCommand("Get_Friends_From_Groups", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@Group", SqlDbType.Int).Value = g;
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            friends = new List<Friend>();
+
+            while (rdr.Read())
+            {
+                friends.Add(new Friend((int)rdr[0], (string)rdr[1], (string)rdr[2]));
+            }
+
+            connection.Close();
+
+            return friends;
+        }
+
+        public void Remove_Group(int group_ID)
+        {
+            SqlCommand cmd = new SqlCommand("Remove_Group", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Group_ID", SqlDbType.Int).Value = group_ID;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public void Remove_From_Group(int group_ID, int friend_ID)
+        {
+            SqlCommand cmd = new SqlCommand("Remove_From_Group", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Group_ID", SqlDbType.Int).Value = group_ID;
+            cmd.Parameters.Add("@Friend_ID", SqlDbType.Int).Value = friend_ID;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public void Update_Group(int group_ID, string text, int v)
+        {
+            SqlCommand cmd = new SqlCommand("Update_Group", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = group_ID;
+            cmd.Parameters.Add("@Group_Name", SqlDbType.VarChar).Value = text;
+            cmd.Parameters.Add("@Group_Colour", SqlDbType.Int).Value = v;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
     }
 
     public class Emoji
@@ -2810,9 +3015,6 @@ namespace Final_Year_Project
 /*
  * TODO -
     * Create tests
-    * Notifications - Friend Requests implemented
-    * Remove and update groups
-    * Filter and restirct entries (SQL Injection Prevention) - Semi-Done (Maybe Signup Page)
  * References -
      * Logo: https://www.logolynx.com/topic/calendar
      * Icons: https://icons8.com/

@@ -44,6 +44,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Dashboard_Panel = new System.Windows.Forms.Panel();
             this.Dashboard_Control_Panel = new System.Windows.Forms.Panel();
             this.Groups_Data = new System.Windows.Forms.DataGridView();
@@ -114,6 +120,21 @@
             this.TextBox_Name_Event = new System.Windows.Forms.TextBox();
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.Group_Control_Panel = new System.Windows.Forms.Panel();
+            this.Colour_Panel_Update = new System.Windows.Forms.Panel();
+            this.Update_Colour_Group = new System.Windows.Forms.Label();
+            this.Groups_Cross_Update_Name = new System.Windows.Forms.PictureBox();
+            this.Data_Display_Groups = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.TextBox_Group_Update = new System.Windows.Forms.TextBox();
+            this.Data_Groups_Friends = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remove_Group_Name = new System.Windows.Forms.Label();
+            this.Update_Group = new System.Windows.Forms.Label();
             this.Group_Cross_Name = new System.Windows.Forms.PictureBox();
             this.Data_Groups = new System.Windows.Forms.DataGridView();
             this.Check_Boxes_Column = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -138,6 +159,7 @@
             this.TextBox_Search = new System.Windows.Forms.TextBox();
             this.Friends_Panel = new System.Windows.Forms.Panel();
             this.Friends_Control_Panel = new System.Windows.Forms.Panel();
+            this.Update_Friend_Button = new System.Windows.Forms.Label();
             this.Remove_Friend_Button = new System.Windows.Forms.Label();
             this.Data_Friends = new System.Windows.Forms.DataGridView();
             this.panel18 = new System.Windows.Forms.Panel();
@@ -184,7 +206,6 @@
             this.Notification_Panel = new System.Windows.Forms.Panel();
             this.Notification_Control_Panel = new System.Windows.Forms.Panel();
             this.TableLayoutPanel_Notifications = new System.Windows.Forms.TableLayoutPanel();
-            this.Update_Friend_Button = new System.Windows.Forms.Label();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -215,6 +236,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Name)).BeginInit();
             this.Group_Panel.SuspendLayout();
             this.Group_Control_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Groups_Cross_Update_Name)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Display_Groups)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Groups_Friends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Group_Cross_Name)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).BeginInit();
             this.Search_Panel.SuspendLayout();
@@ -355,7 +379,7 @@
             this.Find_Friends_Button.Name = "Find_Friends_Button";
             this.Find_Friends_Button.Size = new System.Drawing.Size(227, 30);
             this.Find_Friends_Button.TabIndex = 35;
-            this.Find_Friends_Button.Text = "Find Friends";
+            this.Find_Friends_Button.Text = "Friends";
             this.Find_Friends_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Find_Friends_Button.Click += new System.EventHandler(this.Find_Friends_Button_Click);
             this.Find_Friends_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
@@ -409,7 +433,7 @@
             this.Dashboard_Add_Group.Name = "Dashboard_Add_Group";
             this.Dashboard_Add_Group.Size = new System.Drawing.Size(227, 30);
             this.Dashboard_Add_Group.TabIndex = 32;
-            this.Dashboard_Add_Group.Text = "Add Group";
+            this.Dashboard_Add_Group.Text = "Groups";
             this.Dashboard_Add_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Dashboard_Add_Group.Click += new System.EventHandler(this.Dashboard_Add_Group_Click);
             this.Dashboard_Add_Group.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
@@ -1233,6 +1257,15 @@
             // 
             this.Group_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Group_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Group_Control_Panel.Controls.Add(this.Colour_Panel_Update);
+            this.Group_Control_Panel.Controls.Add(this.Update_Colour_Group);
+            this.Group_Control_Panel.Controls.Add(this.Groups_Cross_Update_Name);
+            this.Group_Control_Panel.Controls.Add(this.Data_Display_Groups);
+            this.Group_Control_Panel.Controls.Add(this.panel9);
+            this.Group_Control_Panel.Controls.Add(this.TextBox_Group_Update);
+            this.Group_Control_Panel.Controls.Add(this.Data_Groups_Friends);
+            this.Group_Control_Panel.Controls.Add(this.Remove_Group_Name);
+            this.Group_Control_Panel.Controls.Add(this.Update_Group);
             this.Group_Control_Panel.Controls.Add(this.Group_Cross_Name);
             this.Group_Control_Panel.Controls.Add(this.Data_Groups);
             this.Group_Control_Panel.Controls.Add(this.Add_Group_Button);
@@ -1240,10 +1273,240 @@
             this.Group_Control_Panel.Controls.Add(this.ColourPicker_Button);
             this.Group_Control_Panel.Controls.Add(this.panel8);
             this.Group_Control_Panel.Controls.Add(this.TextBox_Name_Group);
-            this.Group_Control_Panel.Location = new System.Drawing.Point(121, 269);
+            this.Group_Control_Panel.Location = new System.Drawing.Point(115, 176);
             this.Group_Control_Panel.Name = "Group_Control_Panel";
-            this.Group_Control_Panel.Size = new System.Drawing.Size(601, 173);
+            this.Group_Control_Panel.Size = new System.Drawing.Size(601, 417);
             this.Group_Control_Panel.TabIndex = 20;
+            // 
+            // Colour_Panel_Update
+            // 
+            this.Colour_Panel_Update.BackColor = System.Drawing.Color.Black;
+            this.Colour_Panel_Update.Location = new System.Drawing.Point(364, 343);
+            this.Colour_Panel_Update.Name = "Colour_Panel_Update";
+            this.Colour_Panel_Update.Size = new System.Drawing.Size(72, 30);
+            this.Colour_Panel_Update.TabIndex = 37;
+            // 
+            // Update_Colour_Group
+            // 
+            this.Update_Colour_Group.BackColor = System.Drawing.Color.White;
+            this.Update_Colour_Group.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Update_Colour_Group.Font = new System.Drawing.Font("Candara", 12F);
+            this.Update_Colour_Group.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Update_Colour_Group.Location = new System.Drawing.Point(231, 343);
+            this.Update_Colour_Group.Name = "Update_Colour_Group";
+            this.Update_Colour_Group.Size = new System.Drawing.Size(127, 30);
+            this.Update_Colour_Group.TabIndex = 36;
+            this.Update_Colour_Group.Text = "Update Colour";
+            this.Update_Colour_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Update_Colour_Group.Click += new System.EventHandler(this.Update_Colour_Group_Click);
+            // 
+            // Groups_Cross_Update_Name
+            // 
+            this.Groups_Cross_Update_Name.BackColor = System.Drawing.Color.White;
+            this.Groups_Cross_Update_Name.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Groups_Cross_Update_Name.BackgroundImage")));
+            this.Groups_Cross_Update_Name.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Groups_Cross_Update_Name.Location = new System.Drawing.Point(202, 346);
+            this.Groups_Cross_Update_Name.Name = "Groups_Cross_Update_Name";
+            this.Groups_Cross_Update_Name.Size = new System.Drawing.Size(20, 20);
+            this.Groups_Cross_Update_Name.TabIndex = 34;
+            this.Groups_Cross_Update_Name.TabStop = false;
+            this.Groups_Cross_Update_Name.Visible = false;
+            // 
+            // Data_Display_Groups
+            // 
+            this.Data_Display_Groups.AllowUserToAddRows = false;
+            this.Data_Display_Groups.AllowUserToDeleteRows = false;
+            this.Data_Display_Groups.AllowUserToResizeColumns = false;
+            this.Data_Display_Groups.AllowUserToResizeRows = false;
+            this.Data_Display_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Data_Display_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Display_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Data_Display_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Display_Groups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.Data_Display_Groups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Data_Display_Groups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Display_Groups.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Data_Display_Groups.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Display_Groups.Location = new System.Drawing.Point(16, 188);
+            this.Data_Display_Groups.MultiSelect = false;
+            this.Data_Display_Groups.Name = "Data_Display_Groups";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Display_Groups.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.Data_Display_Groups.RowHeadersVisible = false;
+            this.Data_Display_Groups.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Data_Display_Groups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Data_Display_Groups.Size = new System.Drawing.Size(207, 151);
+            this.Data_Display_Groups.TabIndex = 35;
+            this.Data_Display_Groups.Click += new System.EventHandler(this.Data_Display_Groups_Click);
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Group ID";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            this.dataGridViewTextBoxColumn4.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Group Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Location = new System.Drawing.Point(22, 368);
+            this.panel9.Margin = new System.Windows.Forms.Padding(0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(175, 1);
+            this.panel9.TabIndex = 33;
+            // 
+            // TextBox_Group_Update
+            // 
+            this.TextBox_Group_Update.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Group_Update.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Group_Update.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Group_Update.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Group_Update.Location = new System.Drawing.Point(22, 345);
+            this.TextBox_Group_Update.Name = "TextBox_Group_Update";
+            this.TextBox_Group_Update.Size = new System.Drawing.Size(172, 20);
+            this.TextBox_Group_Update.TabIndex = 32;
+            this.TextBox_Group_Update.Text = "Group Name";
+            this.TextBox_Group_Update.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox_Group_Update.TextChanged += new System.EventHandler(this.TextBox_Group_Update_TextChanged);
+            // 
+            // Data_Groups_Friends
+            // 
+            this.Data_Groups_Friends.AllowUserToAddRows = false;
+            this.Data_Groups_Friends.AllowUserToDeleteRows = false;
+            this.Data_Groups_Friends.AllowUserToResizeColumns = false;
+            this.Data_Groups_Friends.AllowUserToResizeRows = false;
+            this.Data_Groups_Friends.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Data_Groups_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Data_Groups_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.Data_Groups_Friends.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Data_Groups_Friends.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups_Friends.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Data_Groups_Friends.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups_Friends.Location = new System.Drawing.Point(230, 188);
+            this.Data_Groups_Friends.MultiSelect = false;
+            this.Data_Groups_Friends.Name = "Data_Groups_Friends";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Groups_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.Data_Groups_Friends.RowHeadersVisible = false;
+            this.Data_Groups_Friends.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Data_Groups_Friends.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Data_Groups_Friends.Size = new System.Drawing.Size(356, 152);
+            this.Data_Groups_Friends.TabIndex = 34;
+            this.Data_Groups_Friends.Click += new System.EventHandler(this.Data_Groups_Friends_Click);
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Add To Group";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "User ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 83;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn2.HeaderText = "User Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 109;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Nickname";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // Remove_Group_Name
+            // 
+            this.Remove_Group_Name.BackColor = System.Drawing.Color.White;
+            this.Remove_Group_Name.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Remove_Group_Name.Font = new System.Drawing.Font("Candara", 12F);
+            this.Remove_Group_Name.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Remove_Group_Name.Location = new System.Drawing.Point(231, 378);
+            this.Remove_Group_Name.Name = "Remove_Group_Name";
+            this.Remove_Group_Name.Size = new System.Drawing.Size(205, 30);
+            this.Remove_Group_Name.TabIndex = 33;
+            this.Remove_Group_Name.Text = "Remove Group";
+            this.Remove_Group_Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Remove_Group_Name.Click += new System.EventHandler(this.Remove_Group_Name_Click);
+            // 
+            // Update_Group
+            // 
+            this.Update_Group.BackColor = System.Drawing.Color.White;
+            this.Update_Group.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Update_Group.Font = new System.Drawing.Font("Candara", 12F);
+            this.Update_Group.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Update_Group.Location = new System.Drawing.Point(12, 378);
+            this.Update_Group.Name = "Update_Group";
+            this.Update_Group.Size = new System.Drawing.Size(205, 30);
+            this.Update_Group.TabIndex = 32;
+            this.Update_Group.Text = "Update Group";
+            this.Update_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Update_Group.Click += new System.EventHandler(this.Update_Group_Click);
             // 
             // Group_Cross_Name
             // 
@@ -1265,43 +1528,42 @@
             this.Data_Groups.AllowUserToResizeRows = false;
             this.Data_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Data_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.Data_Groups.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Data_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Data_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Groups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.Data_Groups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Data_Groups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Check_Boxes_Column,
             this.User_ID_Column,
             this.Username_Column,
             this.Nickname_Column});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Groups.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups.DefaultCellStyle = dataGridViewCellStyle11;
             this.Data_Groups.GridColor = System.Drawing.Color.RoyalBlue;
             this.Data_Groups.Location = new System.Drawing.Point(230, 11);
             this.Data_Groups.MultiSelect = false;
             this.Data_Groups.Name = "Data_Groups";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Data_Groups.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Groups.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.Data_Groups.RowHeadersVisible = false;
             this.Data_Groups.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Data_Groups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1345,7 +1607,7 @@
             this.Add_Group_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add_Group_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Add_Group_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Add_Group_Button.Location = new System.Drawing.Point(18, 123);
+            this.Add_Group_Button.Location = new System.Drawing.Point(18, 133);
             this.Add_Group_Button.Name = "Add_Group_Button";
             this.Add_Group_Button.Size = new System.Drawing.Size(205, 30);
             this.Add_Group_Button.TabIndex = 22;
@@ -1358,7 +1620,7 @@
             // Colour_Panel
             // 
             this.Colour_Panel.BackColor = System.Drawing.Color.Black;
-            this.Colour_Panel.Location = new System.Drawing.Point(152, 68);
+            this.Colour_Panel.Location = new System.Drawing.Point(151, 78);
             this.Colour_Panel.Name = "Colour_Panel";
             this.Colour_Panel.Size = new System.Drawing.Size(72, 30);
             this.Colour_Panel.TabIndex = 19;
@@ -1369,7 +1631,7 @@
             this.ColourPicker_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ColourPicker_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.ColourPicker_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ColourPicker_Button.Location = new System.Drawing.Point(19, 68);
+            this.ColourPicker_Button.Location = new System.Drawing.Point(18, 78);
             this.ColourPicker_Button.Name = "ColourPicker_Button";
             this.ColourPicker_Button.Size = new System.Drawing.Size(127, 30);
             this.ColourPicker_Button.TabIndex = 18;
@@ -1522,36 +1784,36 @@
             this.Search_Data.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Search_Data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Search_Data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.Search_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Data.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Data.DefaultCellStyle = dataGridViewCellStyle14;
             this.Search_Data.GridColor = System.Drawing.Color.RoyalBlue;
             this.Search_Data.Location = new System.Drawing.Point(21, 57);
             this.Search_Data.MultiSelect = false;
             this.Search_Data.Name = "Search_Data";
             this.Search_Data.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Search_Data.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Search_Data.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.Search_Data.RowHeadersVisible = false;
             this.Search_Data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Search_Data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1628,6 +1890,20 @@
             this.Friends_Control_Panel.TabIndex = 20;
             this.Friends_Control_Panel.VisibleChanged += new System.EventHandler(this.Friends_Control_Panel_VisibleChanged);
             // 
+            // Update_Friend_Button
+            // 
+            this.Update_Friend_Button.BackColor = System.Drawing.Color.White;
+            this.Update_Friend_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Update_Friend_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Update_Friend_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Update_Friend_Button.Location = new System.Drawing.Point(202, 287);
+            this.Update_Friend_Button.Name = "Update_Friend_Button";
+            this.Update_Friend_Button.Size = new System.Drawing.Size(83, 25);
+            this.Update_Friend_Button.TabIndex = 31;
+            this.Update_Friend_Button.Text = "Update";
+            this.Update_Friend_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Update_Friend_Button.Click += new System.EventHandler(this.Update_Friend_Button_Click);
+            // 
             // Remove_Friend_Button
             // 
             this.Remove_Friend_Button.BackColor = System.Drawing.Color.White;
@@ -1652,36 +1928,36 @@
             this.Data_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.Data_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Data_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.Data_Friends.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Friends.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Friends.DefaultCellStyle = dataGridViewCellStyle17;
             this.Data_Friends.GridColor = System.Drawing.Color.RoyalBlue;
             this.Data_Friends.Location = new System.Drawing.Point(202, 47);
             this.Data_Friends.MultiSelect = false;
             this.Data_Friends.Name = "Data_Friends";
             this.Data_Friends.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Data_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.Data_Friends.RowHeadersVisible = false;
             this.Data_Friends.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Data_Friends.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1737,36 +2013,36 @@
             this.Search_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.Search_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Search_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.Search_Friends.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Search_Friends.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Search_Friends.DefaultCellStyle = dataGridViewCellStyle20;
             this.Search_Friends.GridColor = System.Drawing.Color.RoyalBlue;
             this.Search_Friends.Location = new System.Drawing.Point(23, 47);
             this.Search_Friends.MultiSelect = false;
             this.Search_Friends.Name = "Search_Friends";
             this.Search_Friends.ReadOnly = true;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Search_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Search_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.Search_Friends.RowHeadersVisible = false;
             this.Search_Friends.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Search_Friends.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -2278,35 +2554,21 @@
             this.TableLayoutPanel_Notifications.Size = new System.Drawing.Size(240, 320);
             this.TableLayoutPanel_Notifications.TabIndex = 1;
             // 
-            // Update_Friend_Button
-            // 
-            this.Update_Friend_Button.BackColor = System.Drawing.Color.White;
-            this.Update_Friend_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Update_Friend_Button.Font = new System.Drawing.Font("Candara", 12F);
-            this.Update_Friend_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Update_Friend_Button.Location = new System.Drawing.Point(202, 287);
-            this.Update_Friend_Button.Name = "Update_Friend_Button";
-            this.Update_Friend_Button.Size = new System.Drawing.Size(83, 25);
-            this.Update_Friend_Button.TabIndex = 31;
-            this.Update_Friend_Button.Text = "Update";
-            this.Update_Friend_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Update_Friend_Button.Click += new System.EventHandler(this.Update_Friend_Button_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
-            this.Controls.Add(this.Friends_Panel);
-            this.Controls.Add(this.Notification_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
-            this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Search_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
+            this.Controls.Add(this.Event_Panel);
+            this.Controls.Add(this.Signup_Panel);
+            this.Controls.Add(this.Friends_Panel);
+            this.Controls.Add(this.Notification_Panel);
             this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Emoji_Panel);
-            this.Controls.Add(this.Signup_Panel);
             this.Controls.Add(this.Settings_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2349,6 +2611,9 @@
             this.Group_Panel.ResumeLayout(false);
             this.Group_Control_Panel.ResumeLayout(false);
             this.Group_Control_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Groups_Cross_Update_Name)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Display_Groups)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Groups_Friends)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Group_Cross_Name)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).EndInit();
             this.Search_Panel.ResumeLayout(false);
@@ -2524,6 +2789,21 @@
         private System.Windows.Forms.DataGridView Data_Friends;
         private System.Windows.Forms.Label Remove_Friend_Button;
         private System.Windows.Forms.Label Update_Friend_Button;
+        private System.Windows.Forms.PictureBox Groups_Cross_Update_Name;
+        private System.Windows.Forms.DataGridView Data_Display_Groups;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.TextBox TextBox_Group_Update;
+        private System.Windows.Forms.DataGridView Data_Groups_Friends;
+        private System.Windows.Forms.Label Remove_Group_Name;
+        private System.Windows.Forms.Label Update_Group;
+        private System.Windows.Forms.Panel Colour_Panel_Update;
+        private System.Windows.Forms.Label Update_Colour_Group;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }
 

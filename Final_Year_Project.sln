@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2041
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Final_Year_Project", "Final_Year_Project\Final_Year_Project.csproj", "{932BD30E-CB3E-433B-991F-07B639FE5597}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MSI_Setup", "MSI_Setup\MSI_Setup.vdproj", "{6E40766B-3051-4AEF-A680-9738031C205C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{932BD30E-CB3E-433B-991F-07B639FE5597}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{932BD30E-CB3E-433B-991F-07B639FE5597}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{932BD30E-CB3E-433B-991F-07B639FE5597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E40766B-3051-4AEF-A680-9738031C205C}.Debug|Any CPU.ActiveCfg = Debug
+		{6E40766B-3051-4AEF-A680-9738031C205C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
