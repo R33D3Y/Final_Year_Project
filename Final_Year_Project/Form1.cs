@@ -806,6 +806,8 @@ namespace Final_Year_Project
 
             Colour_Panel.BackColor = Color.Black;
             TextBox_Name_Group.Text = "Enter Group Name";
+            TextBox_Group_Update.Text = "Group Name";
+            Colour_Panel_Update.BackColor = Color.Black;
 
             Dashboard_Search.Text = "Enter Search Criteria";
 
@@ -821,6 +823,10 @@ namespace Final_Year_Project
             Search_Data.Refresh();
             Search_Friends.DataSource = null;
             Search_Friends.Refresh();
+            Data_Display_Groups.DataSource = null;
+            Data_Display_Groups.Refresh();
+            Data_Groups_Friends.DataSource = null;
+            Data_Groups_Friends.Refresh();
         }
 
         // Calendar Class
@@ -1916,15 +1922,15 @@ namespace Final_Year_Project
                 foreach (Friend f in fa)
                 {
                     bool found = false;
-                    Console.WriteLine("F: " + f.GetUserName());
+                    //Console.WriteLine("F: " + f.GetUserName());
 
                     foreach (Friend ff in fg)
                     {
-                        Console.WriteLine("FF: " + ff.GetUserName());
+                        //Console.WriteLine("FF: " + ff.GetUserName());
                         if (ff.GetID() == f.GetID())
                         {
                             Data_Groups_Friends.Rows.Add(true, f.GetID(), f.GetUserName(), f.GetNickName());
-                            Console.WriteLine("Found");
+                            //Console.WriteLine("Found");
                             found = true;
                             break;
                         }
@@ -2020,6 +2026,19 @@ namespace Final_Year_Project
 
                 database.Update_Group(Group_ID, TextBox_Group_Update.Text, Colour_Panel_Update.BackColor.ToArgb());
             }
+
+            List<CalendarGroup> g = database.GetGroups();
+
+            Data_Display_Groups.Rows.Clear();
+
+            for (int i = 0; i < g.Count; i++)
+            {
+                Data_Display_Groups.Rows.Add(g[i].GetID(), g[i].GetName());
+            }
+            
+            calendar = tableLayoutPanel;
+            header = tableLayoutPanelCalendarHeader;
+            SetData(database.GetData(dt), dt);
         }
     }
 
