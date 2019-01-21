@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Device.Location;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -747,23 +748,45 @@ namespace Final_Year_Project
             PictureBox_Back.Visible = true;
         }
 
+        private bool findLocation = true;
+
         private void ResetForm()
         {
-            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
-            GeoCoordinate coord = watcher.Position.Location;
-
             double latitude = 0;
             double longitude = 0;
 
-            while (coord.IsUnknown)
+            if (findLocation)
             {
-                watcher.TryStart(false, TimeSpan.FromMilliseconds(2000));
-                coord = watcher.Position.Location;
-
-                if (coord.IsUnknown != true)
+                try
                 {
-                    latitude = coord.Latitude;
-                    longitude = coord.Longitude;
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+                    GeoCoordinate coord = watcher.Position.Location;
+
+                    while (coord.IsUnknown && sw.ElapsedMilliseconds < 3000)
+                    {
+                        watcher.TryStart(false, TimeSpan.FromMilliseconds(2000));
+                        coord = watcher.Position.Location;
+
+                        if (coord.IsUnknown != true)
+                        {
+                            latitude = coord.Latitude;
+                            longitude = coord.Longitude;
+                        }
+                    }
+
+                    sw.Stop();
+
+                    if (latitude == 0 && longitude == 0)
+                    {
+                        findLocation = false;
+                    }
+                }
+
+                catch (COMException)
+                {
+                    findLocation = false;
                 }
             }
 
@@ -782,7 +805,8 @@ namespace Final_Year_Project
             TextBox_Location.Text = ",";
             TextBox_Location_Search.Text = "Enter Address or Place";
             DateTimePicker_Date.Text = DateTime.Now.ToLongDateString();
-            DateTimePicker_Time.Text = DateTime.Now.ToLongTimeString();
+            string time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":00";
+            DateTimePicker_Time.Text = time; //DateTime.Now.ToLongTimeString();
 
             GMap_Control_Search.MapProvider = BingMapProvider.Instance;
             GMaps.Instance.Mode = AccessMode.ServerOnly;
