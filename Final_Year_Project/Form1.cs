@@ -166,6 +166,7 @@ namespace Final_Year_Project
             Search_Description.BackColor = darkColour;
 
             Search_Panel_Button.ForeColor = lightColour;
+            Search_Add_Event_Button.ForeColor = lightColour;
             Search_Switch_Map_Button.ForeColor = lightColour;
             Search_Event_Update.ForeColor = lightColour;
             Search_Data.BackgroundColor = darkColour;
@@ -368,6 +369,7 @@ namespace Final_Year_Project
             PictureBox_Settings.Visible = false;
             PictureBox_Back.Visible = false;
             PictureBox_Logout.Visible = false;
+            PictureBox_Notification.Visible = false;
 
             Login_Panel.Visible = true;
         }
@@ -590,6 +592,15 @@ namespace Final_Year_Project
 
                 ResetForm();
             }
+
+            List<CalendarGroup> g = database.GetGroups();
+
+            Data_Display_Groups.Rows.Clear();
+
+            for (int i = 0; i < g.Count; i++)
+            {
+                Data_Display_Groups.Rows.Add(g[i].GetID(), g[i].GetName());
+            }
         }
 
         private void Search_Location_Click(object sender, EventArgs e)
@@ -712,6 +723,16 @@ namespace Final_Year_Project
                     markers.Markers.Add(marker);
                 }
 
+                else
+                {
+                    GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+                    GMaps.Instance.Mode = AccessMode.ServerOnly;
+                    GMap_Control_Search.Position = new PointLatLng(0, 0);
+                    GMap_Control_Search.ShowCenter = false;
+
+                    GMap_Control_Search.Overlays.Clear();
+                }
+
                 Search_Description.Text = Event_Description;
             }
         }
@@ -739,9 +760,11 @@ namespace Final_Year_Project
 
         private void Dashboard_Search_Button_Click(object sender, EventArgs e)
         {
+            string text = Dashboard_Search.Text;
+
             ResetForm();
 
-            Search(Dashboard_Search.Text);
+            Search(text);
 
             Dashboard_Panel.Visible = false;
             Search_Panel.Visible = true;
@@ -764,8 +787,13 @@ namespace Final_Year_Project
                     GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
                     GeoCoordinate coord = watcher.Position.Location;
 
-                    while (coord.IsUnknown && sw.ElapsedMilliseconds < 3000)
+                    while (coord.IsUnknown)
                     {
+                        if (sw.ElapsedMilliseconds > 3000)
+                        {
+                            break;
+                        }
+
                         watcher.TryStart(false, TimeSpan.FromMilliseconds(2000));
                         coord = watcher.Position.Location;
 
@@ -835,7 +863,7 @@ namespace Final_Year_Project
 
             Dashboard_Search.Text = "Enter Search Criteria";
 
-            Add_Friend_Button.Text = "Select User To Add As Friend";
+            Add_Friend_Button.Text = "Add As Friend";
             TextBox_Search_Username.Text = "Enter Username";
             TextBox_Friends_Nickname.Text = "Enter A Nickname";
 
@@ -1259,10 +1287,23 @@ namespace Final_Year_Project
 
                             ResetForm();
 
-                            Search(selected_dt.ToString("dd/MM/yyyy"));
-                            TextBox_Search.Text = selected_dt.ToString("dd/MM/yyyy");
+                            MouseEventArgs me = (MouseEventArgs) e;
 
-                            Search_Panel.Visible = true;
+                            if (me.Button == MouseButtons.Left)
+                            {
+                                Search(selected_dt.ToString("dd/MM/yyyy"));
+                                TextBox_Search.Text = selected_dt.ToString("dd/MM/yyyy");
+
+                                Search_Panel.Visible = true;
+                            }
+                            
+                            else if (me.Button == MouseButtons.Right)
+                            {                                
+                                DateTimePicker_Date.Text = selected_dt.ToLongDateString();
+
+                                Event_Panel.Visible = true;
+                            }
+                            
                             Dashboard_Panel.Visible = false;
                             PictureBox_Back.Visible = true;
                         }
@@ -1608,6 +1649,7 @@ namespace Final_Year_Project
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
+            Emoji_Panel.Visible = false;
             Settings_Panel.Visible = true;
 
             PictureBox_Back.Visible = true;
@@ -1628,6 +1670,7 @@ namespace Final_Year_Project
                 goodUsername = true;
                 Signup_Tick_Username.Visible = true;
                 Signup_Cross_Username.Visible = false;
+                Warning_Label.Visible = false;
             }
 
             else
@@ -1635,6 +1678,8 @@ namespace Final_Year_Project
                 goodUsername = false;
                 Signup_Tick_Username.Visible = false;
                 Signup_Cross_Username.Visible = true;
+                Warning_Label.Text = "That Username is already in use.";
+                Warning_Label.Visible = true;
             }
         }
 
@@ -1645,6 +1690,7 @@ namespace Final_Year_Project
                 goodEmail = true;
                 Signup_Tick_Email.Visible = true;
                 Signup_Cross_Email.Visible = false;
+                Warning_Label.Visible = false;
             }
 
             else
@@ -1652,6 +1698,8 @@ namespace Final_Year_Project
                 goodEmail = false;
                 Signup_Tick_Email.Visible = false;
                 Signup_Cross_Email.Visible = true;
+                Warning_Label.Text = "That email is in use or is not valid.";
+                Warning_Label.Visible = true;
             }
         }
 
@@ -1662,6 +1710,7 @@ namespace Final_Year_Project
                 goodPassword = true;
                 Signup_Tick_Password.Visible = true;
                 Signup_Cross_Password.Visible = false;
+                Warning_Label.Visible = false;
             }
 
             else
@@ -1669,6 +1718,8 @@ namespace Final_Year_Project
                 goodPassword = false;
                 Signup_Tick_Password.Visible = false;
                 Signup_Cross_Password.Visible = true;
+                Warning_Label.Text = "Passwords must consist of at least 7 characters.";
+                Warning_Label.Visible = true;
             }
         }
 
@@ -1679,6 +1730,7 @@ namespace Final_Year_Project
                 goodPasswordRetype = true;
                 Signup_Tick_Password_Retype.Visible = true;
                 Signup_Cross_Password_Retype.Visible = false;
+                Warning_Label.Visible = false;
             }
 
             else
@@ -1686,6 +1738,8 @@ namespace Final_Year_Project
                 goodPasswordRetype = false;
                 Signup_Tick_Password_Retype.Visible = false;
                 Signup_Cross_Password_Retype.Visible = true;
+                Warning_Label.Text = "Typed Password does not match.";
+                Warning_Label.Visible = true;
             }
         }
 
@@ -2057,12 +2111,39 @@ namespace Final_Year_Project
 
             for (int i = 0; i < g.Count; i++)
             {
+                
                 Data_Display_Groups.Rows.Add(g[i].GetID(), g[i].GetName());
             }
             
             calendar = tableLayoutPanel;
             header = tableLayoutPanelCalendarHeader;
             SetData(database.GetData(dt), dt);
+        }
+
+        private void Data_Friends_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Friends.SelectedRows)
+            {
+                int User_ID = (int)row.Cells[0].Value;
+                string User_Name = row.Cells[1].Value.ToString();
+
+                TextBox_Friends_Nickname.Text = User_Name;
+                Add_Friend_Button.Text = "Add As Friend";
+            }
+        }
+
+        private void Search_Add_Event_Button_Click(object sender, EventArgs e)
+        {
+            string[] split = TextBox_Search.Text.Split('/');
+            DateTime temp = new DateTime(Convert.ToInt16(split[2]), Convert.ToInt16(split[1]), Convert.ToInt16(split[0]));
+
+            ResetForm();
+
+            DateTimePicker_Date.Text = temp.ToLongDateString();
+            
+            Search_Panel.Visible = false;
+            Event_Panel.Visible = true;
+            PictureBox_Back.Visible = true;
         }
     }
 
@@ -2334,7 +2415,7 @@ namespace Final_Year_Project
             SqlDataAdapter sqa = new SqlDataAdapter("" +
                 "SELECT Event_ID, Event_Name, Event_Description, Event_DateTime, Event_Emoji, Group_ID, Group_Name, Event_Location FROM [Final_Year_Project].[dbo].[Event_Table] " +
                 "FULL JOIN Group_Table On Group_Table.Group_ID = Event_Table.Event_Group " +
-                "WHERE (Event_Owner = " + user.GetID() + " OR Group_Owner = " + user.GetID() + ") " +
+                "WHERE (Event_Owner = " + user.GetID() + " OR Group_Owner = " + user.GetID() + " OR EXISTS (Select * From Group_Association_Table Where Group_ID = Group_Table.Group_ID AND User_ID = " + user.GetID() + ")) " +
                 "AND Event_ID IS NOT NULL " +
                 "AND (Event_Name Like '" + text + "' " +
                 "OR Event_Description Like '" + text + "' " +

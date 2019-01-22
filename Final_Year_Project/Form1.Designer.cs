@@ -148,6 +148,7 @@
             this.TextBox_Name_Group = new System.Windows.Forms.TextBox();
             this.Search_Panel = new System.Windows.Forms.Panel();
             this.Search_Control_Panel = new System.Windows.Forms.Panel();
+            this.Search_Add_Event_Button = new System.Windows.Forms.Label();
             this.Search_Event_Update = new System.Windows.Forms.Label();
             this.Search_Switch_Map_Button = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -178,6 +179,7 @@
             this.Settings_Dark_Button = new System.Windows.Forms.Label();
             this.Signup_Panel = new System.Windows.Forms.Panel();
             this.Signup_Control_Panel = new System.Windows.Forms.Panel();
+            this.Warning_Label = new System.Windows.Forms.Label();
             this.Signup_Tick_Email = new System.Windows.Forms.PictureBox();
             this.Signup_Tick_Password = new System.Windows.Forms.PictureBox();
             this.Signup_Tick_Password_Retype = new System.Windows.Forms.PictureBox();
@@ -1679,6 +1681,7 @@
             // 
             this.Search_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Search_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Control_Panel.Controls.Add(this.Search_Add_Event_Button);
             this.Search_Control_Panel.Controls.Add(this.Search_Event_Update);
             this.Search_Control_Panel.Controls.Add(this.Search_Switch_Map_Button);
             this.Search_Control_Panel.Controls.Add(this.panel12);
@@ -1692,6 +1695,22 @@
             this.Search_Control_Panel.Name = "Search_Control_Panel";
             this.Search_Control_Panel.Size = new System.Drawing.Size(810, 348);
             this.Search_Control_Panel.TabIndex = 21;
+            // 
+            // Search_Add_Event_Button
+            // 
+            this.Search_Add_Event_Button.BackColor = System.Drawing.Color.White;
+            this.Search_Add_Event_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Search_Add_Event_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Search_Add_Event_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Add_Event_Button.Location = new System.Drawing.Point(541, 20);
+            this.Search_Add_Event_Button.Name = "Search_Add_Event_Button";
+            this.Search_Add_Event_Button.Size = new System.Drawing.Size(260, 30);
+            this.Search_Add_Event_Button.TabIndex = 32;
+            this.Search_Add_Event_Button.Text = "Add Event";
+            this.Search_Add_Event_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Search_Add_Event_Button.Click += new System.EventHandler(this.Search_Add_Event_Button_Click);
+            this.Search_Add_Event_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Search_Add_Event_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Search_Event_Update
             // 
@@ -1896,11 +1915,11 @@
             this.Update_Friend_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Update_Friend_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Update_Friend_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Update_Friend_Button.Location = new System.Drawing.Point(202, 287);
+            this.Update_Friend_Button.Location = new System.Drawing.Point(202, 257);
             this.Update_Friend_Button.Name = "Update_Friend_Button";
-            this.Update_Friend_Button.Size = new System.Drawing.Size(83, 25);
+            this.Update_Friend_Button.Size = new System.Drawing.Size(173, 25);
             this.Update_Friend_Button.TabIndex = 31;
-            this.Update_Friend_Button.Text = "Update";
+            this.Update_Friend_Button.Text = "Update Nickname";
             this.Update_Friend_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Update_Friend_Button.Click += new System.EventHandler(this.Update_Friend_Button_Click);
             // 
@@ -1910,11 +1929,11 @@
             this.Remove_Friend_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Remove_Friend_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Remove_Friend_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Remove_Friend_Button.Location = new System.Drawing.Point(295, 287);
+            this.Remove_Friend_Button.Location = new System.Drawing.Point(202, 287);
             this.Remove_Friend_Button.Name = "Remove_Friend_Button";
-            this.Remove_Friend_Button.Size = new System.Drawing.Size(83, 25);
+            this.Remove_Friend_Button.Size = new System.Drawing.Size(173, 25);
             this.Remove_Friend_Button.TabIndex = 30;
-            this.Remove_Friend_Button.Text = "Remove";
+            this.Remove_Friend_Button.Text = "Remove Friend";
             this.Remove_Friend_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Remove_Friend_Button.Click += new System.EventHandler(this.Remove_Friend_Button_Click);
             // 
@@ -1963,6 +1982,7 @@
             this.Data_Friends.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Data_Friends.Size = new System.Drawing.Size(173, 204);
             this.Data_Friends.TabIndex = 29;
+            this.Data_Friends.Click += new System.EventHandler(this.Data_Friends_Click);
             // 
             // panel18
             // 
@@ -1970,7 +1990,7 @@
             this.panel18.Location = new System.Drawing.Point(23, 279);
             this.panel18.Margin = new System.Windows.Forms.Padding(0);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(352, 1);
+            this.panel18.Size = new System.Drawing.Size(173, 1);
             this.panel18.TabIndex = 28;
             // 
             // TextBox_Friends_Nickname
@@ -1981,7 +2001,7 @@
             this.TextBox_Friends_Nickname.ForeColor = System.Drawing.Color.White;
             this.TextBox_Friends_Nickname.Location = new System.Drawing.Point(26, 257);
             this.TextBox_Friends_Nickname.Name = "TextBox_Friends_Nickname";
-            this.TextBox_Friends_Nickname.Size = new System.Drawing.Size(349, 20);
+            this.TextBox_Friends_Nickname.Size = new System.Drawing.Size(170, 20);
             this.TextBox_Friends_Nickname.TabIndex = 27;
             this.TextBox_Friends_Nickname.Text = "Enter A Nickname";
             this.TextBox_Friends_Nickname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -2194,6 +2214,7 @@
             // 
             this.Signup_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Signup_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Signup_Control_Panel.Controls.Add(this.Warning_Label);
             this.Signup_Control_Panel.Controls.Add(this.Signup_Tick_Email);
             this.Signup_Control_Panel.Controls.Add(this.Signup_Tick_Password);
             this.Signup_Control_Panel.Controls.Add(this.Signup_Tick_Password_Retype);
@@ -2215,10 +2236,23 @@
             this.Signup_Control_Panel.Controls.Add(this.Signup_Panel_Button);
             this.Signup_Control_Panel.Controls.Add(this.panel11);
             this.Signup_Control_Panel.Controls.Add(this.Signup_TextBox_Username);
-            this.Signup_Control_Panel.Location = new System.Drawing.Point(199, 257);
+            this.Signup_Control_Panel.Location = new System.Drawing.Point(199, 236);
             this.Signup_Control_Panel.Name = "Signup_Control_Panel";
-            this.Signup_Control_Panel.Size = new System.Drawing.Size(452, 197);
+            this.Signup_Control_Panel.Size = new System.Drawing.Size(452, 218);
             this.Signup_Control_Panel.TabIndex = 0;
+            // 
+            // Warning_Label
+            // 
+            this.Warning_Label.AutoSize = true;
+            this.Warning_Label.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Warning_Label.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Warning_Label.ForeColor = System.Drawing.Color.White;
+            this.Warning_Label.Location = new System.Drawing.Point(7, 193);
+            this.Warning_Label.Name = "Warning_Label";
+            this.Warning_Label.Size = new System.Drawing.Size(318, 19);
+            this.Warning_Label.TabIndex = 30;
+            this.Warning_Label.Text = "Username must include more than 6 characters";
+            this.Warning_Label.Visible = false;
             // 
             // Signup_Tick_Email
             // 
@@ -2560,12 +2594,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
-            this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Search_Panel);
-            this.Controls.Add(this.Group_Panel);
+            this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Dashboard_Panel);
-            this.Controls.Add(this.Signup_Panel);
             this.Controls.Add(this.Friends_Panel);
+            this.Controls.Add(this.Signup_Panel);
+            this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Notification_Panel);
             this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Emoji_Panel);
@@ -2804,6 +2838,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private GMap.NET.WindowsForms.GMapControl GMap_Control;
+        private System.Windows.Forms.Label Warning_Label;
+        private System.Windows.Forms.Label Search_Add_Event_Button;
     }
 }
 
