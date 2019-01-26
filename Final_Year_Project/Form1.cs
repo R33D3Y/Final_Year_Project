@@ -637,6 +637,8 @@ namespace Final_Year_Project
                 markers.Markers.Add(marker);
 
                 TextBox_Location.Text = lat + "," + lng;
+
+                PictureBox_Directions.Visible = true;
             }
         }
 
@@ -835,6 +837,7 @@ namespace Final_Year_Project
             DateTimePicker_Date.Text = DateTime.Now.ToLongDateString();
             string time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":00";
             DateTimePicker_Time.Text = time; //DateTime.Now.ToLongTimeString();
+            PictureBox_Directions.Visible = false;
 
             GMap_Control_Search.MapProvider = BingMapProvider.Instance;
             GMaps.Instance.Mode = AccessMode.ServerOnly;
@@ -1393,6 +1396,7 @@ namespace Final_Year_Project
                     markers.Markers.Add(marker);
 
                     TextBox_Location.Text = lat + "," + lng;
+                    PictureBox_Directions.Visible = true;
                 }
 
                 TextBox_Event_ID.Text = Convert.ToString(Event_ID);
@@ -2135,7 +2139,16 @@ namespace Final_Year_Project
         private void Search_Add_Event_Button_Click(object sender, EventArgs e)
         {
             string[] split = TextBox_Search.Text.Split('/');
-            DateTime temp = new DateTime(Convert.ToInt16(split[2]), Convert.ToInt16(split[1]), Convert.ToInt16(split[0]));
+            DateTime temp;
+            try
+            {
+                temp = new DateTime(Convert.ToInt16(split[2]), Convert.ToInt16(split[1]), Convert.ToInt16(split[0]));
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                temp = DateTime.Now;
+            }
 
             ResetForm();
 
@@ -2144,6 +2157,66 @@ namespace Final_Year_Project
             Search_Panel.Visible = false;
             Event_Panel.Visible = true;
             PictureBox_Back.Visible = true;
+        }
+
+        private void PictureBox_Directions_Click(object sender, EventArgs e)
+        {
+            string d = TextBox_Location.Text;
+
+            if (findLocation)
+            {
+                double latitude = 0;
+                double longitude = 0;
+
+                try
+                {
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+                    GeoCoordinate coord = watcher.Position.Location;
+
+                    while (coord.IsUnknown)
+                    {
+                        if (sw.ElapsedMilliseconds > 3000)
+                        {
+                            break;
+                        }
+
+                        watcher.TryStart(false, TimeSpan.FromMilliseconds(2000));
+                        coord = watcher.Position.Location;
+
+                        if (coord.IsUnknown != true)
+                        {
+                            latitude = coord.Latitude;
+                            longitude = coord.Longitude;
+                        }
+                    }
+
+                    sw.Stop();
+
+                    if (latitude == 0 && longitude == 0)
+                    {
+                        findLocation = false;
+                        Process.Start("https://www.google.com/maps/dir//" + d + "/@" + d);
+                    }
+
+                    else
+                    {
+                        Process.Start("https://www.google.com/maps/dir/" + latitude + "," + longitude + "/" + d + "/@" + d);
+                    }
+                }
+
+                catch (COMException)
+                {
+                    findLocation = false;
+                    Process.Start("https://www.google.com/maps/dir//" + d + "/@" + d);
+                }
+            }
+
+            else
+            {
+                Process.Start("https://www.google.com/maps/dir//" + d + "/@" + d);
+            }
         }
     }
 
@@ -3139,6 +3212,19 @@ namespace Final_Year_Project
 /*
  * TODO -
     * Create tests
+    * Highlight all onclick (If default)
+    * New screen, display busiest day and next free day after x date
+    * Search for event by location
+    * Directions to event from point x
+        * https://www.google.com/maps/dir/
+        * Current location
+        * /
+        * Desired location
+        * /@
+        * Desired location
+        * =
+        * https://www.google.com/maps/dir/51.7684985,0.4719261/52.6379585,-1.14042/@52.0810507,-1.4508944
+    * Speed and integrity improvements
  * References -
      * Logo: https://www.logolynx.com/topic/calendar
      * Icons: https://icons8.com/

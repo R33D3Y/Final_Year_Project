@@ -32,15 +32,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -93,6 +93,7 @@
             this.Textbox_Username = new System.Windows.Forms.TextBox();
             this.Event_Panel = new System.Windows.Forms.Panel();
             this.Event_Control_Panel = new System.Windows.Forms.Panel();
+            this.PictureBox_Directions = new System.Windows.Forms.PictureBox();
             this.GMap_Control = new GMap.NET.WindowsForms.GMapControl();
             this.Event_Cross_Group = new System.Windows.Forms.PictureBox();
             this.Event_Cross_Description = new System.Windows.Forms.PictureBox();
@@ -120,32 +121,34 @@
             this.TextBox_Name_Event = new System.Windows.Forms.TextBox();
             this.Group_Panel = new System.Windows.Forms.Panel();
             this.Group_Control_Panel = new System.Windows.Forms.Panel();
-            this.Colour_Panel_Update = new System.Windows.Forms.Panel();
-            this.Update_Colour_Group = new System.Windows.Forms.Label();
-            this.Groups_Cross_Update_Name = new System.Windows.Forms.PictureBox();
-            this.Data_Display_Groups = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.TextBox_Group_Update = new System.Windows.Forms.TextBox();
-            this.Data_Groups_Friends = new System.Windows.Forms.DataGridView();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remove_Group_Name = new System.Windows.Forms.Label();
-            this.Update_Group = new System.Windows.Forms.Label();
-            this.Group_Cross_Name = new System.Windows.Forms.PictureBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Data_Groups = new System.Windows.Forms.DataGridView();
             this.Check_Boxes_Column = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.User_ID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nickname_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TextBox_Name_Group = new System.Windows.Forms.TextBox();
+            this.Group_Cross_Name = new System.Windows.Forms.PictureBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.ColourPicker_Button = new System.Windows.Forms.Label();
             this.Add_Group_Button = new System.Windows.Forms.Label();
             this.Colour_Panel = new System.Windows.Forms.Panel();
-            this.ColourPicker_Button = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.TextBox_Name_Group = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Data_Display_Groups = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colour_Panel_Update = new System.Windows.Forms.Panel();
+            this.Update_Group = new System.Windows.Forms.Label();
+            this.Update_Colour_Group = new System.Windows.Forms.Label();
+            this.Remove_Group_Name = new System.Windows.Forms.Label();
+            this.Groups_Cross_Update_Name = new System.Windows.Forms.PictureBox();
+            this.Data_Groups_Friends = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TextBox_Group_Update = new System.Windows.Forms.TextBox();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.Search_Panel = new System.Windows.Forms.Panel();
             this.Search_Control_Panel = new System.Windows.Forms.Panel();
             this.Search_Add_Event_Button = new System.Windows.Forms.Label();
@@ -208,8 +211,6 @@
             this.Notification_Panel = new System.Windows.Forms.Panel();
             this.Notification_Control_Panel = new System.Windows.Forms.Panel();
             this.TableLayoutPanel_Notifications = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -235,16 +236,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.Event_Panel.SuspendLayout();
             this.Event_Control_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Directions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Group)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Description)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Name)).BeginInit();
             this.Group_Panel.SuspendLayout();
             this.Group_Control_Panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Groups_Cross_Update_Name)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Data_Display_Groups)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Data_Groups_Friends)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Group_Cross_Name)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Group_Cross_Name)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Display_Groups)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Groups_Cross_Update_Name)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Groups_Friends)).BeginInit();
             this.Search_Panel.SuspendLayout();
             this.Search_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Data)).BeginInit();
@@ -269,8 +273,6 @@
             this.panel1.SuspendLayout();
             this.Notification_Panel.SuspendLayout();
             this.Notification_Control_Panel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Dashboard_Panel
@@ -885,6 +887,7 @@
             // 
             this.Event_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Event_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Event_Control_Panel.Controls.Add(this.PictureBox_Directions);
             this.Event_Control_Panel.Controls.Add(this.GMap_Control);
             this.Event_Control_Panel.Controls.Add(this.Event_Cross_Group);
             this.Event_Control_Panel.Controls.Add(this.Event_Cross_Description);
@@ -914,6 +917,21 @@
             this.Event_Control_Panel.Name = "Event_Control_Panel";
             this.Event_Control_Panel.Size = new System.Drawing.Size(561, 352);
             this.Event_Control_Panel.TabIndex = 0;
+            // 
+            // PictureBox_Directions
+            // 
+            this.PictureBox_Directions.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox_Directions.BackgroundImage")));
+            this.PictureBox_Directions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Directions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox_Directions.Location = new System.Drawing.Point(372, 310);
+            this.PictureBox_Directions.Name = "PictureBox_Directions";
+            this.PictureBox_Directions.Size = new System.Drawing.Size(30, 30);
+            this.PictureBox_Directions.TabIndex = 33;
+            this.PictureBox_Directions.TabStop = false;
+            this.PictureBox_Directions.Visible = false;
+            this.PictureBox_Directions.Click += new System.EventHandler(this.PictureBox_Directions_Click);
+            this.PictureBox_Directions.MouseLeave += new System.EventHandler(this.PictureBox_Form_MouseLeave);
+            this.PictureBox_Directions.MouseHover += new System.EventHandler(this.PictureBox_Form_MouseHover);
             // 
             // GMap_Control
             // 
@@ -1270,247 +1288,23 @@
             this.Group_Control_Panel.Size = new System.Drawing.Size(601, 444);
             this.Group_Control_Panel.TabIndex = 20;
             // 
-            // Colour_Panel_Update
+            // groupBox2
             // 
-            this.Colour_Panel_Update.BackColor = System.Drawing.Color.Black;
-            this.Colour_Panel_Update.Location = new System.Drawing.Point(356, 177);
-            this.Colour_Panel_Update.Name = "Colour_Panel_Update";
-            this.Colour_Panel_Update.Size = new System.Drawing.Size(72, 30);
-            this.Colour_Panel_Update.TabIndex = 37;
-            // 
-            // Update_Colour_Group
-            // 
-            this.Update_Colour_Group.BackColor = System.Drawing.Color.White;
-            this.Update_Colour_Group.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Update_Colour_Group.Font = new System.Drawing.Font("Candara", 12F);
-            this.Update_Colour_Group.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Update_Colour_Group.Location = new System.Drawing.Point(223, 177);
-            this.Update_Colour_Group.Name = "Update_Colour_Group";
-            this.Update_Colour_Group.Size = new System.Drawing.Size(127, 30);
-            this.Update_Colour_Group.TabIndex = 36;
-            this.Update_Colour_Group.Text = "Update Colour";
-            this.Update_Colour_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Update_Colour_Group.Click += new System.EventHandler(this.Update_Colour_Group_Click);
-            // 
-            // Groups_Cross_Update_Name
-            // 
-            this.Groups_Cross_Update_Name.BackColor = System.Drawing.Color.White;
-            this.Groups_Cross_Update_Name.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Groups_Cross_Update_Name.BackgroundImage")));
-            this.Groups_Cross_Update_Name.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Groups_Cross_Update_Name.Location = new System.Drawing.Point(194, 180);
-            this.Groups_Cross_Update_Name.Name = "Groups_Cross_Update_Name";
-            this.Groups_Cross_Update_Name.Size = new System.Drawing.Size(20, 20);
-            this.Groups_Cross_Update_Name.TabIndex = 34;
-            this.Groups_Cross_Update_Name.TabStop = false;
-            this.Groups_Cross_Update_Name.Visible = false;
-            // 
-            // Data_Display_Groups
-            // 
-            this.Data_Display_Groups.AllowUserToAddRows = false;
-            this.Data_Display_Groups.AllowUserToDeleteRows = false;
-            this.Data_Display_Groups.AllowUserToResizeColumns = false;
-            this.Data_Display_Groups.AllowUserToResizeRows = false;
-            this.Data_Display_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.Data_Display_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.Data_Display_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.Data_Display_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Display_Groups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
-            this.Data_Display_Groups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Data_Display_Groups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Display_Groups.DefaultCellStyle = dataGridViewCellStyle29;
-            this.Data_Display_Groups.GridColor = System.Drawing.Color.RoyalBlue;
-            this.Data_Display_Groups.Location = new System.Drawing.Point(8, 22);
-            this.Data_Display_Groups.MultiSelect = false;
-            this.Data_Display_Groups.Name = "Data_Display_Groups";
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Data_Display_Groups.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
-            this.Data_Display_Groups.RowHeadersVisible = false;
-            this.Data_Display_Groups.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.Data_Display_Groups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Data_Display_Groups.Size = new System.Drawing.Size(207, 151);
-            this.Data_Display_Groups.TabIndex = 35;
-            this.Data_Display_Groups.Click += new System.EventHandler(this.Data_Display_Groups_Click);
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Group ID";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            this.dataGridViewTextBoxColumn4.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Group Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Location = new System.Drawing.Point(14, 202);
-            this.panel9.Margin = new System.Windows.Forms.Padding(0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(175, 1);
-            this.panel9.TabIndex = 33;
-            // 
-            // TextBox_Group_Update
-            // 
-            this.TextBox_Group_Update.BackColor = System.Drawing.Color.RoyalBlue;
-            this.TextBox_Group_Update.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBox_Group_Update.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Group_Update.ForeColor = System.Drawing.Color.White;
-            this.TextBox_Group_Update.Location = new System.Drawing.Point(14, 179);
-            this.TextBox_Group_Update.Name = "TextBox_Group_Update";
-            this.TextBox_Group_Update.Size = new System.Drawing.Size(172, 20);
-            this.TextBox_Group_Update.TabIndex = 32;
-            this.TextBox_Group_Update.Text = "Group Name";
-            this.TextBox_Group_Update.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TextBox_Group_Update.TextChanged += new System.EventHandler(this.TextBox_Group_Update_TextChanged);
-            // 
-            // Data_Groups_Friends
-            // 
-            this.Data_Groups_Friends.AllowUserToAddRows = false;
-            this.Data_Groups_Friends.AllowUserToDeleteRows = false;
-            this.Data_Groups_Friends.AllowUserToResizeColumns = false;
-            this.Data_Groups_Friends.AllowUserToResizeRows = false;
-            this.Data_Groups_Friends.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.Data_Groups_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.Data_Groups_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.Data_Groups_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Groups_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
-            this.Data_Groups_Friends.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Data_Groups_Friends.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Data_Groups_Friends.DefaultCellStyle = dataGridViewCellStyle32;
-            this.Data_Groups_Friends.GridColor = System.Drawing.Color.RoyalBlue;
-            this.Data_Groups_Friends.Location = new System.Drawing.Point(222, 22);
-            this.Data_Groups_Friends.MultiSelect = false;
-            this.Data_Groups_Friends.Name = "Data_Groups_Friends";
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Candara", 12F);
-            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Data_Groups_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle33;
-            this.Data_Groups_Friends.RowHeadersVisible = false;
-            this.Data_Groups_Friends.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.Data_Groups_Friends.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Data_Groups_Friends.Size = new System.Drawing.Size(356, 152);
-            this.Data_Groups_Friends.TabIndex = 34;
-            this.Data_Groups_Friends.Click += new System.EventHandler(this.Data_Groups_Friends_Click);
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Add To Group";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "User ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 83;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn2.HeaderText = "User Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 109;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Nickname";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // Remove_Group_Name
-            // 
-            this.Remove_Group_Name.BackColor = System.Drawing.Color.White;
-            this.Remove_Group_Name.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Remove_Group_Name.Font = new System.Drawing.Font("Candara", 12F);
-            this.Remove_Group_Name.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Remove_Group_Name.Location = new System.Drawing.Point(223, 212);
-            this.Remove_Group_Name.Name = "Remove_Group_Name";
-            this.Remove_Group_Name.Size = new System.Drawing.Size(205, 30);
-            this.Remove_Group_Name.TabIndex = 33;
-            this.Remove_Group_Name.Text = "Remove Group";
-            this.Remove_Group_Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Remove_Group_Name.Click += new System.EventHandler(this.Remove_Group_Name_Click);
-            // 
-            // Update_Group
-            // 
-            this.Update_Group.BackColor = System.Drawing.Color.White;
-            this.Update_Group.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Update_Group.Font = new System.Drawing.Font("Candara", 12F);
-            this.Update_Group.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Update_Group.Location = new System.Drawing.Point(8, 212);
-            this.Update_Group.Name = "Update_Group";
-            this.Update_Group.Size = new System.Drawing.Size(201, 30);
-            this.Update_Group.TabIndex = 32;
-            this.Update_Group.Text = "Update Group";
-            this.Update_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Update_Group.Click += new System.EventHandler(this.Update_Group_Click);
-            // 
-            // Group_Cross_Name
-            // 
-            this.Group_Cross_Name.BackColor = System.Drawing.Color.White;
-            this.Group_Cross_Name.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Group_Cross_Name.BackgroundImage")));
-            this.Group_Cross_Name.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Group_Cross_Name.Location = new System.Drawing.Point(198, 31);
-            this.Group_Cross_Name.Name = "Group_Cross_Name";
-            this.Group_Cross_Name.Size = new System.Drawing.Size(20, 20);
-            this.Group_Cross_Name.TabIndex = 31;
-            this.Group_Cross_Name.TabStop = false;
-            this.Group_Cross_Name.Visible = false;
+            this.groupBox2.Controls.Add(this.Data_Groups);
+            this.groupBox2.Controls.Add(this.TextBox_Name_Group);
+            this.groupBox2.Controls.Add(this.Group_Cross_Name);
+            this.groupBox2.Controls.Add(this.panel8);
+            this.groupBox2.Controls.Add(this.ColourPicker_Button);
+            this.groupBox2.Controls.Add(this.Add_Group_Button);
+            this.groupBox2.Controls.Add(this.Colour_Panel);
+            this.groupBox2.Font = new System.Drawing.Font("Candara", 12F);
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
+            this.groupBox2.Location = new System.Drawing.Point(8, 2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(585, 178);
+            this.groupBox2.TabIndex = 39;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "New Group";
             // 
             // Data_Groups
             // 
@@ -1593,6 +1387,57 @@
             this.Nickname_Column.Name = "Nickname_Column";
             this.Nickname_Column.ReadOnly = true;
             // 
+            // TextBox_Name_Group
+            // 
+            this.TextBox_Name_Group.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Name_Group.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Name_Group.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Name_Group.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Name_Group.Location = new System.Drawing.Point(15, 30);
+            this.TextBox_Name_Group.Name = "TextBox_Name_Group";
+            this.TextBox_Name_Group.Size = new System.Drawing.Size(172, 20);
+            this.TextBox_Name_Group.TabIndex = 20;
+            this.TextBox_Name_Group.Text = "Enter Group Name";
+            this.TextBox_Name_Group.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox_Name_Group.TextChanged += new System.EventHandler(this.TextBox_Name_Group_TextChanged);
+            // 
+            // Group_Cross_Name
+            // 
+            this.Group_Cross_Name.BackColor = System.Drawing.Color.White;
+            this.Group_Cross_Name.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Group_Cross_Name.BackgroundImage")));
+            this.Group_Cross_Name.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Group_Cross_Name.Location = new System.Drawing.Point(198, 31);
+            this.Group_Cross_Name.Name = "Group_Cross_Name";
+            this.Group_Cross_Name.Size = new System.Drawing.Size(20, 20);
+            this.Group_Cross_Name.TabIndex = 31;
+            this.Group_Cross_Name.TabStop = false;
+            this.Group_Cross_Name.Visible = false;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Location = new System.Drawing.Point(15, 53);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(175, 1);
+            this.panel8.TabIndex = 21;
+            // 
+            // ColourPicker_Button
+            // 
+            this.ColourPicker_Button.BackColor = System.Drawing.Color.White;
+            this.ColourPicker_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ColourPicker_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.ColourPicker_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.ColourPicker_Button.Location = new System.Drawing.Point(10, 84);
+            this.ColourPicker_Button.Name = "ColourPicker_Button";
+            this.ColourPicker_Button.Size = new System.Drawing.Size(127, 30);
+            this.ColourPicker_Button.TabIndex = 18;
+            this.ColourPicker_Button.Text = "Choose Colour";
+            this.ColourPicker_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ColourPicker_Button.Click += new System.EventHandler(this.ColourPicker_Click);
+            this.ColourPicker_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.ColourPicker_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
             // Add_Group_Button
             // 
             this.Add_Group_Button.BackColor = System.Drawing.Color.White;
@@ -1617,44 +1462,255 @@
             this.Colour_Panel.Size = new System.Drawing.Size(72, 30);
             this.Colour_Panel.TabIndex = 19;
             // 
-            // ColourPicker_Button
+            // groupBox1
             // 
-            this.ColourPicker_Button.BackColor = System.Drawing.Color.White;
-            this.ColourPicker_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ColourPicker_Button.Font = new System.Drawing.Font("Candara", 12F);
-            this.ColourPicker_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ColourPicker_Button.Location = new System.Drawing.Point(10, 84);
-            this.ColourPicker_Button.Name = "ColourPicker_Button";
-            this.ColourPicker_Button.Size = new System.Drawing.Size(127, 30);
-            this.ColourPicker_Button.TabIndex = 18;
-            this.ColourPicker_Button.Text = "Choose Colour";
-            this.ColourPicker_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ColourPicker_Button.Click += new System.EventHandler(this.ColourPicker_Click);
-            this.ColourPicker_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
-            this.ColourPicker_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            this.groupBox1.Controls.Add(this.Data_Display_Groups);
+            this.groupBox1.Controls.Add(this.Colour_Panel_Update);
+            this.groupBox1.Controls.Add(this.Update_Group);
+            this.groupBox1.Controls.Add(this.Update_Colour_Group);
+            this.groupBox1.Controls.Add(this.Remove_Group_Name);
+            this.groupBox1.Controls.Add(this.Groups_Cross_Update_Name);
+            this.groupBox1.Controls.Add(this.Data_Groups_Friends);
+            this.groupBox1.Controls.Add(this.TextBox_Group_Update);
+            this.groupBox1.Controls.Add(this.panel9);
+            this.groupBox1.Font = new System.Drawing.Font("Candara", 12F);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(8, 182);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(585, 253);
+            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Existing Groups";
             // 
-            // panel8
+            // Data_Display_Groups
             // 
-            this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Location = new System.Drawing.Point(15, 53);
-            this.panel8.Margin = new System.Windows.Forms.Padding(0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(175, 1);
-            this.panel8.TabIndex = 21;
+            this.Data_Display_Groups.AllowUserToAddRows = false;
+            this.Data_Display_Groups.AllowUserToDeleteRows = false;
+            this.Data_Display_Groups.AllowUserToResizeColumns = false;
+            this.Data_Display_Groups.AllowUserToResizeRows = false;
+            this.Data_Display_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Data_Display_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Display_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Data_Display_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Display_Groups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            this.Data_Display_Groups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Data_Display_Groups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Display_Groups.DefaultCellStyle = dataGridViewCellStyle29;
+            this.Data_Display_Groups.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Display_Groups.Location = new System.Drawing.Point(8, 22);
+            this.Data_Display_Groups.MultiSelect = false;
+            this.Data_Display_Groups.Name = "Data_Display_Groups";
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Display_Groups.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            this.Data_Display_Groups.RowHeadersVisible = false;
+            this.Data_Display_Groups.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Data_Display_Groups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Data_Display_Groups.Size = new System.Drawing.Size(207, 151);
+            this.Data_Display_Groups.TabIndex = 35;
+            this.Data_Display_Groups.Click += new System.EventHandler(this.Data_Display_Groups_Click);
             // 
-            // TextBox_Name_Group
+            // dataGridViewTextBoxColumn4
             // 
-            this.TextBox_Name_Group.BackColor = System.Drawing.Color.RoyalBlue;
-            this.TextBox_Name_Group.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBox_Name_Group.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox_Name_Group.ForeColor = System.Drawing.Color.White;
-            this.TextBox_Name_Group.Location = new System.Drawing.Point(15, 30);
-            this.TextBox_Name_Group.Name = "TextBox_Name_Group";
-            this.TextBox_Name_Group.Size = new System.Drawing.Size(172, 20);
-            this.TextBox_Name_Group.TabIndex = 20;
-            this.TextBox_Name_Group.Text = "Enter Group Name";
-            this.TextBox_Name_Group.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TextBox_Name_Group.TextChanged += new System.EventHandler(this.TextBox_Name_Group_TextChanged);
+            this.dataGridViewTextBoxColumn4.HeaderText = "Group ID";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            this.dataGridViewTextBoxColumn4.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Group Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // Colour_Panel_Update
+            // 
+            this.Colour_Panel_Update.BackColor = System.Drawing.Color.Black;
+            this.Colour_Panel_Update.Location = new System.Drawing.Point(356, 177);
+            this.Colour_Panel_Update.Name = "Colour_Panel_Update";
+            this.Colour_Panel_Update.Size = new System.Drawing.Size(72, 30);
+            this.Colour_Panel_Update.TabIndex = 37;
+            // 
+            // Update_Group
+            // 
+            this.Update_Group.BackColor = System.Drawing.Color.White;
+            this.Update_Group.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Update_Group.Font = new System.Drawing.Font("Candara", 12F);
+            this.Update_Group.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Update_Group.Location = new System.Drawing.Point(8, 212);
+            this.Update_Group.Name = "Update_Group";
+            this.Update_Group.Size = new System.Drawing.Size(201, 30);
+            this.Update_Group.TabIndex = 32;
+            this.Update_Group.Text = "Update Group";
+            this.Update_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Update_Group.Click += new System.EventHandler(this.Update_Group_Click);
+            // 
+            // Update_Colour_Group
+            // 
+            this.Update_Colour_Group.BackColor = System.Drawing.Color.White;
+            this.Update_Colour_Group.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Update_Colour_Group.Font = new System.Drawing.Font("Candara", 12F);
+            this.Update_Colour_Group.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Update_Colour_Group.Location = new System.Drawing.Point(223, 177);
+            this.Update_Colour_Group.Name = "Update_Colour_Group";
+            this.Update_Colour_Group.Size = new System.Drawing.Size(127, 30);
+            this.Update_Colour_Group.TabIndex = 36;
+            this.Update_Colour_Group.Text = "Update Colour";
+            this.Update_Colour_Group.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Update_Colour_Group.Click += new System.EventHandler(this.Update_Colour_Group_Click);
+            // 
+            // Remove_Group_Name
+            // 
+            this.Remove_Group_Name.BackColor = System.Drawing.Color.White;
+            this.Remove_Group_Name.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Remove_Group_Name.Font = new System.Drawing.Font("Candara", 12F);
+            this.Remove_Group_Name.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Remove_Group_Name.Location = new System.Drawing.Point(223, 212);
+            this.Remove_Group_Name.Name = "Remove_Group_Name";
+            this.Remove_Group_Name.Size = new System.Drawing.Size(205, 30);
+            this.Remove_Group_Name.TabIndex = 33;
+            this.Remove_Group_Name.Text = "Remove Group";
+            this.Remove_Group_Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Remove_Group_Name.Click += new System.EventHandler(this.Remove_Group_Name_Click);
+            // 
+            // Groups_Cross_Update_Name
+            // 
+            this.Groups_Cross_Update_Name.BackColor = System.Drawing.Color.White;
+            this.Groups_Cross_Update_Name.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Groups_Cross_Update_Name.BackgroundImage")));
+            this.Groups_Cross_Update_Name.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Groups_Cross_Update_Name.Location = new System.Drawing.Point(194, 180);
+            this.Groups_Cross_Update_Name.Name = "Groups_Cross_Update_Name";
+            this.Groups_Cross_Update_Name.Size = new System.Drawing.Size(20, 20);
+            this.Groups_Cross_Update_Name.TabIndex = 34;
+            this.Groups_Cross_Update_Name.TabStop = false;
+            this.Groups_Cross_Update_Name.Visible = false;
+            // 
+            // Data_Groups_Friends
+            // 
+            this.Data_Groups_Friends.AllowUserToAddRows = false;
+            this.Data_Groups_Friends.AllowUserToDeleteRows = false;
+            this.Data_Groups_Friends.AllowUserToResizeColumns = false;
+            this.Data_Groups_Friends.AllowUserToResizeRows = false;
+            this.Data_Groups_Friends.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Data_Groups_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Data_Groups_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups_Friends.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
+            this.Data_Groups_Friends.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Data_Groups_Friends.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Groups_Friends.DefaultCellStyle = dataGridViewCellStyle32;
+            this.Data_Groups_Friends.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups_Friends.Location = new System.Drawing.Point(222, 22);
+            this.Data_Groups_Friends.MultiSelect = false;
+            this.Data_Groups_Friends.Name = "Data_Groups_Friends";
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Groups_Friends.RowHeadersDefaultCellStyle = dataGridViewCellStyle33;
+            this.Data_Groups_Friends.RowHeadersVisible = false;
+            this.Data_Groups_Friends.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Data_Groups_Friends.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Data_Groups_Friends.Size = new System.Drawing.Size(356, 152);
+            this.Data_Groups_Friends.TabIndex = 34;
+            this.Data_Groups_Friends.Click += new System.EventHandler(this.Data_Groups_Friends_Click);
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Add To Group";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "User ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 83;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn2.HeaderText = "User Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 109;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Nickname";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // TextBox_Group_Update
+            // 
+            this.TextBox_Group_Update.BackColor = System.Drawing.Color.RoyalBlue;
+            this.TextBox_Group_Update.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_Group_Update.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox_Group_Update.ForeColor = System.Drawing.Color.White;
+            this.TextBox_Group_Update.Location = new System.Drawing.Point(14, 179);
+            this.TextBox_Group_Update.Name = "TextBox_Group_Update";
+            this.TextBox_Group_Update.Size = new System.Drawing.Size(172, 20);
+            this.TextBox_Group_Update.TabIndex = 32;
+            this.TextBox_Group_Update.Text = "Group Name";
+            this.TextBox_Group_Update.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBox_Group_Update.TextChanged += new System.EventHandler(this.TextBox_Group_Update_TextChanged);
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Location = new System.Drawing.Point(14, 202);
+            this.panel9.Margin = new System.Windows.Forms.Padding(0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(175, 1);
+            this.panel9.TabIndex = 33;
             // 
             // Search_Panel
             // 
@@ -2578,53 +2634,15 @@
             this.TableLayoutPanel_Notifications.Size = new System.Drawing.Size(240, 320);
             this.TableLayoutPanel_Notifications.TabIndex = 1;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.Data_Display_Groups);
-            this.groupBox1.Controls.Add(this.Colour_Panel_Update);
-            this.groupBox1.Controls.Add(this.Update_Group);
-            this.groupBox1.Controls.Add(this.Update_Colour_Group);
-            this.groupBox1.Controls.Add(this.Remove_Group_Name);
-            this.groupBox1.Controls.Add(this.Groups_Cross_Update_Name);
-            this.groupBox1.Controls.Add(this.Data_Groups_Friends);
-            this.groupBox1.Controls.Add(this.TextBox_Group_Update);
-            this.groupBox1.Controls.Add(this.panel9);
-            this.groupBox1.Font = new System.Drawing.Font("Candara", 12F);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(8, 182);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(585, 253);
-            this.groupBox1.TabIndex = 38;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Existing Groups";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.Data_Groups);
-            this.groupBox2.Controls.Add(this.TextBox_Name_Group);
-            this.groupBox2.Controls.Add(this.Group_Cross_Name);
-            this.groupBox2.Controls.Add(this.panel8);
-            this.groupBox2.Controls.Add(this.ColourPicker_Button);
-            this.groupBox2.Controls.Add(this.Add_Group_Button);
-            this.groupBox2.Controls.Add(this.Colour_Panel);
-            this.groupBox2.Font = new System.Drawing.Font("Candara", 12F);
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(8, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(585, 178);
-            this.groupBox2.TabIndex = 39;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "New Group";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
-            this.Controls.Add(this.Group_Panel);
-            this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Event_Panel);
+            this.Controls.Add(this.Search_Panel);
+            this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Signup_Panel);
@@ -2667,16 +2685,21 @@
             this.Event_Panel.ResumeLayout(false);
             this.Event_Control_Panel.ResumeLayout(false);
             this.Event_Control_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Directions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Group)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Description)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Event_Cross_Name)).EndInit();
             this.Group_Panel.ResumeLayout(false);
             this.Group_Control_Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Groups_Cross_Update_Name)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Data_Display_Groups)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Data_Groups_Friends)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Group_Cross_Name)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Data_Groups)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Group_Cross_Name)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Display_Groups)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Groups_Cross_Update_Name)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Groups_Friends)).EndInit();
             this.Search_Panel.ResumeLayout(false);
             this.Search_Control_Panel.ResumeLayout(false);
             this.Search_Control_Panel.PerformLayout();
@@ -2704,10 +2727,6 @@
             this.panel1.ResumeLayout(false);
             this.Notification_Panel.ResumeLayout(false);
             this.Notification_Control_Panel.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2873,6 +2892,7 @@
         private System.Windows.Forms.Label Search_Add_Event_Button;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.PictureBox PictureBox_Directions;
     }
 }
 
