@@ -76,6 +76,8 @@ namespace Final_Year_Project
 
         private void Set_Colours()
         {
+            Color temp = Color.Black;
+
             // Form Panel
             Form_Button_Panel.BackColor = darkColour;
             PictureBox_Back.BackColor = darkColour;
@@ -88,17 +90,30 @@ namespace Final_Year_Project
 
             // Dashboard Panel
             Dashboard_Panel.BackColor = lightColour;
-
-            Dashboard_Add_Event.ForeColor = lightColour;
-            Dashboard_Add_Group.ForeColor = lightColour;
-            Dashboard_Search_Button.ForeColor = lightColour;
-            Find_Friends_Button.ForeColor = lightColour;
-
+            
             Dashboard_Control_Panel.BackColor = darkColour;
             Dashboard_Search.BackColor = darkColour;
             Groups_Data.BackgroundColor = darkColour;
             Groups_Data.DefaultCellStyle.BackColor = darkColour;
-            Groups_Data.DefaultCellStyle.SelectionForeColor = lightColour;
+            
+
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                Dashboard_Add_Event.ForeColor = temp;
+                Dashboard_Add_Group.ForeColor = temp;
+                Dashboard_Search_Button.ForeColor = temp;
+                Find_Friends_Button.ForeColor = temp;
+                Groups_Data.DefaultCellStyle.SelectionForeColor = temp;
+            }
+
+            else
+            {
+                Dashboard_Add_Event.ForeColor = lightColour;
+                Dashboard_Add_Group.ForeColor = lightColour;
+                Dashboard_Search_Button.ForeColor = lightColour;
+                Find_Friends_Button.ForeColor = lightColour;
+                Groups_Data.DefaultCellStyle.SelectionForeColor = lightColour;
+            }
 
             // Event Panel
             Event_Panel.BackColor = lightColour;
@@ -109,13 +124,26 @@ namespace Final_Year_Project
             ComboBox_Group.BackColor = darkColour;
             Event_TextBox_Emoji.BackColor = darkColour;
             TextBox_Location_Search.BackColor = darkColour;
+            
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                Event_Button_Emoji.ForeColor = temp;
+                Search_Location_Button.ForeColor = temp;
+                Add_Event_Button.ForeColor = temp;
+                Update_Event_Button.ForeColor = temp;
+                Remove_Event_Button.ForeColor = temp;
+                Map_Type_Button.ForeColor = temp;
+            }
 
-            Event_Button_Emoji.ForeColor = lightColour;
-            Search_Location_Button.ForeColor = lightColour;
-            Add_Event_Button.ForeColor = lightColour;
-            Update_Event_Button.ForeColor = lightColour;
-            Remove_Event_Button.ForeColor = lightColour;
-            Map_Type_Button.ForeColor = lightColour;
+            else
+            {
+                Event_Button_Emoji.ForeColor = lightColour;
+                Search_Location_Button.ForeColor = lightColour;
+                Add_Event_Button.ForeColor = lightColour;
+                Update_Event_Button.ForeColor = lightColour;
+                Remove_Event_Button.ForeColor = lightColour;
+                Map_Type_Button.ForeColor = lightColour;
+            }
 
             // Friends Panel
             Friends_Panel.BackColor = lightColour;
@@ -123,17 +151,31 @@ namespace Final_Year_Project
 
             TextBox_Search_Username.BackColor = darkColour;
             TextBox_Friends_Nickname.BackColor = darkColour;
-
-            Search_Username_Button.ForeColor = lightColour;
-            Add_Friend_Button.ForeColor = lightColour;
-            Remove_Friend_Button.ForeColor = lightColour;
-            Update_Friend_Button.ForeColor = lightColour;
+            
             Search_Friends.BackgroundColor = darkColour;
             Search_Friends.DefaultCellStyle.BackColor = darkColour;
-            Search_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
             Data_Friends.BackgroundColor = darkColour;
             Data_Friends.DefaultCellStyle.BackColor = darkColour;
-            Data_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
+
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                Search_Username_Button.ForeColor = temp;
+                Add_Friend_Button.ForeColor = temp;
+                Remove_Friend_Button.ForeColor = temp;
+                Update_Friend_Button.ForeColor = temp;
+                Search_Friends.DefaultCellStyle.SelectionForeColor = temp;
+                Data_Friends.DefaultCellStyle.SelectionForeColor = temp;
+            }
+
+            else
+            {
+                Search_Username_Button.ForeColor = lightColour;
+                Add_Friend_Button.ForeColor = lightColour;
+                Remove_Friend_Button.ForeColor = lightColour;
+                Update_Friend_Button.ForeColor = lightColour;
+                Search_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
+                Data_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
+            }
 
             // Group Panel
             Group_Panel.BackColor = lightColour;
@@ -142,21 +184,36 @@ namespace Final_Year_Project
             TextBox_Name_Group.BackColor = darkColour;
             TextBox_Group_Update.BackColor = darkColour;
 
-            ColourPicker_Button.ForeColor = lightColour;
-            Add_Group_Button.ForeColor = lightColour;
-            Update_Group.ForeColor = lightColour;
-            Update_Colour_Group.ForeColor = lightColour;
-            Remove_Group_Name.ForeColor = lightColour;
-
             Data_Groups.BackgroundColor = darkColour;
             Data_Groups.DefaultCellStyle.BackColor = darkColour;
-            Data_Groups.DefaultCellStyle.SelectionForeColor = lightColour;
             Data_Display_Groups.BackgroundColor = darkColour;
             Data_Display_Groups.DefaultCellStyle.BackColor = darkColour;
-            Data_Display_Groups.DefaultCellStyle.SelectionForeColor = lightColour;
             Data_Groups_Friends.BackgroundColor = darkColour;
             Data_Groups_Friends.DefaultCellStyle.BackColor = darkColour;
-            Data_Groups_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
+
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                ColourPicker_Button.ForeColor = temp;
+                Add_Group_Button.ForeColor = temp;
+                Update_Group.ForeColor = temp;
+                Update_Colour_Group.ForeColor = temp;
+                Remove_Group_Name.ForeColor = temp;
+                Data_Groups.DefaultCellStyle.SelectionForeColor = temp;
+                Data_Display_Groups.DefaultCellStyle.SelectionForeColor = temp;
+                Data_Groups_Friends.DefaultCellStyle.SelectionForeColor = temp;
+            }
+
+            else
+            {
+                ColourPicker_Button.ForeColor = lightColour;
+                Add_Group_Button.ForeColor = lightColour;
+                Update_Group.ForeColor = lightColour;
+                Update_Colour_Group.ForeColor = lightColour;
+                Remove_Group_Name.ForeColor = lightColour;
+                Data_Groups.DefaultCellStyle.SelectionForeColor = lightColour;
+                Data_Display_Groups.DefaultCellStyle.SelectionForeColor = lightColour;
+                Data_Groups_Friends.DefaultCellStyle.SelectionForeColor = lightColour;
+            }
 
             // Search Panel
             Search_Panel.BackColor = lightColour;
@@ -164,24 +221,49 @@ namespace Final_Year_Project
 
             TextBox_Search.BackColor = darkColour;
             Search_Description.BackColor = darkColour;
-
-            Search_Panel_Button.ForeColor = lightColour;
-            Search_Add_Event_Button.ForeColor = lightColour;
-            Search_Switch_Map_Button.ForeColor = lightColour;
-            Search_Event_Update.ForeColor = lightColour;
+            
             Search_Data.BackgroundColor = darkColour;
             Search_Data.DefaultCellStyle.BackColor = darkColour;
-            Search_Data.DefaultCellStyle.SelectionForeColor = lightColour;
+
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                Search_Panel_Button.ForeColor = temp;
+                Search_Add_Event_Button.ForeColor = temp;
+                Search_Switch_Map_Button.ForeColor = temp;
+                Search_Event_Update.ForeColor = temp;
+                Search_Data.DefaultCellStyle.SelectionForeColor = temp;
+            }
+
+            else
+            {
+                Search_Panel_Button.ForeColor = lightColour;
+                Search_Add_Event_Button.ForeColor = lightColour;
+                Search_Switch_Map_Button.ForeColor = lightColour;
+                Search_Event_Update.ForeColor = lightColour;
+                Search_Data.DefaultCellStyle.SelectionForeColor = lightColour;
+            }
 
             // Settings Panel
             Settings_Panel.BackColor = lightColour;
             Settings_Control_Panel.BackColor = darkColour;
 
-            Settings_Light_Button.ForeColor = lightColour;
-            Settings_Dark_Button.ForeColor = lightColour;
-            Settings_Commit.ForeColor = lightColour;
-            Settings_Light_Panel.BackColor = lightColour;
             Settings_Dark_Panel.BackColor = darkColour;
+
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                Settings_Light_Button.ForeColor = temp;
+                Settings_Dark_Button.ForeColor = temp;
+                Settings_Commit.ForeColor = temp;
+                Settings_Light_Panel.BackColor = temp;
+            }
+
+            else
+            {
+                Settings_Light_Button.ForeColor = lightColour;
+                Settings_Dark_Button.ForeColor = lightColour;
+                Settings_Commit.ForeColor = lightColour;
+                Settings_Light_Panel.BackColor = lightColour;
+            }
 
             // Emoji Panel
             Emoji_Panel.BackColor = lightColour;
@@ -320,7 +402,16 @@ namespace Final_Year_Project
         private void PictureBox_Form_MouseHover(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackColor = lightColour;
+
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                pb.BackColor = Color.Black;
+            }
+
+            else
+            {
+                pb.BackColor = lightColour;
+            }
         }
 
         private void PictureBox_Form_MouseLeave(object sender, EventArgs e)
@@ -332,7 +423,16 @@ namespace Final_Year_Project
         private void Emoji_MouseHover(object sender, EventArgs e)
         {
             Label l = (Label)sender;
-            l.BackColor = lightColour;
+
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                l.BackColor = Color.Black;
+            }
+
+            else
+            {
+                l.BackColor = lightColour;
+            }
         }
 
         private void Emoji_MouseLeave(object sender, EventArgs e)
@@ -536,6 +636,7 @@ namespace Final_Year_Project
             Friends_Panel.Visible = false;
             Settings_Panel.Visible = false;
             Notification_Panel.Visible = false;
+            Emoji_Panel.Visible = false;
             PictureBox_Back.Visible = false;
             Update_Event_Button.Visible = false;
             Remove_Event_Button.Visible = false;
@@ -694,6 +795,8 @@ namespace Final_Year_Project
 
         private void Search_Data_Click(object sender, EventArgs e)
         {
+            Search_Event_Update.Visible = true;
+
             foreach (DataGridViewRow row in Search_Data.SelectedRows)
             {
                 int Event_ID = (int)row.Cells[0].Value;
@@ -774,12 +877,11 @@ namespace Final_Year_Project
         }
 
         private bool findLocation = true;
+        private double userLatitude = 0;
+        private double userLongitude = 0;
 
         private void ResetForm()
         {
-            double latitude = 0;
-            double longitude = 0;
-
             if (findLocation)
             {
                 try
@@ -801,28 +903,25 @@ namespace Final_Year_Project
 
                         if (coord.IsUnknown != true)
                         {
-                            latitude = coord.Latitude;
-                            longitude = coord.Longitude;
+                            userLatitude = coord.Latitude;
+                            userLongitude = coord.Longitude;
                         }
                     }
 
                     sw.Stop();
-
-                    if (latitude == 0 && longitude == 0)
-                    {
-                        findLocation = false;
-                    }
                 }
 
                 catch (COMException)
                 {
-                    findLocation = false;
+
                 }
+
+                findLocation = false;
             }
 
             GMap_Control.MapProvider = BingMapProvider.Instance;
             GMaps.Instance.Mode = AccessMode.ServerOnly;
-            GMap_Control.Position = new PointLatLng(latitude, longitude);
+            GMap_Control.Position = new PointLatLng(userLatitude, userLongitude);
             GMap_Control.ShowCenter = false;
             maptype = false;
             GMap_Control.Overlays.Clear();
@@ -841,7 +940,7 @@ namespace Final_Year_Project
 
             GMap_Control_Search.MapProvider = BingMapProvider.Instance;
             GMaps.Instance.Mode = AccessMode.ServerOnly;
-            GMap_Control_Search.Position = new PointLatLng(latitude, longitude);
+            GMap_Control_Search.Position = new PointLatLng(userLatitude, userLongitude);
             GMap_Control_Search.ShowCenter = false;
             maptype_search = false;
             GMap_Control_Search.Overlays.Clear();
@@ -858,6 +957,7 @@ namespace Final_Year_Project
 
             TextBox_Search.Text = "Enter Search Criteria";
             Search_Description.Text = "Event Description";
+            Search_Event_Update.Visible = false;
 
             Colour_Panel.BackColor = Color.Black;
             TextBox_Name_Group.Text = "Enter Group Name";
@@ -2163,59 +2263,44 @@ namespace Final_Year_Project
         {
             string d = TextBox_Location.Text;
 
-            if (findLocation)
+            if (userLatitude == 0 && userLongitude == 0)
             {
-                double latitude = 0;
-                double longitude = 0;
-
-                try
-                {
-                    Stopwatch sw = new Stopwatch();
-                    sw.Start();
-                    GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
-                    GeoCoordinate coord = watcher.Position.Location;
-
-                    while (coord.IsUnknown)
-                    {
-                        if (sw.ElapsedMilliseconds > 3000)
-                        {
-                            break;
-                        }
-
-                        watcher.TryStart(false, TimeSpan.FromMilliseconds(2000));
-                        coord = watcher.Position.Location;
-
-                        if (coord.IsUnknown != true)
-                        {
-                            latitude = coord.Latitude;
-                            longitude = coord.Longitude;
-                        }
-                    }
-
-                    sw.Stop();
-
-                    if (latitude == 0 && longitude == 0)
-                    {
-                        findLocation = false;
-                        Process.Start("https://www.google.com/maps/dir//" + d + "/@" + d);
-                    }
-
-                    else
-                    {
-                        Process.Start("https://www.google.com/maps/dir/" + latitude + "," + longitude + "/" + d + "/@" + d);
-                    }
-                }
-
-                catch (COMException)
-                {
-                    findLocation = false;
-                    Process.Start("https://www.google.com/maps/dir//" + d + "/@" + d);
-                }
+                Process.Start("https://www.google.com/maps/dir//" + d + "/@" + d);
             }
 
             else
             {
-                Process.Start("https://www.google.com/maps/dir//" + d + "/@" + d);
+                Process.Start("https://www.google.com/maps/dir/" + userLatitude + "," + userLongitude + "/" + d + "/@" + d);
+            }
+        }
+
+        string [] defaultTexts = { "Enter Search Criteria", "Enter Event Name", "Enter Address or Place", "Enter Group Name", "Enter Username", "Username", "Password", "Enter Description" };
+
+        private void TextBox_Click(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+
+            foreach (string str in defaultTexts)
+            {
+                if (str == tb.Text)
+                {
+                    tb.SelectAll();
+                    break;
+                }
+            }
+        }
+
+        private void RichTextBox_Click(object sender, EventArgs e)
+        {
+            RichTextBox tb = (RichTextBox)sender;
+
+            foreach (string str in defaultTexts)
+            {
+                if (str == tb.Text)
+                {
+                    tb.SelectAll();
+                    break;
+                }
             }
         }
     }
@@ -3212,18 +3297,9 @@ namespace Final_Year_Project
 /*
  * TODO -
     * Create tests
-    * Highlight all onclick (If default)
     * New screen, display busiest day and next free day after x date
     * Search for event by location
-    * Directions to event from point x
-        * https://www.google.com/maps/dir/
-        * Current location
-        * /
-        * Desired location
-        * /@
-        * Desired location
-        * =
-        * https://www.google.com/maps/dir/51.7684985,0.4719261/52.6379585,-1.14042/@52.0810507,-1.4508944
+    * Search suggestions
     * Speed and integrity improvements
  * References -
      * Logo: https://www.logolynx.com/topic/calendar
