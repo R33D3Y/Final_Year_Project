@@ -2,6 +2,10 @@
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using GoogleApi;
+using GoogleApi.Entities.Places.AutoComplete.Request;
+using GoogleApi.Entities.Places.AutoComplete.Request.Enums;
+using GoogleApi.Entities.Places.Search.Text.Request;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,7 +19,9 @@ using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Final_Year_Project
 {
@@ -124,25 +130,29 @@ namespace Final_Year_Project
             ComboBox_Group.BackColor = darkColour;
             Event_TextBox_Emoji.BackColor = darkColour;
             TextBox_Location_Search.BackColor = darkColour;
-            
+            Data_Location_Lookup.BackgroundColor = darkColour;
+            Data_Location_Lookup.DefaultCellStyle.BackColor = darkColour;
+
             if (lightColour.GetBrightness() > 0.7)
             {
                 Event_Button_Emoji.ForeColor = temp;
-                Search_Location_Button.ForeColor = temp;
+                //Search_Location_Button.ForeColor = temp;
                 Add_Event_Button.ForeColor = temp;
                 Update_Event_Button.ForeColor = temp;
                 Remove_Event_Button.ForeColor = temp;
                 Map_Type_Button.ForeColor = temp;
+                Data_Location_Lookup.DefaultCellStyle.SelectionForeColor = temp;
             }
 
             else
             {
                 Event_Button_Emoji.ForeColor = lightColour;
-                Search_Location_Button.ForeColor = lightColour;
+                //Search_Location_Button.ForeColor = lightColour;
                 Add_Event_Button.ForeColor = lightColour;
                 Update_Event_Button.ForeColor = lightColour;
                 Remove_Event_Button.ForeColor = lightColour;
                 Map_Type_Button.ForeColor = lightColour;
+                Data_Location_Lookup.DefaultCellStyle.SelectionForeColor = lightColour;
             }
 
             // Friends Panel
@@ -749,7 +759,7 @@ namespace Final_Year_Project
         {
             if (maptype)
             {
-                GMap_Control.MapProvider = BingMapProvider.Instance;
+                GMap_Control.MapProvider = OpenStreetMapProvider.Instance;
                 GMaps.Instance.Mode = AccessMode.ServerOnly;
 
                 maptype = false;
@@ -814,7 +824,7 @@ namespace Final_Year_Project
                     double lat = Convert.ToDouble(Event_Location[0]);
                     double lng = Convert.ToDouble(Event_Location[1]);
 
-                    GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+                    GMap_Control_Search.MapProvider = OpenStreetMapProvider.Instance;
                     GMaps.Instance.Mode = AccessMode.ServerOnly;
                     GMap_Control_Search.Position = new PointLatLng(lat, lng);
                     GMap_Control_Search.ShowCenter = false;
@@ -830,7 +840,7 @@ namespace Final_Year_Project
 
                 else
                 {
-                    GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+                    GMap_Control_Search.MapProvider = OpenStreetMapProvider.Instance;
                     GMaps.Instance.Mode = AccessMode.ServerOnly;
                     GMap_Control_Search.Position = new PointLatLng(0, 0);
                     GMap_Control_Search.ShowCenter = false;
@@ -848,7 +858,7 @@ namespace Final_Year_Project
         {
             if (maptype_search)
             {
-                GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+                GMap_Control_Search.MapProvider = OpenStreetMapProvider.Instance;
                 GMaps.Instance.Mode = AccessMode.ServerOnly;
 
                 maptype_search = false;
@@ -919,7 +929,7 @@ namespace Final_Year_Project
                 findLocation = false;
             }
 
-            GMap_Control.MapProvider = BingMapProvider.Instance;
+            GMap_Control.MapProvider = OpenStreetMapProvider.Instance;
             GMaps.Instance.Mode = AccessMode.ServerOnly;
             GMap_Control.Position = new PointLatLng(userLatitude, userLongitude);
             GMap_Control.ShowCenter = false;
@@ -938,7 +948,7 @@ namespace Final_Year_Project
             DateTimePicker_Time.Text = time; //DateTime.Now.ToLongTimeString();
             PictureBox_Directions.Visible = false;
 
-            GMap_Control_Search.MapProvider = BingMapProvider.Instance;
+            GMap_Control_Search.MapProvider = OpenStreetMapProvider.Instance;
             GMaps.Instance.Mode = AccessMode.ServerOnly;
             GMap_Control_Search.Position = new PointLatLng(userLatitude, userLongitude);
             GMap_Control_Search.ShowCenter = false;
@@ -1482,7 +1492,7 @@ namespace Final_Year_Project
                     double lat = Convert.ToDouble(Event_Location[0]);
                     double lng = Convert.ToDouble(Event_Location[1]);
 
-                    GMap_Control.MapProvider = BingMapProvider.Instance;
+                    GMap_Control.MapProvider = OpenStreetMapProvider.Instance;
                     GMaps.Instance.Mode = AccessMode.ServerOnly;
                     GMap_Control.Position = new PointLatLng(lat, lng);
                     GMap_Control.ShowCenter = false;
@@ -2301,6 +2311,65 @@ namespace Final_Year_Project
                     tb.SelectAll();
                     break;
                 }
+            }
+        }
+        
+        private void TextBox_Location_Search_TextChanged(object sender, EventArgs e)
+        {
+            if (TextBox_Location_Search.Text.Length > 0)
+            {
+                Data_Location_Lookup.Rows.Clear();
+
+                var request = new PlacesAutoCompleteRequest
+                {
+                    Key = "AIzaSyDEJCMJ2qejdJhHnhMHOJLBemgHXxaeqe4",
+                    Input = TextBox_Location_Search.Text
+                };
+
+                var response = GooglePlaces.AutoComplete.Query(request);
+
+                foreach (var a in response.Predictions)
+                {
+                    Data_Location_Lookup.Rows.Add(a.Description);
+                }
+            }
+        }
+
+        private void Data_Location_Lookup_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Location_Lookup.SelectedRows)
+            {
+                string loc = row.Cells[0].Value.ToString();
+
+                var request_query = new PlacesTextSearchRequest
+                {
+                    Key = "AIzaSyDEJCMJ2qejdJhHnhMHOJLBemgHXxaeqe4",
+                    Query = loc
+                };
+
+                var response_query = GooglePlaces.TextSearch.Query(request_query);
+
+                double lat = 0.0;
+                double lng = 0.0;
+
+                foreach (var b in response_query.Results)
+                {
+                    lat = b.Geometry.Location.Latitude;
+                    lng = b.Geometry.Location.Longitude;
+                }
+
+                PointLatLng latLng = new PointLatLng(lat, lng);
+                GMap_Control.Position = latLng;
+
+                GMap_Control.Overlays.Clear();
+
+                GMapOverlay markers = new GMapOverlay("markers");
+                GMap_Control.Overlays.Add(markers);
+
+                GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+                markers.Markers.Add(marker);
+
+                TextBox_Location.Text = lat + "," + lng;
             }
         }
     }
