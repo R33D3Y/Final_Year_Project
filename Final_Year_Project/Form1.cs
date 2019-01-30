@@ -585,7 +585,14 @@ namespace Final_Year_Project
                     }
                 }
 
-                database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
+                string location = "";
+
+                foreach (DataGridViewRow row in Data_Location_Lookup.SelectedRows)
+                {
+                    location = row.Cells[0].Value.ToString();
+                }
+
+                database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, location, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
 
                 DateTime tempDt = DateTime.Now;
                 dt = new DateTime(tempDt.Year, tempDt.Month, 1);
@@ -791,7 +798,8 @@ namespace Final_Year_Project
             Search_Data.Columns[0].Visible = false; // Event ID
             Search_Data.Columns[2].Visible = false; // Event Description
             Search_Data.Columns[5].Visible = false; // Group ID
-            Search_Data.Columns[7].Visible = false; // Event Location
+            Search_Data.Columns[7].Visible = false; // Event Location Name
+            Search_Data.Columns[8].Visible = false; // Event Location Geo
 
             Search_Data.Columns[1].HeaderText = "Event Name";
             Search_Data.Columns[3].HeaderText = "Date/Time";
@@ -809,17 +817,17 @@ namespace Final_Year_Project
 
             foreach (DataGridViewRow row in Search_Data.SelectedRows)
             {
-                int Event_ID = (int)row.Cells[0].Value;
-                string Event_Name = row.Cells[1].Value.ToString();
+                //int Event_ID = (int)row.Cells[0].Value;
+                //string Event_Name = row.Cells[1].Value.ToString();
                 string Event_Description = row.Cells[2].Value.ToString();
-                DateTime Event_DateTime = (DateTime)row.Cells[3].Value;
-                string Event_Emoji = database.Emoji(row.Cells[4].Value.ToString(), false);
-                int Group_ID = (int)row.Cells[5].Value;
-                string Group_Name = row.Cells[6].Value.ToString();
+                //DateTime Event_DateTime = (DateTime)row.Cells[3].Value;
+                //string Event_Emoji = database.Emoji(row.Cells[4].Value.ToString(), false);
+                //int Group_ID = (int)row.Cells[5].Value;
+                //string Group_Name = row.Cells[6].Value.ToString();
 
-                if (!row.Cells[7].Value.ToString().Equals(","))
+                if (!row.Cells[8].Value.ToString().Equals(","))
                 {
-                    string[] Event_Location = row.Cells[7].Value.ToString().Split(',');
+                    string[] Event_Location = row.Cells[8].Value.ToString().Split(',');
 
                     double lat = Convert.ToDouble(Event_Location[0]);
                     double lng = Convert.ToDouble(Event_Location[1]);
@@ -1445,7 +1453,19 @@ namespace Final_Year_Project
                 }
             }
 
-            database.Update_Event(Convert.ToInt32(TextBox_Event_ID.Text), TextBox_Name_Event.Text, TextBox_Description.Text, datetime, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
+            string location = "";
+
+            foreach (DataGridViewRow row in Data_Location_Lookup.SelectedRows)
+            {
+                location = row.Cells[0].Value.ToString();
+            }
+
+            if (location == "" && !TextBox_Location_Search.Text.Equals("Enter Address or Place"))
+            {
+                location = TextBox_Location_Search.Text;
+            }
+
+            database.Update_Event(Convert.ToInt32(TextBox_Event_ID.Text), TextBox_Name_Event.Text, TextBox_Description.Text, datetime, location, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
             
             calendar = tableLayoutPanel;
             header = tableLayoutPanelCalendarHeader;
@@ -1484,10 +1504,11 @@ namespace Final_Year_Project
                 string Event_Emoji = row.Cells[4].Value.ToString();
                 int Group_ID = (int)row.Cells[5].Value;
                 string Group_Name = row.Cells[6].Value.ToString();
+                string Event_Location_Name = row.Cells[7].Value.ToString();
 
-                if (!row.Cells[7].Value.ToString().Equals(","))
+                if (!row.Cells[8].Value.ToString().Equals(","))
                 {
-                    string[] Event_Location = row.Cells[7].Value.ToString().Split(',');
+                    string[] Event_Location = row.Cells[8].Value.ToString().Split(',');
 
                     double lat = Convert.ToDouble(Event_Location[0]);
                     double lng = Convert.ToDouble(Event_Location[1]);
@@ -1512,6 +1533,7 @@ namespace Final_Year_Project
                 TextBox_Event_ID.Text = Convert.ToString(Event_ID);
                 TextBox_Name_Event.Text = Event_Name;
                 TextBox_Description.Text = Event_Description;
+                TextBox_Location_Search.Text = Event_Location_Name;
                 ComboBox_Group.Text = Group_Name;
                 Event_TextBox_Emoji.Text = Event_Emoji;
                 DateTimePicker_Date.Text = Event_DateTime.ToLongDateString();
@@ -2503,7 +2525,7 @@ namespace Final_Year_Project
             return temp;
         }
 
-        public void Add_Event(string name, string description, DateTime datetime, string location, string emoji, int group)
+        public void Add_Event(string name, string description, DateTime datetime, string locationName, string locationGeo, string emoji, int group)
         {
             SqlCommand cmd = new SqlCommand("Add_Event", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -2511,7 +2533,8 @@ namespace Final_Year_Project
             cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
             cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
             cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji, true);
-            cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
+            cmd.Parameters.Add("@Location_Name", SqlDbType.VarChar).Value = locationName;
+            cmd.Parameters.Add("@Location_Geo", SqlDbType.VarChar).Value = locationGeo;
             cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
             cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
 
@@ -2520,7 +2543,7 @@ namespace Final_Year_Project
             connection.Close();
         }
 
-        public void Update_Event(int id, string name, string description, DateTime datetime, string location, string emoji, int group)
+        public void Update_Event(int id, string name, string description, DateTime datetime, string locationName, string locationGeo, string emoji, int group)
         {
             SqlCommand cmd = new SqlCommand("Update_Event", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -2529,7 +2552,8 @@ namespace Final_Year_Project
             cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
             cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
             cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji, true);
-            cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
+            cmd.Parameters.Add("@Location_Name", SqlDbType.VarChar).Value = locationName;
+            cmd.Parameters.Add("@Location_Geo", SqlDbType.VarChar).Value = locationGeo;
             cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
 
             connection.Open();
@@ -2640,7 +2664,7 @@ namespace Final_Year_Project
             }
 
             SqlDataAdapter sqa = new SqlDataAdapter("" +
-                "SELECT Event_ID, Event_Name, Event_Description, Event_DateTime, Event_Emoji, Group_ID, Group_Name, Event_Location FROM [Final_Year_Project].[dbo].[Event_Table] " +
+                "SELECT Event_ID, Event_Name, Event_Description, Event_DateTime, Event_Emoji, Group_ID, Group_Name, Event_Location_Name, Event_Location_Geo FROM [Final_Year_Project].[dbo].[Event_Table] " +
                 "FULL JOIN Group_Table On Group_Table.Group_ID = Event_Table.Event_Group " +
                 "WHERE (Event_Owner = " + user.GetID() + " OR Group_Owner = " + user.GetID() + " OR EXISTS (Select * From Group_Association_Table Where Group_ID = Group_Table.Group_ID AND User_ID = " + user.GetID() + ")) " +
                 "AND Event_ID IS NOT NULL " +
@@ -2648,6 +2672,7 @@ namespace Final_Year_Project
                 "OR Event_Description Like '" + text + "' " +
                 "OR CONVERT(VARCHAR(10), Event_DateTime, 103) like '" + text + "' " +
                 "OR Event_Emoji Like '" + text + "' " +
+                "OR Event_Location_Name Like '" + text + "' " +
                 "OR Group_Name Like '" + text + "')", connection);
 
             connection.Open();
@@ -2802,7 +2827,7 @@ namespace Final_Year_Project
                 }
 
                 //Console.WriteLine("Add Day " + day);
-                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], Emoji((string)rdr[4], false), new CalendarGroup((int)rdr[8], (string)rdr[9], Color.FromArgb((int)rdr[11]))));
+                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], (string)rdr[6], Emoji((string)rdr[4], false), new CalendarGroup((int)rdr[9], (string)rdr[10], Color.FromArgb((int)rdr[12]))));
             }
 
             data.Add(tempList);
@@ -2859,7 +2884,7 @@ namespace Final_Year_Project
                         cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = data[i][j].GetDescription();
                         cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = data[i][j].GetDateTime();
                         cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(data[i][j].GetEmoji(), true);
-                        cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = data[i][j].GetLocation();
+                        cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = data[i][j].GetLocationGeo();
                         cmd.Parameters.Add("@Group", SqlDbType.Int).Value = data[i][j].GetCalendarGroup().GetID();
 
                         cmd.ExecuteNonQuery();
@@ -3311,17 +3336,19 @@ namespace Final_Year_Project
         private string name;
         private string description;
         private DateTime dateTime;
-        private string location;
+        private string locationName;
+        private string locationGeo;
         private string emoji;
         private CalendarGroup group;
 
-        public CalendarEvent(int i, string n, string d, DateTime dt, string l, string e, CalendarGroup g)
+        public CalendarEvent(int i, string n, string d, DateTime dt, string ln, string lg, string e, CalendarGroup g)
         {
             id = i;
             name = n;
             description = d;
             dateTime = dt;
-            location = l;
+            locationName = ln;
+            locationGeo = lg;
             emoji = e;
             group = g;
         }
@@ -3341,9 +3368,14 @@ namespace Final_Year_Project
             return dateTime;
         }
 
-        public string GetLocation()
+        public string GetLocationName()
         {
-            return location;
+            return locationName;
+        }
+
+        public string GetLocationGeo()
+        {
+            return locationGeo;
         }
 
         public CalendarGroup GetCalendarGroup()

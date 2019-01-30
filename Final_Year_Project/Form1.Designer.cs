@@ -921,7 +921,7 @@
             this.Event_Control_Panel.Controls.Add(this.DateTimePicker_Date);
             this.Event_Control_Panel.Controls.Add(this.panel6);
             this.Event_Control_Panel.Controls.Add(this.TextBox_Name_Event);
-            this.Event_Control_Panel.Location = new System.Drawing.Point(40, 120);
+            this.Event_Control_Panel.Location = new System.Drawing.Point(44, 116);
             this.Event_Control_Panel.Name = "Event_Control_Panel";
             this.Event_Control_Panel.Size = new System.Drawing.Size(763, 479);
             this.Event_Control_Panel.TabIndex = 0;
@@ -1102,7 +1102,7 @@
             this.Update_Event_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Update_Event_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Update_Event_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Update_Event_Button.Location = new System.Drawing.Point(13, 431);
+            this.Update_Event_Button.Location = new System.Drawing.Point(13, 434);
             this.Update_Event_Button.Name = "Update_Event_Button";
             this.Update_Event_Button.Size = new System.Drawing.Size(170, 30);
             this.Update_Event_Button.TabIndex = 25;
@@ -1196,7 +1196,7 @@
             this.Add_Event_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add_Event_Button.Font = new System.Drawing.Font("Candara", 12F);
             this.Add_Event_Button.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Add_Event_Button.Location = new System.Drawing.Point(13, 431);
+            this.Add_Event_Button.Location = new System.Drawing.Point(13, 434);
             this.Add_Event_Button.Name = "Add_Event_Button";
             this.Add_Event_Button.Size = new System.Drawing.Size(170, 30);
             this.Add_Event_Button.TabIndex = 17;
@@ -2710,6 +2710,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
+            this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Friends_Panel);
@@ -2718,7 +2719,6 @@
             this.Controls.Add(this.Emoji_Panel);
             this.Controls.Add(this.Notification_Panel);
             this.Controls.Add(this.Signup_Panel);
-            this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Dashboard_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
