@@ -179,6 +179,7 @@
             this.Search_Username_Button = new System.Windows.Forms.Label();
             this.Settings_Panel = new System.Windows.Forms.Panel();
             this.Settings_Control_Panel = new System.Windows.Forms.Panel();
+            this.Link_Facebook_Button = new System.Windows.Forms.Label();
             this.Settings_Commit = new System.Windows.Forms.Label();
             this.Settings_Dark_Panel = new System.Windows.Forms.Panel();
             this.Settings_Light_Panel = new System.Windows.Forms.Panel();
@@ -215,6 +216,9 @@
             this.Notification_Panel = new System.Windows.Forms.Panel();
             this.Notification_Control_Panel = new System.Windows.Forms.Panel();
             this.TableLayoutPanel_Notifications = new System.Windows.Forms.TableLayoutPanel();
+            this.Facebook_Panel = new System.Windows.Forms.Panel();
+            this.Facebook_Control_Panel = new System.Windows.Forms.Panel();
+            this.Facebook_Browser = new System.Windows.Forms.WebBrowser();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -278,6 +282,8 @@
             this.panel1.SuspendLayout();
             this.Notification_Panel.SuspendLayout();
             this.Notification_Control_Panel.SuspendLayout();
+            this.Facebook_Panel.SuspendLayout();
+            this.Facebook_Control_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Dashboard_Panel
@@ -2239,15 +2245,30 @@
             // 
             this.Settings_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Settings_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Settings_Control_Panel.Controls.Add(this.Link_Facebook_Button);
             this.Settings_Control_Panel.Controls.Add(this.Settings_Commit);
             this.Settings_Control_Panel.Controls.Add(this.Settings_Dark_Panel);
             this.Settings_Control_Panel.Controls.Add(this.Settings_Light_Panel);
             this.Settings_Control_Panel.Controls.Add(this.Settings_Light_Button);
             this.Settings_Control_Panel.Controls.Add(this.Settings_Dark_Button);
-            this.Settings_Control_Panel.Location = new System.Drawing.Point(288, 291);
+            this.Settings_Control_Panel.Location = new System.Drawing.Point(288, 267);
             this.Settings_Control_Panel.Name = "Settings_Control_Panel";
-            this.Settings_Control_Panel.Size = new System.Drawing.Size(275, 129);
+            this.Settings_Control_Panel.Size = new System.Drawing.Size(275, 176);
             this.Settings_Control_Panel.TabIndex = 0;
+            // 
+            // Link_Facebook_Button
+            // 
+            this.Link_Facebook_Button.BackColor = System.Drawing.Color.White;
+            this.Link_Facebook_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Link_Facebook_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Link_Facebook_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Link_Facebook_Button.Location = new System.Drawing.Point(13, 137);
+            this.Link_Facebook_Button.Name = "Link_Facebook_Button";
+            this.Link_Facebook_Button.Size = new System.Drawing.Size(250, 30);
+            this.Link_Facebook_Button.TabIndex = 23;
+            this.Link_Facebook_Button.Text = "Link With Facebook";
+            this.Link_Facebook_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Link_Facebook_Button.Click += new System.EventHandler(this.Link_Facebook_Button_Click);
             // 
             // Settings_Commit
             // 
@@ -2704,22 +2725,54 @@
             this.TableLayoutPanel_Notifications.Size = new System.Drawing.Size(240, 320);
             this.TableLayoutPanel_Notifications.TabIndex = 1;
             // 
+            // Facebook_Panel
+            // 
+            this.Facebook_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Facebook_Panel.Controls.Add(this.Facebook_Control_Panel);
+            this.Facebook_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Facebook_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Facebook_Panel.Name = "Facebook_Panel";
+            this.Facebook_Panel.Size = new System.Drawing.Size(850, 710);
+            this.Facebook_Panel.TabIndex = 12;
+            this.Facebook_Panel.Visible = false;
+            // 
+            // Facebook_Control_Panel
+            // 
+            this.Facebook_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Facebook_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Facebook_Control_Panel.Controls.Add(this.Facebook_Browser);
+            this.Facebook_Control_Panel.Location = new System.Drawing.Point(129, 60);
+            this.Facebook_Control_Panel.Name = "Facebook_Control_Panel";
+            this.Facebook_Control_Panel.Size = new System.Drawing.Size(593, 590);
+            this.Facebook_Control_Panel.TabIndex = 20;
+            // 
+            // Facebook_Browser
+            // 
+            this.Facebook_Browser.Location = new System.Drawing.Point(5, 5);
+            this.Facebook_Browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.Facebook_Browser.Name = "Facebook_Browser";
+            this.Facebook_Browser.Size = new System.Drawing.Size(583, 580);
+            this.Facebook_Browser.TabIndex = 1;
+            this.Facebook_Browser.Url = new System.Uri("", System.UriKind.Relative);
+            this.Facebook_Browser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.Facebook_Browser_Navigated);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
-            this.Controls.Add(this.Search_Panel);
-            this.Controls.Add(this.Event_Panel);
-            this.Controls.Add(this.Group_Panel);
-            this.Controls.Add(this.Friends_Panel);
-            this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Settings_Panel);
+            this.Controls.Add(this.Facebook_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
+            this.Controls.Add(this.Friends_Panel);
+            this.Controls.Add(this.Group_Panel);
+            this.Controls.Add(this.Event_Panel);
+            this.Controls.Add(this.Search_Panel);
+            this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Emoji_Panel);
             this.Controls.Add(this.Notification_Panel);
             this.Controls.Add(this.Signup_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -2798,6 +2851,8 @@
             this.panel1.ResumeLayout(false);
             this.Notification_Panel.ResumeLayout(false);
             this.Notification_Control_Panel.ResumeLayout(false);
+            this.Facebook_Panel.ResumeLayout(false);
+            this.Facebook_Control_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2965,6 +3020,10 @@
         private System.Windows.Forms.PictureBox PictureBox_Directions;
         private System.Windows.Forms.DataGridView Data_Location_Lookup;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.Panel Facebook_Panel;
+        private System.Windows.Forms.Panel Facebook_Control_Panel;
+        private System.Windows.Forms.WebBrowser Facebook_Browser;
+        private System.Windows.Forms.Label Link_Facebook_Button;
     }
 }
 

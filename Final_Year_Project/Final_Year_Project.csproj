@@ -123,6 +123,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="FacebookClient.cs" />
+    <Compile Include="FacebookService.cs" />
+    <Compile Include="FacebookSettings.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

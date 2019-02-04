@@ -1,4 +1,5 @@
-﻿using GMap.NET;
+﻿using ConsoleApplication;
+using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
@@ -6,6 +7,7 @@ using GoogleApi;
 using GoogleApi.Entities.Places.AutoComplete.Request;
 using GoogleApi.Entities.Places.AutoComplete.Request.Enums;
 using GoogleApi.Entities.Places.Search.Text.Request;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +22,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -265,6 +268,7 @@ namespace Final_Year_Project
                 Settings_Dark_Button.ForeColor = temp;
                 Settings_Commit.ForeColor = temp;
                 Settings_Light_Panel.BackColor = temp;
+                Link_Facebook_Button.ForeColor = temp;
             }
 
             else
@@ -273,6 +277,7 @@ namespace Final_Year_Project
                 Settings_Dark_Button.ForeColor = lightColour;
                 Settings_Commit.ForeColor = lightColour;
                 Settings_Light_Panel.BackColor = lightColour;
+                Link_Facebook_Button.ForeColor = lightColour;
             }
 
             // Emoji Panel
@@ -286,6 +291,10 @@ namespace Final_Year_Project
             Notification_Control_Panel.BackColor = darkColour;
 
             TableLayoutPanel_Notifications.BackColor = darkColour;
+
+            // Facebook Panel
+            Facebook_Panel.BackColor = lightColour;
+            Facebook_Control_Panel.BackColor = darkColour;
         }
 
         private void Calendar_Back_Click(object sender, EventArgs e)
@@ -654,6 +663,7 @@ namespace Final_Year_Project
             Settings_Panel.Visible = false;
             Notification_Panel.Visible = false;
             Emoji_Panel.Visible = false;
+            Facebook_Panel.Visible = false;
             PictureBox_Back.Visible = false;
             Update_Event_Button.Visible = false;
             Remove_Event_Button.Visible = false;
@@ -1497,7 +1507,7 @@ namespace Final_Year_Project
         {
             foreach (DataGridViewRow row in Search_Data.SelectedRows)
             {
-                int Event_ID = (int)row.Cells[0].Value;
+                Int64 Event_ID = (Int64)row.Cells[0].Value;
                 string Event_Name = row.Cells[1].Value.ToString();
                 string Event_Description = row.Cells[2].Value.ToString();
                 DateTime Event_DateTime = (DateTime)row.Cells[3].Value;
@@ -2394,6 +2404,135 @@ namespace Final_Year_Project
                 TextBox_Location.Text = lat + "," + lng;
             }
         }
+
+        private void Facebook_Browser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            if (Facebook_Browser.Url.ToString().Contains("https://www.facebook.com/connect/login_success.html"))
+            {
+                Facebook_Browser.Visible = false;
+
+                string[] split = Facebook_Browser.Url.ToString().Split('=');
+                split = split[1].Split('&');
+
+                string html = string.Empty;
+                string url = @"https://graph.facebook.com/v3.2/oauth/access_token?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&client_secret=9560c5077c5d7e2ab45763f05a473fb0&code=" + split[0];
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.AutomaticDecompression = DecompressionMethods.GZip;
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    html = reader.ReadToEnd();
+                }
+
+                JObject json = JObject.Parse(html);
+
+                string token = (string)json["access_token"];
+
+                FacebookSettings.AccessToken = token;
+                
+                Facebook_GetEvents();
+
+                ResetForm();
+
+                Dashboard_Panel.Visible = true;
+                Facebook_Panel.Visible = false;
+            }
+        }
+
+        private void Facebook_GetEvents()
+        {
+            var facebookClient = new FacebookClient();
+            var facebookService = new FacebookService(facebookClient);
+
+            var getEventTask = facebookService.GetEventAsync(FacebookSettings.AccessToken);
+
+            Task.WaitAll(getEventTask);
+            var events = getEventTask.Result;
+
+            int group = database.Group_Facebook(Color.RoyalBlue.ToArgb());
+
+            foreach (Event ev in events)
+            {
+                Console.WriteLine("=================================");
+                Console.WriteLine($"ID: {ev.Id}");
+                Console.WriteLine($"Name: {ev.Name}");
+                Console.WriteLine($"Place: {ev.Place}");
+                Console.WriteLine($"Description: {ev.Description}");
+                Console.WriteLine($"Date: {ev.Date}");
+                Console.WriteLine("\n");
+
+                string loc = ev.Place;
+
+                var request_query = new PlacesTextSearchRequest
+                {
+                    Key = "AIzaSyDEJCMJ2qejdJhHnhMHOJLBemgHXxaeqe4",
+                    Query = loc
+                };
+
+                var response_query = GooglePlaces.TextSearch.Query(request_query);
+
+                double lat = 0.0;
+                double lng = 0.0;
+
+                foreach (var b in response_query.Results)
+                {
+                    lat = b.Geometry.Location.Latitude;
+                    lng = b.Geometry.Location.Longitude;
+                }
+
+                loc = lat + "," + lng;
+
+                Int64 id;
+                Int64.TryParse(ev.Id, out id);
+
+                string[] split = ev.Date.Split('/');
+                int day;
+                int.TryParse(split[1], out day);
+                int month;
+                int.TryParse(split[0], out month);
+
+                split = split[2].Split(' ');
+
+                int year;
+                int.TryParse(split[0], out year);
+
+                split = split[1].Split(':');
+
+                int hour;
+                int.TryParse(split[0], out hour);
+                int minute;
+                int.TryParse(split[1], out minute);
+                int second;
+                int.TryParse(split[2], out second);
+
+                DateTime temp = new DateTime(year, month, day, hour, minute, second);
+
+                database.Event_Facebook(id, ev.Name, ev.Description, temp, ev.Place, loc, "X", group);
+            }
+        }
+
+        private void Link_Facebook_Button_Click(object sender, EventArgs e)
+        {
+            Uri uri = new Uri("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events");
+
+            Facebook_Browser.Url = uri;
+
+            Facebook_Panel.Visible = true;
+            Settings_Panel.Visible = false;
+            PictureBox_Back.Visible = true;
+        }
+    }
+
+    public class Event
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Place { get; set; }
+        public string Description { get; set; }
+        public string Date { get; set; }
     }
 
     public class Friend
@@ -2543,6 +2682,25 @@ namespace Final_Year_Project
             connection.Close();
         }
 
+        public void Event_Facebook(Int64 id, string name, string description, DateTime datetime, string locationName, string locationGeo, string emoji, int group)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Event_Facebook", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = id;
+            cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
+            cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
+            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji, true);
+            cmd.Parameters.Add("@Location_Name", SqlDbType.VarChar).Value = locationName;
+            cmd.Parameters.Add("@Location_Geo", SqlDbType.VarChar).Value = locationGeo;
+            cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
+            cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
         public void Update_Event(int id, string name, string description, DateTime datetime, string locationName, string locationGeo, string emoji, int group)
         {
             SqlCommand cmd = new SqlCommand("Update_Event", connection);
@@ -2577,6 +2735,29 @@ namespace Final_Year_Project
             SqlCommand cmd = new SqlCommand("Add_Group", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@User_ID", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@Colour", SqlDbType.Int).Value = colour;
+
+            int id = 0;
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                id = Convert.ToInt32(rdr[0]);
+            }
+
+            connection.Close();
+
+            return id;
+        }
+
+        public int Group_Facebook(int colour)
+        {
+            SqlCommand cmd = new SqlCommand("Add_Group_Facebook", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@User_ID", SqlDbType.Int).Value = user.GetID();
             cmd.Parameters.Add("@Colour", SqlDbType.Int).Value = colour;
 
@@ -2827,7 +3008,7 @@ namespace Final_Year_Project
                 }
 
                 //Console.WriteLine("Add Day " + day);
-                tempList.Add(new CalendarEvent((int)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], (string)rdr[6], Emoji((string)rdr[4], false), new CalendarGroup((int)rdr[9], (string)rdr[10], Color.FromArgb((int)rdr[12]))));
+                tempList.Add(new CalendarEvent((Int64)rdr[0], (string)rdr[1], (string)rdr[2], (DateTime)rdr[3], (string)rdr[5], (string)rdr[6], Emoji((string)rdr[4], false), new CalendarGroup((int)rdr[9], (string)rdr[10], Color.FromArgb((int)rdr[12]))));
             }
 
             data.Add(tempList);
@@ -3332,7 +3513,7 @@ namespace Final_Year_Project
 
     public class CalendarEvent
     {
-        private int id;
+        private Int64 id;
         private string name;
         private string description;
         private DateTime dateTime;
@@ -3341,7 +3522,7 @@ namespace Final_Year_Project
         private string emoji;
         private CalendarGroup group;
 
-        public CalendarEvent(int i, string n, string d, DateTime dt, string ln, string lg, string e, CalendarGroup g)
+        public CalendarEvent(Int64 i, string n, string d, DateTime dt, string ln, string lg, string e, CalendarGroup g)
         {
             id = i;
             name = n;
@@ -3353,7 +3534,7 @@ namespace Final_Year_Project
             group = g;
         }
 
-        public int GetID()
+        public Int64 GetID()
         {
             return id;
         }
