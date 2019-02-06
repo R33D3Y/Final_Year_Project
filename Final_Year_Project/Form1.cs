@@ -19,6 +19,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -338,7 +339,7 @@ namespace Final_Year_Project
 
         private void Login()
         {
-            database = new Database(Textbox_Username.Text, Textbox_Password.Text);
+            database = new Database(Textbox_Username.Text, GetHashString(Textbox_Password.Text));
 
             if (database.GetUser() != null)
             {
@@ -377,6 +378,21 @@ namespace Final_Year_Project
                 PictureBox_Username_Cross.Visible = true;
                 PictureBox_Password_Cross.Visible = true;
             }
+        }
+
+        public static byte[] GetHash(string inputString)
+        {
+            HashAlgorithm algorithm = SHA256.Create();
+            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+
+        public static string GetHashString(string inputString)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in GetHash(inputString))
+                sb.Append(b.ToString("X2"));
+
+            return sb.ToString();
         }
 
         private void Label_MouseHover(object sender, EventArgs e)
@@ -1893,7 +1909,7 @@ namespace Final_Year_Project
         {
             if (goodEmail && goodUsername && goodPassword && goodPasswordRetype)
             {
-                database.Add_User(Signup_TextBox_Username.Text, Signup_TextBox_Password.Text, Signup_TextBox_Email.Text, -10185235, -12490271);
+                database.Add_User(Signup_TextBox_Username.Text, GetHashString(Signup_TextBox_Password.Text), Signup_TextBox_Email.Text, -10185235, -12490271);
                 
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 var mail = new MailMessage();
