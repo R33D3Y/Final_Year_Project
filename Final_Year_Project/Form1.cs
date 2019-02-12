@@ -5,7 +5,6 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GoogleApi;
 using GoogleApi.Entities.Places.AutoComplete.Request;
-using GoogleApi.Entities.Places.AutoComplete.Request.Enums;
 using GoogleApi.Entities.Places.Search.Text.Request;
 using Newtonsoft.Json.Linq;
 using System;
@@ -22,10 +21,8 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Final_Year_Project
 {
@@ -40,8 +37,6 @@ namespace Final_Year_Project
 
         private Color lightColour = Color.CornflowerBlue;
         private Color darkColour = Color.RoyalBlue;
-
-        private readonly bool populate = false;
 
         public Form1()
         {
@@ -58,6 +53,24 @@ namespace Final_Year_Project
 
             else
             {
+                PictureBox_Internet.Visible = true;
+                Label_Internet.Visible = true;
+                Login_Button.Enabled = false;
+                SignUp_Button.Enabled = false;
+            }
+
+            Database db = new Database();
+
+            if (db.Test_Connection())
+            {
+                PictureBox_Internet.Visible = false;
+                Label_Server.Visible = false;
+            }
+
+            else
+            {
+                PictureBox_Internet.Visible = true;
+                Label_Server.Visible = true;
                 Login_Button.Enabled = false;
                 SignUp_Button.Enabled = false;
             }
@@ -349,11 +362,6 @@ namespace Final_Year_Project
                 DateTime tempDt = DateTime.Now;
                 dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
-                if (populate)
-                {
-                    database.Populate(dt); // TODO: REMOVE ME
-                }
-
                 Setup_Emojis();
 
                 calendar = tableLayoutPanel;
@@ -367,10 +375,26 @@ namespace Final_Year_Project
 
                 Set_Colours();
 
-                Dashboard_Panel.Visible = true;
-                Login_Panel.Visible = false;
-                PictureBox_Logout.Visible = true;
-                PictureBox_Settings.Visible = true;
+                if (database.Get_Facebook_Link())
+                {
+                    Uri uri = new Uri("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events");
+
+                    Facebook_Browser.Url = uri;
+
+                    Facebook_Panel.Visible = true;
+                    Login_Panel.Visible = false;
+                    PictureBox_Back.Visible = true;
+                    PictureBox_Logout.Visible = true;
+                    PictureBox_Settings.Visible = true;
+                }
+
+                else
+                {
+                    Dashboard_Panel.Visible = true;
+                    Login_Panel.Visible = false;
+                    PictureBox_Logout.Visible = true;
+                    PictureBox_Settings.Visible = true;
+                }
             }
 
             else
@@ -2423,6 +2447,8 @@ namespace Final_Year_Project
 
         private void Facebook_Browser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
+            Facebook_Browser.Document.Window.ScrollTo(208, 0);
+
             if (Facebook_Browser.Url.ToString().Contains("https://www.facebook.com/connect/login_success.html"))
             {
                 Facebook_Browser.Visible = false;
@@ -2453,8 +2479,11 @@ namespace Final_Year_Project
 
                 ResetForm();
 
+                PictureBox_Back.Visible = false;
                 Dashboard_Panel.Visible = true;
                 Facebook_Panel.Visible = false;
+                PictureBox_Logout.Visible = true;
+                PictureBox_Settings.Visible = true;
             }
         }
 
@@ -2472,13 +2501,13 @@ namespace Final_Year_Project
 
             foreach (Event ev in events)
             {
-                Console.WriteLine("=================================");
-                Console.WriteLine($"ID: {ev.Id}");
-                Console.WriteLine($"Name: {ev.Name}");
-                Console.WriteLine($"Place: {ev.Place}");
-                Console.WriteLine($"Description: {ev.Description}");
-                Console.WriteLine($"Date: {ev.Date}");
-                Console.WriteLine("\n");
+                //Console.WriteLine("=================================");
+                //Console.WriteLine($"ID: {ev.Id}");
+                //Console.WriteLine($"Name: {ev.Name}");
+                //Console.WriteLine($"Place: {ev.Place}");
+                //Console.WriteLine($"Description: {ev.Description}");
+                //Console.WriteLine($"Date: {ev.Date}");
+                //Console.WriteLine("\n");
 
                 string loc = ev.Place;
 
@@ -2528,6 +2557,8 @@ namespace Final_Year_Project
 
                 database.Event_Facebook(id, ev.Name, ev.Description, temp, ev.Place, loc, "X", group);
             }
+
+            database.User_Linked_Facebook();
         }
 
         private void Link_Facebook_Button_Click(object sender, EventArgs e)
@@ -2610,6 +2641,22 @@ namespace Final_Year_Project
             builder["Database"] = "Final_Year_Project";
 
             connection = new SqlConnection(builder.ToString());
+        }
+
+        public bool Test_Connection()
+        {
+            try
+            {
+                connection.Open();
+                connection.Close();
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private User LoginUser(string username, string password)
@@ -2918,57 +2965,6 @@ namespace Final_Year_Project
             bs.DataSource = table;
 
             return bs;
-        }
-
-        public void Populate(DateTime dt)
-        {
-            int daycount = 1;
-            dt = new DateTime(dt.Year, dt.Month, daycount);
-
-            ClearDB();
-
-            for (int i = 0; i < 10; i++)
-            {
-                PopulateDB("Football", "Footy with the lads", dt, "Football", "51.7644403180351,0.23895263671875", 2, 1);
-                PopulateDB("Shopping", "Christmas shopping", dt, "Football", "51.7848338937353,0.3790283203125", 1, 1);
-                PopulateDB("Work", "Lab Write Up", dt, "Football", "51.907001886741,0.3570556640625", 1, 1);
-                
-                daycount++;
-                dt = new DateTime(dt.Year, dt.Month, daycount);
-                
-                PopulateDB("Work", "Office", dt, "Football", "51.7848338937353,0.3790283203125", 1, 1);
-
-                daycount++;
-                dt = new DateTime(dt.Year, dt.Month, daycount);
-
-                PopulateDB("Birthday", "John's House", dt, "Football", "51.7644403180351,0.23895263671875", 3, 1);
-                PopulateDB("Dinner", "Emily's", dt, "Football", "51.907001886741,0.3570556640625", 3, 1);
-
-                daycount++;
-                dt = new DateTime(dt.Year, dt.Month, daycount);
-            }
-
-            dt = new DateTime(dt.Year, 11, 15);
-            PopulateDB("Test", "Testing", dt, "Test", "51.7848338937353,0.3790283203125", 1, 1);
-        }
-
-        private void PopulateDB(string name, string description, DateTime datetime, string emoji, string location, int group, int owner)
-        {
-            SqlCommand cmd = new SqlCommand("Add_Event", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
-            cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
-            cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
-            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = emoji;
-            cmd.Parameters.Add("@Location", SqlDbType.VarChar).Value = location;
-            cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
-            cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = owner;
-
-            //Console.WriteLine(name + " " + description + " " + datetime + " " + emoji + " " + location + " " + emoji + " " + group + " " + owner);
-
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
         }
 
         private void ClearDB()
@@ -3387,6 +3383,31 @@ namespace Final_Year_Project
             return friends;
         }
 
+        public bool Get_Facebook_Link()
+        {
+            SqlCommand cmd = new SqlCommand("Get_Facebook_Link", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User", SqlDbType.Int).Value = user.GetID();
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            bool linked = false;
+
+            while (rdr.Read())
+            {
+                if ((int)rdr[0] == user.GetID())
+                {
+                    linked = true;
+                }
+            }
+
+            connection.Close();
+
+            return linked;
+        }
+
         public void Remove_Group(int group_ID)
         {
             SqlCommand cmd = new SqlCommand("Remove_Group", connection);
@@ -3421,6 +3442,19 @@ namespace Final_Year_Project
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = group_ID;
             cmd.Parameters.Add("@Group_Name", SqlDbType.VarChar).Value = text;
             cmd.Parameters.Add("@Group_Colour", SqlDbType.Int).Value = v;
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public void User_Linked_Facebook()
+        {
+            SqlCommand cmd = new SqlCommand("User_Linked_Facebook", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = user.GetID();
 
             connection.Open();
 

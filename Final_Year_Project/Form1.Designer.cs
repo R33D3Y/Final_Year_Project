@@ -80,6 +80,7 @@
             this.PictureBox_Minimise = new System.Windows.Forms.PictureBox();
             this.PictureBox_Close = new System.Windows.Forms.PictureBox();
             this.Login_Panel = new System.Windows.Forms.Panel();
+            this.Label_Server = new System.Windows.Forms.Label();
             this.Label_Internet = new System.Windows.Forms.Label();
             this.PictureBox_Internet = new System.Windows.Forms.PictureBox();
             this.Login_Control_Panel = new System.Windows.Forms.Panel();
@@ -702,6 +703,7 @@
             // Login_Panel
             // 
             this.Login_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Login_Panel.Controls.Add(this.Label_Server);
             this.Login_Panel.Controls.Add(this.Label_Internet);
             this.Login_Panel.Controls.Add(this.PictureBox_Internet);
             this.Login_Panel.Controls.Add(this.Login_Control_Panel);
@@ -711,12 +713,23 @@
             this.Login_Panel.Size = new System.Drawing.Size(850, 710);
             this.Login_Panel.TabIndex = 3;
             // 
+            // Label_Server
+            // 
+            this.Label_Server.AutoSize = true;
+            this.Label_Server.Font = new System.Drawing.Font("Candara", 12F);
+            this.Label_Server.ForeColor = System.Drawing.Color.White;
+            this.Label_Server.Location = new System.Drawing.Point(80, 38);
+            this.Label_Server.Name = "Label_Server";
+            this.Label_Server.Size = new System.Drawing.Size(246, 19);
+            this.Label_Server.TabIndex = 24;
+            this.Label_Server.Text = "The Server Is Currently Inaccessible";
+            // 
             // Label_Internet
             // 
             this.Label_Internet.AutoSize = true;
             this.Label_Internet.Font = new System.Drawing.Font("Candara", 12F);
             this.Label_Internet.ForeColor = System.Drawing.Color.White;
-            this.Label_Internet.Location = new System.Drawing.Point(80, 23);
+            this.Label_Internet.Location = new System.Drawing.Point(80, 13);
             this.Label_Internet.Name = "Label_Internet";
             this.Label_Internet.Size = new System.Drawing.Size(211, 19);
             this.Label_Internet.TabIndex = 23;
@@ -2269,6 +2282,8 @@
             this.Link_Facebook_Button.Text = "Link With Facebook";
             this.Link_Facebook_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Link_Facebook_Button.Click += new System.EventHandler(this.Link_Facebook_Button_Click);
+            this.Link_Facebook_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Link_Facebook_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Settings_Commit
             // 
@@ -2762,10 +2777,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
-            this.Controls.Add(this.Signup_Panel);
+            this.Controls.Add(this.Facebook_Panel);
             this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Settings_Panel);
-            this.Controls.Add(this.Facebook_Panel);
+            this.Controls.Add(this.Signup_Panel);
             this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Group_Panel);
@@ -3024,6 +3039,7 @@
         private System.Windows.Forms.Panel Facebook_Control_Panel;
         private System.Windows.Forms.WebBrowser Facebook_Browser;
         private System.Windows.Forms.Label Link_Facebook_Button;
+        private System.Windows.Forms.Label Label_Server;
     }
 }
 
