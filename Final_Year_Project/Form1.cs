@@ -248,7 +248,7 @@ namespace Final_Year_Project
 
             TextBox_Search.BackColor = darkColour;
             Search_Description.BackColor = darkColour;
-            
+
             Search_Data.BackgroundColor = darkColour;
             Search_Data.DefaultCellStyle.BackColor = darkColour;
 
@@ -258,6 +258,7 @@ namespace Final_Year_Project
                 Search_Add_Event_Button.ForeColor = temp;
                 Search_Switch_Map_Button.ForeColor = temp;
                 Search_Event_Update.ForeColor = temp;
+                Busiest_Days_Button.ForeColor = temp;
                 Search_Data.DefaultCellStyle.SelectionForeColor = temp;
             }
 
@@ -267,6 +268,7 @@ namespace Final_Year_Project
                 Search_Add_Event_Button.ForeColor = lightColour;
                 Search_Switch_Map_Button.ForeColor = lightColour;
                 Search_Event_Update.ForeColor = lightColour;
+                Busiest_Days_Button.ForeColor = lightColour;
                 Search_Data.DefaultCellStyle.SelectionForeColor = lightColour;
             }
 
@@ -309,6 +311,25 @@ namespace Final_Year_Project
             // Facebook Panel
             Facebook_Panel.BackColor = lightColour;
             Facebook_Control_Panel.BackColor = darkColour;
+
+            // Busy Panel
+            Busiest_Day_Panel.BackColor = lightColour;
+            Busiest_Day_Control_Panel.BackColor = darkColour;
+
+            Data_Busy_Days.BackgroundColor = darkColour;
+            Data_Busy_Days.DefaultCellStyle.BackColor = darkColour;
+
+            if (lightColour.GetBrightness() > 0.7)
+            {
+                Select_Button.ForeColor = temp;
+                Data_Busy_Days.DefaultCellStyle.SelectionForeColor = temp;
+            }
+
+            else
+            {
+                Select_Button.ForeColor = lightColour;
+                Data_Busy_Days.DefaultCellStyle.SelectionForeColor = lightColour;
+            }
         }
 
         private void Calendar_Back_Click(object sender, EventArgs e)
@@ -1050,6 +1071,10 @@ namespace Final_Year_Project
             Data_Display_Groups.Refresh();
             Data_Groups_Friends.DataSource = null;
             Data_Groups_Friends.Refresh();
+            Data_Busy_Days.DataSource = null;
+            Data_Busy_Days.Refresh();
+
+            Facebook_Browser.Url = null;
         }
 
         // Calendar Class
@@ -2571,6 +2596,109 @@ namespace Final_Year_Project
             Settings_Panel.Visible = false;
             PictureBox_Back.Visible = true;
         }
+
+        private void Slider_Control_ValueChanged(object sender, EventArgs e)
+        {
+            Slider_Value.Text = Convert.ToString("Find Days With More Than " + Slider_Control.Value + " Events:");
+
+            Data_Busy_Days.DataSource = database.Get_Busiest_Day(DateTime_Start_Busy.Value, DateTime_End_Busy.Value, Slider_Control.Value);
+
+            Data_Busy_Clean_Up();
+        }
+
+        private void Busiest_Days_Button_Click(object sender, EventArgs e)
+        {
+            Slider_Control.Maximum = database.Get_Busiest_Max() - 1;
+            Slider_Control.Minimum = database.Get_Busiest_Min() - 1;
+
+            Slider_Value.Text = Convert.ToString("Find Days With More Than " + Slider_Control.Minimum + " Events:");
+
+            Data_Busy_Days.DataSource = database.Get_Busiest_Day(DateTime_Start_Busy.Value, DateTime_End_Busy.Value, Slider_Control.Value);
+
+            Data_Busy_Clean_Up();
+
+            Search_Panel.Visible = false;
+            Busiest_Day_Panel.Visible = true;
+        }
+
+        private void DateTime_Start_Busy_ValueChanged(object sender, EventArgs e)
+        {
+            Data_Busy_Days.DataSource = database.Get_Busiest_Day(DateTime_Start_Busy.Value, DateTime_End_Busy.Value, Slider_Control.Value);
+
+            Data_Busy_Clean_Up();
+        }
+
+        private void Data_Busy_Clean_Up()
+        {
+            Data_Busy_Days.Columns[0].Visible = false; // User ID
+            Data_Busy_Days.Columns[1].HeaderText = "Name";
+            Data_Busy_Days.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Data_Busy_Days.Columns[2].HeaderText = "Description";
+            Data_Busy_Days.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Data_Busy_Days.Columns[3].HeaderText = "Date";
+            Data_Busy_Days.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Data_Busy_Days.Columns[4].HeaderText = "Emoji";
+            Data_Busy_Days.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Data_Busy_Days.Columns[5].Visible = false; // Group ID
+            Data_Busy_Days.Columns[6].Visible = false; // Group Name
+            Data_Busy_Days.Columns[7].HeaderText = "Location";
+            Data_Busy_Days.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Data_Busy_Days.Columns[8].Visible = false; // Geo
+            Data_Busy_Days.Columns[9].Visible = false; // Count
+        }
+
+        private void Select_Button_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Data_Busy_Days.SelectedRows)
+            {
+                Int64 Event_ID = (Int64)row.Cells[0].Value;
+                string Event_Name = row.Cells[1].Value.ToString();
+                string Event_Description = row.Cells[2].Value.ToString();
+                DateTime Event_DateTime = (DateTime)row.Cells[3].Value;
+                string Event_Emoji = row.Cells[4].Value.ToString();
+                int Group_ID = (int)row.Cells[5].Value;
+                string Group_Name = row.Cells[6].Value.ToString();
+                string Event_Location_Name = row.Cells[7].Value.ToString();
+
+                if (!row.Cells[8].Value.ToString().Equals(","))
+                {
+                    string[] Event_Location = row.Cells[8].Value.ToString().Split(',');
+
+                    double lat = Convert.ToDouble(Event_Location[0]);
+                    double lng = Convert.ToDouble(Event_Location[1]);
+
+                    GMap_Control.MapProvider = OpenStreetMapProvider.Instance;
+                    GMaps.Instance.Mode = AccessMode.ServerOnly;
+                    GMap_Control.Position = new PointLatLng(lat, lng);
+                    GMap_Control.ShowCenter = false;
+
+                    GMap_Control.Overlays.Clear();
+
+                    GMapOverlay markers = new GMapOverlay("markers");
+                    GMap_Control.Overlays.Add(markers);
+
+                    GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+                    markers.Markers.Add(marker);
+
+                    TextBox_Location.Text = lat + "," + lng;
+                    PictureBox_Directions.Visible = true;
+                }
+
+                TextBox_Event_ID.Text = Convert.ToString(Event_ID);
+                TextBox_Name_Event.Text = Event_Name;
+                TextBox_Description.Text = Event_Description;
+                TextBox_Location_Search.Text = Event_Location_Name;
+                ComboBox_Group.Text = Group_Name;
+                Event_TextBox_Emoji.Text = Event_Emoji;
+                DateTimePicker_Date.Text = Event_DateTime.ToLongDateString();
+                DateTimePicker_Time.Text = Event_DateTime.ToLongTimeString();
+
+                Busiest_Day_Panel.Visible = false;
+                Event_Panel.Visible = true;
+                Update_Event_Button.Visible = true;
+                Remove_Event_Button.Visible = true;
+            }
+        }
     }
 
     public class Event
@@ -3462,6 +3590,75 @@ namespace Final_Year_Project
 
             connection.Close();
         }
+
+        public BindingSource Get_Busiest_Day(DateTime start, DateTime end, int amount)
+        {
+            SqlCommand cmd = new SqlCommand("Get_Busiest_Days", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
+            cmd.Parameters.Add("@Date_Start", SqlDbType.Date).Value = start;
+            cmd.Parameters.Add("@Date_End", SqlDbType.Date).Value = end;
+            cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = amount;
+
+            SqlDataAdapter sqa = new SqlDataAdapter(cmd);
+
+            connection.Open();
+
+            DataTable table = new DataTable();
+            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            sqa.Fill(table);
+
+            connection.Close();
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = table;
+
+            return bs;
+        }
+
+        public int Get_Busiest_Min()
+        {
+            SqlCommand cmd = new SqlCommand("Get_Min_Busiest_Days", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
+
+            int amount = 0;
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                amount = (int)rdr[0];
+            }
+
+            connection.Close();
+
+            return amount;
+        }
+
+        public int Get_Busiest_Max()
+        {
+            SqlCommand cmd = new SqlCommand("Get_Max_Busiest_Days", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Owner", SqlDbType.Int).Value = user.GetID();
+
+            int amount = 0;
+
+            connection.Open();
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                amount = (int)rdr[0];
+            }
+
+            connection.Close();
+
+            return amount;
+        }
     }
 
     public class Emoji
@@ -3629,9 +3826,6 @@ namespace Final_Year_Project
 /*
  * TODO -
     * Create tests
-    * New screen, display busiest day and next free day after x date
-    * Search for event by location
-    * Search suggestions
     * Speed and integrity improvements
  * References -
      * Logo: https://www.logolynx.com/topic/calendar

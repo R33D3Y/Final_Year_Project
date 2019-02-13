@@ -53,6 +53,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Dashboard_Panel = new System.Windows.Forms.Panel();
             this.Dashboard_Control_Panel = new System.Windows.Forms.Panel();
             this.Groups_Data = new System.Windows.Forms.DataGridView();
@@ -156,6 +159,7 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.Search_Panel = new System.Windows.Forms.Panel();
             this.Search_Control_Panel = new System.Windows.Forms.Panel();
+            this.Busiest_Days_Button = new System.Windows.Forms.Label();
             this.Search_Add_Event_Button = new System.Windows.Forms.Label();
             this.Search_Event_Update = new System.Windows.Forms.Label();
             this.Search_Switch_Map_Button = new System.Windows.Forms.Label();
@@ -220,6 +224,16 @@
             this.Facebook_Panel = new System.Windows.Forms.Panel();
             this.Facebook_Control_Panel = new System.Windows.Forms.Panel();
             this.Facebook_Browser = new System.Windows.Forms.WebBrowser();
+            this.Busiest_Day_Panel = new System.Windows.Forms.Panel();
+            this.Busiest_Day_Control_Panel = new System.Windows.Forms.Panel();
+            this.Select_Button = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.DateTime_End_Busy = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.DateTime_Start_Busy = new System.Windows.Forms.DateTimePicker();
+            this.Slider_Value = new System.Windows.Forms.Label();
+            this.Slider_Control = new System.Windows.Forms.TrackBar();
+            this.Data_Busy_Days = new System.Windows.Forms.DataGridView();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -285,6 +299,10 @@
             this.Notification_Control_Panel.SuspendLayout();
             this.Facebook_Panel.SuspendLayout();
             this.Facebook_Control_Panel.SuspendLayout();
+            this.Busiest_Day_Panel.SuspendLayout();
+            this.Busiest_Day_Control_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Slider_Control)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Busy_Days)).BeginInit();
             this.SuspendLayout();
             // 
             // Dashboard_Panel
@@ -1809,6 +1827,7 @@
             // 
             this.Search_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Search_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Control_Panel.Controls.Add(this.Busiest_Days_Button);
             this.Search_Control_Panel.Controls.Add(this.Search_Add_Event_Button);
             this.Search_Control_Panel.Controls.Add(this.Search_Event_Update);
             this.Search_Control_Panel.Controls.Add(this.Search_Switch_Map_Button);
@@ -1823,6 +1842,22 @@
             this.Search_Control_Panel.Name = "Search_Control_Panel";
             this.Search_Control_Panel.Size = new System.Drawing.Size(810, 348);
             this.Search_Control_Panel.TabIndex = 21;
+            // 
+            // Busiest_Days_Button
+            // 
+            this.Busiest_Days_Button.BackColor = System.Drawing.Color.White;
+            this.Busiest_Days_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Busiest_Days_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Busiest_Days_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Busiest_Days_Button.Location = new System.Drawing.Point(408, 16);
+            this.Busiest_Days_Button.Name = "Busiest_Days_Button";
+            this.Busiest_Days_Button.Size = new System.Drawing.Size(123, 25);
+            this.Busiest_Days_Button.TabIndex = 33;
+            this.Busiest_Days_Button.Text = "Busiest Days";
+            this.Busiest_Days_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Busiest_Days_Button.Click += new System.EventHandler(this.Busiest_Days_Button_Click);
+            this.Busiest_Days_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Busiest_Days_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
             // 
             // Search_Add_Event_Button
             // 
@@ -2771,21 +2806,188 @@
             this.Facebook_Browser.Url = new System.Uri("", System.UriKind.Relative);
             this.Facebook_Browser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.Facebook_Browser_Navigated);
             // 
+            // Busiest_Day_Panel
+            // 
+            this.Busiest_Day_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Busiest_Day_Panel.Controls.Add(this.Busiest_Day_Control_Panel);
+            this.Busiest_Day_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Busiest_Day_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Busiest_Day_Panel.Name = "Busiest_Day_Panel";
+            this.Busiest_Day_Panel.Size = new System.Drawing.Size(850, 710);
+            this.Busiest_Day_Panel.TabIndex = 13;
+            this.Busiest_Day_Panel.Visible = false;
+            // 
+            // Busiest_Day_Control_Panel
+            // 
+            this.Busiest_Day_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Busiest_Day_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Busiest_Day_Control_Panel.Controls.Add(this.Select_Button);
+            this.Busiest_Day_Control_Panel.Controls.Add(this.label4);
+            this.Busiest_Day_Control_Panel.Controls.Add(this.DateTime_End_Busy);
+            this.Busiest_Day_Control_Panel.Controls.Add(this.label3);
+            this.Busiest_Day_Control_Panel.Controls.Add(this.DateTime_Start_Busy);
+            this.Busiest_Day_Control_Panel.Controls.Add(this.Slider_Value);
+            this.Busiest_Day_Control_Panel.Controls.Add(this.Slider_Control);
+            this.Busiest_Day_Control_Panel.Controls.Add(this.Data_Busy_Days);
+            this.Busiest_Day_Control_Panel.Location = new System.Drawing.Point(65, 184);
+            this.Busiest_Day_Control_Panel.Name = "Busiest_Day_Control_Panel";
+            this.Busiest_Day_Control_Panel.Size = new System.Drawing.Size(679, 345);
+            this.Busiest_Day_Control_Panel.TabIndex = 21;
+            // 
+            // Select_Button
+            // 
+            this.Select_Button.BackColor = System.Drawing.Color.White;
+            this.Select_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Select_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Select_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Select_Button.Location = new System.Drawing.Point(529, 311);
+            this.Select_Button.Name = "Select_Button";
+            this.Select_Button.Size = new System.Drawing.Size(138, 25);
+            this.Select_Button.TabIndex = 30;
+            this.Select_Button.Text = "Select Event";
+            this.Select_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Select_Button.Click += new System.EventHandler(this.Select_Button_Click);
+            this.Select_Button.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
+            this.Select_Button.MouseHover += new System.EventHandler(this.Label_MouseHover);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Candara", 12F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(333, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 19);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "End Date:";
+            // 
+            // DateTime_End_Busy
+            // 
+            this.DateTime_End_Busy.CalendarFont = new System.Drawing.Font("Candara", 12F);
+            this.DateTime_End_Busy.CalendarForeColor = System.Drawing.Color.White;
+            this.DateTime_End_Busy.CalendarMonthBackground = System.Drawing.Color.White;
+            this.DateTime_End_Busy.CalendarTitleBackColor = System.Drawing.Color.White;
+            this.DateTime_End_Busy.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.DateTime_End_Busy.CalendarTrailingForeColor = System.Drawing.Color.White;
+            this.DateTime_End_Busy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DateTime_End_Busy.CustomFormat = "";
+            this.DateTime_End_Busy.Font = new System.Drawing.Font("Candara", 12F);
+            this.DateTime_End_Busy.Location = new System.Drawing.Point(414, 43);
+            this.DateTime_End_Busy.Name = "DateTime_End_Busy";
+            this.DateTime_End_Busy.Size = new System.Drawing.Size(253, 27);
+            this.DateTime_End_Busy.TabIndex = 28;
+            this.DateTime_End_Busy.ValueChanged += new System.EventHandler(this.DateTime_Start_Busy_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Candara", 12F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(325, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 19);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Start Date:";
+            // 
+            // DateTime_Start_Busy
+            // 
+            this.DateTime_Start_Busy.CalendarFont = new System.Drawing.Font("Candara", 12F);
+            this.DateTime_Start_Busy.CalendarForeColor = System.Drawing.Color.White;
+            this.DateTime_Start_Busy.CalendarMonthBackground = System.Drawing.Color.White;
+            this.DateTime_Start_Busy.CalendarTitleBackColor = System.Drawing.Color.White;
+            this.DateTime_Start_Busy.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.DateTime_Start_Busy.CalendarTrailingForeColor = System.Drawing.Color.White;
+            this.DateTime_Start_Busy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DateTime_Start_Busy.CustomFormat = "";
+            this.DateTime_Start_Busy.Font = new System.Drawing.Font("Candara", 12F);
+            this.DateTime_Start_Busy.Location = new System.Drawing.Point(413, 7);
+            this.DateTime_Start_Busy.Name = "DateTime_Start_Busy";
+            this.DateTime_Start_Busy.Size = new System.Drawing.Size(253, 27);
+            this.DateTime_Start_Busy.TabIndex = 26;
+            this.DateTime_Start_Busy.ValueChanged += new System.EventHandler(this.DateTime_Start_Busy_ValueChanged);
+            // 
+            // Slider_Value
+            // 
+            this.Slider_Value.AutoSize = true;
+            this.Slider_Value.Font = new System.Drawing.Font("Candara", 12F);
+            this.Slider_Value.ForeColor = System.Drawing.Color.White;
+            this.Slider_Value.Location = new System.Drawing.Point(22, 8);
+            this.Slider_Value.Name = "Slider_Value";
+            this.Slider_Value.Size = new System.Drawing.Size(250, 19);
+            this.Slider_Value.TabIndex = 25;
+            this.Slider_Value.Text = "Find Days With More Than 0 Events:";
+            // 
+            // Slider_Control
+            // 
+            this.Slider_Control.Location = new System.Drawing.Point(12, 31);
+            this.Slider_Control.Name = "Slider_Control";
+            this.Slider_Control.Size = new System.Drawing.Size(274, 45);
+            this.Slider_Control.TabIndex = 24;
+            this.Slider_Control.ValueChanged += new System.EventHandler(this.Slider_Control_ValueChanged);
+            // 
+            // Data_Busy_Days
+            // 
+            this.Data_Busy_Days.AllowUserToAddRows = false;
+            this.Data_Busy_Days.AllowUserToDeleteRows = false;
+            this.Data_Busy_Days.AllowUserToResizeColumns = false;
+            this.Data_Busy_Days.AllowUserToResizeRows = false;
+            this.Data_Busy_Days.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.Data_Busy_Days.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Busy_Days.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Data_Busy_Days.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Data_Busy_Days.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Busy_Days.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            this.Data_Busy_Days.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Data_Busy_Days.DefaultCellStyle = dataGridViewCellStyle26;
+            this.Data_Busy_Days.GridColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Busy_Days.Location = new System.Drawing.Point(13, 82);
+            this.Data_Busy_Days.MultiSelect = false;
+            this.Data_Busy_Days.Name = "Data_Busy_Days";
+            this.Data_Busy_Days.ReadOnly = true;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Candara", 12F);
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Data_Busy_Days.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.Data_Busy_Days.RowHeadersVisible = false;
+            this.Data_Busy_Days.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.Data_Busy_Days.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Data_Busy_Days.Size = new System.Drawing.Size(653, 222);
+            this.Data_Busy_Days.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
+            this.Controls.Add(this.Busiest_Day_Panel);
+            this.Controls.Add(this.Search_Panel);
+            this.Controls.Add(this.Event_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Facebook_Panel);
             this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Settings_Panel);
             this.Controls.Add(this.Signup_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Group_Panel);
-            this.Controls.Add(this.Event_Panel);
-            this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Emoji_Panel);
             this.Controls.Add(this.Notification_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -2868,6 +3070,11 @@
             this.Notification_Control_Panel.ResumeLayout(false);
             this.Facebook_Panel.ResumeLayout(false);
             this.Facebook_Control_Panel.ResumeLayout(false);
+            this.Busiest_Day_Panel.ResumeLayout(false);
+            this.Busiest_Day_Control_Panel.ResumeLayout(false);
+            this.Busiest_Day_Control_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Slider_Control)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Busy_Days)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3040,6 +3247,17 @@
         private System.Windows.Forms.WebBrowser Facebook_Browser;
         private System.Windows.Forms.Label Link_Facebook_Button;
         private System.Windows.Forms.Label Label_Server;
+        private System.Windows.Forms.Panel Busiest_Day_Panel;
+        private System.Windows.Forms.Panel Busiest_Day_Control_Panel;
+        private System.Windows.Forms.Label Slider_Value;
+        private System.Windows.Forms.TrackBar Slider_Control;
+        private System.Windows.Forms.DataGridView Data_Busy_Days;
+        private System.Windows.Forms.Label Busiest_Days_Button;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker DateTime_End_Busy;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker DateTime_Start_Busy;
+        private System.Windows.Forms.Label Select_Button;
     }
 }
 
