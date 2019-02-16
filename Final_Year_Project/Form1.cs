@@ -725,6 +725,7 @@ namespace Final_Year_Project
             Notification_Panel.Visible = false;
             Emoji_Panel.Visible = false;
             Facebook_Panel.Visible = false;
+            Busiest_Day_Panel.Visible = false;
             PictureBox_Back.Visible = false;
             Update_Event_Button.Visible = false;
             Remove_Event_Button.Visible = false;
@@ -1540,7 +1541,7 @@ namespace Final_Year_Project
                 location = TextBox_Location_Search.Text;
             }
 
-            database.Update_Event(Convert.ToInt32(TextBox_Event_ID.Text), TextBox_Name_Event.Text, TextBox_Description.Text, datetime, location, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
+            database.Update_Event(Convert.ToInt64(TextBox_Event_ID.Text), TextBox_Name_Event.Text, TextBox_Description.Text, datetime, location, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
             
             calendar = tableLayoutPanel;
             header = tableLayoutPanelCalendarHeader;
@@ -2599,7 +2600,7 @@ namespace Final_Year_Project
 
         private void Slider_Control_ValueChanged(object sender, EventArgs e)
         {
-            Slider_Value.Text = Convert.ToString("Find Days With More Than " + Slider_Control.Value + " Events:");
+            Slider_Value.Text = Convert.ToString("Find Days With " + Slider_Control.Value + " Events:");
 
             Data_Busy_Days.DataSource = database.Get_Busiest_Day(DateTime_Start_Busy.Value, DateTime_End_Busy.Value, Slider_Control.Value);
 
@@ -2608,10 +2609,10 @@ namespace Final_Year_Project
 
         private void Busiest_Days_Button_Click(object sender, EventArgs e)
         {
-            Slider_Control.Maximum = database.Get_Busiest_Max() - 1;
-            Slider_Control.Minimum = database.Get_Busiest_Min() - 1;
+            Slider_Control.Maximum = database.Get_Busiest_Max();
+            Slider_Control.Minimum = database.Get_Busiest_Min();
 
-            Slider_Value.Text = Convert.ToString("Find Days With More Than " + Slider_Control.Minimum + " Events:");
+            Slider_Value.Text = Convert.ToString("Find Days With " + Slider_Control.Minimum + " Events:");
 
             Data_Busy_Days.DataSource = database.Get_Busiest_Day(DateTime_Start_Busy.Value, DateTime_End_Busy.Value, Slider_Control.Value);
 
@@ -2892,11 +2893,11 @@ namespace Final_Year_Project
             connection.Close();
         }
 
-        public void Update_Event(int id, string name, string description, DateTime datetime, string locationName, string locationGeo, string emoji, int group)
+        public void Update_Event(Int64 id, string name, string description, DateTime datetime, string locationName, string locationGeo, string emoji, int group)
         {
             SqlCommand cmd = new SqlCommand("Update_Event", connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+            cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = id;
             cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
             cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
             cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
