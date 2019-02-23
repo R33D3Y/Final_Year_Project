@@ -539,12 +539,15 @@ namespace Final_Year_Project
 
             Set_Colours();
 
-            Dashboard_Panel.Visible = false;
             Event_Panel.Visible = false;
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
             Settings_Panel.Visible = false;
+            Notification_Panel.Visible = false;
+            Emoji_Panel.Visible = false;
+            Facebook_Panel.Visible = false;
+            Busiest_Day_Panel.Visible = false;
 
             PictureBox_Settings.Visible = false;
             PictureBox_Back.Visible = false;
@@ -2646,6 +2649,11 @@ namespace Final_Year_Project
             Data_Busy_Days.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Data_Busy_Days.Columns[8].Visible = false; // Geo
             Data_Busy_Days.Columns[9].Visible = false; // Count
+
+            foreach (DataGridViewRow row in Data_Busy_Days.Rows)
+            {
+                row.Cells[4].Value = database.Emoji((string)row.Cells[4].Value, false);
+            }
         }
 
         private void Select_Button_Click(object sender, EventArgs e)
