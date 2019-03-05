@@ -223,7 +223,6 @@
             this.TableLayoutPanel_Notifications = new System.Windows.Forms.TableLayoutPanel();
             this.Facebook_Panel = new System.Windows.Forms.Panel();
             this.Facebook_Control_Panel = new System.Windows.Forms.Panel();
-            this.Facebook_Browser = new Gecko.GeckoWebBrowser();
             this.Busiest_Day_Panel = new System.Windows.Forms.Panel();
             this.Busiest_Day_Control_Panel = new System.Windows.Forms.Panel();
             this.Select_Button = new System.Windows.Forms.Label();
@@ -234,6 +233,7 @@
             this.Slider_Value = new System.Windows.Forms.Label();
             this.Slider_Control = new System.Windows.Forms.TrackBar();
             this.Data_Busy_Days = new System.Windows.Forms.DataGridView();
+            this.Facebook_Browser = new Gecko.GeckoWebBrowser();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -2796,15 +2796,6 @@
             this.Facebook_Control_Panel.Size = new System.Drawing.Size(593, 590);
             this.Facebook_Control_Panel.TabIndex = 20;
             // 
-            // Facebook_Browser
-            // 
-            this.Facebook_Browser.Location = new System.Drawing.Point(3, 3);
-            this.Facebook_Browser.Name = "Facebook_Browser";
-            this.Facebook_Browser.Size = new System.Drawing.Size(587, 584);
-            this.Facebook_Browser.TabIndex = 0;
-            this.Facebook_Browser.UseHttpActivityObserver = false;
-            this.Facebook_Browser.Navigated += new System.EventHandler<Gecko.GeckoNavigatedEventArgs>(this.Facebook_Browser_Navigated_1);
-            // 
             // Busiest_Day_Panel
             // 
             this.Busiest_Day_Panel.BackColor = System.Drawing.Color.CornflowerBlue;
@@ -2970,6 +2961,16 @@
             this.Data_Busy_Days.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Data_Busy_Days.Size = new System.Drawing.Size(653, 222);
             this.Data_Busy_Days.TabIndex = 23;
+            // 
+            // Facebook_Browser
+            // 
+            this.Facebook_Browser.FrameEventsPropagateToMainWindow = false;
+            this.Facebook_Browser.Location = new System.Drawing.Point(4, 4);
+            this.Facebook_Browser.Name = "Facebook_Browser";
+            this.Facebook_Browser.Size = new System.Drawing.Size(586, 583);
+            this.Facebook_Browser.TabIndex = 0;
+            this.Facebook_Browser.UseHttpActivityObserver = false;
+            this.Facebook_Browser.Navigated += new System.EventHandler<Gecko.GeckoNavigatedEventArgs>(this.Facebook_Browser_Navigated);
             // 
             // Form1
             // 

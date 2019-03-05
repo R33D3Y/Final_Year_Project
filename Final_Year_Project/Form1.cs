@@ -43,6 +43,7 @@ namespace Final_Year_Project
         public Form1()
         {
             InitializeComponent();
+            Xpcom.Initialize("Firefox");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -2621,7 +2622,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Facebook_Browser_Navigated_1(object sender, GeckoNavigatedEventArgs e)
+        private void Facebook_Browser_Navigated(object sender, GeckoNavigatedEventArgs e)
         {
             if (Facebook_Browser.Url.ToString().Contains("https://www.facebook.com/connect/login_success.html"))
             {
@@ -2664,6 +2665,7 @@ namespace Final_Year_Project
 
                 PictureBox_Back.Visible = false;
                 Dashboard_Panel.Visible = true;
+                Facebook_Browser.Visible = true;
                 Facebook_Panel.Visible = false;
                 PictureBox_Logout.Visible = true;
                 PictureBox_Settings.Visible = true;
