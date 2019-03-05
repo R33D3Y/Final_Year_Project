@@ -1406,6 +1406,7 @@
             this.Data_Groups.AllowUserToResizeRows = false;
             this.Data_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Data_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Data_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Data_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1583,6 +1584,7 @@
             this.Data_Display_Groups.AllowUserToResizeRows = false;
             this.Data_Display_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Data_Display_Groups.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Display_Groups.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Data_Display_Groups.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Data_Display_Groups.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1715,6 +1717,7 @@
             this.Data_Groups_Friends.AllowUserToResizeRows = false;
             this.Data_Groups_Friends.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Data_Groups_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Groups_Friends.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Data_Groups_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Data_Groups_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -2114,6 +2117,7 @@
             this.Data_Friends.AllowUserToResizeRows = false;
             this.Data_Friends.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Data_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Data_Friends.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Data_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Data_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -2200,6 +2204,7 @@
             this.Search_Friends.AllowUserToResizeRows = false;
             this.Search_Friends.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.Search_Friends.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.Search_Friends.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Search_Friends.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.Search_Friends.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -2993,6 +2998,7 @@
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
             this.Controls.Add(this.Friends_Panel);
+            this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Facebook_Panel);
             this.Controls.Add(this.Settings_Panel);
             this.Controls.Add(this.Dashboard_Panel);
@@ -3001,7 +3007,6 @@
             this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Signup_Panel);
-            this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Emoji_Panel);
             this.Controls.Add(this.Notification_Panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
