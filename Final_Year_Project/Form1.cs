@@ -1,4 +1,6 @@
-﻿using ConsoleApplication;
+﻿// Dependencies
+using ConsoleApplication;
+using Gecko;
 using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
@@ -28,15 +30,15 @@ namespace Final_Year_Project
 {
     public partial class Form1 : Form
     {
-        private Database database;
+        private Database database; // Object for interacting with the database
         
-        private DateTime dt;
-        private List<int> visibleGroups = new List<int>();
-        private List<Emoji> emojis;
-        private List<Notification> notifications = new List<Notification>();
+        private DateTime dt; // Current datetime of the calendar
+        private List<int> visibleGroups = new List<int>(); // Groups selected as visible by the user
+        private List<Emoji> emojis; // List of emojis for the user to choose from
+        private List<Notification> notifications = new List<Notification>(); // List of current notifications for the user
 
-        private Color lightColour = Color.CornflowerBlue;
-        private Color darkColour = Color.RoyalBlue;
+        private Color lightColour = Color.CornflowerBlue; // Default primary colour
+        private Color darkColour = Color.RoyalBlue; // Default secondary colour
 
         public Form1()
         {
@@ -45,7 +47,7 @@ namespace Final_Year_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (CheckForInternetConnection())
+            if (CheckForInternetConnection()) // Checks for internet connection
             {
                 PictureBox_Internet.Visible = false;
                 Label_Internet.Visible = false;
@@ -61,7 +63,7 @@ namespace Final_Year_Project
 
             Database db = new Database();
 
-            if (db.Test_Connection())
+            if (db.Test_Connection()) // Checks for connection to database
             {
                 PictureBox_Internet.Visible = false;
                 Label_Server.Visible = false;
@@ -75,7 +77,7 @@ namespace Final_Year_Project
                 SignUp_Button.Enabled = false;
             }
 
-            Set_Colours();
+            Set_Colours(); // Sets programs colours all to default
         }
 
         private bool CheckForInternetConnection()
@@ -83,7 +85,7 @@ namespace Final_Year_Project
             try
             {
                 using (var client = new WebClient())
-                using (client.OpenRead("http://clients3.google.com/generate_204"))
+                using (client.OpenRead("http://clients3.google.com/generate_204")) // Attempts to access internet page, failure dispays lack of connection
                 {
                     return true;
                 }
@@ -99,7 +101,7 @@ namespace Final_Year_Project
 
         private void Set_Colours()
         {
-            Color temp = Color.Black;
+            Color temp = Color.Black; // Temp colour is used when the contrast would cause a lack of readability
 
             // Form Panel
             Form_Button_Panel.BackColor = darkColour;
@@ -120,7 +122,7 @@ namespace Final_Year_Project
             Groups_Data.DefaultCellStyle.BackColor = darkColour;
             
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 Dashboard_Add_Event.ForeColor = temp;
                 Dashboard_Add_Group.ForeColor = temp;
@@ -150,7 +152,7 @@ namespace Final_Year_Project
             Data_Location_Lookup.BackgroundColor = darkColour;
             Data_Location_Lookup.DefaultCellStyle.BackColor = darkColour;
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 Event_Button_Emoji.ForeColor = temp;
                 //Search_Location_Button.ForeColor = temp;
@@ -184,7 +186,7 @@ namespace Final_Year_Project
             Data_Friends.BackgroundColor = darkColour;
             Data_Friends.DefaultCellStyle.BackColor = darkColour;
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 Search_Username_Button.ForeColor = temp;
                 Add_Friend_Button.ForeColor = temp;
@@ -218,7 +220,7 @@ namespace Final_Year_Project
             Data_Groups_Friends.BackgroundColor = darkColour;
             Data_Groups_Friends.DefaultCellStyle.BackColor = darkColour;
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 ColourPicker_Button.ForeColor = temp;
                 Add_Group_Button.ForeColor = temp;
@@ -252,7 +254,7 @@ namespace Final_Year_Project
             Search_Data.BackgroundColor = darkColour;
             Search_Data.DefaultCellStyle.BackColor = darkColour;
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 Search_Panel_Button.ForeColor = temp;
                 Search_Add_Event_Button.ForeColor = temp;
@@ -278,7 +280,7 @@ namespace Final_Year_Project
 
             Settings_Dark_Panel.BackColor = darkColour;
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 Settings_Light_Button.ForeColor = temp;
                 Settings_Dark_Button.ForeColor = temp;
@@ -319,7 +321,7 @@ namespace Final_Year_Project
             Data_Busy_Days.BackgroundColor = darkColour;
             Data_Busy_Days.DefaultCellStyle.BackColor = darkColour;
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 Select_Button.ForeColor = temp;
                 Data_Busy_Days.DefaultCellStyle.SelectionForeColor = temp;
@@ -332,25 +334,25 @@ namespace Final_Year_Project
             }
         }
 
-        private void Calendar_Back_Click(object sender, EventArgs e)
+        private void Calendar_Back_Click(object sender, EventArgs e) // Sends calendar back 1 month
         {
             dt = dt.AddMonths(-1);
             SetData(database.GetData(dt), dt);
         }
 
-        private void Calendar_Forward_Click(object sender, EventArgs e)
+        private void Calendar_Forward_Click(object sender, EventArgs e) // Sends calendar forward 1 month
         {
             dt = dt.AddMonths(1);
             SetData(database.GetData(dt), dt);
         }
 
-        private void PictureBox_MouseHover(object sender, EventArgs e)
+        private void PictureBox_MouseHover(object sender, EventArgs e) // Changes back colour to display mouse hover
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackColor = Color.FromArgb(84, 84, 84);
         }
 
-        private void PictureBox_MouseLeave(object sender, EventArgs e)
+        private void PictureBox_MouseLeave(object sender, EventArgs e) // Returns back color to default to display mouse leave
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackColor = Color.FromArgb(64, 64, 64);
@@ -363,7 +365,7 @@ namespace Final_Year_Project
 
         private void SignUp_Button_Click(object sender, EventArgs e)
         {
-            database = new Database();
+            database = new Database(); // New empty data object to check for exsisting usernames and emails
 
             Login_Panel.Visible = false;
             Signup_Panel.Visible = true;
@@ -373,34 +375,32 @@ namespace Final_Year_Project
 
         private void Login()
         {
-            database = new Database(Textbox_Username.Text, GetHashString(Textbox_Password.Text));
+            database = new Database(Textbox_Username.Text, GetHashString(Textbox_Password.Text)); // Logs in using a password hash and username
 
-            if (database.GetUser() != null)
+            if (database.GetUser() != null) // Success
             {
                 PictureBox_Username_Cross.Visible = false;
                 PictureBox_Password_Cross.Visible = false;
                 
                 DateTime tempDt = DateTime.Now;
-                dt = new DateTime(tempDt.Year, tempDt.Month, 1);
+                dt = new DateTime(tempDt.Year, tempDt.Month, 1); // Sets calendar to current date
 
-                Setup_Emojis();
+                Setup_Emojis(); // Gets emojis and displays them
 
                 calendar = tableLayoutPanel;
                 header = tableLayoutPanelCalendarHeader;
                 Setup_Dashboard_Groups(false);
-                SetData(database.GetData(dt), dt);
+                SetData(database.GetData(dt), dt); // Gets user events and displays on calendar
 
-                List<Color> temp = database.Get_User_Colours();
+                List<Color> temp = database.Get_User_Colours(); // Get user defined colours
                 lightColour = temp[0];
                 darkColour = temp[1];
 
-                Set_Colours();
+                Set_Colours(); // Sets user defined colours
 
-                if (database.Get_Facebook_Link())
+                if (database.Get_Facebook_Link()) // Check for facebook link
                 {
-                    Uri uri = new Uri("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events");
-
-                    Facebook_Browser.Url = uri;
+                    Facebook_Browser.Navigate("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events"); // Requests user to re-login
 
                     Facebook_Panel.Visible = true;
                     Login_Panel.Visible = false;
@@ -418,20 +418,20 @@ namespace Final_Year_Project
                 }
             }
 
-            else
+            else // Failure
             {
                 PictureBox_Username_Cross.Visible = true;
                 PictureBox_Password_Cross.Visible = true;
             }
         }
 
-        public static byte[] GetHash(string inputString)
+        public static byte[] GetHash(string inputString) // Hashing algorithm
         {
             HashAlgorithm algorithm = SHA256.Create();
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
         }
 
-        public static string GetHashString(string inputString)
+        public static string GetHashString(string inputString) // Hash call method
         {
             StringBuilder sb = new StringBuilder();
             foreach (byte b in GetHash(inputString))
@@ -440,13 +440,13 @@ namespace Final_Year_Project
             return sb.ToString();
         }
 
-        private void Label_MouseHover(object sender, EventArgs e)
+        private void Label_MouseHover(object sender, EventArgs e) // Mouse hover for buttons
         {
             Label l = (Label)sender;
             l.BackColor = Color.Silver;
         }
 
-        private void Label_MouseLeave(object sender, EventArgs e)
+        private void Label_MouseLeave(object sender, EventArgs e) // Mouse leave for buttons
         {
             Label l = (Label)sender;
             l.BackColor = Color.White;
@@ -454,7 +454,7 @@ namespace Final_Year_Project
 
         private bool UsePasswordMask = true;
 
-        private void Lock_Click(object sender, EventArgs e)
+        private void Lock_Click(object sender, EventArgs e) // Toggles password visible
         {
             if (UsePasswordMask)
             {
@@ -469,21 +469,21 @@ namespace Final_Year_Project
             }
         }
 
-        private void PictureBox_Close_Click(object sender, EventArgs e)
+        private void PictureBox_Close_Click(object sender, EventArgs e) // Exits application
         {
             Application.Exit();
         }
 
-        private void PictureBox_Minimise_Click(object sender, EventArgs e)
+        private void PictureBox_Minimise_Click(object sender, EventArgs e) // Minimise application
         {
             WindowState = FormWindowState.Minimized;
         }
 
-        private void PictureBox_Form_MouseHover(object sender, EventArgs e)
+        private void PictureBox_Form_MouseHover(object sender, EventArgs e) // Main form toolbox mouse hover
         {
             PictureBox pb = (PictureBox)sender;
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 pb.BackColor = Color.Black;
             }
@@ -494,17 +494,17 @@ namespace Final_Year_Project
             }
         }
 
-        private void PictureBox_Form_MouseLeave(object sender, EventArgs e)
+        private void PictureBox_Form_MouseLeave(object sender, EventArgs e) // Main form toolbox mouse leave
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackColor = darkColour;
         }
 
-        private void Emoji_MouseHover(object sender, EventArgs e)
+        private void Emoji_MouseHover(object sender, EventArgs e) // Emoji panel mouse hover
         {
             Label l = (Label)sender;
 
-            if (lightColour.GetBrightness() > 0.7)
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
             {
                 l.BackColor = Color.Black;
             }
@@ -515,7 +515,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Emoji_MouseLeave(object sender, EventArgs e)
+        private void Emoji_MouseLeave(object sender, EventArgs e) // Emoji panel mouse leave
         {
             Label l = (Label)sender;
             l.BackColor = darkColour;
@@ -523,23 +523,23 @@ namespace Final_Year_Project
 
         private void PictureBox_Logout_Click(object sender, EventArgs e)
         {
-            if (database != null)
+            if (database != null) // Set database to null
             {
                 Textbox_Username.Text = "Username";
                 Textbox_Password.Text = "Password";
                 database = null;
             }
 
-            visibleGroups = new List<int>();
+            visibleGroups = new List<int>(); // Reset visible groups
+            
+            ResetForm(); // Clear form of all interactions
 
-            ResetForm();
-
-            lightColour = Color.CornflowerBlue;
+            lightColour = Color.CornflowerBlue; // Reset default colours
             darkColour = Color.RoyalBlue;
 
-            Set_Colours();
+            Set_Colours(); // Apply colours
 
-            Event_Panel.Visible = false;
+            Event_Panel.Visible = false; // Hide all screens
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
@@ -548,16 +548,17 @@ namespace Final_Year_Project
             Emoji_Panel.Visible = false;
             Facebook_Panel.Visible = false;
             Busiest_Day_Panel.Visible = false;
+            Dashboard_Panel.Visible = false;
 
             PictureBox_Settings.Visible = false;
             PictureBox_Back.Visible = false;
             PictureBox_Logout.Visible = false;
             PictureBox_Notification.Visible = false;
 
-            Login_Panel.Visible = true;
+            Login_Panel.Visible = true; // Display login screen
         }
 
-        private void Setup_Emojis()
+        private void Setup_Emojis() // Gets emojis from file and places into table
         {
             TextReader tr = new StreamReader(@"Emojis.txt", Encoding.Unicode, true);
             emojis = new List<Emoji>();
@@ -569,9 +570,9 @@ namespace Final_Year_Project
                 emojis.Add(new Emoji(split[0], split[1]));
             }
 
-            database.SetEmojis(emojis);
+            database.SetEmojis(emojis); // Toggles emojis from to text icon
 
-            Table_Layout_Panel_Emoji.Controls.Clear();
+            Table_Layout_Panel_Emoji.Controls.Clear(); // Empties table
 
             foreach (Emoji emoji in emojis)
             {
@@ -591,11 +592,11 @@ namespace Final_Year_Project
                     Emoji_MouseLeave(se, ev);
                 };
 
-                Table_Layout_Panel_Emoji.Controls.Add(label);
+                Table_Layout_Panel_Emoji.Controls.Add(label); // Adds to table with event handlers
             }
         }
 
-        private void Setup_Groups()
+        private void Setup_Groups() // Gets groups to display or hide
         {
             List<CalendarGroup> cg = database.GetGroups();
 
@@ -607,9 +608,9 @@ namespace Final_Year_Project
             }
         }
 
-        private void Add_Event_Button_Click(object sender, EventArgs e)
+        private void Add_Event_Button_Click(object sender, EventArgs e) // Adds new event to calendar
         {
-            if (!SQLSafe(TextBox_Name_Event.Text) || TextBox_Name_Event.Text.Equals(""))
+            if (!SQLSafe(TextBox_Name_Event.Text) || TextBox_Name_Event.Text.Equals("")) // Checks inputs for unsafe characters
             {
                 Event_Cross_Name.Visible = true;
             }
@@ -665,14 +666,14 @@ namespace Final_Year_Project
                     location = row.Cells[0].Value.ToString();
                 }
 
-                database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, location, TextBox_Location.Text, Event_TextBox_Emoji.Text, group);
+                database.Add_Event(TextBox_Name_Event.Text, TextBox_Description.Text, datetime, location, TextBox_Location.Text, Event_TextBox_Emoji.Text, group); // Gets all formatted data and inputs correctly into database
 
                 DateTime tempDt = DateTime.Now;
                 dt = new DateTime(tempDt.Year, tempDt.Month, 1);
 
                 calendar = tableLayoutPanel;
                 header = tableLayoutPanelCalendarHeader;
-                SetData(database.GetData(dt), dt);
+                SetData(database.GetData(dt), dt); // Resets calendar to display new event if in current month
 
                 Dashboard_Panel.Visible = true;
                 Event_Panel.Visible = false;
@@ -680,7 +681,7 @@ namespace Final_Year_Project
             }
         }
 
-        private bool SQLSafe(string str)
+        private bool SQLSafe(string str) // Checks for SQL not safe characters
         {
             string[] illegalCharacters = { "'", ";", ",", "@" };
 
@@ -695,7 +696,7 @@ namespace Final_Year_Project
             return true;
         }
 
-        private void DatePicker_DateSelected(object sender, DateRangeEventArgs e)
+        private void DatePicker_DateSelected(object sender, DateRangeEventArgs e) // Sets calendar to date selected on date picker
         {
             DateTime tempDt = e.Start;
             dt = new DateTime(tempDt.Year, tempDt.Month, 1);
@@ -705,7 +706,7 @@ namespace Final_Year_Project
             SetData(database.GetData(dt), dt);
         }
 
-        private void Dashboard_Add_Event_Click(object sender, EventArgs e)
+        private void Dashboard_Add_Event_Click(object sender, EventArgs e) // Takes user to add event screen
         {
             ResetForm();
 
@@ -714,7 +715,7 @@ namespace Final_Year_Project
             PictureBox_Back.Visible = true;
         }
 
-        private void PictureBox_Back_Click(object sender, EventArgs e)
+        private void PictureBox_Back_Click(object sender, EventArgs e) // Returns user to dashboard and restes all inputs
         {
             ResetForm();
 
@@ -734,7 +735,7 @@ namespace Final_Year_Project
             Remove_Event_Button.Visible = false;
         }
 
-        private void ColourPicker_Click(object sender, EventArgs e)
+        private void ColourPicker_Click(object sender, EventArgs e) // Sets chosen colour
         {
             ColorDialog cd = new ColorDialog();
             cd.ShowDialog();
@@ -742,7 +743,7 @@ namespace Final_Year_Project
             Colour_Panel.BackColor = cd.Color;
         }
 
-        private void Dashboard_Add_Group_Click(object sender, EventArgs e)
+        private void Dashboard_Add_Group_Click(object sender, EventArgs e) // Takes user to groups screen
         {
             ResetForm();
 
@@ -760,9 +761,9 @@ namespace Final_Year_Project
             PictureBox_Back.Visible = true;
         }
 
-        private void Add_Group_Button_Click(object sender, EventArgs e)
+        private void Add_Group_Button_Click(object sender, EventArgs e) // Adds group to the users profile
         {
-            if (TextBox_Name_Group.Text.Equals("") || !SQLSafe(TextBox_Name_Group.Text))
+            if (TextBox_Name_Group.Text.Equals("") || !SQLSafe(TextBox_Name_Group.Text)) // Checks for SQL non-accepted characters
             {
                 Group_Cross_Name.Visible = true;
             }
@@ -771,7 +772,7 @@ namespace Final_Year_Project
             {
                 Group_Cross_Name.Visible = false;
 
-                int Group_ID = database.Add_Group(TextBox_Name_Group.Text, Colour_Panel.BackColor.ToArgb());
+                int Group_ID = database.Add_Group(TextBox_Name_Group.Text, Colour_Panel.BackColor.ToArgb()); // Creates group
 
                 foreach (DataGridViewRow row in Data_Groups.Rows)
                 {
@@ -779,14 +780,14 @@ namespace Final_Year_Project
                     {
                         int User_ID = (int)row.Cells[1].Value;
 
-                        database.Add_Friend_To_Group(User_ID, Group_ID);
+                        database.Add_Friend_To_Group(User_ID, Group_ID); // Adds other users to new group
                     }
                 }
 
                 ResetForm();
             }
 
-            List<CalendarGroup> g = database.GetGroups();
+            List<CalendarGroup> g = database.GetGroups(); // Gets all groups that user is in
 
             Data_Display_Groups.Rows.Clear();
 
@@ -796,29 +797,11 @@ namespace Final_Year_Project
             }
         }
 
-        private void Search_Location_Click(object sender, EventArgs e)
-        {
-            GMap_Control.SetPositionByKeywords(TextBox_Location_Search.Text);
-            PointLatLng latLng = GMap_Control.Position;
-            double lat = latLng.Lat;
-            double lng = latLng.Lng;
-
-            GMap_Control.Overlays.Clear();
-
-            GMapOverlay markers = new GMapOverlay("markers");
-            GMap_Control.Overlays.Add(markers);
-
-            GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
-            markers.Markers.Add(marker);
-
-            TextBox_Location.Text = lat + "," + lng;
-        }
-
-        private void GMap_Control_MouseClick(object sender, MouseEventArgs e)
+        private void GMap_Control_MouseClick(object sender, MouseEventArgs e) // Selects location
         {
             if (e.Button == MouseButtons.Left)
             {
-                double lat = GMap_Control.FromLocalToLatLng(e.X, e.Y).Lat;
+                double lat = GMap_Control.FromLocalToLatLng(e.X, e.Y).Lat; // Gets latitude and longtitude
                 double lng = GMap_Control.FromLocalToLatLng(e.X, e.Y).Lng;
 
                 GMap_Control.Overlays.Clear();
@@ -827,7 +810,7 @@ namespace Final_Year_Project
                 GMap_Control.Overlays.Add(markers);
 
                 GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
-                markers.Markers.Add(marker);
+                markers.Markers.Add(marker); // Adds marker to map to display location selected
 
                 TextBox_Location.Text = lat + "," + lng;
 
@@ -837,7 +820,7 @@ namespace Final_Year_Project
 
         private bool maptype = false;
 
-        private void Map_Type_Click(object sender, EventArgs e)
+        private void Map_Type_Click(object sender, EventArgs e) // Toggles map type between map and satellite view
         {
             if (maptype)
             {
@@ -856,20 +839,21 @@ namespace Final_Year_Project
             }
         }
 
-        private void Search_Button_Click(object sender, EventArgs e)
+        private void Search_Button_Click(object sender, EventArgs e) // Searchs events for user defined text
         {
             Search(TextBox_Search.Text);
         }
 
         private void Search(string text)
         {
-            Search_Data.DataSource = database.Get_Search_Results(text);
+            Search_Data.DataSource = database.Get_Search_Results(text); // Search database
             
             foreach (DataGridViewRow row in Search_Data.Rows)
             {
-                row.Cells[4].Value = database.Emoji((string)row.Cells[4].Value, false);
+                row.Cells[4].Value = database.Emoji((string)row.Cells[4].Value, false); // Sets Emojis to icons
             }
 
+            // Spreadsheet format
             Search_Data.Columns[0].Visible = false; // Event ID
             Search_Data.Columns[2].Visible = false; // Event Description
             Search_Data.Columns[5].Visible = false; // Group ID
@@ -886,19 +870,13 @@ namespace Final_Year_Project
             Search_Data.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        private void Search_Data_Click(object sender, EventArgs e)
+        private void Search_Data_Click(object sender, EventArgs e) // Fired when the use clicks on a row from the search data
         {
             Search_Event_Update.Visible = true;
 
             foreach (DataGridViewRow row in Search_Data.SelectedRows)
             {
-                //int Event_ID = (int)row.Cells[0].Value;
-                //string Event_Name = row.Cells[1].Value.ToString();
                 string Event_Description = row.Cells[2].Value.ToString();
-                //DateTime Event_DateTime = (DateTime)row.Cells[3].Value;
-                //string Event_Emoji = database.Emoji(row.Cells[4].Value.ToString(), false);
-                //int Group_ID = (int)row.Cells[5].Value;
-                //string Group_Name = row.Cells[6].Value.ToString();
 
                 if (!row.Cells[8].Value.ToString().Equals(","))
                 {
@@ -917,7 +895,7 @@ namespace Final_Year_Project
                     GMapOverlay markers = new GMapOverlay("markers");
                     GMap_Control_Search.Overlays.Add(markers);
 
-                    GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot);
+                    GMapMarker marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red_dot); // Sets map to display location of event
                     markers.Markers.Add(marker);
                 }
 
@@ -937,7 +915,7 @@ namespace Final_Year_Project
 
         private bool maptype_search = false;
 
-        private void Search_Switch_Map_Button_Click(object sender, EventArgs e)
+        private void Search_Switch_Map_Button_Click(object sender, EventArgs e) // Toggles map type
         {
             if (maptype_search)
             {
@@ -956,7 +934,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Dashboard_Search_Button_Click(object sender, EventArgs e)
+        private void Dashboard_Search_Button_Click(object sender, EventArgs e) // Searches for events from the dashboard
         {
             string text = Dashboard_Search.Text;
 
@@ -973,13 +951,13 @@ namespace Final_Year_Project
         private double userLatitude = 0;
         private double userLongitude = 0;
 
-        private void ResetForm()
+        private void ResetForm() // Resets the program fields/components
         {
-            if (findLocation)
+            if (findLocation) // Checks to see if user has location enabled
             {
                 try
                 {
-                    Stopwatch sw = new Stopwatch();
+                    Stopwatch sw = new Stopwatch(); // Prevents system timing out and crashing if location service is turned off
                     sw.Start();
                     GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
                     GeoCoordinate coord = watcher.Position.Location;
@@ -1078,7 +1056,7 @@ namespace Final_Year_Project
             Data_Busy_Days.DataSource = null;
             Data_Busy_Days.Refresh();
 
-            Facebook_Browser.Url = null;
+            Facebook_Browser.Navigate("www.Facebook.com");
         }
 
         // Calendar Class
@@ -1088,7 +1066,7 @@ namespace Final_Year_Project
         private List<List<CalendarEvent>> data;
         private DateTime startDate;
 
-        public void Render()
+        public void Render() // This method creates the look and actions made by the main claendaer section
         {
             string[] day_names = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
             string[] days = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st" };
@@ -1412,7 +1390,7 @@ namespace Final_Year_Project
             calendar.Visible = true;
         }
 
-        private void RenderEmptyCells(TableLayoutPanel t, int x)
+        private void RenderEmptyCells(TableLayoutPanel t, int x) // Renders empty cells for days with no events
         {
             for (int i = 0; i < x; i++)
             {
@@ -1421,24 +1399,7 @@ namespace Final_Year_Project
             }
         }
 
-        public CalendarEvent GetEvent(DateTime d, string n)
-        {
-            for (int i = 0; i < data[d.Day - 1].Count; i++)
-            {
-                if (data[d.Day - 1][i].GetName().Equals(n))
-                {
-                    //Console.WriteLine("Success: " + data[d.Day - 1][i].GetDateTime());
-
-                    return data[d.Day - 1][i];
-                }
-            }
-
-            //Console.WriteLine("Failed");
-
-            return null;
-        }
-
-        public void SetData(List<List<CalendarEvent>> d, DateTime dt)
+        public void SetData(List<List<CalendarEvent>> d, DateTime dt) // Sets the data that the calendar section looks at to display events
         {
             data = d;
             startDate = dt;
@@ -1446,19 +1407,7 @@ namespace Final_Year_Project
             Render();
         }
 
-        public List<List<CalendarEvent>> GetData()
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                data.RemoveAt(data.Count - 1);
-            }
-
-            //Console.WriteLine(data);
-
-            return data;
-        }
-
-        public void PanelClickEvent(object s, EventArgs e)
+        public void PanelClickEvent(object s, EventArgs e) // Event fired when a panel within the calendar section is clicked
         {
             TableLayoutPanel temp = (TableLayoutPanel)s;
             TableLayoutPanel parent = (TableLayoutPanel)temp.Parent;
@@ -1517,7 +1466,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Update_Event_Button_Click(object sender, EventArgs e)
+        private void Update_Event_Button_Click(object sender, EventArgs e) // Sets the current data input by the user over the top of the original event
         {
             DateTime datetime = new DateTime(DateTimePicker_Date.Value.Year, DateTimePicker_Date.Value.Month, DateTimePicker_Date.Value.Day, DateTimePicker_Time.Value.Hour, DateTimePicker_Time.Value.Minute, DateTimePicker_Time.Value.Second);
 
@@ -1557,7 +1506,7 @@ namespace Final_Year_Project
             Event_Panel.Visible = false;
         }
 
-        private void Remove_Event_Button_Click(object sender, EventArgs e)
+        private void Remove_Event_Button_Click(object sender, EventArgs e) // Deletes current event from the database
         {
             database.Delete_Event(Convert.ToInt32(TextBox_Event_ID.Text));
 
@@ -1572,7 +1521,7 @@ namespace Final_Year_Project
             Event_Panel.Visible = false;
         }
 
-        private void Search_Event_Update_Click(object sender, EventArgs e)
+        private void Search_Event_Update_Click(object sender, EventArgs e) // Takes the user to the update event page along with all the correct data
         {
             foreach (DataGridViewRow row in Search_Data.SelectedRows)
             {
@@ -1625,7 +1574,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Search_Username_Button_Click(object sender, EventArgs e)
+        private void Search_Username_Button_Click(object sender, EventArgs e) // Looks up the username
         {
             Search_Friends.DataSource = database.Get_Friend_Results(TextBox_Search_Username.Text);
 
@@ -1636,7 +1585,7 @@ namespace Final_Year_Project
             Search_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        private void Search_Friends_Click(object sender, EventArgs e)
+        private void Search_Friends_Click(object sender, EventArgs e) // Changes the button to associate with the row clicked on by the user
         {
             foreach (DataGridViewRow row in Search_Friends.SelectedRows)
             {
@@ -1648,7 +1597,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Add_Friend_Button_Click(object sender, EventArgs e)
+        private void Add_Friend_Button_Click(object sender, EventArgs e) // Sends the user specified a friend request
         {
             foreach (DataGridViewRow row in Search_Friends.SelectedRows)
             {
@@ -1696,7 +1645,7 @@ namespace Final_Year_Project
             Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        private void TextBox_Friends_Nickname_TextChanged(object sender, EventArgs e)
+        private void TextBox_Friends_Nickname_TextChanged(object sender, EventArgs e) // Changes the button to use the nickname specified
         {
             if (Search_Friends.DataSource != null)
             {
@@ -1704,7 +1653,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Setup_Friends()
+        private void Setup_Friends() // Displays all the users friend from the database
         {
             List<Friend> f = database.GetFriends();
 
@@ -1716,7 +1665,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Setup_Dashboard_Groups(bool render)
+        private void Setup_Dashboard_Groups(bool render) // Gets all the groups that the user has and displays on the dashboard
         {
             List<int> temp = database.GetGroupIDs();
 
@@ -1766,7 +1715,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Group_Data_Click(object sender, EventArgs e)
+        private void Group_Data_Click(object sender, EventArgs e) // Toggles which groups are visible
         {
             foreach (DataGridViewRow row in Groups_Data.SelectedRows)
             {
@@ -1790,7 +1739,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Data_Groups_Click(object sender, EventArgs e)
+        private void Data_Groups_Click(object sender, EventArgs e) // Toggles the check on groups
         {
             foreach (DataGridViewRow row in Data_Groups.SelectedRows)
             {
@@ -1806,7 +1755,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Find_Friends_Button_Click(object sender, EventArgs e)
+        private void Find_Friends_Button_Click(object sender, EventArgs e) // Displays friend screen
         {
             PictureBox_Back.Visible = true;
             Dashboard_Panel.Visible = false;
@@ -1822,7 +1771,7 @@ namespace Final_Year_Project
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private void PictureBox_Drag_MouseDown(object sender, MouseEventArgs e)
+        private void PictureBox_Drag_MouseDown(object sender, MouseEventArgs e) // Allows the user to drag the program around their display
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -1831,7 +1780,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Settings_Light_Click(object sender, EventArgs e)
+        private void Settings_Light_Click(object sender, EventArgs e) // Sets the primary colour
         {
             ColorDialog cd = new ColorDialog();
             cd.ShowDialog();
@@ -1839,7 +1788,7 @@ namespace Final_Year_Project
             Settings_Light_Panel.BackColor = cd.Color;
         }
 
-        private void Settings_Dark_Button_Click(object sender, EventArgs e)
+        private void Settings_Dark_Button_Click(object sender, EventArgs e) // Sets the secondary colour
         {
             ColorDialog cd = new ColorDialog();
             cd.ShowDialog();
@@ -1847,7 +1796,7 @@ namespace Final_Year_Project
             Settings_Dark_Panel.BackColor = cd.Color;
         }
 
-        private void Settings_Commit_Click(object sender, EventArgs e)
+        private void Settings_Commit_Click(object sender, EventArgs e) // Sets both colours in the data and then applies to program
         {
             lightColour = Settings_Light_Panel.BackColor;
             darkColour = Settings_Dark_Panel.BackColor;
@@ -1857,17 +1806,20 @@ namespace Final_Year_Project
             database.Update_User_Colours(lightColour, darkColour);
         }
 
-        private void PictureBox_Settings_Click(object sender, EventArgs e)
+        private void PictureBox_Settings_Click(object sender, EventArgs e) // Changes screen to settings
         {
-            Dashboard_Panel.Visible = false;
             Event_Panel.Visible = false;
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
             Friends_Panel.Visible = false;
+            Notification_Panel.Visible = false;
             Emoji_Panel.Visible = false;
-            Settings_Panel.Visible = true;
+            Facebook_Panel.Visible = false;
+            Busiest_Day_Panel.Visible = false;
+            Dashboard_Panel.Visible = false;
 
             PictureBox_Back.Visible = true;
+            Settings_Panel.Visible = true;
 
             Update_Event_Button.Visible = false;
             Remove_Event_Button.Visible = false;
@@ -1878,7 +1830,7 @@ namespace Final_Year_Project
         private bool goodPassword = false;
         private bool goodPasswordRetype = false;
 
-        private void Signup_TextBox_Username_TextChanged(object sender, EventArgs e)
+        private void Signup_TextBox_Username_TextChanged(object sender, EventArgs e) // Checks the entered username if is SQL safe and not already in use
         {
             if (!database.Username_Lookup(Signup_TextBox_Username.Text) && Signup_TextBox_Username.Text.Length > 0 && SQLSafe(Signup_TextBox_Username.Text))
             {
@@ -1898,7 +1850,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Signup_TextBox_Email_TextChanged(object sender, EventArgs e)
+        private void Signup_TextBox_Email_TextChanged(object sender, EventArgs e) // Checks the entered email if is SQL safe and not already in use
         {
             if (!database.Email_Lookup(Signup_TextBox_Email.Text) && Signup_TextBox_Email.Text.Contains("@") && Signup_TextBox_Email.Text.Contains("."))
             {
@@ -1918,7 +1870,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Signup_TextBox_Password_TextChanged(object sender, EventArgs e)
+        private void Signup_TextBox_Password_TextChanged(object sender, EventArgs e) // Checks the entered password if is SQL safe
         {
             if (Signup_TextBox_Password.Text.Length > 6)
             {
@@ -1938,7 +1890,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Signup_TextBox_Password_Retype_TextChanged(object sender, EventArgs e)
+        private void Signup_TextBox_Password_Retype_TextChanged(object sender, EventArgs e) // Checks the re-typed password and password are the same
         {
             if (Signup_TextBox_Password.Text.Equals(Signup_TextBox_Password_Retype.Text) && Signup_TextBox_Password_Retype.Text.Length > 6)
             {
@@ -1958,12 +1910,14 @@ namespace Final_Year_Project
             }
         }
 
-        private void Signup_Panel_Button_Click(object sender, EventArgs e)
+        private void Signup_Panel_Button_Click(object sender, EventArgs e) // Signs the user up
         {
             if (goodEmail && goodUsername && goodPassword && goodPasswordRetype)
             {
+                // Adds user to database with given information, a shashed password and the default colour settings
                 database.Add_User(Signup_TextBox_Username.Text, GetHashString(Signup_TextBox_Password.Text), Signup_TextBox_Email.Text, -10185235, -12490271);
                 
+                // Emails the signed user to notify them of their sign up
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 var mail = new MailMessage();
                 mail.From = new MailAddress("calendarapplicationreed@gmail.com");
@@ -1998,7 +1952,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void PictureBox_Signup_Back_Click(object sender, EventArgs e)
+        private void PictureBox_Signup_Back_Click(object sender, EventArgs e) // Takes the user back to the login page from the sign up page
         {
             Signup_TextBox_Username.Text = "";
             Signup_TextBox_Email.Text = "";
@@ -2018,13 +1972,13 @@ namespace Final_Year_Project
             PictureBox_Signup_Back.Visible = false;
         }
 
-        private void Event_Button_Emoji_Click(object sender, EventArgs e)
+        private void Event_Button_Emoji_Click(object sender, EventArgs e) // Takes the user to the emoji screen to select an emoji
         {
             Emoji_Panel.Visible = true;
             Event_Panel.Visible = false;
         }
 
-        private void Dashboard_Panel_VisibleChanged(object sender, EventArgs e)
+        private void Dashboard_Panel_VisibleChanged(object sender, EventArgs e) // Checks for notifications everytime the user returns to the dashboard
         {
             if (Dashboard_Panel.Visible)
             {
@@ -2042,7 +1996,8 @@ namespace Final_Year_Project
             }
         }
 
-        private void PictureBox_Notification_Click(object sender, EventArgs e)
+        private void PictureBox_Notification_Click(object sender, EventArgs e) // Takes the users to the notifications screen
+
         {
             TableLayoutPanel_Notifications.Controls.Clear();
 
@@ -2096,7 +2051,7 @@ namespace Final_Year_Project
             PictureBox_Back.Visible = true;
         }
 
-        private void TextBox_Name_Group_TextChanged(object sender, EventArgs e)
+        private void TextBox_Name_Group_TextChanged(object sender, EventArgs e) // Checks the group name given is SQL safe and not empty
         {
             if (TextBox_Name_Group.Text.Equals("") || !SQLSafe(TextBox_Name_Group.Text))
             {
@@ -2109,7 +2064,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void TextBox_Name_Event_TextChanged(object sender, EventArgs e)
+        private void TextBox_Name_Event_TextChanged(object sender, EventArgs e) // Checks the event name given is SQL safe and not empty
         {
             if (TextBox_Name_Event.Text.Equals("") || !SQLSafe(TextBox_Name_Event.Text))
             {
@@ -2122,7 +2077,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void TextBox_Description_TextChanged(object sender, EventArgs e)
+        private void TextBox_Description_TextChanged(object sender, EventArgs e) // Checks the description given is SQL safe and not empty
         {
             if (!SQLSafe(TextBox_Description.Text))
             {
@@ -2135,7 +2090,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Friends_Control_Panel_VisibleChanged(object sender, EventArgs e)
+        private void Friends_Control_Panel_VisibleChanged(object sender, EventArgs e) // Formats the spreadsheet on the friends screen
         {
             Data_Friends.DataSource = database.Get_Friends();
 
@@ -2146,7 +2101,7 @@ namespace Final_Year_Project
             Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        private void Notification_Panel_VisibleChanged(object sender, EventArgs e)
+        private void Notification_Panel_VisibleChanged(object sender, EventArgs e) // Toggles notifications section on and off depending if empty
         {
             if (Dashboard_Panel.Visible)
             {
@@ -2164,7 +2119,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Remove_Friend_Button_Click(object sender, EventArgs e)
+        private void Remove_Friend_Button_Click(object sender, EventArgs e) // Removes friend selected by user
         {
             foreach (DataGridViewRow row in Data_Friends.SelectedRows)
             {
@@ -2182,7 +2137,7 @@ namespace Final_Year_Project
             Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        private void Update_Friend_Button_Click(object sender, EventArgs e)
+        private void Update_Friend_Button_Click(object sender, EventArgs e) // Updates friends
         {
             foreach (DataGridViewRow row in Data_Friends.SelectedRows)
             {
@@ -2200,7 +2155,7 @@ namespace Final_Year_Project
             Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        private void Data_Display_Groups_Click(object sender, EventArgs e)
+        private void Data_Display_Groups_Click(object sender, EventArgs e) // Gets the friends for selected group
         {
             foreach (DataGridViewRow row in Data_Display_Groups.SelectedRows)
             {
@@ -2248,7 +2203,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Data_Groups_Friends_Click(object sender, EventArgs e)
+        private void Data_Groups_Friends_Click(object sender, EventArgs e) // Toggles the selected friend
         {
             foreach (DataGridViewRow row in Data_Groups_Friends.SelectedRows)
             {
@@ -2264,7 +2219,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Update_Colour_Group_Click(object sender, EventArgs e)
+        private void Update_Colour_Group_Click(object sender, EventArgs e) // Changes the colour of the group
         {
             ColorDialog cd = new ColorDialog();
             cd.ShowDialog();
@@ -2272,7 +2227,7 @@ namespace Final_Year_Project
             Colour_Panel_Update.BackColor = cd.Color;
         }
 
-        private void Remove_Group_Name_Click(object sender, EventArgs e)
+        private void Remove_Group_Name_Click(object sender, EventArgs e) // Removes selected group from the user
         {
             foreach (DataGridViewRow row in Data_Display_Groups.SelectedRows)
             {
@@ -2282,7 +2237,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void TextBox_Group_Update_TextChanged(object sender, EventArgs e)
+        private void TextBox_Group_Update_TextChanged(object sender, EventArgs e) // Checks if the group name is safe for SQL
         {
             if (SQLSafe(TextBox_Group_Update.Text))
             {
@@ -2295,7 +2250,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Update_Group_Click(object sender, EventArgs e)
+        private void Update_Group_Click(object sender, EventArgs e) // Updates the group with the user defined data
         {
             foreach (DataGridViewRow row in Data_Display_Groups.SelectedRows)
             {
@@ -2335,7 +2290,7 @@ namespace Final_Year_Project
             SetData(database.GetData(dt), dt);
         }
 
-        private void Data_Friends_Click(object sender, EventArgs e)
+        private void Data_Friends_Click(object sender, EventArgs e) // Selects user to add as friend
         {
             foreach (DataGridViewRow row in Data_Friends.SelectedRows)
             {
@@ -2347,7 +2302,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Search_Add_Event_Button_Click(object sender, EventArgs e)
+        private void Search_Add_Event_Button_Click(object sender, EventArgs e) // Looks for a date to try and guess date for user
         {
             string[] split = TextBox_Search.Text.Split('/');
             DateTime temp;
@@ -2370,7 +2325,7 @@ namespace Final_Year_Project
             PictureBox_Back.Visible = true;
         }
 
-        private void PictureBox_Directions_Click(object sender, EventArgs e)
+        private void PictureBox_Directions_Click(object sender, EventArgs e) // Opens a browser to show google maps directions to specified location
         {
             string d = TextBox_Location.Text;
 
@@ -2387,7 +2342,7 @@ namespace Final_Year_Project
 
         string [] defaultTexts = { "Enter Search Criteria", "Enter Event Name", "Enter Address or Place", "Enter Group Name", "Enter Username", "Username", "Password", "Enter Description" };
 
-        private void TextBox_Click(object sender, EventArgs e)
+        private void TextBox_Click(object sender, EventArgs e) // When the user clicks a textbox select the whole box if it has any default text
         {
             TextBox tb = (TextBox)sender;
 
@@ -2401,7 +2356,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void RichTextBox_Click(object sender, EventArgs e)
+        private void RichTextBox_Click(object sender, EventArgs e) // When the user clicks a rich textbox select the whole box if it has any default text
         {
             RichTextBox tb = (RichTextBox)sender;
 
@@ -2415,7 +2370,7 @@ namespace Final_Year_Project
             }
         }
         
-        private void TextBox_Location_Search_TextChanged(object sender, EventArgs e)
+        private void TextBox_Location_Search_TextChanged(object sender, EventArgs e) // Waits for search suggestions and then displays them
         {
             if (TextBox_Location_Search.Text.Length > 0)
             {
@@ -2436,7 +2391,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Data_Location_Lookup_Click(object sender, EventArgs e)
+        private void Data_Location_Lookup_Click(object sender, EventArgs e) // Looks up lat and lng for exact location from suggested text
         {
             foreach (DataGridViewRow row in Data_Location_Lookup.SelectedRows)
             {
@@ -2474,49 +2429,7 @@ namespace Final_Year_Project
             }
         }
 
-        private void Facebook_Browser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
-        {
-            Facebook_Browser.Document.Window.ScrollTo(208, 0);
-
-            if (Facebook_Browser.Url.ToString().Contains("https://www.facebook.com/connect/login_success.html"))
-            {
-                Facebook_Browser.Visible = false;
-
-                string[] split = Facebook_Browser.Url.ToString().Split('=');
-                split = split[1].Split('&');
-
-                string html = string.Empty;
-                string url = @"https://graph.facebook.com/v3.2/oauth/access_token?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&client_secret=9560c5077c5d7e2ab45763f05a473fb0&code=" + split[0];
-
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.AutomaticDecompression = DecompressionMethods.GZip;
-
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    html = reader.ReadToEnd();
-                }
-
-                JObject json = JObject.Parse(html);
-
-                string token = (string)json["access_token"];
-
-                FacebookSettings.AccessToken = token;
-                
-                Facebook_GetEvents();
-
-                ResetForm();
-
-                PictureBox_Back.Visible = false;
-                Dashboard_Panel.Visible = true;
-                Facebook_Panel.Visible = false;
-                PictureBox_Logout.Visible = true;
-                PictureBox_Settings.Visible = true;
-            }
-        }
-
-        private void Facebook_GetEvents()
+        private void Facebook_GetEvents() // Get events from Facebook
         {
             var facebookClient = new FacebookClient();
             var facebookService = new FacebookService(facebookClient);
@@ -2592,10 +2505,9 @@ namespace Final_Year_Project
 
         private void Link_Facebook_Button_Click(object sender, EventArgs e)
         {
-            Uri uri = new Uri("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events");
+            Facebook_Browser.Navigate("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events"); // Requests user to re-login
 
-            Facebook_Browser.Url = uri;
-
+            Facebook_Browser.Visible = true;
             Facebook_Panel.Visible = true;
             Settings_Panel.Visible = false;
             PictureBox_Back.Visible = true;
@@ -2706,6 +2618,55 @@ namespace Final_Year_Project
                 Event_Panel.Visible = true;
                 Update_Event_Button.Visible = true;
                 Remove_Event_Button.Visible = true;
+            }
+        }
+
+        private void Facebook_Browser_Navigated_1(object sender, GeckoNavigatedEventArgs e)
+        {
+            if (Facebook_Browser.Url.ToString().Contains("https://www.facebook.com/connect/login_success.html"))
+            {
+                Facebook_Browser.Visible = false;
+
+                string[] split = Facebook_Browser.Url.ToString().Split('=');
+                split = split[1].Split('&');
+
+                string html = string.Empty;
+                string url = @"https://graph.facebook.com/v3.2/oauth/access_token?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&client_secret=9560c5077c5d7e2ab45763f05a473fb0&code=" + split[0];
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.AutomaticDecompression = DecompressionMethods.GZip;
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    html = reader.ReadToEnd();
+                }
+
+                JObject json = JObject.Parse(html);
+
+                string token = (string)json["access_token"];
+
+                FacebookSettings.AccessToken = token;
+
+                Facebook_GetEvents();
+
+                nsICookieManager CookieMan;
+                CookieMan = Xpcom.GetService<nsICookieManager>("@mozilla.org/cookiemanager;1");
+                CookieMan = Xpcom.QueryInterface<nsICookieManager>(CookieMan);
+                CookieMan.RemoveAll();
+
+                // https://stackoverflow.com/questions/13513063/gecko-clear-cache-history-cookies/26111307
+
+                SetData(database.GetData(dt), dt);
+
+                ResetForm();
+
+                PictureBox_Back.Visible = false;
+                Dashboard_Panel.Visible = true;
+                Facebook_Panel.Visible = false;
+                PictureBox_Logout.Visible = true;
+                PictureBox_Settings.Visible = true;
             }
         }
     }

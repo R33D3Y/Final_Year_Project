@@ -237,6 +237,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A9FD439A3323EAF0DCFA0C85468F24D6"
+        "OwnerKey" = "8:_728DBAE22D46469B83FD9BCE6A051137"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B042CAF670AD40A3BF55EBB10FFA7A61"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -245,6 +251,24 @@
         {
         "MsmKey" = "8:_B69CA8481A145E307DA543870BFC6F21"
         "OwnerKey" = "8:_728DBAE22D46469B83FD9BCE6A051137"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DD3486F0C12524D20B80A4715AA55007"
+        "OwnerKey" = "8:_728DBAE22D46469B83FD9BCE6A051137"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DD3486F0C12524D20B80A4715AA55007"
+        "OwnerKey" = "8:_A9FD439A3323EAF0DCFA0C85468F24D6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F57D2C39A38C40DABD210654D7DA0194"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -311,6 +335,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8CC081CC821543077001E72BEDFFA16A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A9FD439A3323EAF0DCFA0C85468F24D6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DD3486F0C12524D20B80A4715AA55007"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1109,6 +1145,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A9FD439A3323EAF0DCFA0C85468F24D6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Geckofx-Winforms, Version=45.0.6.0, Culture=neutral, PublicKeyToken=3209ac31600d1857, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A9FD439A3323EAF0DCFA0C85468F24D6"
+                    {
+                    "Name" = "8:Geckofx-Winforms.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Geckofx-Winforms.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B0EA8C259E304C0499B026E48A3FBE4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B042CAF670AD40A3BF55EBB10FFA7A61"
             {
             "SourcePath" = "8:..\\Final_Year_Project\\FacebookService.cs"
@@ -1158,6 +1225,57 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DD3486F0C12524D20B80A4715AA55007"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Geckofx-Core, Version=45.0.6.0, Culture=neutral, PublicKeyToken=3209ac31600d1857, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_DD3486F0C12524D20B80A4715AA55007"
+                    {
+                    "Name" = "8:Geckofx-Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Geckofx-Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B0EA8C259E304C0499B026E48A3FBE4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F57D2C39A38C40DABD210654D7DA0194"
+            {
+            "SourcePath" = "8:..\\packages\\GeckoFX.1.0.5\\output\\xul.dll"
+            "TargetName" = "8:xul.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_B0EA8C259E304C0499B026E48A3FBE4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -1217,7 +1335,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Calendar Application Setup"
         "ProductCode" = "8:{62603EA9-9656-41F7-A594-F37C4140A4FF}"
-        "PackageCode" = "8:{D2F127D6-E636-4539-9B6A-42B3077AD454}"
+        "PackageCode" = "8:{82260881-2F40-4BCD-8C96-7CA05536B054}"
         "UpgradeCode" = "8:{0F80F442-FA12-4097-8C60-902EFADCC142}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
