@@ -79,6 +79,13 @@ namespace Final_Year_Project
             }
 
             Set_Colours(); // Sets programs colours all to default
+
+            nsICookieManager CookieMan;
+            CookieMan = Xpcom.GetService<nsICookieManager>("@mozilla.org/cookiemanager;1");
+            CookieMan = Xpcom.QueryInterface<nsICookieManager>(CookieMan);
+            CookieMan.RemoveAll();
+
+            // https://stackoverflow.com/questions/13513063/gecko-clear-cache-history-cookies/26111307
         }
 
         private bool CheckForInternetConnection()
@@ -314,6 +321,16 @@ namespace Final_Year_Project
             // Facebook Panel
             Facebook_Panel.BackColor = lightColour;
             Facebook_Control_Panel.BackColor = darkColour;
+
+            if (lightColour.GetBrightness() > 0.7) // If text would be unreadable
+            {
+                Link_Skip_Button.ForeColor = temp;
+            }
+
+            else
+            {
+                Link_Skip_Button.ForeColor = lightColour;
+            }
 
             // Busy Panel
             Busiest_Day_Panel.BackColor = lightColour;
@@ -1023,6 +1040,18 @@ namespace Final_Year_Project
                 Setup_Groups();
                 Setup_Friends();
                 Setup_Dashboard_Groups(true);
+
+                notifications = database.Get_Notifications();
+
+                if (notifications.Count > 0)
+                {
+                    PictureBox_Notification.Visible = true;
+                }
+
+                else
+                {
+                    PictureBox_Notification.Visible = false;
+                }
             }
             
             ComboBox_Group.Text = "Select Group";
@@ -1644,6 +1673,18 @@ namespace Final_Year_Project
             Data_Friends.Columns[1].HeaderText = "Friends";
 
             Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            notifications = database.Get_Notifications();
+
+            if (notifications.Count > 0)
+            {
+                PictureBox_Notification.Visible = true;
+            }
+
+            else
+            {
+                PictureBox_Notification.Visible = false;
+            }
         }
 
         private void TextBox_Friends_Nickname_TextChanged(object sender, EventArgs e) // Changes the button to use the nickname specified
@@ -1809,6 +1850,16 @@ namespace Final_Year_Project
 
         private void PictureBox_Settings_Click(object sender, EventArgs e) // Changes screen to settings
         {
+            if (database.Get_Facebook_Link())
+            {
+                Link_Facebook_Button.Text = "Unlink With Facebook";
+            }
+
+            else
+            {
+                Link_Facebook_Button.Text = "Link With Facebook";
+            }
+
             Event_Panel.Visible = false;
             Group_Panel.Visible = false;
             Search_Panel.Visible = false;
@@ -1979,24 +2030,6 @@ namespace Final_Year_Project
             Event_Panel.Visible = false;
         }
 
-        private void Dashboard_Panel_VisibleChanged(object sender, EventArgs e) // Checks for notifications everytime the user returns to the dashboard
-        {
-            if (Dashboard_Panel.Visible)
-            {
-                notifications = database.Get_Notifications();
-
-                if (notifications.Count > 0)
-                {
-                    PictureBox_Notification.Visible = true;
-                }
-
-                else
-                {
-                    PictureBox_Notification.Visible = false;
-                }
-            }
-        }
-
         private void PictureBox_Notification_Click(object sender, EventArgs e) // Takes the users to the notifications screen
 
         {
@@ -2100,24 +2133,6 @@ namespace Final_Year_Project
             Data_Friends.Columns[1].HeaderText = "Friends";
 
             Data_Friends.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
-
-        private void Notification_Panel_VisibleChanged(object sender, EventArgs e) // Toggles notifications section on and off depending if empty
-        {
-            if (Dashboard_Panel.Visible)
-            {
-                notifications = database.Get_Notifications();
-
-                if (notifications.Count > 0)
-                {
-                    PictureBox_Notification.Visible = true;
-                }
-
-                else
-                {
-                    PictureBox_Notification.Visible = false;
-                }
-            }
         }
 
         private void Remove_Friend_Button_Click(object sender, EventArgs e) // Removes friend selected by user
@@ -2498,7 +2513,35 @@ namespace Final_Year_Project
 
                 DateTime temp = new DateTime(year, month, day, hour, minute, second);
 
-                database.Event_Facebook(id, ev.Name, ev.Description, temp, ev.Place, loc, "X", group);
+                string emoji = "X";
+
+                string[] split_desc = (ev.Name + " " + ev.Description + " " + ev.Place).Split(' ');
+
+                bool break_loop = false;
+
+                foreach (string str in split_desc)
+                {
+                    foreach (Emoji e in database.Get_Emojis())
+                    {
+                        if (str.ToLower().Equals(e.GetName().ToLower()))
+                        {
+                            //Console.WriteLine("1: " + emoji + " " +  ev.Name);
+                            emoji = e.GetName();
+                            break_loop = true;
+                            //Console.WriteLine("2: " + emoji + " " + ev.Name);
+                            break;
+                        }
+                    }
+
+                    if (break_loop)
+                    {
+                        break;
+                    }
+                }
+
+                //Console.WriteLine("3: " + emoji + " " + ev.Name);
+
+                database.Event_Facebook(id, ev.Name, ev.Description, temp, ev.Place, loc, emoji, group);
             }
 
             database.User_Linked_Facebook();
@@ -2506,12 +2549,22 @@ namespace Final_Year_Project
 
         private void Link_Facebook_Button_Click(object sender, EventArgs e)
         {
-            Facebook_Browser.Navigate("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events"); // Requests user to re-login
+            if (database.Get_Facebook_Link())
+            {
+                database.Remove_Facebook_Link();
 
-            Facebook_Browser.Visible = true;
-            Facebook_Panel.Visible = true;
-            Settings_Panel.Visible = false;
-            PictureBox_Back.Visible = true;
+                Link_Facebook_Button.Text = "Link With Facebook";
+            }
+
+            else
+            {
+                Facebook_Browser.Navigate("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events"); // Requests user to re-login
+
+                Facebook_Browser.Visible = true;
+                Facebook_Panel.Visible = true;
+                Settings_Panel.Visible = false;
+                PictureBox_Back.Visible = true;
+            }
         }
 
         private void Slider_Control_ValueChanged(object sender, EventArgs e)
@@ -2670,6 +2723,15 @@ namespace Final_Year_Project
                 PictureBox_Logout.Visible = true;
                 PictureBox_Settings.Visible = true;
             }
+        }
+
+        private void Link_Skip_Button_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+
+            Facebook_Panel.Visible = false;
+            Dashboard_Panel.Visible = true;
+            PictureBox_Back.Visible = false;
         }
     }
 
@@ -2853,7 +2915,7 @@ namespace Final_Year_Project
             cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = name;
             cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = description;
             cmd.Parameters.Add("@DateTime", SqlDbType.DateTime).Value = datetime;
-            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = Emoji(emoji, true);
+            cmd.Parameters.Add("@Emoji", SqlDbType.VarChar).Value = emoji;
             cmd.Parameters.Add("@Location_Name", SqlDbType.VarChar).Value = locationName;
             cmd.Parameters.Add("@Location_Geo", SqlDbType.VarChar).Value = locationGeo;
             cmd.Parameters.Add("@Group", SqlDbType.Int).Value = group;
@@ -3630,6 +3692,24 @@ namespace Final_Year_Project
             connection.Close();
 
             return amount;
+        }
+
+        public void Remove_Facebook_Link()
+        {
+            SqlCommand cmd = new SqlCommand("Remove_Facebook_Link", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@User", SqlDbType.Int).Value = user.GetID();
+
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public List<Emoji> Get_Emojis()
+        {
+            return emojis;
         }
     }
 

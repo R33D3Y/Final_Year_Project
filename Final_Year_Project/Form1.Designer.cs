@@ -223,6 +223,8 @@
             this.TableLayoutPanel_Notifications = new System.Windows.Forms.TableLayoutPanel();
             this.Facebook_Panel = new System.Windows.Forms.Panel();
             this.Facebook_Control_Panel = new System.Windows.Forms.Panel();
+            this.Link_Skip_Button = new System.Windows.Forms.Label();
+            this.Facebook_Browser = new Gecko.GeckoWebBrowser();
             this.Busiest_Day_Panel = new System.Windows.Forms.Panel();
             this.Busiest_Day_Control_Panel = new System.Windows.Forms.Panel();
             this.Select_Button = new System.Windows.Forms.Label();
@@ -233,7 +235,6 @@
             this.Slider_Value = new System.Windows.Forms.Label();
             this.Slider_Control = new System.Windows.Forms.TrackBar();
             this.Data_Busy_Days = new System.Windows.Forms.DataGridView();
-            this.Facebook_Browser = new Gecko.GeckoWebBrowser();
             this.Dashboard_Panel.SuspendLayout();
             this.Dashboard_Control_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Groups_Data)).BeginInit();
@@ -315,7 +316,6 @@
             this.Dashboard_Panel.Size = new System.Drawing.Size(850, 710);
             this.Dashboard_Panel.TabIndex = 2;
             this.Dashboard_Panel.Visible = false;
-            this.Dashboard_Panel.VisibleChanged += new System.EventHandler(this.Dashboard_Panel_VisibleChanged);
             // 
             // Dashboard_Control_Panel
             // 
@@ -2750,7 +2750,6 @@
             this.Notification_Panel.Size = new System.Drawing.Size(850, 710);
             this.Notification_Panel.TabIndex = 11;
             this.Notification_Panel.Visible = false;
-            this.Notification_Panel.VisibleChanged += new System.EventHandler(this.Notification_Panel_VisibleChanged);
             // 
             // Notification_Control_Panel
             // 
@@ -2790,11 +2789,36 @@
             // 
             this.Facebook_Control_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Facebook_Control_Panel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Facebook_Control_Panel.Controls.Add(this.Link_Skip_Button);
             this.Facebook_Control_Panel.Controls.Add(this.Facebook_Browser);
             this.Facebook_Control_Panel.Location = new System.Drawing.Point(129, 60);
             this.Facebook_Control_Panel.Name = "Facebook_Control_Panel";
-            this.Facebook_Control_Panel.Size = new System.Drawing.Size(593, 590);
+            this.Facebook_Control_Panel.Size = new System.Drawing.Size(593, 588);
             this.Facebook_Control_Panel.TabIndex = 20;
+            // 
+            // Link_Skip_Button
+            // 
+            this.Link_Skip_Button.BackColor = System.Drawing.Color.White;
+            this.Link_Skip_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Link_Skip_Button.Font = new System.Drawing.Font("Candara", 12F);
+            this.Link_Skip_Button.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Link_Skip_Button.Location = new System.Drawing.Point(4, 553);
+            this.Link_Skip_Button.Name = "Link_Skip_Button";
+            this.Link_Skip_Button.Size = new System.Drawing.Size(586, 30);
+            this.Link_Skip_Button.TabIndex = 24;
+            this.Link_Skip_Button.Text = "Skip";
+            this.Link_Skip_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Link_Skip_Button.Click += new System.EventHandler(this.Link_Skip_Button_Click);
+            // 
+            // Facebook_Browser
+            // 
+            this.Facebook_Browser.FrameEventsPropagateToMainWindow = false;
+            this.Facebook_Browser.Location = new System.Drawing.Point(4, 4);
+            this.Facebook_Browser.Name = "Facebook_Browser";
+            this.Facebook_Browser.Size = new System.Drawing.Size(586, 545);
+            this.Facebook_Browser.TabIndex = 0;
+            this.Facebook_Browser.UseHttpActivityObserver = false;
+            this.Facebook_Browser.Navigated += new System.EventHandler<Gecko.GeckoNavigatedEventArgs>(this.Facebook_Browser_Navigated);
             // 
             // Busiest_Day_Panel
             // 
@@ -2962,22 +2986,13 @@
             this.Data_Busy_Days.Size = new System.Drawing.Size(653, 222);
             this.Data_Busy_Days.TabIndex = 23;
             // 
-            // Facebook_Browser
-            // 
-            this.Facebook_Browser.FrameEventsPropagateToMainWindow = false;
-            this.Facebook_Browser.Location = new System.Drawing.Point(4, 4);
-            this.Facebook_Browser.Name = "Facebook_Browser";
-            this.Facebook_Browser.Size = new System.Drawing.Size(586, 583);
-            this.Facebook_Browser.TabIndex = 0;
-            this.Facebook_Browser.UseHttpActivityObserver = false;
-            this.Facebook_Browser.Navigated += new System.EventHandler<Gecko.GeckoNavigatedEventArgs>(this.Facebook_Browser_Navigated);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
+            this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Facebook_Panel);
             this.Controls.Add(this.Settings_Panel);
             this.Controls.Add(this.Dashboard_Panel);
@@ -2986,7 +3001,6 @@
             this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Signup_Panel);
-            this.Controls.Add(this.Friends_Panel);
             this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Emoji_Panel);
             this.Controls.Add(this.Notification_Panel);
@@ -3258,6 +3272,7 @@
         private System.Windows.Forms.DateTimePicker DateTime_Start_Busy;
         private System.Windows.Forms.Label Select_Button;
         private Gecko.GeckoWebBrowser Facebook_Browser;
+        private System.Windows.Forms.Label Link_Skip_Button;
     }
 }
 
