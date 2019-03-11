@@ -3713,7 +3713,7 @@ namespace Final_Year_Project
         }
     }
 
-    public class Emoji
+    public class Emoji // Emoji class
     {
         private string name;
         private string icon;
@@ -3735,10 +3735,10 @@ namespace Final_Year_Project
         }
     }
 
-    public class Notification
+    public class Notification // Notification class
     {
         private int id;
-        private int type;
+        private int type; // Allows for expandable notification uses
         private int sender;
         private int reciever;
 
@@ -3759,7 +3759,7 @@ namespace Final_Year_Project
         public int GetReciever() { return reciever; }
     }
 
-    public class User
+    public class User // Current user class
     {
         private int id;
         private string username;
@@ -3781,7 +3781,7 @@ namespace Final_Year_Project
         }
     }
 
-    public class CalendarGroup
+    public class CalendarGroup // Calendar group class
     {
         private int id;
         private string name;
@@ -3810,7 +3810,7 @@ namespace Final_Year_Project
         }
     }
 
-    public class CalendarEvent
+    public class CalendarEvent // Singluar calendar event class
     {
         private Int64 id;
         private string name;
