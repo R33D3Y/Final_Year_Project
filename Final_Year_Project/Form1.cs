@@ -151,6 +151,7 @@ namespace Final_Year_Project
             // Event Panel
             Event_Panel.BackColor = lightColour;
             Event_Control_Panel.BackColor = darkColour;
+            PictureBox_Directions.BackColor = darkColour;
 
             TextBox_Name_Event.BackColor = darkColour;
             TextBox_Description.BackColor = darkColour;
