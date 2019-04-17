@@ -1539,7 +1539,7 @@ namespace Final_Year_Project
 
         private void Remove_Event_Button_Click(object sender, EventArgs e) // Deletes current event from the database
         {
-            database.Delete_Event(Convert.ToInt32(TextBox_Event_ID.Text));
+            database.Delete_Event(Convert.ToInt64(TextBox_Event_ID.Text));
 
             calendar = tableLayoutPanel;
             header = tableLayoutPanelCalendarHeader;
@@ -2945,11 +2945,11 @@ namespace Final_Year_Project
             connection.Close();
         }
 
-        public void Delete_Event(int id)
+        public void Delete_Event(Int64 id)
         {
             SqlCommand cmd = new SqlCommand("Remove_Event", connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+            cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = id;
 
             connection.Open();
             cmd.ExecuteNonQuery();

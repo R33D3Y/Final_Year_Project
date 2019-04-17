@@ -2997,6 +2997,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 710);
             this.Controls.Add(this.Form_Button_Panel);
+            this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Event_Panel);
             this.Controls.Add(this.Search_Panel);
             this.Controls.Add(this.Busiest_Day_Panel);
@@ -3004,7 +3005,6 @@
             this.Controls.Add(this.Group_Panel);
             this.Controls.Add(this.Facebook_Panel);
             this.Controls.Add(this.Settings_Panel);
-            this.Controls.Add(this.Dashboard_Panel);
             this.Controls.Add(this.Login_Panel);
             this.Controls.Add(this.Signup_Panel);
             this.Controls.Add(this.Emoji_Panel);
