@@ -417,6 +417,8 @@ namespace Final_Year_Project
 
                 Set_Colours(); // Sets user defined colours
 
+                notifications = database.Get_Notifications();
+
                 if (database.Get_Facebook_Link()) // Check for facebook link
                 {
                     Facebook_Browser.Navigate("https://www.facebook.com/v3.2/dialog/oauth?client_id=1227276437422824&redirect_uri=https://www.facebook.com/connect/login_success.html&state={st=state123abc,ds=123456789}&scope=user_events"); // Requests user to re-login
@@ -434,6 +436,16 @@ namespace Final_Year_Project
                     Login_Panel.Visible = false;
                     PictureBox_Logout.Visible = true;
                     PictureBox_Settings.Visible = true;
+                }
+
+                if (notifications.Count > 0)
+                {
+                    PictureBox_Notification.Visible = true;
+                }
+
+                else
+                {
+                    PictureBox_Notification.Visible = false;
                 }
             }
 
@@ -629,7 +641,7 @@ namespace Final_Year_Project
 
         private void Add_Event_Button_Click(object sender, EventArgs e) // Adds new event to calendar
         {
-            if (!SQLSafe(TextBox_Name_Event.Text) || TextBox_Name_Event.Text.Equals("")) // Checks inputs for unsafe characters
+            if (TextBox_Name_Event.Text.Equals("")) // Checks inputs for unsafe characters
             {
                 Event_Cross_Name.Visible = true;
             }
@@ -637,16 +649,6 @@ namespace Final_Year_Project
             else
             {
                 Event_Cross_Name.Visible = false;
-            }
-
-            if (!SQLSafe(TextBox_Description.Text))
-            {
-                Event_Cross_Description.Visible = true;
-            }
-
-            else
-            {
-                Event_Cross_Description.Visible = false;
             }
 
             if (ComboBox_Group.Text.Equals(""))
@@ -659,7 +661,7 @@ namespace Final_Year_Project
                 Event_Cross_Group.Visible = false;
             }
 
-            if (SQLSafe(TextBox_Name_Event.Text) && SQLSafe(TextBox_Description.Text) && !ComboBox_Group.Text.Equals("") && !TextBox_Name_Event.Text.Equals(""))
+            if (!ComboBox_Group.Text.Equals("") && !TextBox_Name_Event.Text.Equals(""))
             {
                 Event_Cross_Name.Visible = false;
                 Event_Cross_Description.Visible = false;
@@ -698,21 +700,6 @@ namespace Final_Year_Project
                 Event_Panel.Visible = false;
                 PictureBox_Back.Visible = false;
             }
-        }
-
-        private bool SQLSafe(string str) // Checks for SQL not safe characters
-        {
-            string[] illegalCharacters = { "'", ";", ",", "@" };
-
-            foreach (string cha in illegalCharacters)
-            {
-                if (str.Contains(cha))
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         private void DatePicker_DateSelected(object sender, DateRangeEventArgs e) // Sets calendar to date selected on date picker
@@ -782,7 +769,7 @@ namespace Final_Year_Project
 
         private void Add_Group_Button_Click(object sender, EventArgs e) // Adds group to the users profile
         {
-            if (TextBox_Name_Group.Text.Equals("") || !SQLSafe(TextBox_Name_Group.Text)) // Checks for SQL non-accepted characters
+            if (TextBox_Name_Group.Text.Equals("")) // Checks for SQL non-accepted characters
             {
                 Group_Cross_Name.Visible = true;
             }
@@ -1885,7 +1872,7 @@ namespace Final_Year_Project
 
         private void Signup_TextBox_Username_TextChanged(object sender, EventArgs e) // Checks the entered username if is SQL safe and not already in use
         {
-            if (!database.Username_Lookup(Signup_TextBox_Username.Text) && Signup_TextBox_Username.Text.Length > 0 && SQLSafe(Signup_TextBox_Username.Text))
+            if (!database.Username_Lookup(Signup_TextBox_Username.Text) && Signup_TextBox_Username.Text.Length > 0)
             {
                 goodUsername = true;
                 Signup_Tick_Username.Visible = true;
@@ -2032,7 +2019,6 @@ namespace Final_Year_Project
         }
 
         private void PictureBox_Notification_Click(object sender, EventArgs e) // Takes the users to the notifications screen
-
         {
             TableLayoutPanel_Notifications.Controls.Clear();
 
@@ -2083,12 +2069,13 @@ namespace Final_Year_Project
             PictureBox_Back.Visible = false;
             Update_Event_Button.Visible = false;
             Remove_Event_Button.Visible = false;
+            Facebook_Panel.Visible = false;
             PictureBox_Back.Visible = true;
         }
 
         private void TextBox_Name_Group_TextChanged(object sender, EventArgs e) // Checks the group name given is SQL safe and not empty
         {
-            if (TextBox_Name_Group.Text.Equals("") || !SQLSafe(TextBox_Name_Group.Text))
+            if (TextBox_Name_Group.Text.Equals(""))
             {
                 Group_Cross_Name.Visible = true;
             }
@@ -2101,7 +2088,7 @@ namespace Final_Year_Project
 
         private void TextBox_Name_Event_TextChanged(object sender, EventArgs e) // Checks the event name given is SQL safe and not empty
         {
-            if (TextBox_Name_Event.Text.Equals("") || !SQLSafe(TextBox_Name_Event.Text))
+            if (TextBox_Name_Event.Text.Equals(""))
             {
                 Event_Cross_Name.Visible = true;
             }
@@ -2114,15 +2101,7 @@ namespace Final_Year_Project
 
         private void TextBox_Description_TextChanged(object sender, EventArgs e) // Checks the description given is SQL safe and not empty
         {
-            if (!SQLSafe(TextBox_Description.Text))
-            {
-                Event_Cross_Description.Visible = true;
-            }
-
-            else
-            {
-                Event_Cross_Description.Visible = false;
-            }
+            
         }
 
         private void Friends_Control_Panel_VisibleChanged(object sender, EventArgs e) // Formats the spreadsheet on the friends screen
@@ -2256,15 +2235,7 @@ namespace Final_Year_Project
 
         private void TextBox_Group_Update_TextChanged(object sender, EventArgs e) // Checks if the group name is safe for SQL
         {
-            if (SQLSafe(TextBox_Group_Update.Text))
-            {
-                Groups_Cross_Update_Name.Visible = false;
-            }
-
-            else
-            {
-                Groups_Cross_Update_Name.Visible = true;
-            }
+            
         }
 
         private void Update_Group_Click(object sender, EventArgs e) // Updates the group with the user defined data
