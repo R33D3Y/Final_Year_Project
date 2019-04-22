@@ -8,19 +8,12 @@ Phone: 07954343268
 GitHub: https://github.com/R33D3Y/Final_Year_Project
 
 To Install/Deploy the Application (Requires Windows OS):
-	Simply execute the file 'RInstall\MSI_Setup.msi' and follow the Install Wizard.
+	Simply execute the file 'Install Files\MSI_Setup.msi' and follow the Install Wizard.
 	There should then be a Desktop Shortcut for the application, if not Ctrl+S and type 'Calendar Application'.
 
-To Run without Install (Requires Windows OS):
-	Execute 'RWInstall\Final_Year_Project.exe'.
-
 To View Code:
-	To view the code in context you must install Visual Studio 2017 or 2019.
-		Then navigate to 'CContext\Final_Year_Project\Final_Year_Project.sln'
-
-	To view the code out of context simply visit 'CWContext'
-		This code does not include the designer sections of the form, just the code I have developed.
-		To access the form I have designed, Visual Studio is required.
+	The code is available on GitHub.
+	To view the code correctly with designs you must download Visual Studio 2019.
 
 Using the Application:
 	Please feel free to break, use, explore the application as you feel necessary.
