@@ -11,8 +11,10 @@ To Install/Deploy the Application (Requires Windows OS):
 	Simply execute the file 'Install Files\MSI_Setup.msi' and follow the Install Wizard.
 	There should then be a Desktop Shortcut for the application, if not Ctrl+S and type 'Calendar Application'.
 
+	Also avaible at https://github.com/R33D3Y/Final_Year_Project/blob/master/MSI_Setup/Release.zip
+
 To View Code:
-	The code is available on GitHub.
+	The code is available on GitHub, clone the repository or download via a zip to access.
 	To view the code correctly with designs you must download Visual Studio 2019.
 
 Using the Application:
